@@ -182,16 +182,27 @@
         <h1 id="blog-搭建心得"><a href="#blog-搭建心得" class="headerlink" title="blog 搭建心得"></a>blog 搭建心得</h1><p><em>Xun9er 2019.10.6</em>  </p>
 <h2 id="真（wo）-开-hao-心-nan"><a href="#真（wo）-开-hao-心-nan" class="headerlink" title="真（wo） 开(hao) 心(nan)"></a>真（wo） 开(hao) 心(nan)</h2><p>弄了一天终于搭好了，遇到了一些坑，但网上的解决方法蛮详细，还是都一一解决了。还有一些东西没搞清楚，需要多熟悉熟悉叭。</p>
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ol>
-<li>环境准备：node、git安装</li>
-<li>安装hexo <code>cnpm install -g hexo-cli</code>（为防止npm卡顿，先用<code>npm install -g cnpm --registry=http://registry.npm.taobao.org</code>）</li>
-<li>注册GitHub</li>
-<li>hexo init初始化博客</li>
-<li>新建GitHub仓库</li>
-<li>接下来就连网，安装git插件（<code>cnpm install hexo-deployer-git --save</code>），设置—config.yml文件，可用notepad打开，然后在显示的底部填type： git 并补充repo： 仓库地址、branch： master 发送到远端hexo d<br><a href="https://www.bilibili.com/video/av44544186" target="_blank" rel="noopener">b站良心教程</a>  </li>
-<li>比较好卡看的主题 <code>git clone http://github.com/litten/hexo-theme-yilia.git themes/yilia</code>  <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2>总结一下这之中遇到的问题：  </li>
-<li><code>hexo server</code>(启动博客) 打不开 要先安装它： <code>npm install</code><br>然后再<code>hexo-server -save</code>（要在blog目录下执行）  </li>
-<li>设置—config.yml文件时冒号后要有空格  </li>
-<li>第二天打开就变成404 ？？？ 阿里云解析改为CNAM GitHub的setting也要改  </li>
+<li><p>环境准备：node、git安装</p>
+</li>
+<li><p>安装hexo <code>cnpm install -g hexo-cli</code>（为防止npm卡顿，先用<code>npm install -g cnpm --registry=http://registry.npm.taobao.org</code>）</p>
+</li>
+<li><p>注册GitHub</p>
+</li>
+<li><p>hexo init初始化博客</p>
+</li>
+<li><p>新建GitHub仓库</p>
+</li>
+<li><p>接下来就连网，安装git插件（<code>cnpm install hexo-deployer-git --save</code>），设置—config.yml文件，可用notepad打开，然后在显示的底部填type： git 并补充repo： 仓库地址、branch： master 发送到远端hexo d  </p>
+</li>
+<li><p>比较好看的主题 <code>git clone http://github.com/litten/hexo-theme-yilia.git themes/yilia</code>  </p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>总结一下这之中遇到的问题：  </p>
+</li>
+<li><p><code>hexo server</code>(启动博客) 打不开 要先安装它： <code>npm install</code><br>然后再<code>hexo-server -save</code>（要在blog目录下执行）  </p>
+</li>
+<li><p>设置—config.yml文件时冒号后要有空格  </p>
+</li>
+<li><p>第二天打开就变成404 ？？？ 阿里云解析改为CNAM GitHub的setting也要改 在source目录下创建CNAME文件  </p>
+</li>
 </ol>
 
       
