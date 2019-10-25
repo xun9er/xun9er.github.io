@@ -6,24 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>2019.10.10 | Xun9er&#39;s blog</title>
+  <title>Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="bugkuXun9er 2019.10.10做了几道ctf的水题，不过呢，也是个从无到有的进步，还是记录一下    滑稽  直接看源代码就好   计算器 把size改改    web基础$_GIT  传递数据的方法为GIT 就直接在连接后面加上?what=flag web基础$_POST  POST方法传递数据 用max hackbar(hackbar要收费) load URL之后在post da">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2019.10.10">
+<meta property="og:title" content="Xun9er&#39;s blog">
 <meta property="og:url" content="http://yoursite.com/2019/10/25/2019-10-10/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="bugkuXun9er 2019.10.10做了几道ctf的水题，不过呢，也是个从无到有的进步，还是记录一下    滑稽  直接看源代码就好   计算器 把size改改    web基础$_GIT  传递数据的方法为GIT 就直接在连接后面加上?what=flag web基础$_POST  POST方法传递数据 用max hackbar(hackbar要收费) load URL之后在post da">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-25T08:37:59.288Z">
+<meta property="og:updated_time" content="2019-10-25T08:59:34.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2019.10.10">
+<meta name="twitter:title" content="Xun9er&#39;s blog">
 <meta name="twitter:description" content="bugkuXun9er 2019.10.10做了几道ctf的水题，不过呢，也是个从无到有的进步，还是记录一下    滑稽  直接看源代码就好   计算器 把size改改    web基础$_GIT  传递数据的方法为GIT 就直接在连接后面加上?what=flag web基础$_POST  POST方法传递数据 用max hackbar(hackbar要收费) load URL之后在post da">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/source/img/green.ico">
+    <link rel="icon" href="./source/img/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -161,21 +161,6 @@
             <article id="post-2019-10-10" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      2019.10.10
-    </h1>
-  
-
-        
-        <a href="/2019/10/25/2019-10-10/" class="archive-article-date">
-  	<time datetime="2019-10-25T08:37:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="bugku"><a href="#bugku" class="headerlink" title="bugku"></a>bugku</h1><h2 id="Xun9er-2019-10-10"><a href="#Xun9er-2019-10-10" class="headerlink" title="Xun9er 2019.10.10"></a><em>Xun9er 2019.10.10</em></h2><p>做了几道ctf的水题，不过呢，也是个从无到有的进步，还是记录一下  </p>
@@ -183,9 +168,49 @@
 <li>滑稽  直接看源代码就好  </li>
 <li>计算器 把size改改   </li>
 <li>web基础$_GIT  传递数据的方法为GIT 就直接在连接后面加上?what=flag</li>
-<li>web基础$_POST  POST方法传递数据 用max hackbar(hackbar要收费) load URL之后在post data栏输入what=flag<br>就是这样，，，也没啥说的了，，<h4 id="还是补充一下吧："><a href="#还是补充一下吧：" class="headerlink" title="还是补充一下吧："></a>还是补充一下吧：</h4>GIT和POST的区别：<br>git | post   </li>
-<li>–:|—:<br>GET用于从服务器端获取数据|POST用于向服务器提交数据<br>GET是通过URL方式请求，可以直接看到，明文传输。|POST是通过请求header请求，可以用开发者工具或者抓包可以看到，同样也是明文的。<br>GET请求的数据会附在URL之后，以?分割URL和传输数据，参数之间以&amp;相连|POST把提交的数据则放置在是HTTP包的包体中<br>GET产生一个TCP数据包|GET产生一个TCP数据包<br>GET请求的时候，会把HEADER和DATA一起发送给服务器|POST，浏览器先发送Header，服务器响应100 Continue，浏览器再发送DATA，服务器响应200 OK（返回数据）<br>get安全性非常低，但是执行效率却比Post方法好|post安全性较高。<br>GET的参数只能支持ASCII|POST能支持任意binary，包括中文。<br>参考：<a href="https://www.zhihu.com/question/28586791" target="_blank" rel="noopener">https://www.zhihu.com/question/28586791</a></li>
+<li>web基础$_POST  POST方法传递数据 用max hackbar(hackbar要收费) load URL之后在post data栏输入what=flag<br>就是这样，，，也没啥说的了，，<h4 id="还是补充一下吧："><a href="#还是补充一下吧：" class="headerlink" title="还是补充一下吧："></a>还是补充一下吧：</h4>GIT和POST的区别：  </li>
 </ul>
+<table>
+    <thead>
+        <tr>
+            <th>git </th>
+            <th>post </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET用于从服务器端获取数据</td>
+            <td>POST用于向服务器提交数据</td>
+        </tr>
+        <tr>
+            <td>GET是通过URL方式请求，可以直接看到，明文传输。</td>
+            <td>POST是通过请求header请求，可以用开发者工具或者抓包可以看到，同样也是明文的。  </td>
+        </tr>
+        <tr>
+            <td>GET请求的数据会附在URL之后，以?分割URL和传输数据，参数之间以&相连</td>
+            <td>POST把提交的数据则放置在是HTTP包的包体中  </td>
+        </tr>
+        <tr>
+            <td>GET产生一个TCP数据包</td>
+            <td>POST产生两个TCP数据包</td>
+        </tr>
+        <tr>
+            <td>GET请求的时候，会把HEADER和DATA一起发送给服务器</td>
+            <td>POST，浏览器先发送Header，服务器响应100 Continue，浏览器再发送DATA，服务器响应200 OK（返回数据）</td>
+        </tr>
+        <tr>
+            <td>get安全性非常低，但是执行效率却比Post方法好</td>
+            <td>post安全性较高。</td>
+        </tr>
+        <tr>
+            <td>GET的参数只能支持ASCII</td>
+            <td>POST能支持任意binary，包括中文。</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p>参考：<a href="https://www.zhihu.com/question/28586791" target="_blank" rel="noopener">https://www.zhihu.com/question/28586791</a></p>
 <h2 id="Xun9er-2019-10-11"><a href="#Xun9er-2019-10-11" class="headerlink" title="Xun9er 2019.10.11"></a><em>Xun9er 2019.10.11</em></h2><p>做梦都在爆破23333</p>
 <ul>
 <li>你必须让它停下 （莫名其妙就做出来了？？没搞懂的我又搜了搜网上的资料）进去之后网页一直不停刷新，查看器看到有<a style="display:none">flag is here~</a>要让他停下来。看到有两种解决办法，一种是抓包，放到repeater上多跑几回flag就出来了。还有一种是关闭浏览器的js，这个没试。那么问题来了，我两种方法都没用，flag自己就出来了？？？懵，康康是什么问题。。。。。。。等我发现了再说吧。</li>
