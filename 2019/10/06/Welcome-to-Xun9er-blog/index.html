@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="blog 搭建心得Xun9er 2019.10.6   真（wo） 开(hao) 心(nan)弄了一天终于搭好了，遇到了一些坑，但网上的解决方法蛮详细，还是都一一解决了。还有一些东西没搞清楚，需要多熟悉熟悉叭。 过程 环境准备：node、git安装  安装hexo cnpm install -g hexo-cli（为防止npm卡顿，先用npm install -g cnpm --registry=">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-12T00:29:27.427Z">
+<meta property="og:updated_time" content="2019-11-09T04:03:54.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Welcome to Xun9er&#39;s blog!!">
 <meta name="twitter:description" content="blog 搭建心得Xun9er 2019.10.6   真（wo） 开(hao) 心(nan)弄了一天终于搭好了，遇到了一些坑，但网上的解决方法蛮详细，还是都一一解决了。还有一些东西没搞清楚，需要多熟悉熟悉叭。 过程 环境准备：node、git安装  安装hexo cnpm install -g hexo-cli（为防止npm卡顿，先用npm install -g cnpm --registry=">
@@ -197,16 +197,13 @@
 </li>
 <li><p>接下来就连网，安装git插件（<code>cnpm install hexo-deployer-git --save</code>），设置—config.yml文件，可用notepad打开，然后在显示的底部填type： git 并补充repo： 仓库地址、branch： master 发送到远端hexo d  </p>
 </li>
-<li><p>比较好看的主题 <code>git clone http://github.com/litten/hexo-theme-yilia.git themes/yilia</code>  </p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>总结一下这之中遇到的问题：  </p>
-</li>
-<li><p><code>hexo server</code>(启动博客) 打不开 要先安装它： <code>npm install</code><br>然后再<code>hexo-server -save</code>（要在blog目录下执行）  </p>
-</li>
-<li><p>设置—config.yml文件时冒号后要有空格  </p>
-</li>
-<li><p>第二天打开就变成404 ？？？ 阿里云解析改为CNAM GitHub的setting也要改 在source目录下创建CNAME文件  </p>
+<li><p>主题 <code>git clone http://github.com/litten/hexo-theme-yilia.git themes/yilia</code>  </p>
 </li>
 </ol>
+<a id="more"></a>
+
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>总结一下这之中遇到的问题：<br>1.<code>hexo server</code>(启动博客) 打不开 要先安装它： <code>npm install</code><br>然后再<code>hexo-server -save</code>（要在blog目录下执行）<br>2.设置—config.yml文件时冒号后要有空格<br>3.第二天打开就变成404 ？？？ 阿里云解析改为CNAM GitHub的setting也要改 在source目录下创建CNAME文件  </p>
 
       
 
