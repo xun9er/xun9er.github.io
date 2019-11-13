@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Xun9er&#39;s blog</title>
+  <title>2019.11.12 | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="bugkuXun9er 2019.10.10做了几道ctf的水题，不过呢，也是个从无到有的进步，记录一下">
+  <meta name="description" content="2019.11.12php final关键字：用在类上则该类不可以被继承，也不能再有子类；用在方法上则该方法不能被进行重写，也不能被覆盖；    抽象类(abstract)：不能被实例化，只能作为其他类的父类来使用。一个抽象类中至少要有一个抽象方法，抽象方法没有方法体，其功能的实现只能在子类中实现；eg：   123456789101112131415161718192021222324&amp;lt;?">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xun9er&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/2019/10/25/2019-10-10/index.html">
+<meta property="og:title" content="2019.11.12">
+<meta property="og:url" content="http://yoursite.com/2019/11/13/2019-11-12/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="bugkuXun9er 2019.10.10做了几道ctf的水题，不过呢，也是个从无到有的进步，记录一下">
+<meta property="og:description" content="2019.11.12php final关键字：用在类上则该类不可以被继承，也不能再有子类；用在方法上则该方法不能被进行重写，也不能被覆盖；    抽象类(abstract)：不能被实例化，只能作为其他类的父类来使用。一个抽象类中至少要有一个抽象方法，抽象方法没有方法体，其功能的实现只能在子类中实现；eg：   123456789101112131415161718192021222324&amp;lt;?">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-10T08:54:01.000Z">
+<meta property="og:updated_time" content="2019-11-13T14:23:24.628Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xun9er&#39;s blog">
-<meta name="twitter:description" content="bugkuXun9er 2019.10.10做了几道ctf的水题，不过呢，也是个从无到有的进步，记录一下">
+<meta name="twitter:title" content="2019.11.12">
+<meta name="twitter:description" content="2019.11.12php final关键字：用在类上则该类不可以被继承，也不能再有子类；用在方法上则该方法不能被进行重写，也不能被覆盖；    抽象类(abstract)：不能被实例化，只能作为其他类的父类来使用。一个抽象类中至少要有一个抽象方法，抽象方法没有方法体，其功能的实现只能在子类中实现；eg：   123456789101112131415161718192021222324&amp;lt;?">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -157,64 +157,44 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019-10-10" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2019-11-12" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2019.11.12
+    </h1>
+  
+
+        
+        <a href="/2019/11/13/2019-11-12/" class="archive-article-date">
+  	<time datetime="2019-11-13T14:22:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-13</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="bugku"><a href="#bugku" class="headerlink" title="bugku"></a>bugku</h1><p><em>Xun9er 2019.10.10</em><br>做了几道ctf的水题，不过呢，也是个从无到有的进步，记录一下  </p>
-<a id="more"></a>
-<ul>
-<li>滑稽  直接看源代码就好  </li>
-<li>计算器 把size改改   </li>
-<li>web基础$_GIT  传递数据的方法为GIT 就直接在连接后面加上?what=flag</li>
-<li>web基础$_POST  POST方法传递数据 用max hackbar(hackbar要收费) load URL之后在post data栏输入what=flag<br>就是这样，，，也没啥说的了，，</li>
-</ul>
-<h4 id="此外："><a href="#此外：" class="headerlink" title="此外："></a>此外：</h4><p>GIT和POST的区别：  </p>
-<table>
-    <thead>
-        <tr>
-            <th>git </th>
-            <th>post </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>GET用于从服务器端获取数据</td>
-            <td>POST用于向服务器提交数据</td>
-        </tr>
-        <tr>
-            <td>GET是通过URL方式请求，可以直接看到，明文传输。</td>
-            <td>POST是通过请求header请求，可以用开发者工具或者抓包可以看到，同样也是明文的。  </td>
-        </tr>
-        <tr>
-            <td>GET请求的数据会附在URL之后，以?分割URL和传输数据，参数之间以&相连</td>
-            <td>POST把提交的数据则放置在是HTTP包的包体中  </td>
-        </tr>
-        <tr>
-            <td>GET产生一个TCP数据包</td>
-            <td>POST产生两个TCP数据包</td>
-        </tr>
-        <tr>
-            <td>GET请求的时候，会把HEADER和DATA一起发送给服务器</td>
-            <td>POST，浏览器先发送Header，服务器响应100 Continue，浏览器再发送DATA，服务器响应200 OK（返回数据）</td>
-        </tr>
-        <tr>
-            <td>get安全性非常低，但是执行效率却比Post方法好</td>
-            <td>post安全性较高。</td>
-        </tr>
-        <tr>
-            <td>GET的参数只能支持ASCII</td>
-            <td>POST能支持任意binary，包括中文。</td>
-        </tr>
-    </tbody>
-</table>
+        <h1 id="2019-11-12"><a href="#2019-11-12" class="headerlink" title="2019.11.12"></a><em>2019.11.12</em></h1><h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><ul>
+<li><p>final关键字：<br>用在类上则该类不可以被继承，也不能再有子类；<br>用在方法上则该方法不能被进行重写，也不能被覆盖；  </p>
+</li>
+<li><p>抽象类(abstract)：<br>不能被实例化，只能作为其他类的父类来使用。一个抽象类中至少要有一个抽象方法，抽象方法没有方法体，其功能的实现只能在子类中实现；<br>eg：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">abstract class CommodityObject&#123;</span><br><span class="line">	abstract function service ($getName,$price,$num);</span><br><span class="line">&#125;</span><br><span class="line">class MyBook extends CommodityObject&#123;</span><br><span class="line">	function service($getName,$price,$num)&#123;</span><br><span class="line">		echo&apos;您购买的商品是&apos;.$getName.&apos;,该商品单价是&apos;.$price;</span><br><span class="line">		echo&apos;您购买的数量是&apos;.$num.&apos;本&apos;;</span><br><span class="line">		echo &apos;,如有缺页，三日内更换.&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class MyComputer extends CommodityObject&#123;</span><br><span class="line">	function service($getName,$price,$num)&#123;</span><br><span class="line">		echo&apos;您购买的商品是&apos;.$getName.&apos;,该商品单价是&apos;.$price;</span><br><span class="line">		echo&apos;您购买的数量是&apos;.$num.&apos;台&apos;;</span><br><span class="line">		echo &apos;,如发生非人为质量问题，请在3月内更换.&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">$book=new MyBook();</span><br><span class="line">$computer=new MyComputer();</span><br><span class="line">$book-&gt;service(&quot;harry potter&quot;,99,3);</span><br><span class="line">echo &apos;&lt;p&gt;&apos;;</span><br><span class="line">$computer-&gt;service(&quot;mac&quot;,10000,5);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口的使用<br>为实现多重继承。<br>和抽象类功能类似，抽象类可以实现抽象类中公共的方法，接口可以实现多继承；</p>
+<h1 id="2019-11-13"><a href="#2019-11-13" class="headerlink" title="2019.11.13"></a><em>2019.11.13</em></h1><h2 id="blog"><a href="#blog" class="headerlink" title="blog"></a>blog</h2><p>加ico，用的yilia主题，需要修改\themes\yilia\layout_partial中的  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.favicon)&#123; %&gt;</span><br><span class="line">    &lt;link rel=&quot;icon&quot; href=&quot;/img/favicon.ico&quot;&gt;</span><br></pre></td></tr></table></figure>
 
-
-<p>参考：<a href="https://www.zhihu.com/question/28586791" target="_blank" rel="noopener">https://www.zhihu.com/question/28586791</a></p>
-<h2 id="Xun9er-2019-10-11"><a href="#Xun9er-2019-10-11" class="headerlink" title="Xun9er 2019.10.11"></a><em>Xun9er 2019.10.11</em></h2><ul>
-<li>你必须让它停下 （莫名其妙就做出来了？？没搞懂的我又搜了搜网上的资料）进去之后网页一直不停刷新，查看器看到有<code>&lt;a style=&quot;display:none&quot;&gt;flag is here~&lt;/a&gt;</code>要让他停下来。看到有两种解决办法，一种是抓包，放到repeater上多跑几回flag就出来了。还有一种是关闭浏览器的js，这个没试。那么问题来了，我两种方法都没用，flag自己就出来了？？？懵，康康是什么问题。。。。。。。等我发现了再说吧。</li>
+</li>
 </ul>
+<p>（改成这个样，原来是什么样我忘了，不过都差不多）<br>然后在blog/source中创建img文件，把用比特虫转好的ico放在里面。<br>加音乐播放器，在网易云音乐的网站上找到歌曲的外链，复制后写成这样：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav class=&quot;header-music&quot;&gt;</span><br><span class="line">		&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=210 height=70 src=&quot;//music.163.com/outchain/player?type=2&amp;id=28912659&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">		&lt;/nav&gt;</span><br></pre></td></tr></table></figure>
+
+<p>加到themes\yilia\layout_partial中的left-col.ejs中具体位置看情况，目前的问题是放进去音乐播放器后要么是播放器被背景遮挡要么就是栏中的其他项目被挤掉，改播放器的尺寸也不行，不知道其他板块的大小、布局怎么调，css是完全不懂233，所以就暂时不在主页加播放器了。  </p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=29047169&auto=0&height=32"></iframe>  
+找一首版权允许的喜欢的曲子，不容易不容易。
 
       
 
@@ -294,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/25/2019-10-10/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/13/2019-11-12/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -308,18 +288,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/26/2019-10-26/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/21/note-2019-10-7/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">note 2019.10.7</div>
+    <a href="/2019/11/10/2019-11-10/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2019.11.10</div>
       <i class="icon-circle-right"></i>
     </a>
   
