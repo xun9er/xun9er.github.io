@@ -15,10 +15,12 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="2019.11.12php final关键字：用在类上则该类不可以被继承，也不能再有子类；用在方法上则该方法不能被进行重写，也不能被覆盖；    抽象类(abstract)：不能被实例化，只能作为其他类的父类来使用。一个抽象类中至少要有一个抽象方法，抽象方法没有方法体，其功能的实现只能在子类中实现；eg：   123456789101112131415161718192021222324&amp;lt;?">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T14:23:24.628Z">
+<meta property="og:image" content="https://i.loli.net/2019/11/13/Q1XZqng8KoA3mFr.png">
+<meta property="og:updated_time" content="2019-11-13T14:39:01.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019.11.12">
 <meta name="twitter:description" content="2019.11.12php final关键字：用在类上则该类不可以被继承，也不能再有子类；用在方法上则该方法不能被进行重写，也不能被覆盖；    抽象类(abstract)：不能被实例化，只能作为其他类的父类来使用。一个抽象类中至少要有一个抽象方法，抽象方法没有方法体，其功能的实现只能在子类中实现；eg：   123456789101112131415161718192021222324&amp;lt;?">
+<meta name="twitter:image" content="https://i.loli.net/2019/11/13/Q1XZqng8KoA3mFr.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -52,6 +54,7 @@
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Xun9er</a></h1>
 		</hgroup>
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=29047169&auto=0&height=32"></iframe>
 		
 		<p class="header-subtitle">姑苏行古刹，桃花渡乱红</p>
 		
@@ -189,12 +192,7 @@
 
 </li>
 </ul>
-<p>（改成这个样，原来是什么样我忘了，不过都差不多）<br>然后在blog/source中创建img文件，把用比特虫转好的ico放在里面。<br>加音乐播放器，在网易云音乐的网站上找到歌曲的外链，复制后写成这样：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav class=&quot;header-music&quot;&gt;</span><br><span class="line">		&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=210 height=70 src=&quot;//music.163.com/outchain/player?type=2&amp;id=28912659&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">		&lt;/nav&gt;</span><br></pre></td></tr></table></figure>
-
-<p>加到themes\yilia\layout_partial中的left-col.ejs中具体位置看情况，目前的问题是放进去音乐播放器后要么是播放器被背景遮挡要么就是栏中的其他项目被挤掉，改播放器的尺寸也不行，不知道其他板块的大小、布局怎么调，css是完全不懂233，所以就暂时不在主页加播放器了。  </p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=29047169&auto=0&height=32"></iframe>  
-找一首版权允许的喜欢的曲子，不容易不容易。
+<p>（改成这个样，原来是什么样我忘了，不过都差不多）<br>然后在blog/source中创建img文件，把用比特虫转好的ico放在里面。<br>加音乐播放器，在网易云音乐的网站上找到歌曲的外链，复制后直接粘贴加themes\yilia\layout_partial中的left-col.ejs中具体位置看情况<br><img src="https://i.loli.net/2019/11/13/Q1XZqng8KoA3mFr.png" alt="blog music.png"><br>之前一直没弄出来，应该是位置没放对。  </p>
 
       
 
