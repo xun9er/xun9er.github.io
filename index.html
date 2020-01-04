@@ -183,7 +183,7 @@
       
         <h1>DVWA学习笔记</h1>
 
-<p><img src="1EDE7D7A9A69460986F5C2730A56C72D" alt="下载"></p>
+<p><img src="https://i.loli.net/2020/01/04/Lt1TxMQXBI9EPZi.png" alt="DVWA--brute-1.png"></p>
         
           <a class="article-more-a" href="/2020/01/04/DVWA-brute/#more">more >></a>
         
@@ -199,77 +199,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/01/04/DVWA-brute/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note-about-DVWA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/02/note-about-DVWA/">note about DVWA</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/02/note-about-DVWA/" class="archive-article-date">
-  	<time datetime="2020-01-02T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1><font face="Comic" sans ms>DVWA<font face="STKaiti"></font></font></h1>
-<hr>
-<hr>
-<h2>brute</h2>
-<h3>easy</h3>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_GET[ &apos;Login&apos; ] ) ) &#123;</span><br><span class="line">    // Get username</span><br><span class="line">    $user = $_GET[ &apos;username&apos; ];</span><br><span class="line"></span><br><span class="line">    // Get password</span><br><span class="line">    $pass = $_GET[ &apos;password&apos; ];</span><br><span class="line">    $pass = md5( $pass );</span><br><span class="line"></span><br><span class="line">    // Check the database</span><br><span class="line">    $query  = &quot;SELECT * FROM `users` WHERE user = &apos;$user&apos; AND password = &apos;$pass&apos;;&quot;;</span><br><span class="line">    $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &apos;&lt;pre&gt;&apos; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &apos;&lt;/pre&gt;&apos; );</span><br><span class="line"></span><br><span class="line">    if( $result &amp;&amp; mysqli_num_rows( $result ) == 1 ) &#123;</span><br><span class="line">        // Get users details</span><br><span class="line">        $row    = mysqli_fetch_assoc( $result );</span><br><span class="line">        $avatar = $row[&quot;avatar&quot;];</span><br><span class="line"></span><br><span class="line">        // Login successful</span><br><span class="line">        echo &quot;&lt;p&gt;Welcome to the password protected area &#123;$user&#125;&lt;/p&gt;&quot;;</span><br><span class="line">        echo &quot;&lt;img src=\&quot;&#123;$avatar&#125;\&quot; /&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        // Login failed</span><br><span class="line">        echo &quot;&lt;pre&gt;&lt;br /&gt;Username and/or password incorrect.&lt;/pre&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ((is_null($___mysqli_res = mysqli_close($GLOBALS[&quot;___mysqli_ston&quot;]))) ? false : $___mysqli_res);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/01/02/note-about-DVWA/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/02/note-about-DVWA/">展开全文 >></a>
         </p>
       
 
@@ -821,6 +750,88 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/10/21/note-2019-10-7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Welcome-to-Xun9er-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/06/Welcome-to-Xun9er-blog/">Welcome to Xun9er&#39;s blog!!</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/06/Welcome-to-Xun9er-blog/" class="archive-article-date">
+  	<time datetime="2019-10-06T09:40:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="blog-搭建心得"><a href="#blog-搭建心得" class="headerlink" title="blog 搭建心得"></a>blog 搭建心得</h1><p><em>Xun9er 2019.10.6</em>  </p>
+<h2 id="真（wo）-开-hao-心-nan"><a href="#真（wo）-开-hao-心-nan" class="headerlink" title="真（wo） 开(hao) 心(nan)"></a>真（wo） 开(hao) 心(nan)</h2><p>弄了一天终于搭好了，遇到了一些坑，但网上的解决方法蛮详细，还是都一一解决了。还有一些东西没搞清楚，需要多熟悉熟悉叭。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ol>
+<li><p>环境准备：node、git安装</p>
+</li>
+<li><p>安装hexo <code>cnpm install -g hexo-cli</code>（为防止npm卡顿，先用<code>npm install -g cnpm --registry=http://registry.npm.taobao.org</code>）</p>
+</li>
+<li><p>注册GitHub</p>
+</li>
+<li><p>hexo init初始化博客</p>
+</li>
+<li><p>新建GitHub仓库</p>
+</li>
+<li><p>接下来就连网，安装git插件（<code>cnpm install hexo-deployer-git --save</code>），设置—config.yml文件，可用notepad打开，然后在显示的底部填type： git 并补充repo： 仓库地址、branch： master 发送到远端hexo d  </p>
+</li>
+<li><p>主题 <code>git clone http://github.com/litten/hexo-theme-yilia.git themes/yilia</code>  </p>
+</li>
+</ol>
+        
+          <a class="article-more-a" href="/2019/10/06/Welcome-to-Xun9er-blog/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/06/Welcome-to-Xun9er-blog/">展开全文 >></a>
         </p>
       
 
