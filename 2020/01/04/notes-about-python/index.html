@@ -6,27 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>DVWA-command injection | Xun9er&#39;s blog</title>
+  <title>notes about python | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="DVWA-Command Injection">
-<meta property="og:type" content="article">
-<meta property="og:title" content="DVWA-command injection">
-<meta property="og:url" content="http://yoursite.com/2020/01/04/DVWA-command-injection/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="notes about python">
+<meta property="og:url" content="http://yoursite.com/2020/01/04/notes-about-python/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="DVWA-Command Injection">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.loli.net/2020/01/04/48L6jYoeFdUANCD.png">
-<meta property="og:image" content="https://i.loli.net/2020/01/04/i9ofPYu7Wa4bnLA.png">
-<meta property="og:image" content="https://i.loli.net/2020/01/04/amD2lQYepTBvI8P.png">
-<meta property="og:image" content="https://i.loli.net/2020/01/04/yzeWOBAoi9xj6NT.png">
-<meta property="og:image" content="https://i.loli.net/2020/01/04/KQkR1GBP3EvsL7C.png">
-<meta property="og:image" content="https://i.loli.net/2020/01/04/2OJ9EnqQ1p3UDXZ.png">
-<meta property="og:image" content="https://i.loli.net/2020/01/04/YA4nV89QSkbzvER.png">
-<meta property="og:updated_time" content="2020-01-04T14:03:48.093Z">
+<meta property="og:image" content="https://i.loli.net/2020/01/04/kcVmOS7lWHNRovu.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/27/u5mAEXNLQw2eMDB.png">
+<meta property="og:updated_time" content="2020-01-04T14:23:16.719Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DVWA-command injection">
-<meta name="twitter:description" content="DVWA-Command Injection">
-<meta name="twitter:image" content="https://i.loli.net/2020/01/04/48L6jYoeFdUANCD.png">
+<meta name="twitter:title" content="notes about python">
+<meta name="twitter:image" content="https://i.loli.net/2020/01/04/kcVmOS7lWHNRovu.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -168,80 +160,75 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-DVWA-command-injection" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-notes-about-python" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      DVWA-command injection
+      notes about python
     </h1>
   
 
         
-        <a href="/2020/01/04/DVWA-command-injection/" class="archive-article-date">
-  	<time datetime="2020-01-04T13:05:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
+        <a href="/2020/01/04/notes-about-python/" class="archive-article-date">
+  	<time datetime="2020-01-04T14:20:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1>DVWA-Command Injection</h1>
-
-<p><img src="https://i.loli.net/2020/01/04/48L6jYoeFdUANCD.png" alt="DVWA--command injection.png"></p>
+        <p><img src="https://i.loli.net/2020/01/04/kcVmOS7lWHNRovu.png" alt="Python.png">  </p>
 <a id="more"></a>
 <hr>
 <hr>
-<h3>easy</h3>
+<h2></h2>
+<h2>turtle绘图</h2>  
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $target = $_REQUEST[ &apos;ip&apos; ];</span><br><span class="line"></span><br><span class="line">    // Determine OS and execute the ping command.</span><br><span class="line">    if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123;</span><br><span class="line">        // Windows</span><br><span class="line">        $cmd = shell_exec( &apos;ping  &apos; . $target );</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        // *nix</span><br><span class="line">        $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Feedback for the end user</span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>画蟒蛇：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># pythonDraw.py</span><br><span class="line">import turtle</span><br><span class="line">turtle.setup(700,350,200)</span><br><span class="line">turtle.penup()#画笔抬起</span><br><span class="line">turtle.fd(-250)#前进</span><br><span class="line">turtle.pendown()</span><br><span class="line">turtle.pensize(25)</span><br><span class="line">turtle.pencolor(&quot;black&quot;)</span><br><span class="line">turtle.seth(-40)#表示运动方向，其中0表示东，90度向北，负值表示相反方向</span><br><span class="line">for i in range(4):</span><br><span class="line">	turtle.circle(40,80)#turtle.circle(rad,angle)表示圆形爬行，若rad为负，则半径在小乌龟运行的右侧，angle表示爬行的角度</span><br><span class="line">	turtle.circle(-40,80)</span><br><span class="line">turtle.circle(50,80)</span><br><span class="line">turtle.fd(40)</span><br><span class="line">turtle.circle(16,180)</span><br><span class="line">turtle.fd(40*2/3)</span><br><span class="line">turtle.done()</span><br></pre></td></tr></table></figure>
 
-<h4 id="stristr-string-search-before-search"><a href="#stristr-string-search-before-search" class="headerlink" title="stristr(string,search,before_search):"></a>stristr(string,search,before_search):</h4><p>搜索字符串在另一字符串中的第一次出现。<br>注释：该函数是二进制安全的。<br>注释：该函数是不区分大小写的。如需进行区分大小写的搜索，请使用 strstr() 函数。  </p>
-<p>php_uname（[字符串$ mode  =  “ a”  ）返回运行PHP的操作系统的描述<br>mode 是定义返回哪些信息的单个字符：<br>‘a’：这是默认值。包含序列“ snrv m”中的所有模式。<br>‘s’：操作系统名称。例如。FreeBSD。<br>‘n’：主机名。例如。localhost.example.com。<br>‘r’：发行名称。例如。5.1.2-发布。<br>‘v’：版本信息。操作系统之间的差异很大。<br>‘m’：机器类型。例如。i386。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo php_uname(&apos;s&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.loli.net/2020/01/04/i9ofPYu7Wa4bnLA.png" alt="unname.png"></p>
-<h3 id="shell-exec-函数"><a href="#shell-exec-函数" class="headerlink" title="shell_exec()函数"></a>shell_exec()函数</h3><p>shell_exec ( string $cmd ) : string<br>cmd：要执行的命令<br>命令执行的输出。 如果执行过程中发生错误或者进程不产生输出，则返回 NULL。<br>通过 shell 环境执行命令，并且将完整的输出以字符串的方式返回。<br>也就是说, PHP先运行一个shell环境, 然后让shell进程运行你的命令, 并且把所有输出以字符串形式返回, 如果程序执行有错误或者程序没有任何输出, 则返回null.    </p>
-<h4 id="版本："><a href="#版本：" class="headerlink" title="版本："></a>版本：</h4><p>PHP 4, PHP 5, PHP 7   </p>
-<h4 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h4><p>当 PHP 运行在 安全模式 时，不能使用此函数。<br><a href="https://segmentfault.com/q/1010000010717254" target="_blank" rel="noopener">php执行系统命令的四个函数shell_exec, exec, passthru, system</a></p>
-<p>shell_exec()函数和执行运算符有相同的作用。<br>执行运算符：就是反引号（``），PHP 将尝试将反引号中的内容作为 shell 命令来执行，并将其输出信息返回（即，可以赋给一个变量而不是简单地丢弃到标准输出）。使用反引号运算符的效果与函数 shell_exec() 相同。  </p>
-<h4 id="理解："><a href="#理解：" class="headerlink" title="理解："></a>理解：</h4><p>这里先通过pup_uname()判断操作系统，若为win则执行第一种情况，若为其他的（linux）执行第二种，加上-c选项，因为linux中ping命令是一直执行的。只有加了-c指定发送的跳数才能停止。<br>easy的代码没有对用户的输入进行任何处理。</p>
-<h5 id="常见的拼接命令："><a href="#常见的拼接命令：" class="headerlink" title="常见的拼接命令："></a>常见的拼接命令：</h5><ul>
-<li>ipconfig 查看本地网络</li>
-<li>net  user   查看系统用户</li>
-<li>dir  查看当前目录</li>
-<li>find 查找包含指定字符的行</li>
-<li>whoami 查看系统当前有效用户名<br><img src="https://i.loli.net/2020/01/04/amD2lQYepTBvI8P.png" alt="command easy1.png"><br>（dvwa乱码问题：修改dvwa/include/dvwaPage.inc.php 中所有的charset=UTF-8为charset=gb2312）  <h3>medium</h3>
-
-</li>
+<p>setup:设置窗体大小位置<br>若不设置后面两个参数则默认在正中间；<br>goto：海龟从当前位置去那个坐标（相对坐标）；<br>绝对坐标（以海龟的方向为参考）：<br><img src="https://i.loli.net/2019/12/27/u5mAEXNLQw2eMDB.png" alt="xiangduizuobiao.png"><br>seth(angle)<br>left(angle)<br>right(angle):调整海龟角度<br>颜色：RGB小数值<br>turtle.colormode(mode):<br>mode为1.0时 RGB小数值模式<br>mode为255时 RGB整数模式   </p>
+<ul>
+<li>引入函数库：<br>import turtle  （不会出现函数重名，但每个函数前都要写库名）<br>或者是<br>from turtle import*<br>（from &lt;库名&gt; import &lt;函数名&gt; ） （调用时不用再写库名,但是可能会和其他的函数重名）<br>或是<br>import &lt;库名&gt; as &lt;库别名&gt;  （取个小名，既避免重复，又简化库名）  </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $target = $_REQUEST[ &apos;ip&apos; ];</span><br><span class="line"></span><br><span class="line">    // Set blacklist</span><br><span class="line">    $substitutions = array(</span><br><span class="line">        &apos;&amp;&amp;&apos; =&gt; &apos;&apos;,</span><br><span class="line">        &apos;;&apos;  =&gt; &apos;&apos;,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // Remove any of the charactars in the array (blacklist).</span><br><span class="line">    $target = str_replace( array_keys( $substitutions ), $substitutions, $target );</span><br><span class="line"></span><br><span class="line">    // Determine OS and execute the ping command.</span><br><span class="line">    if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123;</span><br><span class="line">        // Windows</span><br><span class="line">        $cmd = shell_exec( &apos;ping  &apos; . $target );</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        // *nix</span><br><span class="line">        $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Feedback for the end user</span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h2>sys模板</h2>   
 
-<h3 id="str-replace-find-replace-string-count"><a href="#str-replace-find-replace-string-count" class="headerlink" title="str_replace(find,replace,string,count)"></a>str_replace(find,replace,string,count)</h3><pre>
-find    必需。规定要查找的值。  
-replace    必需。规定替换 find 中的值的值。  
-string    必需。规定被搜索的字符串。  
-count    可选。对替换数进行计数的变量。
-</pre>
+<p><a href="tomylijia.com/2018/01/25/python-sysmodule/">Python模板之sys</a>  </p>
+<h2>类</h2>  
 
-<p>该函数区分大小写。请使用 str_ireplace() 函数执行不区分大小写的搜索。  该函数二进制安全。<br>PHP版本：4+  </p>
-<p>这里设置黑命单的有“&amp;&amp;”、“;”   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"> $substitutions = array(</span><br><span class="line">        &apos;&amp;&amp;&apos; =&gt; &apos;&apos;,</span><br><span class="line">        &apos;;&apos;  =&gt; &apos;&apos;,</span><br><span class="line">    					);</span><br><span class="line"> $target=&quot;127.0.0.1 &amp;&amp; dir&quot;;</span><br><span class="line"> $target=str_replace(array_keys($substitutions), $substitutions, $target);</span><br><span class="line">echo ($target);</span><br><span class="line"> ?&gt;</span><br></pre></td></tr></table></figure>
+<p>类的实例化操作会自动调用<code>__init__()</code>方法<br><code>__init__</code>可以方便地自己对类的属性进行定义，<strong>init</strong>()方法又被称为构造器（constructor）。使用了它就可以不用单独定义一个构造函数来初始化变量，方便操作。<br>参考：<a href="https://blog.csdn.net/luzhan66/article/details/82822896" target="_blank" rel="noopener">https://blog.csdn.net/luzhan66/article/details/82822896</a><br>该方法可以有参数，参数通过 <code>__init__()</code> 传递到类的实例化操作上  </p>
+<h3>类的继承：</h3>  
 
-<p> 连接符号被消去<br><img src="https://i.loli.net/2020/01/04/yzeWOBAoi9xj6NT.png" alt="guolv.png"></p>
-<p> 这里使用黑名单过滤了一些字符，但还有一些没被去掉比如“|”号；<br><img src="https://i.loli.net/2020/01/04/KQkR1GBP3EvsL7C.png" alt="command mediu.png"></p>
-<h3>high</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class student:</span><br><span class="line">	name = &apos;&apos;</span><br><span class="line">	__weight = 0</span><br><span class="line">	height = 0</span><br><span class="line">	age = 0 #这一段可以去掉，不影响结果</span><br><span class="line">	def __init__(self, n, w, h, a):</span><br><span class="line">	#self是必须有的参数，不是关键字，也可以写成其他样子，代表类的实例</span><br><span class="line">		self.name = n</span><br><span class="line">		self.__weight = w#私有属性 在继承类中不能调用</span><br><span class="line">		self.height = h</span><br><span class="line">		self.age = a</span><br><span class="line">	def speak(self):</span><br><span class="line">		print(&quot;%s says &apos;I am %d years old %d tall %d weigh.&quot;%(self.name,self.age,self.height,self.__weight))</span><br><span class="line"></span><br><span class="line">s = student(&apos;tom&apos;,30,180,19)</span><br><span class="line">s.speak()</span><br><span class="line"></span><br><span class="line">class class1(student):#继承student</span><br><span class="line">	grade = &apos;&apos;</span><br><span class="line">	Class = 0</span><br><span class="line">	def __init__(self, n, w, h, a,g,c):#构造函数，在实例化对象时自动调用</span><br><span class="line">		student. __init__(self, n, w, h, a)</span><br><span class="line">		self.grade = g</span><br><span class="line">		self.Class = c</span><br><span class="line">	def speak(self):</span><br><span class="line">		print(&quot;%s says &apos;I am %d years old %d cm tall from class %d grade %s&quot;%(self.name,self.age,self.height,self.Class,self.grade))</span><br><span class="line">x = class1(&apos;sara&apos;,50,168,18,&apos;1&apos;,1)</span><br><span class="line">x.speak()</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $target = trim($_REQUEST[ &apos;ip&apos; ]);</span><br><span class="line"></span><br><span class="line">    // Set blacklist</span><br><span class="line">    $substitutions = array(</span><br><span class="line">        &apos;&amp;&apos;  =&gt; &apos;&apos;,</span><br><span class="line">        &apos;;&apos;  =&gt; &apos;&apos;,</span><br><span class="line">        &apos;| &apos; =&gt; &apos;&apos;,</span><br><span class="line">        &apos;-&apos;  =&gt; &apos;&apos;,</span><br><span class="line">        &apos;$&apos;  =&gt; &apos;&apos;,</span><br><span class="line">        &apos;(&apos;  =&gt; &apos;&apos;,</span><br><span class="line">        &apos;)&apos;  =&gt; &apos;&apos;,</span><br><span class="line">        &apos;`&apos;  =&gt; &apos;&apos;,</span><br><span class="line">        &apos;||&apos; =&gt; &apos;&apos;,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // Remove any of the charactars in the array (blacklist).</span><br><span class="line">    $target = str_replace( array_keys( $substitutions ), $substitutions, $target );</span><br><span class="line"></span><br><span class="line">    // Determine OS and execute the ping command.</span><br><span class="line">    if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123;</span><br><span class="line">        // Windows</span><br><span class="line">        $cmd = shell_exec( &apos;ping  &apos; . $target );</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        // *nix</span><br><span class="line">        $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Feedback for the end user</span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3>类的多继承：</h3>  
 
-<p>黑名单的内容增加了很多，不过其中 “  ‘| ‘ =&gt; ‘’,”里“|”后面多了一个“ ”，所以如果去掉空格：<br><img src="https://i.loli.net/2020/01/04/2OJ9EnqQ1p3UDXZ.png" alt="command high.png"><br><img src="https://i.loli.net/2020/01/04/YA4nV89QSkbzvER.png" alt="conmmond high.png"> </p>
-<h3>impossible</h3>  
+<p><code>class DerivedClassName(Base1, Base2, Base3):</code><br>子类使用时未指定，python从左至右搜索 即方法在子类中未找到时，从左到右查找父类中是否包含方法。  </p>
+<h3>类的多继承：</h3>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123;</span><br><span class="line">    // Check Anti-CSRF token</span><br><span class="line">    checkToken( $_REQUEST[ &apos;user_token&apos; ], $_SESSION[ &apos;session_token&apos; ], &apos;index.php&apos; );</span><br><span class="line"></span><br><span class="line">    // Get input</span><br><span class="line">    $target = $_REQUEST[ &apos;ip&apos; ];</span><br><span class="line">    $target = stripslashes( $target );</span><br><span class="line"></span><br><span class="line">    // Split the IP into 4 octects</span><br><span class="line">    $octet = explode( &quot;.&quot;, $target );</span><br><span class="line"></span><br><span class="line">    // Check IF each octet is an integer</span><br><span class="line">    if( ( is_numeric( $octet[0] ) ) &amp;&amp; ( is_numeric( $octet[1] ) ) &amp;&amp; ( is_numeric( $octet[2] ) ) &amp;&amp; ( is_numeric( $octet[3] ) ) &amp;&amp; ( sizeof( $octet ) == 4 ) ) &#123;</span><br><span class="line">        // If all 4 octets are int&apos;s put the IP back together.</span><br><span class="line">        $target = $octet[0] . &apos;.&apos; . $octet[1] . &apos;.&apos; . $octet[2] . &apos;.&apos; . $octet[3];</span><br><span class="line"></span><br><span class="line">        // Determine OS and execute the ping command.</span><br><span class="line">        if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123;</span><br><span class="line">            // Windows</span><br><span class="line">            $cmd = shell_exec( &apos;ping  &apos; . $target );</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            // *nix</span><br><span class="line">            $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Feedback for the end user</span><br><span class="line">        echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        // Ops. Let the user name theres a mistake</span><br><span class="line">        echo &apos;&lt;pre&gt;ERROR: You have entered an invalid IP.&lt;/pre&gt;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Generate Anti-CSRF token</span><br><span class="line">generateSessionToken();</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>super()函数可以用作用子类对象调用父类的方法；  </p>
+<h2>global 和 nonlocal关键字</h2>  
 
-<p>用了Anti-CSRF令牌防止CSRF；<br>没有使用黑名单方式，而是把用户输入的ip进行拆分验证是否是ip的正确格式。<br>参考：<br><a href="https://blog.zeddyu.info/2019/01/17/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/#amp" target="_blank" rel="noopener">巧用命令注入的N种方式</a>  </p>
+<p>global 用于内部（函数、类、模块（单个.py文件）改变全局变量<br>nonlocal 用于修改嵌套作用域，nonlocal关键字用来在函数或其它作用域中使用外层（非全局）变量<br>此外python中查找变量是局部找不到就会去相对当前的外部找，如果好还是没有就去全局找，再找不到就去内置中找；  </p>
+<h2>迭代器与生成器</h2>
+
+<p>生成器相当于一种迭代器<br>迭代器常用函数：iter() next()<br><em>斐波那契函数</em>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line"></span><br><span class="line">def fibonacci(n):</span><br><span class="line">	a,b,count = 0,1,0</span><br><span class="line">	while True: #这里的True首字母大写</span><br><span class="line">		if (count&gt;n):</span><br><span class="line">			return</span><br><span class="line">		yield a</span><br><span class="line">		a,b = b,a+b</span><br><span class="line">		count+=1</span><br><span class="line"></span><br><span class="line">f = fibonacci(10) #f是一个迭代器，由生成器返回生成</span><br><span class="line"></span><br><span class="line">while 1:</span><br><span class="line">	try:</span><br><span class="line">		print(next(f),end=&quot; &quot;)</span><br><span class="line">	except StopIteration: #Stopitera异常标识</span><br><span class="line">		sys.exit()</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.runoob.com/w3cnote/python-yield-used-analysis.html" target="_blank" rel="noopener">为什要用yiled而不直接打印</a>  </p>
+<h2>爬虫</h2>
+
+<p>首先要用到：pip ==下载=》 beautiful soup、lxm  </p>
+<h3 id="四大对象种类"><a href="#四大对象种类" class="headerlink" title="四大对象种类"></a>四大对象种类</h3><ul>
+<li>Tag</li>
+<li>NavigableString</li>
+<li>BeautifulSoup</li>
+<li>Comment</li>
+</ul>
+<p><strong>Tag–标签</strong><br>两个重要的属性：<br>name ：名字<br>attrs ：属性<br><strong>NavigableString</strong><br>如果要获取标签内部的文字，用 .string 即可，它的类型是一个 NavigableString。<br><strong>BeautifulSoup</strong><br>BeautifulSoup 对象表示的是一个文档的全部内容.大部分时候,可以把它当作 Tag 对象，是一个特殊的 Tag，我们可以分别获取它的类型，名称，以及属性。<br><strong>Comment</strong><br>Comment 对象是一个特殊类型的 NavigableString 对象，其实输出的内容仍然不包括注释符号，但是如果不好好处理它，可能会对我们的文本处理造成意想不到的麻烦。  </p>
 
       
 
@@ -321,7 +308,7 @@ count    可选。对替换数进行计数的变量。
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/04/DVWA-command-injection/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/04/notes-about-python/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -335,18 +322,9 @@ count    可选。对替换数进行计数的变量。
   
 <nav id="article-nav">
   
-    <a href="/2020/01/04/notes-about-python/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          notes about python
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/01/04/DVWA-brute/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">DVWA--brute</div>
+    <a href="/2020/01/04/DVWA-command-injection/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DVWA-command injection</div>
       <i class="icon-circle-right"></i>
     </a>
   
