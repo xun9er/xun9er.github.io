@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>DVWA--CSRF | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前在 bruteforce 、command injection 中impossible安全等级里都有一个anti-CSRF令牌，那么到底什么是CSRF呢，它的原理，怎么防御？ CSRF（Cross-site request forgery）中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。   过程：   CSRF发生">
+  <meta name="description" content="之前在 bruteforce 、command injection 中impossible安全等级里都有一个anti-CSRF令牌，那么到底什么是CSRF呢，它的原理，怎么防御？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DVWA--CSRF">
 <meta property="og:url" content="http://yoursite.com/2020/01/05/DVWA-CSRF/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="之前在 bruteforce 、command injection 中impossible安全等级里都有一个anti-CSRF令牌，那么到底什么是CSRF呢，它的原理，怎么防御？ CSRF（Cross-site request forgery）中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。   过程：   CSRF发生">
+<meta property="og:description" content="之前在 bruteforce 、command injection 中impossible安全等级里都有一个anti-CSRF令牌，那么到底什么是CSRF呢，它的原理，怎么防御？">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.loli.net/2020/01/05/kuONvJqdyHoxRE4.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/01/05/nmWKuyBb38GdJ6S.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/05/PtyghDlbiNpfZMA.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/05/eN8TnJQAHcRvyDh.png">
-<meta property="og:updated_time" content="2020-01-05T12:43:23.325Z">
+<meta property="og:updated_time" content="2020-01-05T15:03:02.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA--CSRF">
-<meta name="twitter:description" content="之前在 bruteforce 、command injection 中impossible安全等级里都有一个anti-CSRF令牌，那么到底什么是CSRF呢，它的原理，怎么防御？ CSRF（Cross-site request forgery）中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。   过程：   CSRF发生">
+<meta name="twitter:description" content="之前在 bruteforce 、command injection 中impossible安全等级里都有一个anti-CSRF令牌，那么到底什么是CSRF呢，它的原理，怎么防御？">
 <meta name="twitter:image" content="https://i.loli.net/2020/01/05/kuONvJqdyHoxRE4.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
@@ -186,6 +186,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><em>之前在 bruteforce 、command injection 中impossible安全等级里都有一个anti-CSRF令牌，那么到底什么是CSRF呢，它的原理，怎么防御？</em></p>
+<a id="more"></a>
+
 <h3 id="CSRF（Cross-site-request-forgery）"><a href="#CSRF（Cross-site-request-forgery）" class="headerlink" title="CSRF（Cross-site request forgery）"></a><strong>CSRF</strong>（Cross-site request forgery）</h3><p>中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。  </p>
 <h3 id="过程："><a href="#过程：" class="headerlink" title="过程："></a>过程：</h3><p><img src="https://i.loli.net/2020/01/05/kuONvJqdyHoxRE4.jpg" alt="2009040916453171.jpg">  </p>
 <h3 id="CSRF发生的条件："><a href="#CSRF发生的条件：" class="headerlink" title="CSRF发生的条件："></a>CSRF发生的条件：</h3><p>1.访问了存在CSRF的网站A并留下了cookie；<br>2.在不登出A的情况下访问攻击网站B；  </p>
@@ -212,7 +214,7 @@ find     必需。规定要查找的字符。
 start     可选。规定开始搜索的位置。
 </pre>
 <p>返回字符串在另一字符串中第一次出现的位置，如果没有找到字符串则返回 FALSE。<br>注释：字符串位置从 0 开始，不是从 1 开始。<br>PHP版本：5+  </p>
-<p>参考：<br><a href="https://www.dyn-web.com/tutorials/iframes/refs/" target="_blank" rel="noopener">Iframes and Cross-Document Communication</a><br><a href="https://blog.csdn.net/dengpeng0419/article/details/55045047" target="_blank" rel="noopener">隐藏域的作用</a><br><a href="https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" target="_blank" rel="noopener">浅谈CSRF攻击方式</a>  </p>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续~"></a>未完待续~</h2><p>参考：<br><a href="https://www.dyn-web.com/tutorials/iframes/refs/" target="_blank" rel="noopener">Iframes and Cross-Document Communication</a><br><a href="https://blog.csdn.net/dengpeng0419/article/details/55045047" target="_blank" rel="noopener">隐藏域的作用</a><br><a href="https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" target="_blank" rel="noopener">浅谈CSRF攻击方式</a>  </p>
 
       
 
