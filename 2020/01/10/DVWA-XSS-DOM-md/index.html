@@ -18,8 +18,13 @@
 <meta property="og:image" content="https://i.loli.net/2020/01/11/AUkfj72VoGM1SBE.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/12/QCymDEk4Ax9XhaL.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/12/PGVIUFQACsfbNdr.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/OBXhfyamutYLNgV.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/1YHCzDx6Pod8Asg.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/nbqTWrYthkPRiVU.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/C7QM2bHmyeRfF5P.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/jQAwJUShTioa368.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/12/VZdJDNxaSFnjcwh.png">
-<meta property="og:updated_time" content="2020-01-12T11:49:48.752Z">
+<meta property="og:updated_time" content="2020-01-12T12:01:40.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA-XSS(DOM).md">
 <meta name="twitter:image" content="https://i.loli.net/2020/01/12/blsZSnQRU7Hkjra.png">
@@ -235,38 +240,37 @@ attributes - 节点（元素）的属性节点</code></pre><h3>easy</h3>
 
 <p>header() 函数向客户端发送原始的 HTTP 报头。<br>必须在任何实际的输出被发送之前调用 header() 函数（在 PHP 4 以及更高的版本中，您可以使用输出缓存来解决此问题。<br>从 PHP 4.4 之后，该函数防止一次发送多个报头。这是对头部注入攻击的保护措施。<br>header(‘Location:’.$url);  //Location和”:”之间无空格。–跳转页面。<br>过滤了js脚本，但可以通过select下拉菜单插入一个无效的图片或视频等，利用onerror事件–当视频的媒体数据加载期间发生错误时执行 JavaScrip ，依然可以执行注入的js。<br><img src="https://i.loli.net/2020/01/12/QCymDEk4Ax9XhaL.png" alt="XSS_DOM_-medium 5.png"><br><img src="https://i.loli.net/2020/01/12/PGVIUFQACsfbNdr.png" alt="XSS_DOM_-medium 4.png">  </p>
 <p>以下两种拼接方法得到一样的结果： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">?default=English&lt;select&gt;&lt;img src=&quot;123&quot; onerror=(alert(&quot;GoodMorning!&quot;)) &gt;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">![XSS_DOM_-medium 7.png](https://i.loli.net/2020/01/12/OBXhfyamutYLNgV.png)</span><br></pre></td></tr></table></figure>
+<p>1.<code>?default=English&lt;select&gt;&lt;img src=&quot;123&quot; onerror=(alert(&quot;GoodMorning!&quot;)) &gt;</code>  </p>
+<p><img src="https://i.loli.net/2020/01/12/OBXhfyamutYLNgV.png" alt="XSS_DOM_-medium 7.png">  </p>
+<p>2.<code>?default=English&lt;/option&gt;&lt;/select&gt;&lt;img src=&quot;123&quot; onerror=(alert(&quot;GoodMorning!&quot;)) &gt;</code>  </p>
+<p><img src="https://i.loli.net/2020/01/12/1YHCzDx6Pod8Asg.png" alt="XSS_DOM_-medium 6.png">   </p>
+<h3>high</h3>
 
-<p>?default=English&lt;img src=”123” onerror=(alert(“GoodMorning!”)) &gt;  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![XSS_DOM_-medium 6.png](https://i.loli.net/2020/01/12/1YHCzDx6Pod8Asg.png)   </span><br><span class="line"></span><br><span class="line">&lt;h3&gt;high&lt;/h3&gt;</span><br><span class="line"></span><br><span class="line">服务端源代码</span><br></pre></td></tr></table></figure>
+<p>服务端源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Is there any input?</span><br><span class="line">if ( array_key_exists( &quot;default&quot;, $_GET ) &amp;&amp; !is_null ($_GET[ &apos;default&apos; ]) ) &#123;</span><br><span class="line"></span><br><span class="line">    # White list the allowable languages</span><br><span class="line">    switch ($_GET[&apos;default&apos;]) &#123;</span><br><span class="line">        case &quot;French&quot;:</span><br><span class="line">        case &quot;English&quot;:</span><br><span class="line">        case &quot;German&quot;:</span><br><span class="line">        case &quot;Spanish&quot;:</span><br><span class="line">            # ok</span><br><span class="line">            break;</span><br><span class="line">        default:</span><br><span class="line">            header (&quot;location: ?default=English&quot;);</span><br><span class="line">            exit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<?php
+<h5>array_key_exists</h5>
+array_key_exists() 函数检查某个数组中是否存在指定的键名，如果键名存在则返回 true，如果键名不存在则返回 false。  
+如果指定数组的时候省略了键名，将会生成从 0 开始并以 1 递增的整数键名。  
 
-// Is there any input?
-if ( array_key_exists( "default", $_GET ) && !is_null ($_GET[ 'default' ]) ) {
+<p>default必须为规定数组中的键名。<br>井号后面的数据不会发送到HTTP请求中。井号后面的参数是针对浏览器起作用的而不是服务器端。<br>一般URL中#号后面的参数都看做是页面的位置定位符（锚点），这种数据是不会被发送到http请求当中去的，它只对浏览器起作用。百度和谷歌都会忽略# 后面的内容。<br><img src="https://i.loli.net/2020/01/12/nbqTWrYthkPRiVU.png" alt="XSS_DOM_-high 1.png"><br><img src="https://i.loli.net/2020/01/12/C7QM2bHmyeRfF5P.png" alt="XSS_DOM_-high 2.png"><br>可以看到服务器接收的只有井号前的部分。<br><img src="https://i.loli.net/2020/01/12/jQAwJUShTioa368.png" alt="XSS_DOM_-high 3.png"><br>此外url的一些特殊符号：  </p>
+<pre>
++    URL 中+号表示空格                     %2B   
+空格 URL中的空格可以用+号或者编码           %20 
+/   分隔目录和子目录                       %2F     
+?    分隔实际的URL和参数                   %3F     
+%    指定特殊字符                          %25     
+#    表示书签                              %23     
+&    URL 中指定的参数间的分隔符             %26     
+=    URL 中指定参数的值                     %3D
+</pre>
 
-    # White list the allowable languages
-    switch ($_GET['default']) {
-        case "French":
-        case "English":
-        case "German":
-        case "Spanish":
-            # ok
-            break;
-        default:
-            header ("location: ?default=English");
-            exit;
-    }
-}
+<h3>impossible</h3>
 
-?><p> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;h5&gt;array_key_exists&lt;/h5&gt;</span><br><span class="line">array_key_exists() 函数检查某个数组中是否存在指定的键名，如果键名存在则返回 true，如果键名不存在则返回 false。  </span><br><span class="line">如果指定数组的时候省略了键名，将会生成从 0 开始并以 1 递增的整数键名。  </span><br><span class="line"></span><br><span class="line">default必须为规定数组中的键名。  </span><br><span class="line">井号后面的数据不会发送到HTTP请求中。井号后面的参数是针对浏览器起作用的而不是服务器端。  </span><br><span class="line">一般URL中#号后面的参数都看做是页面的位置定位符（锚点），这种数据是不会被发送到http请求当中去的，它只对浏览器起作用。百度和谷歌都会忽略# 后面的内容。  </span><br><span class="line">![XSS_DOM_-high 1.png](https://i.loli.net/2020/01/12/nbqTWrYthkPRiVU.png)  </span><br><span class="line">![XSS_DOM_-high 2.png](https://i.loli.net/2020/01/12/C7QM2bHmyeRfF5P.png)  </span><br><span class="line">可以看到服务器接收的只有井号前的部分。  </span><br><span class="line">![XSS_DOM_-high 3.png](https://i.loli.net/2020/01/12/jQAwJUShTioa368.png)  </span><br><span class="line">此外url的一些特殊符号：  </span><br><span class="line"></span><br><span class="line">&lt;pre&gt;</span><br><span class="line">+    URL 中+号表示空格                     %2B   </span><br><span class="line">空格 URL中的空格可以用+号或者编码           %20 </span><br><span class="line">/   分隔目录和子目录                       %2F     </span><br><span class="line">?    分隔实际的URL和参数                   %3F     </span><br><span class="line">%    指定特殊字符                          %25     </span><br><span class="line">#    表示书签                              %23     </span><br><span class="line">&amp;    URL 中指定的参数间的分隔符             %26     </span><br><span class="line">=    URL 中指定参数的值                     %3D</span><br><span class="line">&lt;/pre&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;impossible&lt;/h3&gt;</span><br><span class="line"></span><br><span class="line">服务器端什么都没有，改变了客户端的js；</span><br></pre></td></tr></table></figure>
+<p>服务器端什么都没有，改变了客户端的js；  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (document.location.href.indexOf(&quot;default=&quot;) &gt;= 0) &#123;</span><br><span class="line">						var lang = document.location.href.substring(document.location.href.indexOf(&quot;default=&quot;)+8);</span><br><span class="line">						document.write(&quot;&lt;option value=&apos;&quot; + lang + &quot;&apos;&gt;&quot; + (lang) + &quot;&lt;/option&gt;&quot;);</span><br><span class="line">						document.write(&quot;&lt;option value=&apos;&apos; disabled=&apos;disabled&apos;&gt;----&lt;/option&gt;&quot;);</span><br><span class="line">					&#125;</span><br><span class="line">					    </span><br><span class="line">					document.write(&quot;&lt;option value=&apos;English&apos;&gt;English&lt;/option&gt;&quot;);</span><br><span class="line">					document.write(&quot;&lt;option value=&apos;French&apos;&gt;French&lt;/option&gt;&quot;);</span><br><span class="line">					document.write(&quot;&lt;option value=&apos;Spanish&apos;&gt;Spanish&lt;/option&gt;&quot;);</span><br><span class="line">					document.write(&quot;&lt;option value=&apos;German&apos;&gt;German&lt;/option&gt;&quot;);</span><br></pre></td></tr></table></figure>
 
-<p>if (document.location.href.indexOf(“default=”) &gt;= 0) {<br>                        var lang = document.location.href.substring(document.location.href.indexOf(“default=”)+8);<br>                        document.write(“<option value="" + lang + "">“ + (lang) + “</option>“);<br>                        document.write(“<option value disabled="disabled">—-</option>“);<br>                    }</p>
-<pre><code>document.write(&quot;&lt;option value=&apos;English&apos;&gt;English&lt;/option&gt;&quot;);
-document.write(&quot;&lt;option value=&apos;French&apos;&gt;French&lt;/option&gt;&quot;);
-document.write(&quot;&lt;option value=&apos;Spanish&apos;&gt;Spanish&lt;/option&gt;&quot;);
-document.write(&quot;&lt;option value=&apos;German&apos;&gt;German&lt;/option&gt;&quot;);</code></pre><p>```<br><img src="https://i.loli.net/2020/01/12/VZdJDNxaSFnjcwh.png" alt="XSS_DOM_-impossible 1.png"><br>参考：<br><a href="https://www.jianshu.com/p/0ec77136ec48" target="_blank" rel="noopener">DOM、DOM树</a><br><a href="https://www.w3school.com.cn/htmldom/index.asp" target="_blank" rel="noopener">HTML DOM教程</a><br><a href="https://www.php.cn/php-weizijiaocheng-394656.html" target="_blank" rel="noopener">PHP header 的7种用法</a><br><a href="https://www.cnblogs.com/huaku/archive/2013/04/24/3040294.html" target="_blank" rel="noopener">URL中#号(井号)的作用</a><br><a href="https://segmentfault.com/a/1190000015338047" target="_blank" rel="noopener">页面快速定位到指定位置的几个方法(讲了锚点使用的中的一些问题及解决方法)</a>  </p>
+<p><img src="https://i.loli.net/2020/01/12/VZdJDNxaSFnjcwh.png" alt="XSS_DOM_-impossible 1.png"><br>参考：<br><a href="https://www.jianshu.com/p/0ec77136ec48" target="_blank" rel="noopener">DOM、DOM树</a><br><a href="https://www.w3school.com.cn/htmldom/index.asp" target="_blank" rel="noopener">HTML DOM教程</a><br><a href="https://www.php.cn/php-weizijiaocheng-394656.html" target="_blank" rel="noopener">PHP header 的7种用法</a><br><a href="https://www.cnblogs.com/huaku/archive/2013/04/24/3040294.html" target="_blank" rel="noopener">URL中#号(井号)的作用</a><br><a href="https://segmentfault.com/a/1190000015338047" target="_blank" rel="noopener">页面快速定位到指定位置的几个方法(讲了锚点使用的中的一些问题及解决方法)</a>  </p>
 
       
 
@@ -359,6 +363,15 @@ document.write(&quot;&lt;option value=&apos;German&apos;&gt;German&lt;/option&gt
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/01/12/DVWA-XSS-Reflected-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          DVWA-XSS(Reflected).md
+        
+      </div>
+    </a>
   
   
     <a href="/2020/01/05/week-1/" id="article-nav-older" class="article-nav-link-wrap">
