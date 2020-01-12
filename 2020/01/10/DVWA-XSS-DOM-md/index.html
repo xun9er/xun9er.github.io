@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Xun9er&#39;s blog</title>
+  <title>DVWA-XSS(DOM).md | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个白的不能再白的小白">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Xun9er&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="DVWA--XSS(DOM)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DVWA-XSS(DOM).md">
+<meta property="og:url" content="http://yoursite.com/2020/01/10/DVWA-XSS-DOM-md/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="一个白的不能再白的小白">
+<meta property="og:description" content="DVWA--XSS(DOM)">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/AUkfj72VoGM1SBE.png">
+<meta property="og:updated_time" content="2020-01-11T03:57:03.441Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xun9er&#39;s blog">
-<meta name="twitter:description" content="一个白的不能再白的小白">
+<meta name="twitter:title" content="DVWA-XSS(DOM).md">
+<meta name="twitter:description" content="DVWA--XSS(DOM)">
+<meta name="twitter:image" content="https://i.loli.net/2020/01/11/AUkfj72VoGM1SBE.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -159,175 +162,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-DVWA-XSS-DOM-md" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DVWA-XSS(DOM).md
+    </h1>
+  
+
+        
+        <a href="/2020/01/10/DVWA-XSS-DOM-md/" class="archive-article-date">
+  	<time datetime="2020-01-10T01:35:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1>DVWA--XSS(DOM) </h1>
+
+
+<a id="more"></a>
+<hr>
+<hr>
+
+<h3 id="DOM、DOM树"><a href="#DOM、DOM树" class="headerlink" title="DOM、DOM树"></a>DOM、DOM树</h3><p>DOM:<br>DOM “文档对象模型”(Document Object Model)是 W3C（万维网联盟）的标准。<br>DOM 定义了访问 HTML 和 XML 文档的标准：<br>“W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。”<br>W3C DOM 标准被分为 3 个不同的部分：  </p>
+<pre><code>核心 DOM - 针对任何结构化文档的标准模型
+XML DOM - 针对 XML 文档的标准模型
+HTML DOM - 针对 HTML 文档的标准模型</code></pre><p>DOM 节点：</p>
+<pre>
+
+    整个文档是一个文档节点
+    每个 HTML 元素是元素节点
+    HTML 元素内的文本是文本节点
+    每个 HTML 属性是属性节点
+    注释是注释节点
+
+</pre>
+
+<p>DOM节点树：<br>DOM树是结构。<br>父（parent）、子（child）和同胞（sibling）等术语用于描述这些关系。父节点拥有子节点。同级的子节点被称为同胞（兄弟或姐妹）。    </p>
+<p>一些常用的 HTML DOM 方法：  </p>
+<pre><code>getElementById(id) - 获取带有指定 id 的节点（元素）
+appendChild(node) - 插入新的子节点（元素）
+removeChild(node) - 删除子节点（元素）</code></pre><p>一些常用的 HTML DOM 属性：  </p>
+<pre><code>innerHTML - 节点（元素）的文本值
+parentNode - 节点（元素）的父节点
+childNodes - 节点（元素）的子节点
+attributes - 节点（元素）的属性节点</code></pre><h3>easy</h3>  
+
+<p>什么保护措施都没有。<br><img src="https://i.loli.net/2020/01/11/AUkfj72VoGM1SBE.png" alt="XSS_DOM_-easy.png">  </p>
+<h3>medium</h3>  
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Is there any input?</span><br><span class="line">if ( array_key_exists( &quot;default&quot;, $_GET ) &amp;&amp; !is_null ($_GET[ &apos;default&apos; ]) ) &#123;</span><br><span class="line">    $default = $_GET[&apos;default&apos;];</span><br><span class="line">    </span><br><span class="line">    # Do not allow script tags</span><br><span class="line">    if (stripos ($default, &quot;&lt;script&quot;) !== false) &#123;</span><br><span class="line">        header (&quot;location: ?default=English&quot;);</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="array-key-exists-key-array"><a href="#array-key-exists-key-array" class="headerlink" title="array_key_exists(key,array)"></a>array_key_exists(key,array)</h4><p>array_key_exists() 函数检查某个数组中是否存在指定的键名，如果键名存在则返回 true，如果键名不存在则返回 false。<br>提示：如果指定数组的时候省略了键名，将会生成从 0 开始并以 1 递增的整数键名。<br>PHP版本：     4.0.7+  </p>
+<h4 id="header-string-replace-http-response-code"><a href="#header-string-replace-http-response-code" class="headerlink" title="header(string,replace,http_response_code)"></a>header(string,replace,http_response_code)</h4><p>header() 函数向客户端发送原始的 HTTP 报头。<br>必须在任何实际的输出被发送之前调用 header() 函数（在 PHP 4 以及更高的版本中，您可以使用输出缓存来解决此问题。<br>从 PHP 4.4 之后，该函数防止一次发送多个报头。这是对头部注入攻击的保护措施。<br>header(‘Location:’.$url);  //Location和”:”之间无空格。–跳转页面。<br>参考：<br><a href="https://www.jianshu.com/p/0ec77136ec48" target="_blank" rel="noopener">DOM、DOM树</a><br><a href="https://www.w3school.com.cn/htmldom/index.asp" target="_blank" rel="noopener">HTML DOM教程</a><br><a href="https://www.php.cn/php-weizijiaocheng-394656.html" target="_blank" rel="noopener">PHP header 的7种用法</a>  </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖鸭~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/10/2019-11-10/" class="archive-article-date">
-  	<time datetime="2019-11-10T08:56:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/10/2019-11-10/">2019.11.10</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/10/DVWA-XSS-DOM-md/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/26/2019-10-26/" class="archive-article-date">
-  	<time datetime="2019-10-26T08:44:10.299Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/25/2019-10-10/" class="archive-article-date">
-  	<time datetime="2019-10-25T08:37:06.978Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/05/week-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">week 1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/21/note-2019-10-7/" class="archive-article-date">
-  	<time datetime="2019-10-21T15:07:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/21/note-2019-10-7/">note 2019.10.7</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/06/Welcome-to-Xun9er-blog/" class="archive-article-date">
-  	<time datetime="2019-10-06T09:40:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/06/Welcome-to-Xun9er-blog/">Welcome to Xun9er&#39;s blog!!</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/06/hello-world/" class="archive-article-date">
-  	<time datetime="2019-10-06T09:17:55.817Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/06/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -351,8 +371,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
