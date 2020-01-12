@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="DVWA--XSS(DOM)">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/gLPlCdqyJczHx83.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/11/AUkfj72VoGM1SBE.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/12/QCymDEk4Ax9XhaL.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/12/PGVIUFQACsfbNdr.png">
-<meta property="og:image" content="https://i.loli.net/2020/01/12/1YHCzDx6Pod8Asg.png">
-<meta property="og:updated_time" content="2020-01-12T02:39:12.817Z">
+<meta property="og:updated_time" content="2020-01-12T03:20:17.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA-XSS(DOM).md">
 <meta name="twitter:description" content="DVWA--XSS(DOM)">
-<meta name="twitter:image" content="https://i.loli.net/2020/01/11/AUkfj72VoGM1SBE.png">
+<meta name="twitter:image" content="https://i.loli.net/2020/01/12/gLPlCdqyJczHx83.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -216,16 +216,37 @@ parentNode - 节点（元素）的父节点
 childNodes - 节点（元素）的子节点
 attributes - 节点（元素）的属性节点</code></pre><h3>easy</h3>  
 
-<p>什么保护措施都没有。<br><img src="https://i.loli.net/2020/01/11/AUkfj72VoGM1SBE.png" alt="XSS_DOM_-easy.png">  </p>
+<p>服务器端源代码什么保护措施都没有。<br>页面元素中的js：<br><img src="https://i.loli.net/2020/01/12/gLPlCdqyJczHx83.png" alt="XSS_DOM_-medium 8.png">  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">if (document.location.href.indexOf(&quot;default=&quot;) &gt;= 0) &#123;</span><br><span class="line">	var lang = document.location.href.substring(document.location.href.indexOf(&quot;default=&quot;)+8);</span><br><span class="line">	document.write(&quot;&lt;option value=&apos;&quot; + lang + &quot;&apos;&gt;&quot; + decodeURI(lang) + &quot;&lt;/option&gt;&quot;);</span><br><span class="line">	document.write(&quot;&lt;option value=&apos;&apos; disabled=&apos;disabled&apos;&gt;----&lt;/option&gt;&quot;);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">document.write(&quot;&lt;option value=&apos;English&apos;&gt;English&lt;/option&gt;&quot;);</span><br><span class="line">document.write(&quot;&lt;option value=&apos;French&apos;&gt;French&lt;/option&gt;&quot;);</span><br><span class="line">document.write(&quot;&lt;option value=&apos;Spanish&apos;&gt;Spanish&lt;/option&gt;&quot;);</span><br><span class="line">  		document.write(&quot;&lt;option value=&apos;German&apos;&gt;German&lt;/option&gt;&quot;);</span><br></pre></td></tr></table></figure>
+
+<h4>stringObject.indexOf(searchvalue,fromindex)</h4>
+
+<p>indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。<br>该方法将从头到尾地检索字符串 stringObject，看它是否含有子串 searchvalue。开始检索的位置在字符串的 fromindex 处或字符串的开头（没有指定 fromindex 时）。如果找到一个 searchvalue，则返回 searchvalue 的第一次出现的位置。stringObject 中的字符位置是从 0 开始的。<br>注释：indexOf() 方法对大小写敏感！<br>注释：如果要检索的字符串值没有出现，则该方法返回 -1。  </p>
+<h4>stringObject.substring(start,stop)</h4>
+
+<p>substring() 方法用于提取字符串中介于两个指定下标之间的字符。<br>语法。<br>stringObject.substring(start,stop)<br>start<br>必需。一个非负的整数，规定要提取的子串的第一个字符在 stringObject 中的位置。<br>stop<br>可选。一个非负的整数，比要提取的子串的最后一个字符在 stringObject 中的位置多 1。<br>如果省略该参数，那么返回的子串会一直到字符串的结尾。<br>substring() 方法返回的子串包括 start 处的字符，但不包括 stop 处的字符。<br>如果参数 start 与 stop 相等，那么该方法返回的就是一个空串（即长度为 0 的字符串）。如果 start 比 stop 大，那么该方法在提取子串之前会先交换这两个参数。  </p>
+<p><img src="https://i.loli.net/2020/01/11/AUkfj72VoGM1SBE.png" alt="XSS_DOM_-easy.png">  </p>
 <h3>medium</h3>  
 
 <p>服务端源代码：  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Is there any input?</span><br><span class="line">if ( array_key_exists( &quot;default&quot;, $_GET ) &amp;&amp; !is_null ($_GET[ &apos;default&apos; ]) ) &#123;</span><br><span class="line">    $default = $_GET[&apos;default&apos;];</span><br><span class="line">    </span><br><span class="line">    # Do not allow script tags</span><br><span class="line">    if (stripos ($default, &quot;&lt;script&quot;) !== false) &#123;</span><br><span class="line">        header (&quot;location: ?default=English&quot;);</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<h4 id="array-key-exists-key-array"><a href="#array-key-exists-key-array" class="headerlink" title="array_key_exists(key,array)"></a>array_key_exists(key,array)</h4><p>array_key_exists() 函数检查某个数组中是否存在指定的键名，如果键名存在则返回 true，如果键名不存在则返回 false。<br>提示：如果指定数组的时候省略了键名，将会生成从 0 开始并以 1 递增的整数键名。<br>PHP版本：     4.0.7+  </p>
-<h4 id="header-string-replace-http-response-code"><a href="#header-string-replace-http-response-code" class="headerlink" title="header(string,replace,http_response_code)"></a>header(string,replace,http_response_code)</h4><p>header() 函数向客户端发送原始的 HTTP 报头。<br>必须在任何实际的输出被发送之前调用 header() 函数（在 PHP 4 以及更高的版本中，您可以使用输出缓存来解决此问题。<br>从 PHP 4.4 之后，该函数防止一次发送多个报头。这是对头部注入攻击的保护措施。<br>header(‘Location:’.$url);  //Location和”:”之间无空格。–跳转页面。<br>过滤了js脚本，但可以通过select下拉菜单插入一个无效的图片或视频等，利用onerror事件–当视频的媒体数据加载期间发生错误时执行 JavaScrip ，依然可以执行注入的js。<br><img src="https://i.loli.net/2020/01/12/QCymDEk4Ax9XhaL.png" alt="XSS_DOM_-medium 5.png"><br><img src="https://i.loli.net/2020/01/12/PGVIUFQACsfbNdr.png" alt="XSS_DOM_-medium 4.png"><br><img src="https://i.loli.net/2020/01/12/1YHCzDx6Pod8Asg.png" alt="XSS_DOM_-medium 6.png"><br>发现两种拼接方法得到一样的结果：<br><code>?default=English&lt;select&gt;&lt;img src=&quot;123&quot; onerror=(alert(&quot;GoodMorning!&quot;)) &gt;</code><br><code>?default=English&lt;/option&gt;&lt;/select&gt;&lt;img src=&quot;123&quot; onerror=(alert(&quot;GoodMorning!&quot;)) &gt;</code>  </p>
-<p>参考：<br><a href="https://www.jianshu.com/p/0ec77136ec48" target="_blank" rel="noopener">DOM、DOM树</a><br><a href="https://www.w3school.com.cn/htmldom/index.asp" target="_blank" rel="noopener">HTML DOM教程</a><br><a href="https://www.php.cn/php-weizijiaocheng-394656.html" target="_blank" rel="noopener">PHP header 的7种用法</a>  </p>
+<h4> array_key_exists(key,array)</h4>
 
+<p>array_key_exists() 函数检查某个数组中是否存在指定的键名，如果键名存在则返回 true，如果键名不存在则返回 false。<br>提示：如果指定数组的时候省略了键名，将会生成从 0 开始并以 1 递增的整数键名。<br>PHP版本：     4.0.7+  </p>
+<h4>header(string,replace,http_response_code) </h4>
+
+<p>header() 函数向客户端发送原始的 HTTP 报头。<br>必须在任何实际的输出被发送之前调用 header() 函数（在 PHP 4 以及更高的版本中，您可以使用输出缓存来解决此问题。<br>从 PHP 4.4 之后，该函数防止一次发送多个报头。这是对头部注入攻击的保护措施。<br>header(‘Location:’.$url);  //Location和”:”之间无空格。–跳转页面。<br>过滤了js脚本，但可以通过select下拉菜单插入一个无效的图片或视频等，利用onerror事件–当视频的媒体数据加载期间发生错误时执行 JavaScrip ，依然可以执行注入的js。<br><img src="https://i.loli.net/2020/01/12/QCymDEk4Ax9XhaL.png" alt="XSS_DOM_-medium 5.png"><br><img src="https://i.loli.net/2020/01/12/PGVIUFQACsfbNdr.png" alt="XSS_DOM_-medium 4.png">  </p>
+<p>以下两种拼接方法得到一样的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?default=English&lt;select&gt;&lt;img src=&quot;123&quot; onerror=(alert(&quot;GoodMorning!&quot;)) &gt;</span><br><span class="line">```  </span><br><span class="line">![XSS_DOM_-medium 7.png](https://i.loli.net/2020/01/12/OBXhfyamutYLNgV.png)</span><br></pre></td></tr></table></figure>
+
+<p><code>?default=English&lt;/option&gt;&lt;/select&gt;&lt;img src=&quot;123&quot; onerror=(alert(&quot;GoodMorning!&quot;)) &gt;</code>  </p>
+<pre><code>![XSS_DOM_-medium 6.png](https://i.loli.net/2020/01/12/1YHCzDx6Pod8Asg.png)   
+
+参考：  
+[DOM、DOM树](https://www.jianshu.com/p/0ec77136ec48)  
+[HTML DOM教程](https://www.w3school.com.cn/htmldom/index.asp)  
+[PHP header 的7种用法](https://www.php.cn/php-weizijiaocheng-394656.html)  </code></pre>
       
 
       
