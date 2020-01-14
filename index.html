@@ -246,23 +246,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3>easy</h3>
+        <a id="more"></a>
+<h3>easy</h3>
 
 <h3>medium</h3>
 
-<p>服务端源码  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">header (&quot;X-XSS-Protection: 0&quot;);</span><br><span class="line"></span><br><span class="line">// Is there any input?</span><br><span class="line">if( array_key_exists( &quot;name&quot;, $_GET ) &amp;&amp; $_GET[ &apos;name&apos; ] != NULL ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $name = str_replace( &apos;&lt;script&gt;&apos;, &apos;&apos;, $_GET[ &apos;name&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Feedback for end user</span><br><span class="line">    echo &quot;&lt;pre&gt;Hello $&#123;name&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
+<p><img src="https://i.loli.net/2020/01/14/EvOPtrkAMeWIGyC.png" alt="XSS_DOM_-medium 11.png">  </p>
+<p>str_replace() 函数是大小写敏感的，此外， str_ireplace() 函数执行不区分大小写的搜索。<br>可以利用这一点。<br><img src="https://i.loli.net/2020/01/14/yTUmlaASDb1qMJK.png" alt="XSS_DOM_-medium 9.png"><br><br></p>
+<p><img src="https://i.loli.net/2020/01/14/5GLlaUNv2AbMhVs.png" alt="XSS_DOM_-medium 10.png">  </p>
 <h5 id="X-XSS-Protection"><a href="#X-XSS-Protection" class="headerlink" title="X-XSS-Protection"></a>X-XSS-Protection</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">header(&quot;X-XSS-Protection: 0&quot;); //禁用XSS保护</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">header(&quot;X-XSS-Protection: 1&quot;); //开启XSS保护</span><br></pre></td></tr></table></figure>
 
 <hr>
 
-<p>这里关闭了XSS保护，所以可以执行XSS的js；<br>过滤了<code>&lt;script&gt;</code>，可以通过img报错来执行js。<br><code>&lt;img src=&quot;123&quot; onerror=(alert(1))&gt;</code><br>改变后的页面元素：<br><img src="https://i.loli.net/2020/01/12/UKG1XQpIlonrJc5.png" alt="XSS_Reflect_-medium 1.png">  </p>
+<p>过滤了<code>&lt;script&gt;</code>，可以通过img报错来执行js。<br><code>&lt;img src=&quot;123&quot; onerror=(alert(1))&gt;</code><br>改变后的页面元素：<br><img src="https://i.loli.net/2020/01/12/UKG1XQpIlonrJc5.png" alt="XSS_Reflect_-medium 1.png">  </p>
 <h3>high</h3>
 
+<p><img src="https://i.loli.net/2020/01/14/4KyudIva6YnUV5x.png" alt="XSS_DOM_-high 4.png">  </p>
 <h5 id="preg-replace"><a href="#preg-replace" class="headerlink" title="preg_replace"></a>preg_replace</h5><p>函数执行一个正则表达式的搜索和替换。<br>mixed preg_replace ( mixed $pattern , mixed $replacement , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )<br>搜索 subject 中匹配 pattern 的部分， 以 replacement 进行替换。<br>如果 subject 是一个数组， preg_replace() 返回一个数组， 其他情况下返回一个字符串。<br>如果匹配被查找到，替换后的 subject 被返回，其他情况下 返回没有改变的 subject。如果发生错误，返回 NULL。  </p>
+<p>‘/&lt;(.<em>)s(.</em>)c(.<em>)r(.</em>)i(.<em>)p(.</em>)t/i’使用正则表达式过滤了<code>&lt;s*c*r*i*p*t</code>其中最后的“i”表示忽略大小写。<br>因此依然可以用img报错的方式执行js。<br><a href="https://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="noopener">正则表达式语法</a>   </p>
+<h3>impossible</h3>
+
+<p><img src="https://i.loli.net/2020/01/14/vQJIdujxhsCNHUM.png" alt="XSS_Reflect_-impossible 3.png"><br>htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。<br>预定义的字符是：</p>
+<pre>
+& （和号）成为 &
+" （双引号）成为 "
+' （单引号）成为 '
+< （小于）成为 <
+> （大于）成为 >
+</pre>  
+
+<p><img src="https://i.loli.net/2020/01/14/9eg1HWaz3wqjGRx.png" alt="xss t2.png"><br><img src="https://i.loli.net/2020/01/14/7zcNm8iuOKsFfPR.png" alt="xss t1.png">  </p>
+<hr>
+
+<p><img src="https://i.loli.net/2020/01/14/hBUnSOtskFLvf3x.png" alt="xss t3.png">  </p>
+<p><img src="https://i.loli.net/2020/01/14/DNuwR98LmvOHkeP.png" alt="xss t4.png"></p>
 
       
 
