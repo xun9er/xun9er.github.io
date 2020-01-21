@@ -161,6 +161,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-DVWA-XSS-Stored" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/14/DVWA-XSS-Stored/">DVWA-XSS(Stored)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/14/DVWA-XSS-Stored/" class="archive-article-date">
+  	<time datetime="2020-01-14T10:01:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://i.loli.net/2020/01/14/hrRcQwpqtBlKSVD.png" alt="XSS_Stored_low 1.png">  </p>
+<h3>high</h3>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;btnSign&apos; ] ) ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $message = trim( $_POST[ &apos;mtxMessage&apos; ] );</span><br><span class="line">    $name    = trim( $_POST[ &apos;txtName&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Sanitize message input</span><br><span class="line">    $message = strip_tags( addslashes( $message ) );</span><br><span class="line">    $message = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $message ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line">    $message = htmlspecialchars( $message );</span><br><span class="line"></span><br><span class="line">    // Sanitize name input</span><br><span class="line">    $name = preg_replace( &apos;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&apos;, &apos;&apos;, $name );</span><br><span class="line">    $name = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $name ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line"></span><br><span class="line">    // Update database</span><br><span class="line">    $query  = &quot;INSERT INTO guestbook ( comment, name ) VALUES ( &apos;$message&apos;, &apos;$name&apos; );&quot;;</span><br><span class="line">    $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &apos;&lt;pre&gt;&apos; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &apos;&lt;/pre&gt;&apos; );</span><br><span class="line"></span><br><span class="line">    //mysql_close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="strip-tags-string-allow"><a href="#strip-tags-string-allow" class="headerlink" title="strip_tags(string,allow)"></a>strip_tags(string,allow)</h5><p>string    必需。规定要检查的字符串。<br>allow    可选。规定允许的标签。这些标签不会被删除。   </p>
+<p>strip_tags() 函数剥去字符串中的 HTML、XML 以及 PHP 的标签。  </p>
+<p>注释：该函数始终会剥离 HTML 注释。这点无法通过 allow 参数改变。  </p>
+<p>注释：自 PHP 5.0 起，该函数是二进制安全的。<br>自 PHP 4.3 起，该函数始终会剥离 HTML 注释。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">$message=&quot;hello &lt;em&gt;Xun9er!&lt;/em&gt;&quot;;</span><br><span class="line">echo addslashes( $message );</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">$message = strip_tags( addslashes( $message ) );</span><br><span class="line">echo $message;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">$str = addslashes(&apos;What does &quot;Xun9er&quot; mean?&apos;);</span><br><span class="line">echo($str);</span><br><span class="line">?&gt;</span><br><span class="line">  </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/01/15/SVuMlXC9Ac7oq8x.png" alt="test.png"><br>从用户名写入：<br><img src="https://i.loli.net/2020/01/15/e4uJAnDvTQhsN56.png" alt="XSS_strored_high.png"><br><img src="https://i.loli.net/2020/01/15/onZmE6wFUBHCQJR.png" alt="XSS_stored_ high.png">  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/14/DVWA-XSS-Stored/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-week-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -174,7 +248,7 @@
 
         
         <a href="/2020/01/12/week-2/" class="archive-article-date">
-  	<time datetime="2020-01-12T14:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-12</time>
+  	<time datetime="2020-01-12T15:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-12</time>
 </a>
         
       </header>
@@ -226,20 +300,20 @@
 
 
   
-    <article id="post-DVWA-XSS-Reflected-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-DVWA-XSS-Reflected" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/12/DVWA-XSS-Reflected-md/">DVWA-XSS(Reflected).md</a>
+      <a class="article-title" href="/2020/01/12/DVWA-XSS-Reflected/">DVWA-XSS(Reflected)</a>
     </h1>
   
 
         
-        <a href="/2020/01/12/DVWA-XSS-Reflected-md/" class="archive-article-date">
-  	<time datetime="2020-01-12T12:26:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-12</time>
+        <a href="/2020/01/12/DVWA-XSS-Reflected/" class="archive-article-date">
+  	<time datetime="2020-01-12T13:26:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-12</time>
 </a>
         
       </header>
@@ -293,7 +367,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/12/DVWA-XSS-Reflected-md/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/12/DVWA-XSS-Reflected/">展开全文 >></a>
         </p>
       
 
@@ -323,20 +397,20 @@
 
 
   
-    <article id="post-DVWA-XSS-DOM-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-DVWA-XSS-DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/10/DVWA-XSS-DOM-md/">DVWA-XSS(DOM).md</a>
+      <a class="article-title" href="/2020/01/10/DVWA-XSS-DOM/">DVWA-XSS(DOM).md</a>
     </h1>
   
 
         
-        <a href="/2020/01/10/DVWA-XSS-DOM-md/" class="archive-article-date">
-  	<time datetime="2020-01-10T01:35:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+        <a href="/2020/01/10/DVWA-XSS-DOM/" class="archive-article-date">
+  	<time datetime="2020-01-10T02:35:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
 </a>
         
       </header>
@@ -345,7 +419,7 @@
       
         <p><img src="https://i.loli.net/2020/01/12/blsZSnQRU7Hkjra.png" alt="DVWA--XSS_DOM_.png">  </p>
         
-          <a class="article-more-a" href="/2020/01/10/DVWA-XSS-DOM-md/#more">more >></a>
+          <a class="article-more-a" href="/2020/01/10/DVWA-XSS-DOM/#more">more >></a>
         
       
 
@@ -358,7 +432,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/10/DVWA-XSS-DOM-md/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/10/DVWA-XSS-DOM/">展开全文 >></a>
         </p>
       
 
@@ -401,7 +475,7 @@
 
         
         <a href="/2020/01/05/week-1/" class="archive-article-date">
-  	<time datetime="2020-01-05T14:22:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
+  	<time datetime="2020-01-05T15:22:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
 </a>
         
       </header>
@@ -466,7 +540,7 @@
 
         
         <a href="/2020/01/05/DVWA-CSRF/" class="archive-article-date">
-  	<time datetime="2020-01-05T02:23:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
+  	<time datetime="2020-01-05T03:23:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
 </a>
         
       </header>
@@ -531,7 +605,7 @@
 
         
         <a href="/2020/01/04/notes-about-python/" class="archive-article-date">
-  	<time datetime="2020-01-04T14:20:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
+  	<time datetime="2020-01-04T15:20:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
 </a>
         
       </header>
@@ -596,7 +670,7 @@
 
         
         <a href="/2020/01/04/DVWA-command-injection/" class="archive-article-date">
-  	<time datetime="2020-01-04T13:05:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
+  	<time datetime="2020-01-04T14:05:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
 </a>
         
       </header>
@@ -663,7 +737,7 @@
 
         
         <a href="/2020/01/04/DVWA-brute/" class="archive-article-date">
-  	<time datetime="2020-01-04T08:53:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
+  	<time datetime="2020-01-04T09:53:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
 </a>
         
       </header>
@@ -730,7 +804,7 @@
 
         
         <a href="/2019/12/31/没有名字/" class="archive-article-date">
-  	<time datetime="2019-12-31T15:50:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
+  	<time datetime="2019-12-31T16:50:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
 </a>
         
       </header>
@@ -757,83 +831,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/12/31/没有名字/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-bianma" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/13/bianma/">关于编码</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/13/bianma/" class="archive-article-date">
-  	<time datetime="2019-12-13T15:19:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1278295208'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1278295208%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
-<body>
-
-<h1 id="字符编码那些事"><a href="#字符编码那些事" class="headerlink" title="字符编码那些事"></a>字符编码那些事</h1><p><em>被搞晕了，所以来理理各种编码；</em></p>
-<h2 id="Unicode和ASCII和ANSI和GBK和UTF-8"><a href="#Unicode和ASCII和ANSI和GBK和UTF-8" class="headerlink" title="Unicode和ASCII和ANSI和GBK和UTF-8"></a>Unicode和ASCII和ANSI和GBK和UTF-8</h2><ul>
-<li>Unicode：Unicode使用2个字节表示一个字符（也有4个字符的偏僻字符），它把所有的字符都编在了一套编码里；  </li>
-</ul>
-<ul>
-<li><p>ASCII：ASCII是1个字节的，经过演变，使用一个字节的全部8位(bit)来表示字符，这就叫扩展ASCII码。范围是0x00 - 0xFF 共256个字符。  </p>
-</li>
-<li><p>ANSI： ANSI是一种字符代码，为使计算机支持更多语言，通常使用 0x00-0x7f 范围的1 个字节来表示 1 个英文字符。超出此范围的使用0x80-0xFFFF来编码，即扩展的ASCII编码。   </p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/12/13/bianma/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/13/bianma/">展开全文 >></a>
         </p>
       
 
