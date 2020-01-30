@@ -8,21 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>DVWA-XSS(Stored) | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="high  12345678910111213141516171819202122232425&amp;lt;?phpif( isset( $_POST[ &amp;apos;btnSign&amp;apos; ] ) ) &amp;#123;    // Get input    $message = trim( $_POST[ &amp;apos;mtxMessage&amp;apos; ] );    $name    = trim">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="DVWA-XSS(Stored)">
 <meta property="og:url" content="http://yoursite.com/2020/01/14/DVWA-XSS-Stored/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="high  12345678910111213141516171819202122232425&amp;lt;?phpif( isset( $_POST[ &amp;apos;btnSign&amp;apos; ] ) ) &amp;#123;    // Get input    $message = trim( $_POST[ &amp;apos;mtxMessage&amp;apos; ] );    $name    = trim">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.loli.net/2020/01/14/hrRcQwpqtBlKSVD.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/15/SVuMlXC9Ac7oq8x.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/15/e4uJAnDvTQhsN56.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/15/onZmE6wFUBHCQJR.png">
-<meta property="og:updated_time" content="2020-01-15T12:44:28.219Z">
+<meta property="og:updated_time" content="2020-01-30T04:29:26.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA-XSS(Stored)">
-<meta name="twitter:description" content="high  12345678910111213141516171819202122232425&amp;lt;?phpif( isset( $_POST[ &amp;apos;btnSign&amp;apos; ] ) ) &amp;#123;    // Get input    $message = trim( $_POST[ &amp;apos;mtxMessage&amp;apos; ] );    $name    = trim">
 <meta name="twitter:image" content="https://i.loli.net/2020/01/14/hrRcQwpqtBlKSVD.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
@@ -186,6 +183,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="https://i.loli.net/2020/01/14/hrRcQwpqtBlKSVD.png" alt="XSS_Stored_low 1.png">  </p>
+<a id="more"></a>
+
 <h3>high</h3>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;btnSign&apos; ] ) ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $message = trim( $_POST[ &apos;mtxMessage&apos; ] );</span><br><span class="line">    $name    = trim( $_POST[ &apos;txtName&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Sanitize message input</span><br><span class="line">    $message = strip_tags( addslashes( $message ) );</span><br><span class="line">    $message = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $message ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line">    $message = htmlspecialchars( $message );</span><br><span class="line"></span><br><span class="line">    // Sanitize name input</span><br><span class="line">    $name = preg_replace( &apos;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&apos;, &apos;&apos;, $name );</span><br><span class="line">    $name = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $name ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line"></span><br><span class="line">    // Update database</span><br><span class="line">    $query  = &quot;INSERT INTO guestbook ( comment, name ) VALUES ( &apos;$message&apos;, &apos;$name&apos; );&quot;;</span><br><span class="line">    $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &apos;&lt;pre&gt;&apos; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &apos;&lt;/pre&gt;&apos; );</span><br><span class="line"></span><br><span class="line">    //mysql_close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
