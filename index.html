@@ -161,6 +161,183 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-note-about-CTF-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/30/note-about-CTF-md/">note about CTF.md</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/30/note-about-CTF-md/" class="archive-article-date">
+  	<time datetime="2020-01-30T04:19:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="web5"><a href="#web5" class="headerlink" title="web5"></a>web5</h2><p>涉及：jjencode加密、aaencode加密<br>jjencode：将JS代码转换成只有符号的字符串<br>aaencode：将JS代码转换成常用的网络表情<br>解密：直接用控制台执行解密  </p>
+<hr>
+
+<h2 id="管理员系统"><a href="#管理员系统" class="headerlink" title="管理员系统"></a>管理员系统</h2><p>涉及：XFF伪造<br>注意：HTML代码中有一串注释的base64密码，解密后发现是test123，猜测是管理员密码；  </p>
+<hr>
+
+<h2 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h2><p>涉及：escape加密、JavaScript代码审计、HTML元素标签；<br>js标签中的东西解密后是：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> function  checkSubmit&#123;</span><br><span class="line">    var a=document.getElementById(&quot;password&quot;);</span><br><span class="line">    //获取ID名为password的文档元素，并赋给a (document.getElementById:返回匹配指定id属性的元素节点)</span><br><span class="line">    if(&quot;undefined&quot;!=typeof a)&#123;</span><br><span class="line">    //判断a的类型是否undefined</span><br><span class="line">        if(&quot;67d709b2b54aa2aa648cf6e87a7114f1&quot;==a.value)</span><br><span class="line">        //判断：a元素的value值是否为67d709b2b54aa2aa648cf6e87a7114f1</span><br><span class="line">            return!0;</span><br><span class="line">        alert(&quot;Error&quot;);</span><br><span class="line">        //弹框：Error</span><br><span class="line">        a.focus();</span><br><span class="line">        //获得焦点时，改变背景颜色</span><br><span class="line">        return!1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">document.getElementById(&quot;levelQuest&quot;).onsubmit=checkSubmit;</span><br><span class="line">//获取ID值为levelQuest的文档元素，点击submit时执行checksubmit函数</span><br><span class="line">//onsubmit：再点击submit时发生，若返回真提交表单</span><br></pre></td></tr></table></figure>
+
+<p>意思是要提取id为“password”的文档元素赋值给a，当点击submit的时候如果a和”67d709b2b54aa2aa648cf6e87a7114f1”则checkSubmit函数返回为1，则提交表单。<br>而元素中并没有id为“password”的元素，因此需要修改元素后提交。  </p>
+<hr>
+
+<h2 id="答案在index里"><a href="#答案在index里" class="headerlink" title="答案在index里"></a>答案在index里</h2><p>涉及：php伪协议–php://filter、文件流过滤器、文件包含漏洞、XXE漏洞  </p>
+<h3 id="php-fileter"><a href="#php-fileter" class="headerlink" title="php://fileter"></a>php://fileter</h3><p>是什么：是一种元封装器，设计用于数据流打开时的筛选过滤应用。<br>用处：任意文件读取、getshell时可利用<br>php://fileter通过指定末尾的文件，可以读取经base64加密后的文件源码，之后再base64解码一下就行。虽然不能直接获取到shell等，但能读取敏感文件危害也是挺大的。<br>一般用来任意文件读取的playload：<br><code>php://filter/read=convert.base64-encode/resource=upload.php</code><br>过滤器为convert.base64-encode (<a href="https://www.php.net/manual/zh/filters.convert.php" target="_blank" rel="noopener">转换过滤器</a>) 它将输入流base64-encode<br>resource=upload.php代表读取upload.php的内容  </p>
+<h4 id="convert-base64-encode和-convert-base64-decode"><a href="#convert-base64-encode和-convert-base64-decode" class="headerlink" title="convert.base64-encode和 convert.base64-decode"></a>convert.base64-encode和 convert.base64-decode</h4><p>使用这两个过滤器等同于分别用 base64_encode()和 base64_decode()函数处理所有的流数据。   convert.base64-encode支持以一个关联数组给出的参数。如果给出了 line-length，base64 输出将被用 line-length个字符为 长度而截成块。如果给出了 line-break-chars，每块将被用给出的字符隔开。这些参数的效果和用 base64_encode()再加上 chunk_split()相同。</p>
+<h4 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h4><p>数据流（data stream）是一组有序，有起点和终点的字节的数据序列。包括输入流和输出流。<br>输入输出都是相对于程序来说的：<br>输入流(InputStream)：输入流只能读不能写，可从键盘或文件中获得数据；<br>输出流(OutputStream)：输出流只能写不能读，可向显示器、打印机或文件中传输数据；<br>缓冲流(BufferedStream)：为了提高数据的传输效率，通常使用缓冲流，即为一个流配有一个缓冲区(buffer)，一个缓冲区就是专门用于传输数据的内存块。当向一个缓冲流写入数据时，系统不直接发送到外部设备，而是将数据发送到缓冲区。缓冲区自动记录数据，当缓冲区满时，系统将数据全部发送到相应的设备。 </p>
+<h4 id="PHP-Filesystem-函数-fopen-、fwrite-等"><a href="#PHP-Filesystem-函数-fopen-、fwrite-等" class="headerlink" title="PHP Filesystem 函数 [fopen()、fwrite()等]"></a>PHP Filesystem 函数 [fopen()、fwrite()等]</h4><p>fopen():用于打开文件或者是URL<br>fopen(filename,mode,include_path,context)<br>其中前两个是必需函数 mode 指定打开方式  </p>
+<h4 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h4><p>可用过滤器有：  </p>
+<ul>
+<li>字符串过滤器  </li>
+<li>string.strip_​tags  </li>
+<li>转换过滤器  </li>
+<li>压缩过滤器  </li>
+<li>加密过滤器  </li>
+</ul>
+<p><em>应该始终对外部数据进行过滤</em></p>
+<ul>
+<li>外部数据：<br>来自表单的输入数据<br>Cookies<br>服务器变量<br>数据库查询结果  <br>
+
+</li>
+</ul>
+<h4 id="stream-filter-append"><a href="#stream-filter-append" class="headerlink" title="stream_filter_append()"></a>stream_filter_append()</h4><p><code>stream_filter_append ( resource $stream , string $filtername [, int $read_write [, mixed $params ]] ) : resource</code></p>
+<p>显示当前运行系统已注册的数据流过滤器列表：<br><code>stream_get_filters ( void ) : array</code>  </p>
+<h4 id="php伪协议"><a href="#php伪协议" class="headerlink" title="php伪协议"></a>php伪协议</h4><p>php伪协议是什么：Yiruma说可以理解为是数据流的一种处理方式合集，有文件包含的地方，就特别应当考虑伪协议的各种妙用<br><br><br>php支持的协议有：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">file:// — 访问本地文件系统</span><br><span class="line">http:// — 访问 HTTP(s) 网址</span><br><span class="line">ftp:// — 访问 FTP(s) URLs </span><br><span class="line">php:// — 访问各个输入/输出流（I/O streams）</span><br><span class="line">zlib:// — 压缩流</span><br><span class="line">data:// — 数据（RFC 2397）</span><br><span class="line">glob:// — 查找匹配的文件路径模式</span><br><span class="line">phar:// — PHP 归档</span><br><span class="line">ssh2:// — Secure Shell 2</span><br><span class="line">rar:// — RAR</span><br><span class="line">ogg:// — 音频流</span><br><span class="line">expect:// — 处理交互式的流</span><br></pre></td></tr></table></figure>
+
+<p>其中：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">生成数据流 （上面两种在wamp 5.6php版本中都被禁用了）</span><br><span class="line">php://input</span><br><span class="line">data://text/plain;base64,base64编码字符串</span><br><span class="line">数据流过滤器（测试可以看到在5.6版本的php中还没有被禁用）</span><br><span class="line">php://filter/convert.base64-encode/resource=xxx</span><br><span class="line">php://filter/convert.base64-decode/resource=xxx</span><br><span class="line">phar://</span><br><span class="line">zip://</span><br><span class="line">远程文件访问</span><br><span class="line">http://</span><br><span class="line">ftp://</span><br><span class="line">本地文件访问</span><br><span class="line">file:///</span><br></pre></td></tr></table></figure>
+
+<p>参考：<br><a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E6%B5%81/3002243?fr=aladdin" target="_blank" rel="noopener">什么是数据流</a><br><a href="https://lorexxar.cn/2016/09/14/php-wei/" target="_blank" rel="noopener">php伪协议</a><br><a href="http://cauc.me/2017/05/11/PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE/" target="_blank" rel="noopener">php伪协议</a><br><a href="https://www.w3school.com.cn/php/func_filesystem_fopen.asp" target="_blank" rel="noopener">fopen()函数</a><br><a href="https://www.w3school.com.cn/php/php_ref_filesystem.asp" target="_blank" rel="noopener">PHP Filesystem 函数</a><br><a href="https://www.php.net/manual/zh/filters.php#filters" target="_blank" rel="noopener">可用过滤器列表</a><br><a href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html" target="_blank" rel="noopener">谈一谈php://filter的妙用(这个很有意思)</a><br><a href="https://chybeta.github.io/2017/10/08/php%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/" target="_blank" rel="noopener">php文件包含漏洞(还有其他的一些姿势:phar://、zip://等)</a>  </p>
+<p><strong>本题解：</strong><br>在网址之后加：<code>php://filter/read=convert.base64-encode/resource=index.php</code>可得到一串base64编码 再拿去base64解码就ok;  </p>
+<hr>
+<h2></h2>
+<h2>输入密码</h2>  
+
+<p>涉及：密码爆破<br>题解：主要熟悉了burp的使用，一开始还自己去构造了一个五位数的字典，后来发现burp自带有，设置有效载荷类型为数值，设置下面的数字范围就可以开始攻击了。所以，就需要来熟悉一下burp的一些功能、使用方法。<br>attack可以点一下length快速找到不一样length的数据<br><img src="https://i.loli.net/2019/12/30/eu54b9aTkKvGMY8.png" alt="length.png">  </p>
+<h2 id="文件备份"><a href="#文件备份" class="headerlink" title="文件备份"></a>文件备份</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line"> * Created by PhpStorm.</span><br><span class="line"> * User: Norse</span><br><span class="line"> * Date: 2017/8/6</span><br><span class="line"> * Time: 20:22</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">include_once &quot;flag.php&quot;;</span><br><span class="line">ini_set(&quot;display_errors&quot;, 0);//设置配置选项（优先级： ini_set &gt; php-fpm.conf &gt; php.ini）</span><br><span class="line">$str = strstr($_SERVER[&apos;REQUEST_URI&apos;], &apos;?&apos;);//查找&apos;?&apos;首次出现的位置并从此处开始返回字符串一直到结尾，区分大小写（stristr()不区分）</span><br><span class="line">$str = substr($str,1);//返回“?”之后的字符串（从第1位开始，“?”是第0位）</span><br><span class="line">$str = str_replace(&apos;key&apos;,&apos;&apos;,$str);//把字符串里的key替换为空</span><br><span class="line">parse_str($str);//把通过url传输的查询字符串$str解析为变量并设置到当前作用域</span><br><span class="line">echo md5($key1);</span><br><span class="line"></span><br><span class="line">echo md5($key2);</span><br><span class="line">if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;</span><br><span class="line">    echo $flag.&quot;取得flag&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>playload:<br>?kekeyy1=QNKCDZO&amp;kekeyy2=s878926199a  </p>
+<h2 id="爆破3"><a href="#爆破3" class="headerlink" title="爆破3"></a>爆破3</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">error_reporting(0);</span><br><span class="line">session_start();</span><br><span class="line">require(&apos;./flag.php&apos;);</span><br><span class="line">if(!isset($_SESSION[&apos;nums&apos;]))&#123;</span><br><span class="line">  $_SESSION[&apos;nums&apos;] = 0;</span><br><span class="line">  $_SESSION[&apos;time&apos;] = time();</span><br><span class="line">  $_SESSION[&apos;whoami&apos;] = &apos;ea&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if($_SESSION[&apos;time&apos;]+120&lt;time())&#123;</span><br><span class="line">  session_destroy();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$value = $_REQUEST[&apos;value&apos;];</span><br><span class="line">$str_rand = range(&apos;a&apos;, &apos;z&apos;);</span><br><span class="line">$str_rands = $str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)];</span><br><span class="line"></span><br><span class="line">if($_SESSION[&apos;whoami&apos;]==($value[0].$value[1]) &amp;&amp; substr(md5($value),5,4)==0)&#123;</span><br><span class="line">  $_SESSION[&apos;nums&apos;]++;</span><br><span class="line">  $_SESSION[&apos;whoami&apos;] = $str_rands;</span><br><span class="line">  echo $str_rands;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if($_SESSION[&apos;nums&apos;]&gt;=10)&#123;</span><br><span class="line">  echo $flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">show_source(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="substr-string-start-length-返回字符串的一部分。"><a href="#substr-string-start-length-返回字符串的一部分。" class="headerlink" title="substr(string,start,length)返回字符串的一部分。"></a>substr(string,start,length)返回字符串的一部分。</h3><p>PHP 7.0-如果string = 开始（以字符为单位），它将返回一个空字符串。早期版本返回FALSE。<br>PHP 5.2.2-5.2.6-如果start的位置为负截断，则返回FALSE。其他版本从头开始获取字符串。</p>
+<h3 id="mt-rand-使用-Mersenne-Twister-算法返回随机整数。"><a href="#mt-rand-使用-Mersenne-Twister-算法返回随机整数。" class="headerlink" title="mt_rand() 使用 Mersenne Twister 算法返回随机整数。"></a>mt_rand() 使用 Mersenne Twister 算法返回随机整数。</h3><p>如果没有提供可选参数 min 和 max，mt_rand() 返回 0 到 RAND_MAX 之间的伪随机数。例如想要 5 到 15（包括 5 和 15）之间的随机数，用 mt_rand(5, 15)。  </p>
+<h3 id="返回自-Unix-纪元（January-1-1970-00-00-00-GMT）起的当前时间的秒数。"><a href="#返回自-Unix-纪元（January-1-1970-00-00-00-GMT）起的当前时间的秒数。" class="headerlink" title="返回自 Unix 纪元（January 1 1970 00:00:00 GMT）起的当前时间的秒数。"></a>返回自 Unix 纪元（January 1 1970 00:00:00 GMT）起的当前时间的秒数。</h3><p>时间戳是指格林威治时间1970年01月01日00时00分00秒(北京时间1970年01月01日08时00分00秒)起至现在的总秒数。通俗的讲， 时间戳是一份能够表示一份数据在一个特定时间点已经存在的完整的可验证的数据。 它的提出主要是为用户提供一份电子证据， 以证明用户的某些数据的产生时间。 在实际应用上， 它可以使用在包括电子商务、 金融活动的各个方面， 尤其可以用来支撑公开密钥基础设施的 “不可否认” 服务。<br><br>  </p>
+<p>session在120秒后会销毁。<br>md5处的验证由于$value是一个数组，== 弱类型绕过。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$value[]=(&quot;ea&quot;);</span><br><span class="line">var_dump(md5($value));</span><br><span class="line">var_dump(substr(md5($value),5,4)==0);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/01/16/VQY14IbPkw2Sfz9.png" alt="test 2.png">  </p>
+<p>playload:<br><pr>?value[0]=”a”&amp;value[1]=”e”</pr></p>
+<p>然后会随机出现两个字母，比如“is”，就改为<br><pr>?value[0]=”i”&amp;value[1]=”s”</pr><br>每次传值$_SESSION[‘value’]都会加1，当其达到10时就会有flag。<br>可以手工也可以用python脚本来完成：  </p>
+<h2 id="HGAME-CXK打篮球"><a href="#HGAME-CXK打篮球" class="headerlink" title="HGAME CXK打篮球"></a>HGAME CXK打篮球</h2><p>把js都扒出来看了几遍，谁知道改个包就好了。QAQ<br><img src="https://i.loli.net/2020/01/17/vi4ZC95EeVuHQkG.png" alt="cxk 3.png"><br><img src="https://i.loli.net/2020/01/17/SabGEkRnIfANw5c.png" alt="cxk 2.png"><br><img src="https://i.loli.net/2020/01/17/QOSyvDjfJ16Maiu.png" alt="cxk .png"><br><img src="https://i.loli.net/2020/01/17/y2418lmAoitWaX7.png" alt="cxk 4.png">  </p>
+<h2 id="HGAME-背景"><a href="#HGAME-背景" class="headerlink" title="HGAME 背景"></a>HGAME 背景</h2><p>压缩包解压是一张p站上的图。<br>记事本打开拉到最下面得到提示：<br><img src="https://i.loli.net/2020/01/17/thFXqoRVrZ3szHc.png" alt="bg hint1.png"><br>picture ID 就是图片的id号，找到这张图片，地址栏最后就是picture ID；<br><img src="https://i.loli.net/2020/01/17/slcbj9ZCNIGD8ag.png" alt="bg 2.png"><br>解压压缩包时点查看可以看到有一个flag.txt加密文件；<br><img src="https://i.loli.net/2020/01/17/i5L8M64PhZAlYFN.png" alt="bg 3.png"><br>打开：<br><code>\u68\u67\u61\u6d\u65\u7b\u44\u6f\u5f\u79\u30\u75\u5f\u4b\u6e\u4f\u57\u5f\u75\u4e\u69\u43\u30\u64\u33\u3f\u7d</code><br>看着像Unicode编码，不过需要把后面的十六进制转成二进制，Unicode在对英文字母的编码和assicc是一样的，所以这里直接去掉“\u”然后assicc转：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$string=&quot;68\u67\u61\u6d\u65\u7b\u44\u6f\u5f\u79\u30\u75\u5f\u4b\u6e\u4f\u57\u5f\u75\u4e\u69\u43\u30\u64\u33\u3f\u7d&quot;;</span><br><span class="line">$a=explode(&quot;\\u&quot;, $string);</span><br><span class="line"></span><br><span class="line">for ($i=0; $i &lt; count($a); $i++) &#123; </span><br><span class="line">	</span><br><span class="line">	print_r($a[$i]);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">echo (&quot;&lt;br&gt;&quot;);</span><br><span class="line">echo hex2bin(&quot;6867616d657b446f5f7930755f4b6e4f575f754e69433064333f7d&quot;);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>得到：<br><img src="https://i.loli.net/2020/01/17/uTeBvQ8KCzSHPnf.png" alt="bg flag.png"></p>
+<h2 id="NewsCenter"><a href="#NewsCenter" class="headerlink" title="NewsCenter"></a>NewsCenter</h2><p>burp抓包后所有信息保存到1.txt<br>sqlmap <code>sqlmap.py -r 1.txt --dbs</code><br>（-r 1.txt 对于用post方法提交的，参数不在URL里面的网页，可以先截获数据，保存成文件再用这个参数执行 –dbs 当前用户有权限读取包含所有数据库列表信息的表中的时候，即可列出所有的数据库。）<br>找到数据库名news<br>枚举news数据表 <code>sqlmap.py -r 1.txt --tables -D &quot;news&quot; --dump</code><br>-D参数指定数据库<br><a href="https://xz.aliyun.com/t/3010" target="_blank" rel="noopener">一些命令</a><br>搜索字段，表，数据库<br>参数：–search,-C,-T,-D<br>–search可以用来寻找特定的数据库名，所有数据库中的特定表名，所有数据库表中的特定字段。<br>可以在一下三种情况下使用：<br>-C后跟着用逗号分割的列名，将会在所有数据库表中搜索指定的列名。<br>-T后跟着用逗号分割的表名，将会在所有数据库中搜索指定的表名。<br>-D后跟着用逗号分割的库名，将会在所有数据库中搜索指定的库名。  </p>
+<h2 id="bugku-cookie欺骗"><a href="#bugku-cookie欺骗" class="headerlink" title="bugku cookie欺骗"></a>bugku cookie欺骗</h2><p>依次访问：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url=&quot;http://123.206.87.240:8002/web11/index.php&quot;</span><br><span class="line">s = requests.session()</span><br><span class="line">for i in range(1,20):</span><br><span class="line">	params=&#123;&apos;line&apos;:str(i),&apos;filename&apos;:&apos;aW5kZXgucGhw&apos;&#125;#即line=1,2,3,4...&amp;filename=php.index(base64)</span><br><span class="line">	source=s.get(url,params=params)</span><br><span class="line">	print (str(source.content,&apos;utf-8&apos;))	</span><br><span class="line">```  </span><br><span class="line">得到：</span><br></pre></td></tr></table></figure>
+
+<p>error_reporting(0);</p>
+<p>$file=base64_decode(isset($_GET[‘filename’])?$_GET[‘filename’]:””);</p>
+<p>$line=isset($_GET[‘line’])?intval($_GET[‘line’]):0;</p>
+<p>if($file==’’)<br>    header(“location:index.php?line=&amp;filename=a2V5cy50eHQ=”);<br>$file_list = array(‘0’ =&gt;’keys.txt’,’1’ =&gt;’index.php’,);<br>if(isset($_COOKIE[‘margin’]) &amp;&amp; $_COOKIE[‘margin’]==’margin’)<br>{<br>    $file_list[2]=’keys.php’;<br>}<br>if(in_array($file, $file_list))<br>{<br>    $fa = file($file);<br>    echo $fa[$line];<br>}</p>
+<p>?&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cookie值中margin=margin时可以访问keys.php(base64加密)  </span><br><span class="line">## bugku never give up </span><br><span class="line">源代码里有一段注释“1p.html”  </span><br><span class="line">访问目录下1p.html，直接跳到了bugku主页，用view-source:后加url直接查看源代码  </span><br><span class="line">包含了一段base64编码的代码：</span><br></pre></td></tr></table></figure>
+
+<?
+if(!$[_GET['id'])
+{
+    header('Location: hello.php?id=1');
+    exit();
+}
+$id=$_GET['id'];
+$a=$_GET['a'];
+$b=$_GET['b'];
+if(stripos($a,'.'))//查找“.”在$a中第一次出现的位置————$a里不能有“.”
+{
+    echo 'no no no no no no no';
+    return ;
+}
+$data = @file_get_contents($a,'r');//把整个文件读入一个字符串中
+if($data=="bugku is a nice plateform!" and $id==0 and strlen($b)>5 and eregi("111".substr($b,0,1),"1114") and substr($b,0,1)!=4)
+
+//eregi(string pattern, string string, [array regs]),在一个字符串搜索指定的模式的字符串。
+//substr($b,0,1)从$b的第0位开始返回1字符长度。
+{
+    require("f4l2a3g.txt");
+}
+else
+{
+    print "never never never give up !!!";
+}
+
+?>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">这里其实直接访问里面的f4l2a3g.txt就可以的到flag，不用管其他的代码。  </span><br><span class="line">涉及：  </span><br><span class="line">- 网页重定向</span><br><span class="line">- 弱类型比较 </span><br><span class="line">- php伪协议  </span><br><span class="line">- php黑魔法 eregi的00截断   </span><br><span class="line">#### 需要满足的条件</span><br><span class="line">一共有四个参数：id a b data </span><br><span class="line">id：不能为0且id==0  </span><br><span class="line">a：不能存在“.”</span><br><span class="line">data：由文件$a传入为字符串，且data==&quot;bugku is a nice plateform!&quot;  </span><br><span class="line">b：“111”后加上$b的第一个字符要能正则匹配上“1114”，且$b的第一个字符不等于4。</span><br><span class="line">#### 一开始的重定向</span><br><span class="line">网页源码里有”window.location.href“  </span><br><span class="line">window.location 对象可用于获取当前页面地址（URL）并把浏览器重定向到新页面。  </span><br><span class="line"></span><br><span class="line">Window Location</span><br><span class="line"></span><br><span class="line">window.location 对象可不带 window 前缀书写。</span><br><span class="line">&lt;pre&gt;</span><br><span class="line">一些例子：</span><br><span class="line"></span><br><span class="line">    window.location.href 返回当前页面的 href (URL)</span><br><span class="line">    window.location.hostname 返回 web 主机的域名</span><br><span class="line">    window.location.pathname 返回当前页面的路径或文件名</span><br><span class="line">    window.location.protocol 返回使用的 web 协议（http: 或 https:）</span><br><span class="line">    window.location.assign 加载新文档</span><br><span class="line">&lt;/pre&gt;</span><br><span class="line"></span><br><span class="line">#### 弱类型比较  </span><br><span class="line">![compare.png](https://i.loli.net/2020/01/30/1WVi7wlx68DgUyP.png)  </span><br><span class="line">字符串和0可以使“==”成立。  </span><br><span class="line">#### php伪协议  </span><br><span class="line">源码中变量 $data 是由 file_get_contents() 函数读取变量 $a 的值而得，所以 $a 的值必须为数据流。  </span><br><span class="line">这里通过php://input来读取通过post方式传输的“bugku is a nice placform!”数据流。（php://input是一个只读流，它允许您从请求体中读取原始数据。对于POST请求，最好使用php://input而不是$HTTP_RAW_POST_DATA，因为它不依赖于特殊的php.ini指令。）  </span><br><span class="line">[php手册--php://](https://www.php.net/manual/en/wrappers.php.php)  </span><br><span class="line">#### eregi的00截断 </span><br><span class="line">- 版本：此功能在PHP 5.3.0中已弃用， 在PHP 7.0.0中已删除。  </span><br><span class="line">此功能的替代方法包括：  </span><br><span class="line">preg_match（） （带有 i（PCRE_CASELESS）修饰符）  </span><br><span class="line">- 方法 ：eregi （ string $pattern ， string $string [， array &amp;$regs ]）： int  </span><br><span class="line">pattern 不区分大小写的正则表达式。  </span><br><span class="line">string 输入字符串。  </span><br><span class="line">regs 如果在的带括号的子字符串中找到匹配项， pattern并且使用第三个参数调用了该函数regs，则匹配项将存储在数组的元素中regs。  </span><br><span class="line">用指定的模式搜索一个字符串中指定的字符串,如果匹配成功返回true,否则,则返回false。  </span><br><span class="line">- 漏洞 ：  </span><br><span class="line">①\x00截断及遇到\x00则默认为字符串的结束  </span><br><span class="line">②函数中的参数值如果为数组，会返回false  </span><br><span class="line">在php5.2版本下：</span><br></pre></td></tr></table></figure>
+
+<?php
+$a = "123";
+$b = "\x00123";
+var_dump(eregi("111".substr($a,0,1),"1114"));
+echo ("<br>");
+var_dump(eregi("111".substr($b,0,1),"1114"));
+?>
+<p>```</p>
+<p>得到：<br><img src="https://i.loli.net/2020/01/30/oAsxYZQrqRwc3Vd.png" alt="never 3.png"><br>由于是要get传参，如果直接写成“\x00”会导致请求头截断，所以需要url转码为%00。<br><img src="https://i.loli.net/2020/01/30/d5qhcwQYRNIVUiC.png" alt="never 5.png"><br><a href="https://skysec.top/2017/07/22/PHP%E5%87%BD%E6%95%B0%E9%BB%91%E9%AD%94%E6%B3%95%E5%B0%8F%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">PHP黑魔法小总结</a><br><a href="https://lddp.github.io/2018/11/28/CTF-PHP%E9%BB%91%E9%AD%94%E6%B3%95/" target="_blank" rel="noopener">ctf黑魔法</a>  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/30/note-about-CTF-md/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-123-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -742,75 +919,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/01/04/DVWA-brute/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-没有名字" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/31/没有名字/">没有名字</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/31/没有名字/" class="archive-article-date">
-  	<time datetime="2019-12-31T15:50:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1278295208'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1278295208%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
-<body>
-<h1>2019再见</h1>
-
-<p> <em>&ensp;&ensp; 2019就要过去啦，竟然有点不舍，不知从什么时候开始也想要时间变得慢一点。是因为快要考试了但还一点没复习所以心虚吗，还是因为没睡够没玩够？是因为想要学的东西太多而自己又太笨？是因为看到幼小的他们渐渐长大，有的甚至将要步入婚姻，一时有点难以接受？还是因为猛地发现年轻的他们不再年轻，而我却天真地以为一切都还是老样子……</em>  </p>
-        
-          <a class="article-more-a" href="/2019/12/31/没有名字/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/31/没有名字/">展开全文 >></a>
         </p>
       
 
