@@ -6,18 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Xun9er&#39;s blog</title>
+  <title>Web source code leak | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个白的不能再白的小白">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Xun9er&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="网页源码泄露大佬列举了好多：.git源码泄露、.svn源码泄露、DS_Store 文件泄露、.hg 源码泄露、常见编辑器备份文件泄露、WEB-INF/web.xml泄露、网站备份文件泄露、cvs文件泄露……这里记录一些遇到的，这样以后就可以不断完善啦">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web source code leak">
+<meta property="og:url" content="http://yoursite.com/2020/02/08/Web-source-code-leak/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="一个白的不能再白的小白">
+<meta property="og:description" content="网页源码泄露大佬列举了好多：.git源码泄露、.svn源码泄露、DS_Store 文件泄露、.hg 源码泄露、常见编辑器备份文件泄露、WEB-INF/web.xml泄露、网站备份文件泄露、cvs文件泄露……这里记录一些遇到的，这样以后就可以不断完善啦">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.loli.net/2020/02/07/eyvSxKNnGDha7Jq.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/07/ZaDvT2EyInJgB35.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/07/oO7fZ124kx6pbn5.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/07/npfOBwiCKRh81G2.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/08/AJY5eIXkQpUcsKn.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/08/aqQeudZF19mTSUR.png">
+<meta property="og:updated_time" content="2020-02-08T08:46:11.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xun9er&#39;s blog">
-<meta name="twitter:description" content="一个白的不能再白的小白">
+<meta name="twitter:title" content="Web source code leak">
+<meta name="twitter:description" content="网页源码泄露大佬列举了好多：.git源码泄露、.svn源码泄露、DS_Store 文件泄露、.hg 源码泄露、常见编辑器备份文件泄露、WEB-INF/web.xml泄露、网站备份文件泄露、cvs文件泄露……这里记录一些遇到的，这样以后就可以不断完善啦">
+<meta name="twitter:image" content="https://i.loli.net/2020/02/07/eyvSxKNnGDha7Jq.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -159,16 +167,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Web-source-code-leak" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Web-source-code-leak" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/08/Web-source-code-leak/">Web source code leak</a>
+    <h1 class="article-title" itemprop="name">
+      Web source code leak
     </h1>
   
 
@@ -182,11 +188,58 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="网页源码泄露"><a href="#网页源码泄露" class="headerlink" title="网页源码泄露"></a>网页源码泄露</h1><p><em>大佬列举了好多：.git源码泄露、.svn源码泄露、DS_Store 文件泄露、.hg 源码泄露、常见编辑器备份文件泄露、WEB-INF/web.xml泄露、网站备份文件泄露、cvs文件泄露……这里记录一些遇到的，这样以后就可以不断完善啦</em></p>
-        
-          <a class="article-more-a" href="/2020/02/08/Web-source-code-leak/#more">more >></a>
-        
+<a id="more"></a>
+<h2 id="git泄露"><a href="#git泄露" class="headerlink" title="git泄露"></a>git泄露</h2><h3 id="工具：githack"><a href="#工具：githack" class="headerlink" title="工具：githack"></a>工具：githack</h3><h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><pre><code>解析.git/index文件，找到工程中所有的： ( 文件名，文件sha1 )  
+去.git/objects/ 文件夹下下载对应的文件  
+zlib解压文件，按原始的目录结构写入源代码  </code></pre><h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><p><code>GitHack.py http://XXXXXXXXXXX/.git/</code></p>
+<h4 id="python版本"><a href="#python版本" class="headerlink" title="python版本"></a>python版本</h4><p>python2支持，python3一堆报错。<br>所以python2、python3都一起安上吧，此外还有pip共存问题。参照<a href="https://blog.csdn.net/qq_36154755/article/details/80974730" target="_blank" rel="noopener">Win10下python3和python2切换和 pip共存问题</a>  </p>
+<h3 id="题"><a href="#题" class="headerlink" title="题"></a>题</h3><h4 id="xctf"><a href="#xctf" class="headerlink" title="xctf"></a>xctf</h4><p>买七位数的彩票，可以用钱买flag，但钱不够。<br>题目下直接给了目录源码，应该可以通过git泄露来获取。<br>在buy.js里有一段用来对比输入号码和中奖号码的函数。<br><img src="https://i.loli.net/2020/02/07/eyvSxKNnGDha7Jq.png" alt="彩票.png"><br>用的是弱类型比较。<br>所以如果中奖号码全是非零的数字，而输入的‘数字’为true就可以中头等奖。<br>抓包：<br><img src="https://i.loli.net/2020/02/07/ZaDvT2EyInJgB35.png" alt="彩票2.png"><br>改变json传输的数据为true，（注：true不加引号，不然就成了字符串）<br>json的两种格式：<br>1 对象格式：{“key1”:obj,”key2”:obj,”key3”:obj…}<br><img src="https://i.loli.net/2020/02/07/oO7fZ124kx6pbn5.png" alt="彩票3.png"><br>2 数组/集合格式：[obj,obj,obj…]<br><img src="https://i.loli.net/2020/02/07/npfOBwiCKRh81G2.png" alt="彩票4.png"><br>多刷几次就有足够的钱买flag了。  </p>
+<h4 id="hgame-blog"><a href="#hgame-blog" class="headerlink" title="hgame blog"></a>hgame blog</h4><p>直接加./git 就可以找到GitHub上面的远程仓库。</p>
+<h4 id="xctf-1"><a href="#xctf-1" class="headerlink" title="xctf"></a>xctf</h4><p>/.get可以看到目录文件，用githack下载源码文件。<br><img src="https://i.loli.net/2020/02/08/AJY5eIXkQpUcsKn.png" alt="xctf git2.png"><br><img src="https://i.loli.net/2020/02/08/aqQeudZF19mTSUR.png" alt="xctf git.png"><br>一个比较有用的源码文件里：  </p>
+<pre><code>&lt;?php
+
+if (isset($_GET[&apos;page&apos;])) {
+    $page = $_GET[&apos;page&apos;];
+} else {
+    $page = &quot;home&quot;;
+}
+
+$file = &quot;templates/&quot; . $page . &quot;.php&quot;;
+
+// I heard &apos;..&apos; is dangerous! 一个没成功的绕过：?page=hahaha&apos;,&apos;a&apos;) === false&quot;) or phpinfo();#   
+assert(&quot;strpos(&apos;$file&apos;, &apos;..&apos;) === false&quot;) or die(&quot;Detected hacking attempt!&quot;);//如果前一个值为真后一个值就不会再判断了
+
+// TODO: Make this look nice  绕过：page=123&apos;) or phpinfo();#   
+assert(&quot;file_exists(&apos;$file&apos;)&quot;) or die(&quot;That file doesn&apos;t exist!&quot;);//file_exists() 函数检查文件或目录是否存在。
+
+?&gt;</code></pre><h5 id="or"><a href="#or" class="headerlink" title="or"></a>or</h5><p>如果前一个值为真后一个值就不会再判断了，这里如果第一个为假那么执行第二个die()无论结果是真是假程序都会直接退出。  </p>
+<h5 id="assert-和eval"><a href="#assert-和eval" class="headerlink" title="assert()和eval"></a>assert()和eval</h5><p>eval：<br>(1)eval() 函数把字符串按照 PHP 代码来计算（计算=执行）。<br>(2)该字符串必须是合法的 PHP 代码，且必须以分号结尾。<br>(3)如果没有在代码字符串中调用 return 语句，则返回 NULL。如果代码中存在解析错误，则 eval() 函数返回 false。<br>assert:<br>(1)是一个调试程序时经常使用的宏，在程序运行时它计算括号内的表达式，如果表达式为FALSE (0), 程序将报告错误，并终止执行。如果表达式不为0，则继续执行后面的语句。这个宏通常原来判断程序中是否出现了明显非法的数据，如果出现了终止程序以免导致严重后果，同时也便于查找错误。<br>(2)如果 assertion 是字符串，它将会被 assert() 当做 PHP 代码来执行。  </p>
+<p>对第二个assert函数闭合并加上or后面的函数：123’) or print_r(file_get_contents(‘templates/flag.php’));#<br>payload（url编码后）:123%27)+or+print_r(file_get_contents(%27templates%2fflag.php%27))%3b%23<br>此外，php源码不在网页上直接显示，需要查看网页源码。  </p>
+<h2 id="网站备份文件泄露"><a href="#网站备份文件泄露" class="headerlink" title="网站备份文件泄露"></a>网站备份文件泄露</h2><p>该漏洞的成因主要有是管理员将备份文件放在到 web 服务器可以访问的目录下。<br>常见后缀：<br>.rar   .zip  .7z   .tar.gz   .bak    .swp   .txt   .sql<br>参考：<br><a href="https://lddp.github.io/2018/05/10/WEB-%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F/" target="_blank" rel="noopener">WEB安全-常见源码泄露 </a><br><a href="https://www.cnblogs.com/sn00py/p/5925944.html" target="_blank" rel="noopener">assert引起的代码注射</a>  </p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖鸭~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -195,16 +248,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/08/Web-source-code-leak/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/02/08/Web-source-code-leak/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/08/httpx/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">httpx</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -224,577 +336,14 @@
 
 
 
-
-  
-    <article id="post-httpx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/08/httpx/">httpx</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/08/httpx/" class="archive-article-date">
-  	<time datetime="2020-02-08T08:42:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="http请求"><a href="#http请求" class="headerlink" title="http请求"></a>http请求</h1>
-        
-          <a class="article-more-a" href="/2020/02/08/httpx/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/08/httpx/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-http-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/06/http-md/">http</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/06/http-md/" class="archive-article-date">
-  	<time datetime="2020-02-06T15:26:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="http请求"><a href="#http请求" class="headerlink" title="http请求"></a>http请求</h1>
-        
-          <a class="article-more-a" href="/2020/02/06/http-md/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/06/http-md/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-php序列化-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/06/php序列化-md/">php序列化.md</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/06/php序列化-md/" class="archive-article-date">
-  	<time datetime="2020-02-06T05:21:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="php-类、对象、序列化、反序列化"><a href="#php-类、对象、序列化、反序列化" class="headerlink" title="php 类、对象、序列化、反序列化"></a>php 类、对象、序列化、反序列化</h1>
-        
-          <a class="article-more-a" href="/2020/02/06/php序列化-md/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/06/php序列化-md/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-123-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/27/123-1/">&#39;123&#39;</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/27/123-1/" class="archive-article-date">
-  	<time datetime="2020-01-27T13:42:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&lt;php? phpinfo(); ?&gt;</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/27/123-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-123" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <?php phpinfo(); ?>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/27/123/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DVWA-XSS-Stored" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/14/DVWA-XSS-Stored/">DVWA-XSS(Stored)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/14/DVWA-XSS-Stored/" class="archive-article-date">
-  	<time datetime="2020-01-14T09:01:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://i.loli.net/2020/01/14/hrRcQwpqtBlKSVD.png" alt="XSS_Stored_low 1.png">  </p>
-        
-          <a class="article-more-a" href="/2020/01/14/DVWA-XSS-Stored/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/14/DVWA-XSS-Stored/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DVWA-XSS-Reflected" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/12/DVWA-XSS-Reflected/">DVWA-XSS(Reflected)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/12/DVWA-XSS-Reflected/" class="archive-article-date">
-  	<time datetime="2020-01-12T12:26:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>DVWA-XSS(Reflected)</p>
-        
-          <a class="article-more-a" href="/2020/01/12/DVWA-XSS-Reflected/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/12/DVWA-XSS-Reflected/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DVWA-XSS-DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/10/DVWA-XSS-DOM/">DVWA-XSS(DOM).md</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/10/DVWA-XSS-DOM/" class="archive-article-date">
-  	<time datetime="2020-01-10T01:35:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://i.loli.net/2020/01/12/blsZSnQRU7Hkjra.png" alt="DVWA--XSS_DOM_.png">  </p>
-        
-          <a class="article-more-a" href="/2020/01/10/DVWA-XSS-DOM/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/10/DVWA-XSS-DOM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DVWA-CSRF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/05/DVWA-CSRF/">DVWA--CSRF</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/05/DVWA-CSRF/" class="archive-article-date">
-  	<time datetime="2020-01-05T02:23:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://i.loli.net/2020/01/06/6LekGH5MyQORFdm.png" alt="DVWA--CSRF.png"><br><em>之前在 bruteforce 、command injection 中impossible安全等级里都有一个anti-CSRF令牌，那么到底什么是CSRF呢，它的原理，怎么防御？</em></p>
-        
-          <a class="article-more-a" href="/2020/01/05/DVWA-CSRF/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/05/DVWA-CSRF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -817,8 +366,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
