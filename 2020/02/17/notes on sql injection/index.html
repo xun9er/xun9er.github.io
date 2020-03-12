@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/02/25/cGU8xA5aRyzSVm1.png">
 <meta property="og:image" content="https://i.loli.net/2020/02/25/kSbw84hguBLxiCI.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/09/Y7xHXVnWLZzcTIN.png">
-<meta property="og:updated_time" content="2020-03-12T03:59:59.703Z">
+<meta property="og:updated_time" content="2020-03-12T04:09:50.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on sql injection">
 <meta name="twitter:description" content="学习笔记，不定时更新。">
@@ -249,7 +249,7 @@
 <h4 id="更好地显示"><a href="#更好地显示" class="headerlink" title="更好地显示"></a>更好地显示</h4><ul>
 <li>比如把username和password用符号隔开  </li>
 <li>以某一输入的符号作为完整数据回显开始的标志<br>在group_concat()里加入16进制ASCII码的符号；<br><img src="https://i.loli.net/2020/02/13/GP6YfaKObCt87zJ.png" alt="分隔符.png">  </li>
-<li>left() right() mid() 解决只显示数据一部分的情况，适用报错注入。比如：<code>select right(password,34) from geek.H4rDsq1</code>  <h4 id="判断字符型or数字型"><a href="#判断字符型or数字型" class="headerlink" title="判断字符型or数字型"></a>判断字符型or数字型</h4></li>
+<li>left() right() mid() reverse() 逆序输出 解决只显示数据一部分的情况，适用报错注入。比如：<code>select right(password,34) from geek.H4rDsq1</code>  <h4 id="判断字符型or数字型"><a href="#判断字符型or数字型" class="headerlink" title="判断字符型or数字型"></a>判断字符型or数字型</h4></li>
 <li>闭合 ‘或 “等</li>
 <li>数字型可以通过计算式，如id=2/2返回id=2的结果  <h4 id="遇到的一些绕过方式"><a href="#遇到的一些绕过方式" class="headerlink" title="遇到的一些绕过方式　　"></a>遇到的一些绕过方式　　</h4></li>
 <li>大写 比如 SelEct  </li>
@@ -639,11 +639,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://threezh1.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Xun9er&#39;s shifu Threezhl</a>
+              <a href="https://threezh1.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Threezhl</a>
             </li>
           
             <li class="search-li">
               <a href="http://o0o0o.cf/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hzj</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://hack-for.fun" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>1FONLY</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://hackyangtuo.top/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>V1cuna</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://cyzcc.vip/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>cyzCc</a>
             </li>
           
         </ul>
