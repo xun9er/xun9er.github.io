@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="偶然发现了一个比较有意思的python\java练习平台，叫做checkio，需要科学访问，目前做到的都是基础题，可以看到大佬的方法就很棒。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-25T03:20:34.221Z">
+<meta property="og:updated_time" content="2020-03-25T03:22:10.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on checkio">
 <meta name="twitter:description" content="偶然发现了一个比较有意思的python\java练习平台，叫做checkio，需要科学访问，目前做到的都是基础题，可以看到大佬的方法就很棒。">
@@ -253,7 +253,7 @@
 
 <h1 id="4-二十四计时法转十二"><a href="#4-二十四计时法转十二" class="headerlink" title="4.二十四计时法转十二"></a>4.二十四计时法转十二</h1><p>这里需要注意的主要是几个节点：<br>00:00 —&gt; 12:00 a.m.<br>12:00 —&gt; 12:00 p.m.<br>01:32 —&gt;  1:32 a.m.、</p>
 <h2 id="我的做法-2"><a href="#我的做法-2" class="headerlink" title="我的做法"></a>我的做法</h2><p>用了无数个if eles，，，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--------------------------------------------------------------</span><br><span class="line">Error:The code is so ugly that it is automatically blocked.</span><br><span class="line">[Finished in -233.0s]</span><br><span class="line">---------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------------------------------</span><br><span class="line">Error:The code is so ugly that it is automatically blocked.</span><br><span class="line">[Finished in -233.0s]</span><br><span class="line">---------------------------------------------------------------</span><br></pre></td></tr></table></figure>
 
 <h2 id="把输入的字符串作为数组来对各元素进行处理"><a href="#把输入的字符串作为数组来对各元素进行处理" class="headerlink" title="把输入的字符串作为数组来对各元素进行处理"></a>把输入的字符串作为数组来对各元素进行处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">def time_converter(time):</span><br><span class="line">    print(time)</span><br><span class="line">    hour = int(time[0]+time[1])</span><br><span class="line">    minutes = time[3]+time[4]</span><br><span class="line">    part = &quot; a.m.&quot;</span><br><span class="line">    if hour&gt;=12:</span><br><span class="line">        part = &quot; p.m.&quot;</span><br><span class="line">        if hour &gt; 12:</span><br><span class="line">            hour = hour-12</span><br><span class="line">    if hour&lt;10:</span><br><span class="line">        if hour == 0:</span><br><span class="line">            hour = 12</span><br><span class="line">        hour = str(int(hour))</span><br><span class="line">    time = str(hour) + &quot;:&quot; + minutes + part</span><br><span class="line">    return time</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    print(&quot;Example:&quot;)</span><br><span class="line">    print(time_converter(&apos;00:00&apos;))</span><br></pre></td></tr></table></figure>
       
@@ -358,6 +358,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/03/25/BJDCTF2nd/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          BJDCTF2nd
+        
+      </div>
+    </a>
   
   
     <a href="/2020/02/17/notes on sql injection/" id="article-nav-older" class="article-nav-link-wrap">
@@ -500,15 +509,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">

