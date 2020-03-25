@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="偶然发现了一个比较有意思的python\java练习平台，叫做checkio，需要科学访问，目前做到的都是基础题，可以看到大佬的方法就很棒。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-23T12:28:22.715Z">
+<meta property="og:updated_time" content="2020-03-25T03:09:19.214Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on checkio">
 <meta name="twitter:description" content="偶然发现了一个比较有意思的python\java练习平台，叫做checkio，需要科学访问，目前做到的都是基础题，可以看到大佬的方法就很棒。">
@@ -192,7 +192,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">771字</span>
+        <span class="post-count">1.4k字</span>
       </span>
     </span>
 
@@ -201,7 +201,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
+        <span class="post-count">6分</span>
       </span>
     </span>
 </div>
@@ -222,7 +222,7 @@
 <p>这样就把所有元素都比较了一遍。  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">elements=[1,2,3,4,5]</span><br><span class="line">    print(elements[1:])</span><br><span class="line">    print(elements[:-1])</span><br><span class="line"></span><br><span class="line">[2, 3, 4, 5]</span><br><span class="line">[1, 2, 3, 4]</span><br><span class="line">[Finished in 0.1s]</span><br><span class="line">分别比较了 1&amp;2 2&amp;3 3&amp;4 4&amp;5</span><br></pre></td></tr></table></figure>
 
-<h2 id="password-正则表达式"><a href="#password-正则表达式" class="headerlink" title="password 正则表达式"></a>password 正则表达式</h2><p>检验密码安全性的要求：  </p>
+<h1 id="password-正则表达式"><a href="#password-正则表达式" class="headerlink" title="password 正则表达式"></a>password 正则表达式</h1><p>检验密码安全性的要求：  </p>
 <ul>
 <li>10位数以上  </li>
 <li>至少包含：一个数字，一个大写字母，一个小写字母</li>
@@ -236,7 +236,25 @@
 <h2 id="dalao的做法"><a href="#dalao的做法" class="headerlink" title="dalao的做法"></a>dalao的做法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">DIGIT_RE = re.compile(&apos;\d&apos;)</span><br><span class="line">UPPER_CASE_RE = re.compile(&apos;[A-Z]&apos;)</span><br><span class="line">LOWER_CASE_RE = re.compile(&apos;[a-z]&apos;)</span><br><span class="line"></span><br><span class="line">def checkio(data):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Return True if password strong and False if not</span><br><span class="line">    </span><br><span class="line">    A password is strong if it contains at least 10 symbols,</span><br><span class="line">    and one digit, one upper case and one lower case letter.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if len(data) &lt; 10:</span><br><span class="line">        return False</span><br><span class="line">    </span><br><span class="line">    if not DIGIT_RE.search(data):</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    if not UPPER_CASE_RE.search(data):</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    if not LOWER_CASE_RE.search(data):</span><br><span class="line">        return False</span><br><span class="line">        </span><br><span class="line">    return True</span><br></pre></td></tr></table></figure>
 
 <p>compile 函数用于编译正则表达式，生成一个正则表达式（ Pattern ）对象，供 match() 和 search() 这两个函数使用。  </p>
+<h1 id="统计字符串中字母出现次数"><a href="#统计字符串中字母出现次数" class="headerlink" title="统计字符串中字母出现次数"></a>统计字符串中字母出现次数</h1><ul>
+<li>不区分大小写</li>
+<li>返回出现次数最多的字母，若重复则返回第一个</li>
+</ul>
+<p>思路：  </p>
+<ul>
+<li>全转为小写</li>
+<li>其他非字母字符除去，这里是先固定字典的键为字母表</li>
+<li>max方法若有相同的max对应的键，返回第一个</li>
+<li>max(dict,key=dict.get)方法获得字典dict中value的最大值所对应的键的方法，max(dict, key)方法首先遍历迭代器，并将返回值作为参数传递给key对应的函数，然后将函数的执行结果传给key，并以此时key值为标准进行大小判断，返回最大值。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def checkio(text: str) -&gt; str:</span><br><span class="line"></span><br><span class="line">    #replace this for solution</span><br><span class="line">    dct=&#123;&#125;</span><br><span class="line">    text=str.lower(text)</span><br><span class="line">    char=&quot;abcdefghijklmnopqrstuvwxyz&quot;</span><br><span class="line">    for i in char:</span><br><span class="line">       dct[i]=text.count(i)#字符串内建函数</span><br><span class="line">    max_value = max(dct,key=dct.get)#get返回对应键的值</span><br><span class="line">    return max_value</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    print(&quot;Example:&quot;)</span><br><span class="line">    print(checkio(&quot;Hello World!&quot;))</span><br><span class="line"></span><br><span class="line">    #These &quot;asserts&quot; using only for self-checking and not necessary for auto-testing</span><br><span class="line">    assert checkio(&quot;Hello World!&quot;) == &quot;l&quot;, &quot;Hello test&quot;</span><br><span class="line">    assert checkio(&quot;How do you do?&quot;) == &quot;o&quot;, &quot;O is most wanted&quot;</span><br><span class="line">    assert checkio(&quot;One&quot;) == &quot;e&quot;, &quot;All letter only once.&quot;</span><br><span class="line">    assert checkio(&quot;Oops!&quot;) == &quot;o&quot;, &quot;Don&apos;t forget about lower case.&quot;</span><br><span class="line">    assert checkio(&quot;AAaooo!!!!&quot;) == &quot;a&quot;, &quot;Only letters.&quot;</span><br><span class="line">    assert checkio(&quot;abe&quot;) == &quot;a&quot;, &quot;The First.&quot;</span><br><span class="line">    print(&quot;Start the long test&quot;)</span><br><span class="line">    assert checkio(&quot;a&quot; * 9000 + &quot;b&quot; * 1000) == &quot;a&quot;, &quot;Long.&quot;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<h2 id="两行解决："><a href="#两行解决：" class="headerlink" title="两行解决："></a>两行解决：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import string</span><br><span class="line"></span><br><span class="line">def checkio(text):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    We iterate through latyn alphabet and count each letter in the text.</span><br><span class="line">    Then &apos;max&apos; selects the most frequent letter.</span><br><span class="line">    For the case when we have several equal letter,</span><br><span class="line">    &apos;max&apos; selects the first from they.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    text = text.lower()</span><br><span class="line">    return max(string.ascii_lowercase, key=text.count)</span><br></pre></td></tr></table></figure>
+
+<h1 id="二十四计时法转十二"><a href="#二十四计时法转十二" class="headerlink" title="二十四计时法转十二"></a>二十四计时法转十二</h1><p>用了无数个if eles，，，<br>这里需要注意的主要是几个节点：<br>00:00 —&gt; 12:00 a.m.<br>12:00 —&gt; 12:00 p.m.<br>01:32 —&gt;  1:32 a.m.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--------------------------------------------------------------</span><br><span class="line">Error:Code is too ugly, has been automatically blocked.</span><br><span class="line">[Finished in -233.0s]</span><br><span class="line">---------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<h2 id="把输入的字符串作为数组来对各元素进行处理"><a href="#把输入的字符串作为数组来对各元素进行处理" class="headerlink" title="把输入的字符串作为数组来对各元素进行处理"></a>把输入的字符串作为数组来对各元素进行处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">def time_converter(time):</span><br><span class="line">    print(time)</span><br><span class="line">    hour = int(time[0]+time[1])</span><br><span class="line">    minutes = time[3]+time[4]</span><br><span class="line">    part = &quot; a.m.&quot;</span><br><span class="line">    if hour&gt;=12:</span><br><span class="line">        part = &quot; p.m.&quot;</span><br><span class="line">        if hour &gt; 12:</span><br><span class="line">            hour = hour-12</span><br><span class="line">    if hour&lt;10:</span><br><span class="line">        if hour == 0:</span><br><span class="line">            hour = 12</span><br><span class="line">        hour = str(int(hour))</span><br><span class="line">    time = str(hour) + &quot;:&quot; + minutes + part</span><br><span class="line">    return time</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    print(&quot;Example:&quot;)</span><br><span class="line">    print(time_converter(&apos;00:00&apos;))</span><br></pre></td></tr></table></figure>
       
 
       
@@ -369,7 +387,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#all-the-same-列表元素比较"><span class="toc-number">1.</span> <span class="toc-text">all-the-same 列表元素比较</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个有意思的做法"><span class="toc-number">1.1.</span> <span class="toc-text">一个有意思的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#password-正则表达式"><span class="toc-number">1.2.</span> <span class="toc-text">password 正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dalao的做法"><span class="toc-number">1.3.</span> <span class="toc-text">dalao的做法</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#all-the-same-列表元素比较"><span class="toc-number">1.</span> <span class="toc-text">all-the-same 列表元素比较</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个有意思的做法"><span class="toc-number">1.1.</span> <span class="toc-text">一个有意思的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#password-正则表达式"><span class="toc-number">2.</span> <span class="toc-text">password 正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dalao的做法"><span class="toc-number">2.1.</span> <span class="toc-text">dalao的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#统计字符串中字母出现次数"><span class="toc-number">3.</span> <span class="toc-text">统计字符串中字母出现次数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#两行解决："><span class="toc-number">3.1.</span> <span class="toc-text">两行解决：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二十四计时法转十二"><span class="toc-number">4.</span> <span class="toc-text">二十四计时法转十二</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#把输入的字符串作为数组来对各元素进行处理"><span class="toc-number">4.1.</span> <span class="toc-text">把输入的字符串作为数组来对各元素进行处理</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -481,10 +499,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -494,6 +508,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
