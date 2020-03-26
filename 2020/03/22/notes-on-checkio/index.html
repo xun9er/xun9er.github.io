@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="偶然发现了一个比较有意思的python\java练习平台，叫做checkio，需要科学访问，目前做到的都是基础题，可以看到大佬的方法就很棒。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-25T03:22:10.040Z">
+<meta property="og:updated_time" content="2020-03-26T01:38:57.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on checkio">
 <meta name="twitter:description" content="偶然发现了一个比较有意思的python\java练习平台，叫做checkio，需要科学访问，目前做到的都是基础题，可以看到大佬的方法就很棒。">
@@ -192,7 +192,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.4k字</span>
+        <span class="post-count">1.5k字</span>
       </span>
     </span>
 
@@ -201,7 +201,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
+        <span class="post-count">7分</span>
       </span>
     </span>
 </div>
@@ -256,6 +256,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------------------------------</span><br><span class="line">Error:The code is so ugly that it is automatically blocked.</span><br><span class="line">[Finished in -233.0s]</span><br><span class="line">---------------------------------------------------------------</span><br></pre></td></tr></table></figure>
 
 <h2 id="把输入的字符串作为数组来对各元素进行处理"><a href="#把输入的字符串作为数组来对各元素进行处理" class="headerlink" title="把输入的字符串作为数组来对各元素进行处理"></a>把输入的字符串作为数组来对各元素进行处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">def time_converter(time):</span><br><span class="line">    print(time)</span><br><span class="line">    hour = int(time[0]+time[1])</span><br><span class="line">    minutes = time[3]+time[4]</span><br><span class="line">    part = &quot; a.m.&quot;</span><br><span class="line">    if hour&gt;=12:</span><br><span class="line">        part = &quot; p.m.&quot;</span><br><span class="line">        if hour &gt; 12:</span><br><span class="line">            hour = hour-12</span><br><span class="line">    if hour&lt;10:</span><br><span class="line">        if hour == 0:</span><br><span class="line">            hour = 12</span><br><span class="line">        hour = str(int(hour))</span><br><span class="line">    time = str(hour) + &quot;:&quot; + minutes + part</span><br><span class="line">    return time</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    print(&quot;Example:&quot;)</span><br><span class="line">    print(time_converter(&apos;00:00&apos;))</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-non-unique-elements"><a href="#5-non-unique-elements" class="headerlink" title="5.non-unique-elements"></a>5.non-unique-elements</h1><p>只留下给定列表中非唯一的元素。<br>example：  </p>
+<pre>
+checkio([1, 2, 3, 1, 3]) == [1, 3, 1, 3]
+checkio([1, 2, 3, 4, 5]) == []
+checkio([5, 5, 5, 5, 5]) == [5, 5, 5, 5, 5]
+checkio([10, 9, 10, 10, 9, 8]) == [10, 9, 10, 10, 9]
+</pre>
+<h2 id="我的方法"><a href="#我的方法" class="headerlink" title="我的方法"></a>我的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def checkio(data: list) -&gt; list:</span><br><span class="line"></span><br><span class="line">    list2=[]</span><br><span class="line">    for i in data:</span><br><span class="line">        if data.count(i)&gt;1:</span><br><span class="line">            list2.append(i)</span><br><span class="line">    return list2</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    #These &quot;asserts&quot; using only for self-checking and not necessary for auto-testing</span><br><span class="line">    list(checkio([1, 2, 3, 1, 3])) == [1, 3, 1, 3]</span><br><span class="line">    </span><br><span class="line">    print(&quot;It is all good. Let&apos;s check it now&quot;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么又可以一行搞定。。"><a href="#为什么又可以一行搞定。。" class="headerlink" title="为什么又可以一行搞定。。"></a>为什么又可以一行搞定。。</h2><p>其实原理是一样的,但这里没有用第二个数组来返回。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def checkio(data):</span><br><span class="line">        return [i for i in data if data.count(i) &gt; 1]</span><br></pre></td></tr></table></figure>
       
 
       
@@ -359,6 +371,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/03/25/BJDCTF2nd/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          BJDCTF2nd
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/02/17/notes on sql injection/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">notes on sql injection</div>
@@ -388,7 +409,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-all-the-same-列表元素比较"><span class="toc-number">1.</span> <span class="toc-text">1.all-the-same 列表元素比较</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法"><span class="toc-number">1.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个有意思的做法"><span class="toc-number">1.2.</span> <span class="toc-text">一个有意思的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-password-正则表达式"><span class="toc-number">2.</span> <span class="toc-text">2.password 正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dalao的做法"><span class="toc-number">2.1.</span> <span class="toc-text">dalao的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-统计字符串中字母出现次数"><span class="toc-number">3.</span> <span class="toc-text">3.统计字符串中字母出现次数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法-1"><span class="toc-number">3.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两行解决："><span class="toc-number">3.2.</span> <span class="toc-text">两行解决：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-二十四计时法转十二"><span class="toc-number">4.</span> <span class="toc-text">4.二十四计时法转十二</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法-2"><span class="toc-number">4.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把输入的字符串作为数组来对各元素进行处理"><span class="toc-number">4.2.</span> <span class="toc-text">把输入的字符串作为数组来对各元素进行处理</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-all-the-same-列表元素比较"><span class="toc-number">1.</span> <span class="toc-text">1.all-the-same 列表元素比较</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法"><span class="toc-number">1.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个有意思的做法"><span class="toc-number">1.2.</span> <span class="toc-text">一个有意思的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-password-正则表达式"><span class="toc-number">2.</span> <span class="toc-text">2.password 正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dalao的做法"><span class="toc-number">2.1.</span> <span class="toc-text">dalao的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-统计字符串中字母出现次数"><span class="toc-number">3.</span> <span class="toc-text">3.统计字符串中字母出现次数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法-1"><span class="toc-number">3.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两行解决："><span class="toc-number">3.2.</span> <span class="toc-text">两行解决：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-二十四计时法转十二"><span class="toc-number">4.</span> <span class="toc-text">4.二十四计时法转十二</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法-2"><span class="toc-number">4.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把输入的字符串作为数组来对各元素进行处理"><span class="toc-number">4.2.</span> <span class="toc-text">把输入的字符串作为数组来对各元素进行处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-non-unique-elements"><span class="toc-number">5.</span> <span class="toc-text">5.non-unique-elements</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的方法"><span class="toc-number">5.1.</span> <span class="toc-text">我的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么又可以一行搞定。。"><span class="toc-number">5.2.</span> <span class="toc-text">为什么又可以一行搞定。。</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -529,6 +550,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
             
             <div class="clearfix"></div>

