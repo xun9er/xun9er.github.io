@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/02/03/mxLUhMKsNRrowe6.png">
 <meta property="og:image" content="https://i.loli.net/2020/02/28/XvZV9gMbkmFJIxP.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/31/fWEgIcrbPUdSjqQ.png">
-<meta property="og:updated_time" content="2020-03-31T07:45:48.907Z">
+<meta property="og:updated_time" content="2020-04-02T16:22:46.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on php serialize">
 <meta name="twitter:description" content="php 类、对象、序列化、反序列化">
@@ -257,7 +257,7 @@
 <p>反序列化后直接用replace来替换相关参数后的编码结果和手动复制（直接写）的编码结果不一样。<br><img src="https://i.loli.net/2020/02/28/XvZV9gMbkmFJIxP.png" alt="test.png"><br>看到wp说原因是file变量为私有变量，所以序列化之后的字符串开头结<br>尾各有一个空白字符（即%00），字符串长度也比实际长度大2，如果将序列化结果复制到在线的base64网站进行编码可能就会丢掉空白字符，所以这里直接在php代码里进行编码。类似的还有protected类型的变量，序列化之后字符串首部会加上%00*%00。<br>遇到类似的问题还是用脚本来生成比较稳昂。  </p>
 <h2 id="buuctf-php"><a href="#buuctf-php" class="headerlink" title="buuctf php"></a>buuctf php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &apos;flag.php&apos;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Name&#123;</span><br><span class="line">    private $username = &apos;nonono&apos;;</span><br><span class="line">    private $password = &apos;yesyes&apos;;</span><br><span class="line"></span><br><span class="line">    public function __construct($username,$password)&#123;</span><br><span class="line">        $this-&gt;username = $username;</span><br><span class="line">        $this-&gt;password = $password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function __wakeup()&#123;</span><br><span class="line">        $this-&gt;username = &apos;guest&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function __destruct()&#123;</span><br><span class="line">        if ($this-&gt;password != 100) &#123;</span><br><span class="line">            echo &quot;&lt;/br&gt;NO!!!hacker!!!&lt;/br&gt;&quot;;</span><br><span class="line">            echo &quot;You name is: &quot;;</span><br><span class="line">            echo $this-&gt;username;echo &quot;&lt;/br&gt;&quot;;</span><br><span class="line">            echo &quot;You password is: &quot;;</span><br><span class="line">            echo $this-&gt;password;echo &quot;&lt;/br&gt;&quot;;</span><br><span class="line">            die();</span><br><span class="line">        &#125;</span><br><span class="line">        if ($this-&gt;username === &apos;admin&apos;) &#123;</span><br><span class="line">            global $flag;</span><br><span class="line">            echo $flag;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            echo &quot;&lt;/br&gt;hello my friend~~&lt;/br&gt;sorry i can&apos;t give you the flag!&quot;;</span><br><span class="line">            die();</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$a=serialize(new Name(&quot;admin&quot;,100));</span><br><span class="line">echo $a;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<p>同样使用了私有变量。<br>private 声明的字段为私有字段，只在所声明的类中可见，在该类的子类和该类的对象实例中均不可见。因此私有字段的字段名在序列化时，类名和字段名前面都会加上\0的前缀。字符串长度也包括所加前缀的长度。其中 \0 字符也是计算长度的。<br>执行后的序列化字符串如下：<br><img src="https://i.loli.net/2020/03/31/fWEgIcrbPUdSjqQ.png" alt="批注 2020-03-31 153805.png"><br>而通过get上传时\0要写成%00。</p>
+<p>同样使用了私有变量。<br>private 声明的字段为私有字段，只在所声明的类中可见，在该类的子类和该类的对象实例中均不可见。因此私有字段的字段名在序列化时，类名和字段名前面都会加上\0的前缀。字符串长度也包括所加前缀的长度。其中 \0 字符也是计算长度的。<br>执行后的序列化字符串如下：<br><img src="https://i.loli.net/2020/03/31/fWEgIcrbPUdSjqQ.png" alt="批注 2020-03-31 153805.png"><br>而通过get上传时\0要写成%00。  </p>
 <p>参考：<br><a href="https://www.cnblogs.com/uduemc/p/4122156.html" target="_blank" rel="noopener">关于unserialize绕过__wakeup</a><br><a href="https://www.cnblogs.com/uduemc/p/4122156.html" target="_blank" rel="noopener">PHP 魔术方法 __sleep __wakeup(四)</a>  </p>
 
       
@@ -529,11 +529,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,6 +558,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">upload-labs</a>
               </li>
              
               <li class="article-tag-list-item">
