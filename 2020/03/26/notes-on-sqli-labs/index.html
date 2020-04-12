@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/04/05/LzWXA4oRs9mqw2D.png">
 <meta property="og:image" content="https://i.loli.net/2020/04/05/hUOGilHPxcTZz81.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/05/GDYbgU.png">
-<meta property="og:updated_time" content="2020-04-05T09:40:16.938Z">
+<meta property="og:updated_time" content="2020-04-11T10:00:35.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on sqli-labs">
 <meta name="twitter:description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以分开咯。">
@@ -202,7 +202,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">3.2k字</span>
+        <span class="post-count">3.3k字</span>
       </span>
     </span>
 
@@ -322,8 +322,9 @@
 <h1 id="less-54-challenge"><a href="#less-54-challenge" class="headerlink" title="less 54 challenge"></a>less 54 challenge</h1><p>此挑战的目标是在不到10次尝试中仅从数据库(‘CHALLENGES’)的随机表中查到（sectet key）。<br>有趣的是，每次重置都会生成随机的表名、列名和表数据。时刻保持新鲜。<br><code>-1&#39; union select 1,database(),3--+</code><br>?id=-1’ union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=”challenges”–+`<br>就是单引号结尾的联合注入，开头乱试了一同，刚好10下出来了噗。<br> <img src="https://s1.ax1x.com/2020/04/05/GDYbgU.png" alt="GDYbgU.png">  </p>
 <h1 id="less-55"><a href="#less-55" class="headerlink" title="less 55"></a>less 55</h1><p><code>?id=1) --+</code>  </p>
 <p>1.sqli lab到55<br>2.学习文件上传 做了一遍upload labs<br>3.做了几道ctf</p>
-<p>1.python 做题用不来难受</p>
-<p>1.学习xss<br>2.多练点题</p>
+<p>1.写不出来 python 做题用不来难受</p>
+<p>1.学习xss<br>2.多练点题 搜集知识点<br>3.python</p>
+<p>code breaking<br>bayonet<br>NTLM Kerberos</p>
 
       
 
@@ -571,6 +572,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
@@ -591,15 +600,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">phar</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,15 +624,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">upload-labs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
               </li>
             
             <div class="clearfix"></div>
