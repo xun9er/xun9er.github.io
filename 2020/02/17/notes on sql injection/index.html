@@ -9,7 +9,7 @@
   <title>notes on sql injection | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="学习笔记，不定时更新。">
-<meta name="keywords" content="sql注入">
+<meta name="keywords" content="sql注入,bypass">
 <meta property="og:type" content="article">
 <meta property="og:title" content="notes on sql injection">
 <meta property="og:url" content="http://yoursite.com/2020/02/17/notes on sql injection/index.html">
@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/03/19/uNFeZoH3OMqIjSy.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/19/LawK7SfmXBdMnk6.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/09/Y7xHXVnWLZzcTIN.png">
-<meta property="og:updated_time" content="2020-04-11T10:00:35.639Z">
+<meta property="og:updated_time" content="2020-04-16T01:29:20.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on sql injection">
 <meta name="twitter:description" content="学习笔记，不定时更新。">
@@ -293,7 +293,8 @@
 <li>过滤“=”，用“like”替代  </li>
 <li>过滤 “and” ：用“or”或“^”(异或)或&amp;&amp;或||  </li>
 <li>编码：hex,urlencode</li>
-<li>md5<br>sql语句是这样的：<code>select * from &#39;admin&#39; where password=md5($pass,true)</code><br>password=ffifdyop<br>经过md5加密后：276f722736c95d99e921722cf9ed621c<br>再转换为字符串：’or’6&lt;乱码&gt;  即  ‘or’66�]��!r,��b 相当于万能密码 <code>&#39;or&#39;1</code>。<br>涨知识了。  <h3 id="注入方式"><a href="#注入方式" class="headerlink" title="注入方式"></a>注入方式</h3></li>
+<li>md5<br>sql语句是这样的：<code>select * from &#39;admin&#39; where password=md5($pass,true)</code><br>password=ffifdyop<br>经过md5加密后：276f722736c95d99e921722cf9ed621c<br>再转换为字符串：’or’6&lt;乱码&gt;  即  ‘or’66�]��!r,��b 相当于万能密码 <code>&#39;or&#39;1</code>。<br>涨知识了。  </li>
+<li>过滤逗号<br>将limit 0,1样式改为limit 1 offset 0。<br>将substr(string,1,1)改为substr(string from 1 for 1)。    <h3 id="注入方式"><a href="#注入方式" class="headerlink" title="注入方式"></a>注入方式</h3></li>
 </ul>
 <h4 id="多语句堆叠注入"><a href="#多语句堆叠注入" class="headerlink" title="多语句堆叠注入"></a>多语句堆叠注入</h4><h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>SQL语法以’;’作为一条SQL语句的结束。如果在一条语句结束的’;’后再加其他语句，如果加上的语句可以执行就形成堆叠注入。堆叠注入的语句可以是任意sql语句（没有过滤的话），比如：show databases; show columns from table;等等。  </p>
 <h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p><em>强网杯 2019 随便注</em>  </p>
@@ -456,6 +457,10 @@ UPDATEXML (XML_document, XPath_string, new_value);
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">sql注入</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">bypass</a>
         		</li>
       		
 		</ul>
@@ -691,6 +696,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">php伪随机数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">seed爆破</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
@@ -703,19 +732,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">phar</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -727,11 +748,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
              
               <li class="article-tag-list-item">
