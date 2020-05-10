@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="感天动地，本xun9er终于把vscode debug配好了。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-05-07T00:28:42.654Z">
+<meta property="og:image" content="https://i.loli.net/2020/05/08/mlL3xCeHP4My7rF.png">
+<meta property="og:updated_time" content="2020-05-08T12:29:01.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VScode+phpstudy+Xdebug调试配置">
 <meta name="twitter:description" content="感天动地，本xun9er终于把vscode debug配好了。">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/08/mlL3xCeHP4My7rF.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -198,7 +200,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">183字</span>
+        <span class="post-count">233字</span>
       </span>
     </span>
 
@@ -220,11 +222,16 @@
       
         <p><em>感天动地，本xun9er终于把vscode debug配好了。</em>    </p>
 <a id="more"></a>
-<h2 id="首先用上了的文章："><a href="#首先用上了的文章：" class="headerlink" title="首先用上了的文章："></a>首先用上了的文章：</h2><p><a href="https://www.cnblogs.com/wxblogs/p/12109845.html" target="_blank" rel="noopener">https://www.cnblogs.com/wxblogs/p/12109845.html</a><br><a href="https://www.bbsmax.com/A/x9J2LVEVd6/" target="_blank" rel="noopener">https://www.bbsmax.com/A/x9J2LVEVd6/</a><br><a href="https://www.cnblogs.com/teamemory/p/9565228.html" target="_blank" rel="noopener">https://www.cnblogs.com/teamemory/p/9565228.html</a>  </p>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><ul>
+<h2 id="首先用上了的文章："><a href="#首先用上了的文章：" class="headerlink" title="首先用上了的文章："></a>首先用上了的文章：</h2><p><a href="https://www.cnblogs.com/wxblogs/p/12109845.html" target="_blank" rel="noopener">https://www.cnblogs.com/wxblogs/p/12109845.html</a><br><a href="https://www.bbsmax.com/A/x9J2LVEVd6/" target="_blank" rel="noopener">https://www.bbsmax.com/A/x9J2LVEVd6/</a><br><a href="https://www.cnblogs.com/teamemory/p/9565228.html" target="_blank" rel="noopener">https://www.cnblogs.com/teamemory/p/9565228.html</a><br><a href="https://blog.csdn.net/qq_36505844/article/details/105712135" target="_blank" rel="noopener">https://blog.csdn.net/qq_36505844/article/details/105712135</a>  </p>
+<h2 id="调试很短时间就500报错"><a href="#调试很短时间就500报错" class="headerlink" title="调试很短时间就500报错"></a>调试很短时间就500报错</h2><p>延长时间：  </p>
+<ul>
+<li>phpstudy -&gt; 设置 -&gt; 配置文件 -&gt;  vhosts.conf  </li>
+<li>点开配置文件。  </li>
+<li>加入：<code>FcgidIOTimeout 600</code></li>
+<li>重启apache<br><img src="https://i.loli.net/2020/05/08/mlL3xCeHP4My7rF.png" alt="tine.png">  <h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2></li>
 <li>xdebug要下载合适版本：<a href="https://xdebug.org/wizard" target="_blank" rel="noopener">Xdebug</a>打印完整phpinfo()后查看源代码，把所有的html复制下来扔到xdebug的框里，它就会贴心地告诉你该下载哪种版本、放在哪里、怎么操作。  </li>
 <li>调试要开文件夹。  </li>
-<li>所需配置的launch.php就在文件夹目录里自动生成的<code>.vscode</code>下面。  </li>
+<li>所需配置的launch.php就在文件夹目录里自动生成的<code>.vscode</code>下面(setting.php也是)。  </li>
 <li>phpdebug下面要求加在php.ini中的那两行一定要加。  </li>
 <li>配置完要重启apache、vscode，或者干脆重启电脑。。是第二天开电脑它就好了，应该是进程没有结束。  </li>
 </ul>
@@ -365,7 +372,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先用上了的文章："><span class="toc-number">1.</span> <span class="toc-text">首先用上了的文章：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#坑"><span class="toc-number">2.</span> <span class="toc-text">坑</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先用上了的文章："><span class="toc-number">1.</span> <span class="toc-text">首先用上了的文章：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调试很短时间就500报错"><span class="toc-number">2.</span> <span class="toc-text">调试很短时间就500报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#坑"><span class="toc-number">3.</span> <span class="toc-text">坑</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -497,6 +504,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
@@ -506,10 +521,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">喵</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,11 +536,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,11 +552,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,19 +572,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">upload-labs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
             
             <div class="clearfix"></div>
@@ -664,7 +671,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">Xun9er&lt;br&gt;&lt;br&gt;画不好画的ctf菜鸡不是一个好管理。&lt;br&gt;&lt;br&gt;</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">&lt;br&gt;画不好画的菜鸡ctfer不是一个好管理。&lt;br&gt;</div>
   	  	
     	</section>
     
