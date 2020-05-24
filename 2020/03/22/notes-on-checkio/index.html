@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="偶然发现了一个比较有意思的python\java练习平台，叫做checkio，需要科学访问，目前做到的都是基础题，可以看到大佬的方法就很棒。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-26T01:38:57.789Z">
+<meta property="og:updated_time" content="2020-05-11T14:44:51.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on checkio">
 <meta name="twitter:description" content="偶然发现了一个比较有意思的python\java练习平台，叫做checkio，需要科学访问，目前做到的都是基础题，可以看到大佬的方法就很棒。">
@@ -198,7 +198,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.5k字</span>
+        <span class="post-count">1.9k字</span>
       </span>
     </span>
 
@@ -207,7 +207,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">7分</span>
+        <span class="post-count">9分</span>
       </span>
     </span>
 </div>
@@ -274,6 +274,31 @@ checkio([10, 9, 10, 10, 9, 8]) == [10, 9, 10, 10, 9]
 
 <h2 id="为什么又可以一行搞定。。"><a href="#为什么又可以一行搞定。。" class="headerlink" title="为什么又可以一行搞定。。"></a>为什么又可以一行搞定。。</h2><p>其实原理是一样的,但这里没有用第二个数组来返回。  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def checkio(data):</span><br><span class="line">        return [i for i in data if data.count(i) &gt; 1]</span><br></pre></td></tr></table></figure>
+
+<h1 id="Sum-Numbers"><a href="#Sum-Numbers" class="headerlink" title="Sum Numbers"></a>Sum Numbers</h1><p>把字符里的数字求和输出。  </p>
+<h2 id="fileter"><a href="#fileter" class="headerlink" title="fileter"></a>fileter</h2><p><code>filter(function, iterable)</code>  </p>
+<ul>
+<li>function – 判断函数。</li>
+<li>iterable – 可迭代对象。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">arr=[&quot;hee&quot;,&quot;xun9er&quot;,123,&quot;12ksef&quot;]</span><br><span class="line"></span><br><span class="line">a=filter(lambda x:type(x)==str,arr)</span><br><span class="line">for i in a:</span><br><span class="line">	print (i)</span><br><span class="line"></span><br><span class="line">hee</span><br><span class="line">xun9er</span><br><span class="line">12ksef</span><br><span class="line">[Finished in 0.1s]</span><br></pre></td></tr></table></figure>
+
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><pre>
+python 使用 lambda 来创建匿名函数。
+
+   1. lambda只是一个表达式，函数体比def简单很多。
+   2. lambda的主体是一个表达式，而不是一个代码块。仅仅能在lambda表达式中封装有限的逻辑进去。
+   3. lambda函数拥有自己的命名空间，且不能访问自有参数列表之外或全局命名空间里的参数。
+   4. 虽然lambda函数看起来只能写一行，却不等同于C或C++的内联函数，后者的目的是调用小函数时不占用栈内存从而增加运行效率。
+
+</pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sum=lambda a,b,c:a+b+c</span><br><span class="line">print(sum(1,2,3))</span><br><span class="line"></span><br><span class="line">6</span><br><span class="line">[Finished in 0.2s]</span><br></pre></td></tr></table></figure>
+
+<h2 id="正则判断"><a href="#正则判断" class="headerlink" title="正则判断"></a>正则判断</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">def sum_numbers(text: str) -&gt; int:</span><br><span class="line">    # your code here</span><br><span class="line">   # print(text)</span><br><span class="line">    tempList = text.split(&quot; &quot;)</span><br><span class="line">    sum=0</span><br><span class="line">    for i in tempList:</span><br><span class="line">       </span><br><span class="line">        if re.match(&apos;^\d+$&apos;,i):</span><br><span class="line">            i=int(i)</span><br><span class="line">            sum+=i</span><br><span class="line"></span><br><span class="line">    return sum</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    print(&quot;Example:&quot;)</span><br><span class="line">    print(sum_numbers(&apos;hi&apos;))</span><br><span class="line">    print(sum_numbers(&apos;my numbers  1 2 e 35&apos;))</span><br></pre></td></tr></table></figure>
+
+<h2 id="isdigit-一排搞定"><a href="#isdigit-一排搞定" class="headerlink" title="isdigit() 一排搞定"></a>isdigit() 一排搞定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum_numbers = lambda text: sum(int(word) for word in text.split() if word.isdigit())</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -415,7 +440,7 @@ checkio([10, 9, 10, 10, 9, 8]) == [10, 9, 10, 10, 9]
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-all-the-same-列表元素比较"><span class="toc-number">1.</span> <span class="toc-text">1.all-the-same 列表元素比较</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法"><span class="toc-number">1.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个有意思的做法"><span class="toc-number">1.2.</span> <span class="toc-text">一个有意思的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-password-正则表达式"><span class="toc-number">2.</span> <span class="toc-text">2.password 正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dalao的做法"><span class="toc-number">2.1.</span> <span class="toc-text">dalao的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-统计字符串中字母出现次数"><span class="toc-number">3.</span> <span class="toc-text">3.统计字符串中字母出现次数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法-1"><span class="toc-number">3.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两行解决："><span class="toc-number">3.2.</span> <span class="toc-text">两行解决：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-二十四计时法转十二"><span class="toc-number">4.</span> <span class="toc-text">4.二十四计时法转十二</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法-2"><span class="toc-number">4.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把输入的字符串作为数组来对各元素进行处理"><span class="toc-number">4.2.</span> <span class="toc-text">把输入的字符串作为数组来对各元素进行处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-non-unique-elements"><span class="toc-number">5.</span> <span class="toc-text">5.non-unique-elements</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的方法"><span class="toc-number">5.1.</span> <span class="toc-text">我的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么又可以一行搞定。。"><span class="toc-number">5.2.</span> <span class="toc-text">为什么又可以一行搞定。。</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-all-the-same-列表元素比较"><span class="toc-number">1.</span> <span class="toc-text">1.all-the-same 列表元素比较</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法"><span class="toc-number">1.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个有意思的做法"><span class="toc-number">1.2.</span> <span class="toc-text">一个有意思的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-password-正则表达式"><span class="toc-number">2.</span> <span class="toc-text">2.password 正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dalao的做法"><span class="toc-number">2.1.</span> <span class="toc-text">dalao的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-统计字符串中字母出现次数"><span class="toc-number">3.</span> <span class="toc-text">3.统计字符串中字母出现次数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法-1"><span class="toc-number">3.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两行解决："><span class="toc-number">3.2.</span> <span class="toc-text">两行解决：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-二十四计时法转十二"><span class="toc-number">4.</span> <span class="toc-text">4.二十四计时法转十二</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的做法-2"><span class="toc-number">4.1.</span> <span class="toc-text">我的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把输入的字符串作为数组来对各元素进行处理"><span class="toc-number">4.2.</span> <span class="toc-text">把输入的字符串作为数组来对各元素进行处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-non-unique-elements"><span class="toc-number">5.</span> <span class="toc-text">5.non-unique-elements</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的方法"><span class="toc-number">5.1.</span> <span class="toc-text">我的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么又可以一行搞定。。"><span class="toc-number">5.2.</span> <span class="toc-text">为什么又可以一行搞定。。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sum-Numbers"><span class="toc-number">6.</span> <span class="toc-text">Sum Numbers</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#fileter"><span class="toc-number">6.1.</span> <span class="toc-text">fileter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匿名函数"><span class="toc-number">6.2.</span> <span class="toc-text">匿名函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则判断"><span class="toc-number">6.3.</span> <span class="toc-text">正则判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#isdigit-一排搞定"><span class="toc-number">6.4.</span> <span class="toc-text">isdigit() 一排搞定</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -531,27 +556,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">刷题笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">php序列化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,6 +572,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">刷题笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">php序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">php伪随机数</a>
               </li>
              
@@ -579,11 +604,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,15 +620,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">phar</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
