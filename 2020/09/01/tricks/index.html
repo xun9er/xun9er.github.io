@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/1 | Xun9er&#39;s blog</title>
+  <title>misc tricks&#39; | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个白的不能再白的小白">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Xun9er&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/01/index.html">
+  <meta name="description" content="misc tricks一些lowb trick ，就慢慢积累吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="misc tricks&#39;">
+<meta property="og:url" content="http://yoursite.com/2020/09/01/tricks/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="一个白的不能再白的小白">
+<meta property="og:description" content="misc tricks一些lowb trick ，就慢慢积累吧。">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-09-01T14:11:37.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xun9er&#39;s blog">
-<meta name="twitter:description" content="一个白的不能再白的小白">
+<meta name="twitter:title" content="misc tricks&#39;">
+<meta name="twitter:description" content="misc tricks一些lowb trick ，就慢慢积累吧。">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -174,141 +175,221 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="&#39;misc-tricks" class="article article-type-&#39;misc " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      misc tricks&#39;
+    </h1>
+  
+
+        
+        <a href="/2020/09/01/tricks/" class="archive-article-date">
+  	<time datetime="2020-09-01T14:09:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-01</time>
+</a>
+    <!--字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">622字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+          
+	
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="misc-tricks"><a href="#misc-tricks" class="headerlink" title="misc tricks"></a>misc tricks</h1><p>一些lowb trick ，就慢慢积累吧。  </p>
+<a id="more"></a>
+
+<h2 id="winhex分析"><a href="#winhex分析" class="headerlink" title="winhex分析"></a>winhex分析</h2><ul>
+<li>查找关键字符（flag）</li>
+<li>看有无异常的内容（入手点）</li>
+<li>文件头、判断文件格式<h2 id="gif分成图片"><a href="#gif分成图片" class="headerlink" title="gif分成图片"></a>gif分成图片</h2><code>convert aaa.gif 1.png</code> 其中aaa.gif按情况改。  <h2 id="提取文件"><a href="#提取文件" class="headerlink" title="提取文件"></a>提取文件</h2><code>binwalk -e</code><br><code>foremost 3.jpg</code><br>有的文件会有权限问题：<code>ls -l</code><br>我选择<code>chmod 777</code>  <h2 id="加密文件爆破"><a href="#加密文件爆破" class="headerlink" title="加密文件爆破"></a>加密文件爆破</h2><code>fcrackzip -b -c1 -l 4 -u 1D7.zip</code><br>fcrackzip -b -l 6-6 -c 1 -p 000000 passwd.zip  </li>
+</ul>
+<ul>
+<li>-b 暴力破解 </li>
+<li>-c 1 限制密码是数字 </li>
+<li>-l 6-6 限制密码长度为6 </li>
+<li>-p 000000 初始化破解起点 <h2 id="文件分析改后缀"><a href="#文件分析改后缀" class="headerlink" title="文件分析改后缀"></a>文件分析改后缀</h2><code>file flag.exe</code>   <h2 id="浏览器直接显示base64图片（观察编码内有-号）"><a href="#浏览器直接显示base64图片（观察编码内有-号）" class="headerlink" title="浏览器直接显示base64图片（观察编码内有+号）"></a>浏览器直接显示base64图片（观察编码内有+号）</h2>前面加<code>data:image/jpg;base64,</code>  <h2 id="图片显示不全"><a href="#图片显示不全" class="headerlink" title="图片显示不全"></a>图片显示不全</h2>winhex打开后IHDR后面的八个字节分别代表了图片的宽和高。  <h2 id="图片隐写-lsb"><a href="#图片隐写-lsb" class="headerlink" title="图片隐写(lsb)"></a>图片隐写(lsb)</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3>原理就是图片中的像数一般是由三种颜色组成，即三原色，由这三种原色可以组成其他各种颜色，例如在PNG图片的储存中，每个颜色会有8bit，LSB隐写就是修改了像数中的最低的1bit，在人眼看来是看不出来区别的，也把信息隐藏起来了。  </li>
+</ul>
+<p>方法：几个颜色通道的最低位，有可能多个组合,观察上方数据的变化，有可能有png字样（保存为图片），PK字样（保存bin后用binwalk）也有可能直接就给flag之类的。<br>· 工具<br>stegsolve  </p>
+<p>下载安装：  </p>
+<pre>
+wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar  
+chmod +x stegsolve.jar  
+mkdir bin  
+mv stegsolve.jar bin/
+</pre>  
+
+<p><a href="https://blog.csdn.net/attitudeisaltitude/article/details/81698719?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/attitudeisaltitude/article/details/81698719?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.nonecase</a>  </p>
+<h2 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h2><p>有的flag藏在属性里。。 </p>
+<h2 id="摩斯密码"><a href="#摩斯密码" class="headerlink" title="摩斯密码"></a>摩斯密码</h2><p>一个可以音频识别的地方<a href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html?tdsourcetag=s_pcqq_aiomsg" target="_blank" rel="noopener">https://morsecode.world/international/decoder/audio-decoder-adaptive.html?tdsourcetag=s_pcqq_aiomsg</a>   </p>
+<h2 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h2><p>位置一般在“PK”后面的1400接着的那四位，把0900改成0000就可以了。<br>原理：<a href="https://blog.csdn.net/vhkjhwbs/article/details/99851686?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/vhkjhwbs/article/details/99851686?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase</a><br>工具命令<code>java -jar ZipCenOp.jar r 00004035.zip</code>  </p>
+<h2 id="2进制转文字"><a href="#2进制转文字" class="headerlink" title="2进制转文字"></a>2进制转文字</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;&apos;&apos;01101011</span><br><span class="line">01101111</span><br><span class="line">01100101</span><br><span class="line">01101011</span><br><span class="line">01101010</span><br><span class="line">00110011</span><br><span class="line">01110011&apos;&apos;&apos;</span><br><span class="line">b = &apos;&apos;</span><br><span class="line">for i in a.split(&apos;\n&apos;):</span><br><span class="line">	b += chr(int(i,2))</span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件头"><a href="#文件头" class="headerlink" title="文件头"></a>文件头</h2><p>有的文件被去掉了文件头，手动加上：<br>png 89 50 4e 47</p>
+<h2 id="bin文件"><a href="#bin文件" class="headerlink" title=".bin文件"></a>.bin文件</h2><p>工具：RouterPassView<br>下载：<a href="https://www.baidu.com/link?url=s6X-9C9S85M6j7hU_Vrme7nuZ0OkJxJ9dyex1WEZYhFYYwDwLV-LtHZKiRezKzDLj4gWaBkLjK13cFBnM1vcM_&amp;wd=&amp;eqid=c46a94e500011ae4000000065f4e4974" target="_blank" rel="noopener">https://www.baidu.com/link?url=s6X-9C9S85M6j7hU_Vrme7nuZ0OkJxJ9dyex1WEZYhFYYwDwLV-LtHZKiRezKzDLj4gWaBkLjK13cFBnM1vcM_&amp;wd=&amp;eqid=c46a94e500011ae4000000065f4e4974</a><br>报病毒，不过我选择忽略。<br>打开后查找关键字：password、username、flag。。  </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/05/DVWA-CSRF/" class="archive-article-date">
-  	<time datetime="2020-01-05T02:23:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/05/DVWA-CSRF/">DVWA--CSRF</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/09/01/tricks/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/04/notes on python/" class="archive-article-date">
-  	<time datetime="2020-01-04T14:20:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/11/[BSidesCF 2020]Had a bad day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Had a bad day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/04/notes on python/">notes on python</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#misc-tricks"><span class="toc-number">1.</span> <span class="toc-text">misc tricks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#winhex分析"><span class="toc-number">1.1.</span> <span class="toc-text">winhex分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gif分成图片"><span class="toc-number">1.2.</span> <span class="toc-text">gif分成图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提取文件"><span class="toc-number">1.3.</span> <span class="toc-text">提取文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加密文件爆破"><span class="toc-number">1.4.</span> <span class="toc-text">加密文件爆破</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件分析改后缀"><span class="toc-number">1.5.</span> <span class="toc-text">文件分析改后缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器直接显示base64图片（观察编码内有-号）"><span class="toc-number">1.6.</span> <span class="toc-text">浏览器直接显示base64图片（观察编码内有+号）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片显示不全"><span class="toc-number">1.7.</span> <span class="toc-text">图片显示不全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片隐写-lsb"><span class="toc-number">1.8.</span> <span class="toc-text">图片隐写(lsb)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">1.8.1.</span> <span class="toc-text">原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件属性"><span class="toc-number">1.9.</span> <span class="toc-text">文件属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#摩斯密码"><span class="toc-number">1.10.</span> <span class="toc-text">摩斯密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zip伪加密"><span class="toc-number">1.11.</span> <span class="toc-text">zip伪加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2进制转文字"><span class="toc-number">1.12.</span> <span class="toc-text">2进制转文字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件头"><span class="toc-number">1.13.</span> <span class="toc-text">文件头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bin文件"><span class="toc-number">1.14.</span> <span class="toc-text">.bin文件</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/04/DVWA-command-injection/" class="archive-article-date">
-  	<time datetime="2020-01-04T13:05:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/04/DVWA-command-injection/">DVWA-command injection</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/04/DVWA-brute/" class="archive-article-date">
-  	<time datetime="2020-01-04T08:53:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/04/DVWA-brute/">DVWA--brute</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -331,8 +412,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
