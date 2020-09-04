@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="每次都要去翻别人的，烦，写一个放这里，以后好ctrl vc">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-05-17T10:17:35.327Z">
+<meta property="og:updated_time" content="2020-09-02T00:06:06.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="md5">
 <meta name="twitter:description" content="每次都要去翻别人的，烦，写一个放这里，以后好ctrl vc">
@@ -198,7 +198,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">282字</span>
+        <span class="post-count">384字</span>
       </span>
     </span>
 
@@ -207,7 +207,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -275,6 +275,7 @@ afbfa202a8284bf36e8e4b55b35f4275
 cee9a457e790cf20d4bdaa6d69f01e41
 </pre>
 <p>还有相同的MD5值得图片<br><a href="https://natmchugh.blogspot.com/2014/11/three-way-md5-collision.html" target="_blank" rel="noopener">https://natmchugh.blogspot.com/2014/11/three-way-md5-collision.html</a><br><a href="http://natmchugh.blogspot.com/2014/10/how-i-created-two-images-with-same-md5.html" target="_blank" rel="noopener">http://natmchugh.blogspot.com/2014/10/how-i-created-two-images-with-same-md5.html</a>  </p>
+<p> 以及md5碰撞的脚本：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> #!/usr/bin/env python</span><br><span class="line">import hashlib</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">prefix = &apos;0e&apos;</span><br><span class="line"></span><br><span class="line"># 30位纯数字的MD5</span><br><span class="line"># md5( 0e215962017 ) ---&gt; 0e291242476940776845150308577824</span><br><span class="line">def breakit():</span><br><span class="line">    iters = 0</span><br><span class="line">    while 1:</span><br><span class="line">        s = prefix + str(iters)</span><br><span class="line">        hashed_s = hashlib.md5(s).hexdigest()</span><br><span class="line">        iters = iters + 1</span><br><span class="line">        r = re.match(&apos;^0e[0-9]&#123;30&#125;&apos;, hashed_s)</span><br><span class="line">        if r:</span><br><span class="line">            print &quot;[+] found! md5( &#123;&#125; ) ---&gt; &#123;&#125;&quot;.format(s, hashed_s)</span><br><span class="line">            print &quot;[+] in &#123;&#125; iterations&quot;.format(iters)</span><br><span class="line">            exit(0)</span><br><span class="line"></span><br><span class="line">        if iters % 1000000 == 0:</span><br><span class="line">            print &quot;[+] current value: &#123;&#125;       &#123;&#125; iterations, continue...&quot;.format(s, iters)</span><br><span class="line"></span><br><span class="line">breakit()</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -549,6 +550,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
@@ -558,10 +563,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">喵</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,19 +582,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">preg_replace</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,6 +715,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           
             <li class="search-li">
               <a href="https://www.0xdawn.cn" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>0xdawn</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/0xTwoNan.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>图南大佬</a>
             </li>
           
         </ul>
