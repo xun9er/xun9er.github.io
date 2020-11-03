@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>python反序列化 | Xun9er&#39;s blog</title>
+  <title>Tag: 序列化 | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="python反序列化">
-<meta name="keywords" content="python,序列化">
-<meta property="og:type" content="article">
-<meta property="og:title" content="python反序列化">
-<meta property="og:url" content="http://yoursite.com/2020/04/15/python反序列化/index.html">
+  <meta name="description" content="一个白的不能再白的小白">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Xun9er&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/tags/序列化/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="python反序列化">
+<meta property="og:description" content="一个白的不能再白的小白">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-16T16:08:14.687Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python反序列化">
-<meta name="twitter:description" content="python反序列化">
+<meta name="twitter:title" content="Xun9er&#39;s blog">
+<meta name="twitter:description" content="一个白的不能再白的小白">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -176,162 +174,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-python反序列化" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      python反序列化
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/04/15/python反序列化/" class="archive-article-date">
+  	<time datetime="2020-04-15T02:13:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-15</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/04/15/python反序列化/">python反序列化</a>
     </h1>
   
 
-        
-        <a href="/2020/04/15/python反序列化/" class="archive-article-date">
-  	<time datetime="2020-04-15T02:13:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-15</time>
-</a>
-    <!--字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
-      </span>
-    </span>
-</div>
+        <div class="article-info info-on-right">
           
-	
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>python反序列化</em></p>
-<a id="more"></a>
-
-<h1 id="python反序列化任意代码执行漏洞"><a href="#python反序列化任意代码执行漏洞" class="headerlink" title="python反序列化任意代码执行漏洞"></a>python反序列化任意代码执行漏洞</h1><ul>
-<li>python的序列化库–pickle可以实现序列化反序列化，就像php的serialize。</li>
-<li>pickle 所使用的数据格式仅可用于 Python。<h2 id="基本的方法函数："><a href="#基本的方法函数：" class="headerlink" title="基本的方法函数："></a>基本的方法函数：</h2></li>
-<li>pickle.dumps 将对象序列化作为字节—&gt;python3（字符串—&gt;python2）返回，而不是将其写入文件。  </li>
-<li>pickle.loads 将字符串反序列化为对象。<br>哪些可以被序列化反序化呢？  </li>
-<li>None, True, and False</li>
-<li>integers, floating point numbers, complex numbers</li>
-<li>strings, bytes, bytearrays</li>
-<li>tuples, lists, sets, and dictionaries containing only picklable objects</li>
-<li>functions defined at the top level of a module (using def, not lambda)</li>
-<li>built-in functions defined at the top level of a module(模块顶层定义的内置函数)</li>
-<li>classes that are defined at the top level of a module（模块顶层定义的类）</li>
-<li>instances of such classes whose <strong>dict</strong> or the result of calling <strong>getstate</strong>() is picklable (see section Pickling Class Instances for details).（这些<strong>dict</strong>或者调用<strong>getstate</strong>()的结果是可pickle的类的实例）。。what???<br>简单的例子：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line"></span><br><span class="line">class xun9er:</span><br><span class="line"></span><br><span class="line">    def __init__(self, n, a):</span><br><span class="line"></span><br><span class="line">    	self.name = n</span><br><span class="line">    	self.age = a</span><br><span class="line">    def prin(self):</span><br><span class="line">    	print(self.name+&quot; is &quot;+str(self.age)+&quot; years old.&quot;)</span><br><span class="line"></span><br><span class="line">x=xun9er(&quot;xunger&quot;,3)</span><br><span class="line">x.prin()</span><br><span class="line">xun=pickle.dumps(x)</span><br><span class="line">print (xun)</span><br><span class="line">xun=pickle.loads(xun)</span><br><span class="line">print (xun)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>得到结果为<br>python 3</p>
-<pre>
-xunger is 3 years old.
-b'\x80\x03c__main__\nxun9er\nq\x00)\x81q\x01}q\x02(X\x04\x00\x00\x00nameq\x03X\x06\x00\x00\x00xungerq\x04X\x03\x00\x00\x00ageq\x05K\x03ub.'
-<__main__.xun9er object at 0x000001be83d86248>
-</__main__.xun9er></pre>
-<p>python 2</p>
-<pre>
-xunger is 3 years old.
-(i__main__
-xun9er
-p0
-(dp1
-S'age'
-p2
-I3
-sS'name'
-p3
-S'xunger'
-p4
-sb.
-<__main__.xun9er instance at 0x00000000030fb348>
-</__main__.xun9er></pre>
-
-<ul>
-<li>pickle.dump 将对象序列化并保存入打开的文件对象文件。这相当于Pickler(文件、协议).dump(obj)。  </li>
-<li>pickle.load 将文件内容反序列化为对象。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line"></span><br><span class="line">class xun9er:</span><br><span class="line"></span><br><span class="line">    def __init__(self, n, a):</span><br><span class="line"></span><br><span class="line">    	self.name = n</span><br><span class="line">    	self.age = a</span><br><span class="line">    def prin(self):</span><br><span class="line">    	print(self.name+&quot; is &quot;+str(self.age)+&quot; years old.&quot;)</span><br><span class="line"></span><br><span class="line">x=xun9er(&quot;xunger&quot;,3)</span><br><span class="line">x.prin()</span><br><span class="line">with open(&quot;C:/Users/home/Desktop/pytest.txt&quot;,&quot;wb&quot;) as f:</span><br><span class="line">	pickle.dump(x,f)</span><br><span class="line">with open(&quot;C:/Users/home/Desktop/pytest.txt&quot;,&quot;rb&quot;) as ff:</span><br><span class="line">	xun=pickle.load(ff)</span><br><span class="line">print (xun)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>得到pytest.txt<br>以及  </p>
-<pre>
-xunger is 3 years old.
-<__main__.xun9er object at 0x00000159464643c8>
-</__main__.xun9er></pre>
-<p>python魔术方法：<br>类似php，python也有魔术方法，在python中魔术方法是以__前后包围的。  </p>
-<pre>
-__new__ : 是在一个对象实例化的时候所调用的第一个方法
-__init__ : 构造函数，在生成对象时调用
-__del__ : 析构函数，释放对象时使用
-__call__ : 允许一个类的实例像函数一样被调用：x(a, b) 调用 x.__call__(a, b)
-__reduce__ ： 对象被反序列化时会调用
-</pre>
-
-
-<pre>
-c：读取新的一行作为模块名module，读取下一行作为对象名object，然后将module.object压入到堆栈中。
-(：将一个标记对象插入到堆栈中。为了实现我们的目的，该指令会与t搭配使用，以产生一个元组。
-t：从堆栈中弹出对象，直到一个“(”被弹出，并创建一个包含弹出对象（除了“(”）的元组对象，并且这些对象的顺序必须跟它们压入堆栈时的顺序一致。然后，该元组被压入到堆栈中。
-S：读取引号中的字符串直到换行符处，然后将它压入堆栈。
-R：将一个元组和一个可调用对象弹出堆栈，然后以该元组作为参数调用该可调用的对象，最后将结果压入到堆栈中。
-.：结束pickle
-
-</pre>
-<p><a href="https://www.cnblogs.com/nmb-musen/p/10861536.html" target="_blank" rel="noopener">python魔术方法大全</a>  </p>
-<h2 id="漏洞"><a href="#漏洞" class="headerlink" title="漏洞"></a>漏洞</h2><p> 魔术方法<strong>reduce</strong> 被定义之后，当对象被反序列化时就会被调用。<br>那么，在可控的情况下，在<strong>reduce</strong>函数中加入一些需要的代码，在被反序列时就会执行。<br>但，，怎么写这个系统命令执行喃。<br>方法有几种：</p>
-<ul>
-<li>os.system()—&gt;os.system(“command”)  </li>
-<li>os.popen()—&gt;os.popen(“command”)</li>
-<li>subprocess.Popen()<br><a href="https://baijiahao.baidu.com/s?id=1617741196740621222&wfr=spider&for=pc" target="_blank" rel="noopener">Python-调用系统命令的方法</a>  </li>
-</ul>
-<p>try:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class xun9er:</span><br><span class="line"></span><br><span class="line">    def __init__(self, n, a):</span><br><span class="line"></span><br><span class="line">    	self.name = n</span><br><span class="line">    	self.age = a</span><br><span class="line">    def __reduce__(self):</span><br><span class="line">    	return (os.system,(&quot;dir&quot;,)) # __reduce__必须返回一个字符串或元组,并且由__reduce__返回的元组的第二项必须是一个元组 </span><br><span class="line"></span><br><span class="line">    	</span><br><span class="line">    def prin(self):</span><br><span class="line">    	print(self.name+&quot; is &quot;+str(self.age)+&quot; years old.&quot;)</span><br><span class="line"></span><br><span class="line">x=xun9er(&quot;xunger&quot;,3)</span><br><span class="line"></span><br><span class="line">xun=pickle.dumps(x)</span><br><span class="line">xun=pickle.loads(xun)</span><br><span class="line"></span><br><span class="line">print (xun)</span><br></pre></td></tr></table></figure>
-
-<p>命令执行：  </p>
-<p>另外，发现了一个奇怪的事情，当后面不用元组的时候，虽然会报错，但在序列化的时候就可以执行<strong>reduce</strong>里的语句。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class xun9er:</span><br><span class="line"></span><br><span class="line">    def __init__(self, n, a):</span><br><span class="line"></span><br><span class="line">    	self.name = n</span><br><span class="line">    	self.age = a</span><br><span class="line">    def __reduce__(self):</span><br><span class="line">    	print(&quot;hello!I&apos;m Xun9er.&quot;)</span><br><span class="line">    	return (os.system(&quot;dir&quot;,)) # __reduce__必须返回一个字符串或元组,并且由__reduce__返回的元组的第二项必须是一个元组 </span><br><span class="line"></span><br><span class="line">    	</span><br><span class="line">    def prin(self):</span><br><span class="line">    	print(self.name+&quot; is &quot;+str(self.age)+&quot; years old.&quot;)</span><br><span class="line"></span><br><span class="line">x=xun9er(&quot;xunger&quot;,3)</span><br><span class="line"></span><br><span class="line">xun=pickle.dumps(x)</span><br><span class="line">xun=pickle.loads(xun)</span><br><span class="line"></span><br><span class="line">print (xun)</span><br></pre></td></tr></table></figure>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖~<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -347,128 +219,65 @@ R：将一个元组和一个可调用对象弹出堆栈，然后以该元组作�
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/15/python反序列化/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
-  
-    <a href="/2020/04/15/md5/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          md5
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/04/10/buu-Dropbox/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">buu Dropbox</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/04/10/buu-Dropbox/" class="archive-article-date">
+  	<time datetime="2020-04-10T00:59:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-10</time>
+</a>
         </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python反序列化任意代码执行漏洞"><span class="toc-number">1.</span> <span class="toc-text">python反序列化任意代码执行漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本的方法函数："><span class="toc-number">1.1.</span> <span class="toc-text">基本的方法函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞"><span class="toc-number">1.2.</span> <span class="toc-text">漏洞</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/04/10/buu-Dropbox/">buu Dropbox</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">序列化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">phar</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
         </div>
-        
-    </div>
-</aside>
-
-
-
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
   
   
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -491,9 +300,9 @@ R：将一个元组和一个可调用对象弹出堆栈，然后以该元组作�
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
