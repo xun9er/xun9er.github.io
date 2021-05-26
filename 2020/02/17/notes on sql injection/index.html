@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/03/19/uNFeZoH3OMqIjSy.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/19/LawK7SfmXBdMnk6.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/09/Y7xHXVnWLZzcTIN.png">
-<meta property="og:updated_time" content="2020-04-17T08:44:22.000Z">
+<meta property="og:updated_time" content="2021-05-15T08:39:06.411Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notes on sql injection">
 <meta name="twitter:description" content="学习笔记，不定时更新。">
@@ -239,7 +239,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">24分</span>
+        <span class="post-count">25分</span>
       </span>
     </span>
 </div>
@@ -252,6 +252,7 @@
       
         <p><em>学习笔记，不定时更新。</em></p>
 <a id="more"></a>
+
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1278295208'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1278295208%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
 <body>
 
@@ -280,25 +281,44 @@
 </pre>
 <p>eg: select * from table where like name ‘wsl%’;  </p>
 <h4 id="更好地显示"><a href="#更好地显示" class="headerlink" title="更好地显示"></a>更好地显示</h4><ul>
-<li>逆序输出reverse()(在1FONLY dalao那里瞅到的) left() right() mid()   解决只显示数据一部分的情况，适用报错注入。比如：<code>select right(password,34) from geek.H4rDsq1</code>(geek hard injection)  </li>
-<li>把username和password用符号隔开  </li>
-<li>以某一输入的符号作为完整数据回显开始的标志<br>在group_concat()里加入16进制ASCII码的符号或者用引号直接引用该符号（group_concat(username,”:”,password)）；<br><img src="https://i.loli.net/2020/02/13/GP6YfaKObCt87zJ.png" alt="分隔符.png">  <h4 id="判断字符型or数字型"><a href="#判断字符型or数字型" class="headerlink" title="判断字符型or数字型"></a>判断字符型or数字型</h4></li>
-<li>闭合 ‘或 “等</li>
-<li>数字型可以通过计算式，如id=2/2返回id=2的结果  <h4 id="遇到的一些bypass"><a href="#遇到的一些bypass" class="headerlink" title="遇到的一些bypass"></a>遇到的一些bypass</h4></li>
-<li>大写 比如 SelEct  </li>
-<li>重复 （关键字被替换为空的情况） 比如：sselectelect  </li>
-<li>注释符 <code>?id=1/**/union/**/select...</code>  </li>
-<li>加&lt;&gt; 比如 1’ o&lt;&gt;r 1=1  </li>
-<li>过滤空格<br>&emsp;1.用()把所有需要用空格分开的部分括起来<br>&emsp;2.连接符 <code>?id=1++union++select++...</code>所有都连起来  </li>
-<li>过滤“=”，用“like”替代  </li>
-<li>过滤 “and” ：用“or”或“^”(异或)或&amp;&amp;或||  </li>
-<li>编码：hex,urlencode</li>
-<li>md5<br>sql语句是这样的：<code>select * from &#39;admin&#39; where password=md5($pass,true)</code><br>password=ffifdyop<br>经过md5加密后：276f722736c95d99e921722cf9ed621c<br>再转换为字符串：’or’6&lt;乱码&gt;  即  ‘or’66�]��!r,��b 相当于万能密码 <code>&#39;or&#39;1</code>。<br>涨知识了。  </li>
-<li>过滤逗号<br>将limit 0,1样式改为limit 1 offset 0。<br>将substr(string,1,1)改为substr(string from 1 for 1)。    </li>
-<li>虚拟表绕过 具体看<a href="https://xun9er.com/2020/04/17/ctf-show-%E7%9F%A5%E8%AF%86%E7%82%B9%E7%A7%AF%E7%B4%AF/#more" target="_blank" rel="noopener">这里</a>  </li>
-<li>堆叠注入 过滤了rename、select。<code>HANDLER .. OPEN;HANDLER .. READ FIRST;HANDLER CLOSE;</code>  （[GYCTF2020]Blacklist）  <h3 id="注入方式"><a href="#注入方式" class="headerlink" title="注入方式"></a>注入方式</h3></li>
+<li><p>逆序输出reverse()(在1FONLY dalao那里瞅到的) left() right() mid()   解决只显示数据一部分的情况，适用报错注入。比如：<code>select right(password,34) from geek.H4rDsq1</code>(geek hard injection)  </p>
+</li>
+<li><p>把username和password用符号隔开  </p>
+</li>
+<li><p>以某一输入的符号作为完整数据回显开始的标志<br>在group_concat()里加入16进制ASCII码的符号或者用引号直接引用该符号（group_concat(username,”:”,password)）；<br><img src="https://i.loli.net/2020/02/13/GP6YfaKObCt87zJ.png" alt="分隔符.png">  </p>
+<h4 id="判断字符型or数字型"><a href="#判断字符型or数字型" class="headerlink" title="判断字符型or数字型"></a>判断字符型or数字型</h4></li>
+<li><p>闭合 ‘或 “等</p>
+</li>
+<li><p>数字型可以通过计算式，如id=2/2返回id=2的结果  </p>
+<h4 id="遇到的一些bypass"><a href="#遇到的一些bypass" class="headerlink" title="遇到的一些bypass"></a>遇到的一些bypass</h4></li>
+<li><p>大写 比如 SelEct  </p>
+</li>
+<li><p>重复 （关键字被替换为空的情况） 比如：sselectelect  </p>
+</li>
+<li><p>注释符 <code>?id=1/**/union/**/select...</code>  </p>
+</li>
+<li><p>加&lt;&gt; 比如 1’ o&lt;&gt;r 1=1  </p>
+</li>
+<li><p>过滤空格<br>&emsp;1.用()把所有需要用空格分开的部分括起来<br>&emsp;2.连接符 <code>?id=1++union++select++...</code>所有都连起来  </p>
+</li>
+<li><p>过滤“=”，用“like”替代  </p>
+</li>
+<li><p>过滤 “and” ：用“or”或“^”(异或)或&amp;&amp;或||  </p>
+</li>
+<li><p>编码：hex,urlencode</p>
+</li>
+<li><p>md5<br>sql语句是这样的：<code>select * from &#39;admin&#39; where password=md5($pass,true)</code><br>password=ffifdyop<br>经过md5加密后：276f722736c95d99e921722cf9ed621c<br>再转换为字符串：’or’6&lt;乱码&gt;  即  ‘or’66�]��!r,��b 相当于万能密码 <code>&#39;or&#39;1</code>。<br>涨知识了。  </p>
+</li>
+<li><p>过滤逗号<br>将limit 0,1样式改为limit 1 offset 0。<br>将substr(string,1,1)改为substr(string from 1 for 1)。    </p>
+<p>过滤了逗号，在注入语句中使用join函数可以绕过， join 函数用于根据两个或多个表中的列之间的关系，从这些表中查询数据。如((select 1)a JOIN (select 2)b JOIN (select 3)c)%23。</p>
+<p>在绕过limit 1,1这个逗号时，可以使用limit 1 offset 1来代替逗号</p>
+</li>
+<li><p>虚拟表绕过 具体看<a href="https://xun9er.com/2020/04/17/ctf-show-%E7%9F%A5%E8%AF%86%E7%82%B9%E7%A7%AF%E7%B4%AF/#more" target="_blank" rel="noopener">这里</a>  </p>
+</li>
+<li><p>堆叠注入 过滤了rename、select。<code>HANDLER .. OPEN;HANDLER .. READ FIRST;HANDLER CLOSE;</code>  （[GYCTF2020]Blacklist）  </p>
+</li>
 </ul>
-<h4 id="多语句堆叠注入"><a href="#多语句堆叠注入" class="headerlink" title="多语句堆叠注入"></a>多语句堆叠注入</h4><h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>SQL语法以’;’作为一条SQL语句的结束。如果在一条语句结束的’;’后再加其他语句，如果加上的语句可以执行就形成堆叠注入。堆叠注入的语句可以是任意sql语句（没有过滤的话），比如：show databases; show columns from table;等等。  </p>
+<h3 id="注入方式"><a href="#注入方式" class="headerlink" title="注入方式"></a>注入方式</h3><h4 id="多语句堆叠注入"><a href="#多语句堆叠注入" class="headerlink" title="多语句堆叠注入"></a>多语句堆叠注入</h4><h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>SQL语法以’;’作为一条SQL语句的结束。如果在一条语句结束的’;’后再加其他语句，如果加上的语句可以执行就形成堆叠注入。堆叠注入的语句可以是任意sql语句（没有过滤的话），比如：show databases; show columns from table;等等。  </p>
 <h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p><em>强网杯 2019 随便注</em>  </p>
 <p>首先判断是否有注入。<br><img src="https://i.loli.net/2020/02/10/4RFo2atnujxYr7W.png" alt="随便注1.png"><br>加上注释符号#后有回显，有sql注入。<br><img src="https://i.loli.net/2020/02/10/BxrqkyOKl1AhfwI.png" alt="随便注2.png">  </p>
 <p><img src="https://i.loli.net/2020/02/10/UpeDsi6zkKg2OEw.png" alt="随便注3.png"><br>order by查询列数，为3时报错，所以有两列数据。<br><img src="https://i.loli.net/2020/02/10/waBbU5u1CfhG9dQ.png" alt="随便注4.png"><br>尝试用联合注入，但发现过滤了select。但是有很多没过滤，比如alter等。<br><img src="https://i.loli.net/2020/02/10/gR1atXJmMOyUcLo.png" alt="随便注5.png"><br>接下来就是堆叠注入啦：<br>1’;show tables;#<br><img src="https://i.loli.net/2020/02/10/Iac2lA5YoiF3set.png" alt="随便注6.png"><br>有两个表，分别是words 和 1919810931114514。分别查询两表的表结构。需要注意的是表名为数字的时候需要加上返单引号“`”。<br><img src="https://i.loli.net/2020/02/10/9wCFMDWc5mo4giU.png" alt="随便注7.png"><br><img src="https://i.loli.net/2020/02/10/RsEIzMOebdnpg5c.png" alt="随便注8.png"><br>这里要结合最开始数据库回显的数据格式，仔细比较。words表内有两列数据，分别是int类型和varchar类型（和回显数据格式一样）；而1919810931114514表内应该就是放的flag。因此前端回显的就是words表。现在就需要想办法让其回显含有flag的表。先把原words表改名，再把含有flag的表更名成words，这样就可以顺利回显了。这个办法是真的神奇。  </p>
@@ -682,11 +702,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -750,23 +770,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
+                <a href="javascript:void(0)" class="js-tag color4">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">upload-labs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -778,11 +798,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">upload-labs</a>
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
              
               <li class="article-tag-list-item">
