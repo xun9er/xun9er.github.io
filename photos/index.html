@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content=".header-inner{          display: none;     }     .sidebar{         display: none;     }     .content{         margin-bottom: 360px;     }     .content-wrap{        width: 100%;        // box-siz">
+  <meta name="description" content="$.snowFall({               particleNo: 500,         particleSpeed:30,         particleY_Range:1300,         particleX_Range:1000,         bindMouse: false,         zIndex:600,         an">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Xun9er&#39;s blog">
 <meta property="og:url" content="http://yoursite.com/photos/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content=".header-inner{          display: none;     }     .sidebar{         display: none;     }     .content{         margin-bottom: 360px;     }     .content-wrap{        width: 100%;        // box-siz">
+<meta property="og:description" content="$.snowFall({               particleNo: 500,         particleSpeed:30,         particleY_Range:1300,         particleX_Range:1000,         bindMouse: false,         zIndex:600,         an">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-06-01T03:39:39.566Z">
+<meta property="og:updated_time" content="2021-06-01T13:41:53.643Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xun9er&#39;s blog">
-<meta name="twitter:description" content=".header-inner{          display: none;     }     .sidebar{         display: none;     }     .content{         margin-bottom: 360px;     }     .content-wrap{        width: 100%;        // box-siz">
+<meta name="twitter:description" content="$.snowFall({               particleNo: 500,         particleSpeed:30,         particleY_Range:1300,         particleX_Range:1000,         bindMouse: false,         zIndex:600,         an">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -180,7 +180,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <style type="text/css">
+        <!DOCTYPE html>
+<script src="js/ThreeCanvas.js"></script> 
+<script src="js/jquery.js"></script> 
+<script src="js/Snow.js"></script> 
+<script src="js/snowFall.js"></script> 
+<script>
+    $.snowFall({      
+        particleNo: 500,
+        particleSpeed:30,
+        particleY_Range:1300,
+        particleX_Range:1000,
+        bindMouse: false,
+        zIndex:600,
+        angle:55,
+        wind_weight:0
+        });
+</script>
+<style type="text/css">
 
     .header-inner{
          display: none;
@@ -219,7 +236,7 @@
         /*background-position: top left;*/
     }
     .header{
-        background: rgba(28, 25, 25, 0.6);
+        background: rgba(28, 25, 25, 0.5);
         border-bottom: unset;
     }
     .menu .menu-item a{
@@ -231,7 +248,7 @@
     }
 
     img:hover {
-        //opacity:0.8; /*透明度*/
+        opacity:0.8; /*透明度*/
         //filter:alpha(opacity=100); /* For IE8 and earlier */
     }
 
@@ -377,6 +394,7 @@
     }
 
 </style>
+<body>
 
 <div id="box" class="box"></div>
 
@@ -489,8 +507,24 @@
             },
 
             {
-                'title': '小男朋友',
+                'title': '',
                 'url': 'https://i.loli.net/2020/03/21/GXJrVfgu8sdCNao.jpg'
+            },
+            {
+                'title': '老门东的烤肉店，霓虹灯太好看了',
+                'url': '/images/photos/东门.jpg'
+            },
+            {
+                'title': '老门东的居民墙',
+                'url': '/images/photos/花墙.jpg'
+            },
+            {
+                'title': '小巷里的、似乎是家咖啡店',
+                'url': '/images/photos/咖啡店.jpg'
+            },
+            {
+                'title': '仙女送给我的花',
+                'url': '/images/photos/雏菊.jpg'
             },
         ],
         [
@@ -637,11 +671,14 @@
     }
 
 </script>
+
+
 <audio controls="controls" autoplay="autoplay">
 
   <source src="secret base1.mp3" type="audio/mpeg" controlslist="nodownload" οncοntextmenu="return false">
 
 <p>Your browser does not support the audio element.<br></p></audio><p></p>
+</body>
 
       
 
@@ -874,19 +911,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">刷题笔记</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">php序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -966,11 +1003,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">kali配置</a>
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">乱七八糟</a>
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -978,11 +1015,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+                <a href="javascript:void(0)" class="js-tag color2">kali配置</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
+                <a href="javascript:void(0)" class="js-tag color5">乱七八糟</a>
               </li>
             
             <div class="clearfix"></div>
