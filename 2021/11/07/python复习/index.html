@@ -21,19 +21,19 @@
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105103546997.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105103540920.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211107105002782.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105104452555-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105104529125-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105105004560-6509082.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105104452555.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105104529125.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105105004560.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105114256010.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105114625354.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105120005479.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106163715522.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106165247257-6509082.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106165247257.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106165551420.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106170541504.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211107110053411.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211107151646791.png">
-<meta property="og:updated_time" content="2021-11-10T02:16:13.040Z">
+<meta property="og:updated_time" content="2021-11-10T03:21:24.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python复习">
 <meta name="twitter:description" content="python基础知识点复习">
@@ -276,9 +276,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 1 &lt; 3 &lt; 5                       #等价于1 &lt; 3 and 3 &lt; 5</span><br><span class="line">True</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; [1, 2, 3] &lt; [1, 2, 4]           #比较列表大小  从第一个元素顺序开始比较，如果相等，则继续，返回第一个不想等元素比较的结果。</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; &apos;hello&apos;&gt;9												#字符串和数字不能比较</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">TypeError: &apos;&gt;&apos; not supported between instances of &apos;str&apos; and &apos;int&apos;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; &#123;1,2&#125;&lt;&#123;1,2,3&#125;										#测试是否子集</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
 
 <p>同一性测试运算符（identity comparison）is用来测试两个对象是否是同一个，如果是则返回True，否则返回False。<strong>如果两个对象是同一个，二者具有相同的内存地址**</strong>。</p>
-<p><img src="/images/pythonfx.assets/image-20211105104452555-6509082.png" alt="image-20211105104452555"></p>
-<p><img src="/images/pythonfx.assets/image-20211105104529125-6509082.png" alt="image-20211105104529125"></p>
-<p><img src="/images/pythonfx.assets/image-20211105105004560-6509082.png" alt="image-20211105105004560"></p>
+<p><img src="/images/pythonfx.assets/image-20211105104452555.png" alt="image-20211105104452555"></p>
+<p><img src="/images/pythonfx.assets/image-20211105104529125.png" alt="image-20211105104529125"></p>
+<p><img src="/images/pythonfx.assets/image-20211105105004560.png" alt="image-20211105105004560"></p>
 <p><strong>and和or具有惰性求值特点，只计算必须计算的表达式。</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 3&gt;5 and a&gt;3          #注意，此时并没有定义变量a</span><br><span class="line">False</span><br><span class="line">&gt;&gt;&gt; 3&gt;5 or a&gt;3           #3&gt;5的值为False，所以需要计算后面表达式</span><br><span class="line">NameError: name &apos;a&apos; is not defined</span><br><span class="line">&gt;&gt;&gt; 3&lt;5 or a&gt;3           #3&lt;5的值为True，不需要计算后面表达式</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; 3 and 5              #最后一个计算的表达式的值作为整个表达式的值</span><br><span class="line">5</span><br><span class="line">&gt;&gt;&gt; 3 and 5&gt;2</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; 3 not in [1, 2, 3]   #逻辑非运算not</span><br><span class="line">False</span><br><span class="line">&gt;&gt;&gt; 3 is not 5           #not的计算结果只能是True或False之一</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; 0 or 5</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
 
@@ -327,7 +327,7 @@
 <p>Sort()无返回值，sorted()有返回值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x=[&apos;sdfasdf&apos;,&apos;sfa&apos;,&apos;d&apos;,&apos;asdf&apos;,&apos;df&apos;,&apos;fe&apos;,&apos;dfaefeef&apos;]</span><br><span class="line">&gt;&gt;&gt; sorted(x, key=lambda item: (len(item), item))</span><br><span class="line">[&apos;d&apos;, &apos;df&apos;, &apos;fe&apos;, &apos;sfa&apos;, &apos;asdf&apos;, &apos;sdfasdf&apos;, &apos;dfaefeef&apos;]</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/pythonfx.assets/image-20211106165247257-6509082.png" alt="image-20211106165247257"></p>
+<p><img src="/images/pythonfx.assets/image-20211106165247257.png" alt="image-20211106165247257"></p>
 <h3 id="all-any"><a href="#all-any" class="headerlink" title="all() any()"></a>all() any()</h3><p>all()和any()：all()函数用来测试列表、元组等序列对象以及map对象、zip对象等类似对象中<strong>是否所有元素都等价于True</strong>，any()函数用来测试序列或可迭代对象中<strong>是否存在等价于True的元素。</strong>例如：</p>
 <p><img src="/images/pythonfx.assets/image-20211106165551420.png" alt="image-20211106165551420"></p>
 <h3 id="拆分"><a href="#拆分" class="headerlink" title="*拆分"></a>*拆分</h3><p>在列表前加*号，会将列表拆分成一个一个的独立元素，不光是列表、元组、字典，由numpy生成的向量也可以拆分</p>
@@ -616,6 +616,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">刷题笔记</a>
               </li>
              
@@ -625,10 +633,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">php序列化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,19 +664,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">phar</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">php伪随机数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">seed爆破</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">phar</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -696,19 +700,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,6 +724,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kali配置</a>
               </li>
              
@@ -737,10 +741,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
               </li>
             
             <div class="clearfix"></div>
