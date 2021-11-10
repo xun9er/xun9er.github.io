@@ -16,28 +16,28 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="python基础知识点复习">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105100914773-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105102729761-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105103546997-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105103540920-6509082.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105100914773.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105102729761.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105103546997.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105103540920.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211107105002782.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105104452555-6509082.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105104529125-6509082.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105105004560-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105114256010-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105114625354-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105120005479-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106163715522-6509082.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105114256010.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105114625354.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105120005479.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106163715522.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106165247257-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106165551420-6509082.png">
-<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106170541504-6509082.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106165551420.png">
+<meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211106170541504.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211107110053411.png">
 <meta property="og:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211107151646791.png">
-<meta property="og:updated_time" content="2021-11-10T01:56:52.162Z">
+<meta property="og:updated_time" content="2021-11-10T02:16:13.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python复习">
 <meta name="twitter:description" content="python基础知识点复习">
-<meta name="twitter:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105100914773-6509082.png">
+<meta name="twitter:image" content="http://xun9er.pro/images/pythonfx.assets/image-20211105100914773.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -251,12 +251,12 @@
 <p><strong>原始字符串</strong>是Python中一类比较特殊的字符串，以大写字母R或者小写字母r开始。在原始字符串中，字符“\” 不再表示转义字符的含义。(r’abc’, R’bcd’).</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; path = r&apos;c:\test.html&apos;</span><br><span class="line">&gt;&gt;&gt; path</span><br><span class="line">&apos;c:\\test.html&apos;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/pythonfx.assets/image-20211105100914773-6509082.png" alt="image-20211105100914773"></p>
+<p><img src="/images/pythonfx.assets/image-20211105100914773.png" alt="image-20211105100914773"></p>
 <p>在Python中，<strong>不需要事先声明变量名及其类型</strong>，直接赋值即可创建各种类型的对象变量。</p>
 <p>vPython属于<strong>强类型编程语言</strong>，Python解释器会根据赋值或运算来自动推断变量类型。Python还是一种<strong>动态类型语言</strong>，变量的类型也是可以随时变化的。</p>
 <p>Python<strong>采用基于值的内存管理方式，如果为不同变量赋值为相同值，这个值在内存中只保存一份，多个变量指向同一个值的内存空间首地址，这样可以减少内存空间的占用，提高内存利用率。</strong></p>
 <p>•Python不会对实数进行缓存，<strong>交互模式下</strong>同值不同名的变量不共用同一个内存空间，<strong>同一个程序中</strong>的同值不同名变量会共用同一个内存空间。</p>
-<p><img src="/images/pythonfx.assets/image-20211105102729761-6509082.png" alt="image-20211105102729761"></p>
+<p><img src="/images/pythonfx.assets/image-20211105102729761.png" alt="image-20211105102729761"></p>
 <p>Python中的变量并不直接存储值，而是存储了值的内存地址或者引用，这也是变量类型随时可以改变的原因。</p>
 <p>Python具有自动管理内存的功能，会跟踪所有的值，并自动删除不再使用或者引用次数为0的值。</p>
 <p>变量名对英文字母的<strong>大小写敏感</strong></p>
@@ -266,8 +266,8 @@
 <p>Python内置支持<strong>复数</strong>类型。</p>
 <p>共轭复数：实部相等、虚部互为相反数</p>
 <p>复数计算：</p>
-<p><img src="/images/pythonfx.assets/image-20211105103546997-6509082.png" alt="image-20211105103546997"></p>
-<p><img src="/images/pythonfx.assets/image-20211105103540920-6509082.png" alt="image-20211105103540920"></p>
+<p><img src="/images/pythonfx.assets/image-20211105103546997.png" alt="image-20211105103546997"></p>
+<p><img src="/images/pythonfx.assets/image-20211105103540920.png" alt="image-20211105103540920"></p>
 <h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p><img src="/images/pythonfx.assets/image-20211107105002782.png" alt="image-20211107105002782"></p>
 <p>一些关系：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">假设 n 为整数，那么表达式 n&amp;1 == n%2</span><br></pre></td></tr></table></figure>
@@ -300,10 +300,10 @@
 <p>Python中常用的序列结构有列表、元组、字符串，字典、集合以及range、zip、filter等对象也支持很多类似的操作。</p>
 <p>列表（list）和元组（tuple）比较相似，它们都按顺序保存元素，<strong>所有的元素占用一块连续的内存</strong></p>
 <p>字典（dict）和集合（set）存储的数据都是<strong>无序的</strong>，每份元素占用不同的内存</p>
-<p><img src="/images/pythonfx.assets/image-20211105114256010-6509082.png" alt="image-20211105114256010"></p>
+<p><img src="/images/pythonfx.assets/image-20211105114256010.png" alt="image-20211105114256010"></p>
 <h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>当列表元素增加或删除时，列表对象自动进行扩展或收缩内存，<strong>保证元素之间没有缝隙</strong>；</p>
 <p>在Python中，一个列表中的数据类型可以各不相同，可以同时分别为整数、实数、字符串等基本类型，甚至是列表、元组、字典、集合以及其他自定义类型的对象。</p>
-<p><img src="/images/pythonfx.assets/image-20211105114625354-6509082.png" alt="image-20211105114625354"></p>
+<p><img src="/images/pythonfx.assets/image-20211105114625354.png" alt="image-20211105114625354"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lst.remove(x)	#在列表lst中删除首次出现的指定元素，该元素之后的所有元素前移一个位置</span><br><span class="line">lst.pop([index])	#lst.pop([index])</span><br><span class="line">删除并返回列表lst中下标为index（默认为-1）的元素</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
 
 <p>当不再使用时，使用<strong>del命令</strong>删除整个列表。</p>
@@ -312,7 +312,7 @@
 <p>如果是通过下标来修改序列中元素的值或通过可变序列对象自身提供的方法来增加和删除元素时，<strong>序列对象在内存中的起始地址是不变的**</strong>，<strong><strong>仅仅是被改变值的元素地址发生变化</strong></strong>，也就是所谓的**“原地操作”</p>
 <p>使用列表对象的<strong>extend()方法</strong>可以将另一个迭代对象的所有元素添加至该列表对象尾部。通过extend()方法来增加列表元素也不改变其内存首地址，属于<strong>原地操作</strong>。</p>
 <p>n当使用*运算符将包含列表的列表重复并创建新列表时，并不是复制子列表值，而是复制已有元素的引用。因此，当修改其中一个值时，相应的引用也会被修改。</p>
-<p><img src="/images/pythonfx.assets/image-20211105120005479-6509082.png" alt="image-20211105120005479"></p>
+<p><img src="/images/pythonfx.assets/image-20211105120005479.png" alt="image-20211105120005479"></p>
 <h3 id="循环中删除元素"><a href="#循环中删除元素" class="headerlink" title="循环中删除元素"></a>循环中删除元素</h3><p>在删除列表元素时，Python会自动对列表内存进行收缩并移动列表元素以保证所有元素之间没有空隙，增加列表元素时也会自动扩展内存并对元素进行移动以保证元素之间没有空隙。每当插入或删除一个元素之后，该元素位置后面所有元素的索引就都改变了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">正确的做法</span><br><span class="line">&gt;&gt;&gt; x = [1,2,1,2,1,1,1]</span><br><span class="line">&gt;&gt;&gt; for i in range(len(x)-1,-1,-1):         #从后往前删</span><br><span class="line">    if x[i]==1:</span><br><span class="line">        del x[i]</span><br></pre></td></tr></table></figure>
 
@@ -321,7 +321,7 @@
 <p><strong>第三个数字</strong>表示切片的步长（默认为1），当步长省略时可以顺便省略最后一个冒号，当step为负数时，表示从负方向遍历</p>
 <h3 id="浅复制和深复制"><a href="#浅复制和深复制" class="headerlink" title="浅复制和深复制"></a>浅复制和深复制</h3><p><strong>切片</strong>返回的是<strong>浅复制</strong>。所谓浅复制，是指生成一个新的列表，并且把原列表中所<strong><strong>选</strong></strong>元素的引用都复制到新列表中。如果原列表中只包含整数、实数、复数等基本类型或元组、字符串这样的不可变类型的数据，一般是没有问题的</p>
 <p>如果原列表中包含列表之类的可变数据类型，由于浅复制时只是把子列表的引用复制到新列表中，这样的话修改任何一个都会影响另外一个</p>
-<p><img src="/images/pythonfx.assets/image-20211106163715522-6509082.png" alt="image-20211106163715522"></p>
+<p><img src="/images/pythonfx.assets/image-20211106163715522.png" alt="image-20211106163715522"></p>
 <p>标准库copy中的<strong>deepcopy()函数实现深复制</strong>。所谓深复制，是指对原列表中的元素进行递归，把所有的值都复制到新列表中，对嵌套的子列表不再是复制引用。新列表和原列表是互相独立，修改任何一个都不会影响另外一个。</p>
 <h3 id="sort-、sorted"><a href="#sort-、sorted" class="headerlink" title="sort()、sorted()"></a>sort()、sorted()</h3><p>默认是升序、reverse=true是降序</p>
 <p>Sort()无返回值，sorted()有返回值</p>
@@ -329,9 +329,9 @@
 
 <p><img src="/images/pythonfx.assets/image-20211106165247257-6509082.png" alt="image-20211106165247257"></p>
 <h3 id="all-any"><a href="#all-any" class="headerlink" title="all() any()"></a>all() any()</h3><p>all()和any()：all()函数用来测试列表、元组等序列对象以及map对象、zip对象等类似对象中<strong>是否所有元素都等价于True</strong>，any()函数用来测试序列或可迭代对象中<strong>是否存在等价于True的元素。</strong>例如：</p>
-<p><img src="/images/pythonfx.assets/image-20211106165551420-6509082.png" alt="image-20211106165551420"></p>
+<p><img src="/images/pythonfx.assets/image-20211106165551420.png" alt="image-20211106165551420"></p>
 <h3 id="拆分"><a href="#拆分" class="headerlink" title="*拆分"></a>*拆分</h3><p>在列表前加*号，会将列表拆分成一个一个的独立元素，不光是列表、元组、字典，由numpy生成的向量也可以拆分</p>
-<h3 id="矩阵转置"><a href="#矩阵转置" class="headerlink" title="矩阵转置"></a>矩阵转置</h3><p><img src="/images/pythonfx.assets/image-20211106170541504-6509082.png" alt="image-20211106170541504"></p>
+<h3 id="矩阵转置"><a href="#矩阵转置" class="headerlink" title="矩阵转置"></a>矩阵转置</h3><p><img src="/images/pythonfx.assets/image-20211106170541504.png" alt="image-20211106170541504"></p>
 <h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>元组和列表类似，但属于<strong>不可变序列</strong>，元组一旦创建，用任何方法都不可以修改其元素。</p>
 <p>使用del可以删除元组对象，不能删除元组中的元素</p>
 <p>如果元组中包含列表或其他类型的可变对象，这些对象是可变的，但元组元素的引用仍是不可变的。</p>
@@ -616,14 +616,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">刷题笔记</a>
               </li>
              
@@ -633,6 +625,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">php序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -712,15 +708,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">upload-labs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -741,6 +737,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
               </li>
             
             <div class="clearfix"></div>
