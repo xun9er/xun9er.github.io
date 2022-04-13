@@ -16,12 +16,16 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="网络编程相关">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://xun9er.pro/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220411095911541.png">
-<meta property="og:updated_time" content="2022-04-11T03:05:40.260Z">
+<meta property="og:image" content="http://xun9er.pro/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220411095911541.png">
+<meta property="og:image" content="http://xun9er.pro/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413204905096.png">
+<meta property="og:image" content="http://xun9er.pro/2022/04/11/网络编程/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413204905096.png">
+<meta property="og:image" content="http://xun9er.pro/2022/04/11/网络编程/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413104744060.png">
+<meta property="og:image" content="http://xun9er.pro/2022/04/11/网络编程/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413104744060.png">
+<meta property="og:updated_time" content="2022-04-13T12:57:07.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络编程">
 <meta name="twitter:description" content="网络编程相关">
-<meta name="twitter:image" content="http://xun9er.pro/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220411095911541.png">
+<meta name="twitter:image" content="http://xun9er.pro/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220411095911541.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -200,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.2k字</span>
+        <span class="post-count">1.8k字</span>
       </span>
     </span>
 
@@ -209,7 +213,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
+        <span class="post-count">6分</span>
       </span>
     </span>
 </div>
@@ -250,24 +254,74 @@
 <h1 id="OSI模型-TCP-IP模型"><a href="#OSI模型-TCP-IP模型" class="headerlink" title="OSI模型 TCP/IP模型"></a>OSI模型 TCP/IP模型</h1><h2 id="OSI（7个）"><a href="#OSI（7个）" class="headerlink" title="OSI（7个）"></a>OSI（7个）</h2><p>从上到下：应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p>
 <h2 id="TCP-IP（4个）"><a href="#TCP-IP（4个）" class="headerlink" title="TCP/IP（4个）"></a>TCP/IP（4个）</h2><p>从上到下：应用层、传输层 TCP UDP、网际层 IP、网络接口层</p>
 <p>网络编程套接口位于TCP/IP的<strong>应用层和传输层中间</strong>。</p>
+<h1 id="套接字的类型"><a href="#套接字的类型" class="headerlink" title="套接字的类型"></a>套接字的类型</h1><h2 id="Linux系统常用协议"><a href="#Linux系统常用协议" class="headerlink" title="Linux系统常用协议"></a>Linux系统常用协议</h2><ul>
+<li>INET：ip版本4</li>
+<li>INET6:ip版本6</li>
+</ul>
+<h2 id="套接接字类型"><a href="#套接接字类型" class="headerlink" title="套接接字类型"></a>套接接字类型</h2><p><strong>SOCKET_STREAM：流式套接字</strong></p>
+<p><strong>SOCKET_DGRAM：数据报套接字</strong></p>
+<p>SOCKET_RAW：原始套接字</p>
+<h1 id="套接字地址结构"><a href="#套接字地址结构" class="headerlink" title="套接字地址结构"></a>套接字地址结构</h1><h2 id="IPv4套接字地址结构"><a href="#IPv4套接字地址结构" class="headerlink" title="IPv4套接字地址结构"></a>IPv4套接字地址结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct sockaddr_in&#123;</span><br><span class="line">	uint8_t sin_len;             /*长度成员*/</span><br><span class="line">	sa_fammily_t sin_family;     /*internet地址族*/</span><br><span class="line">	in_port_t sin_port;</span><br><span class="line">	struct in_addr.sin_addr;</span><br><span class="line">	char sin_zero[8];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="通用套接字地址结构"><a href="#通用套接字地址结构" class="headerlink" title="通用套接字地址结构"></a>通用套接字地址结构</h2><p>套接字地址结构定义在头文件&lt;sys/socket.h&gt;中,具体结构定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct sockaddr&#123;</span><br><span class="line">	uint8_t sa_len;             /*长度成员*/</span><br><span class="line">	sa_fammily_t sa_family;     /*internet地址族*/</span><br><span class="line">	char sa_data[14];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h1><p>0-1023:由IANA分配和控制</p>
 <p>1024-49151:不由IANA控制，但由IANA登记并提供他们使用情况的清单；</p>
 <p>49152-65535:临时端口号</p>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="细节排序函数："><a href="#细节排序函数：" class="headerlink" title="细节排序函数："></a>细节排序函数：</h2><p><strong>htons</strong>：将16位的短整形数，从<strong>主机字节序</strong>转换成<strong>网络字节序</strong>；</p>
+<h1 id="字节排序函数："><a href="#字节排序函数：" class="headerlink" title="字节排序函数："></a>字节排序函数：</h1><p><strong>htons</strong>：将16位的短整形数，从<strong>主机字节序</strong>转换成<strong>网络字节序</strong>；</p>
 <p><strong>htonl</strong>：将32位的长整形数，从主机字节序转换成网络字节序。</p>
-<h2 id="进程创建"><a href="#进程创建" class="headerlink" title="进程创建"></a>进程创建</h2><p>可以通过<strong>fork</strong>和<strong>vfork</strong>函数来创建新进程。</p>
-<h2 id="进程终止"><a href="#进程终止" class="headerlink" title="进程终止"></a>进程终止</h2><p>父进程可以通过<strong>wait()</strong>或<strong>waitpid()</strong>函数获得子进程的终止信息。</p>
-<h1 id="套接字地址结构"><a href="#套接字地址结构" class="headerlink" title="套接字地址结构"></a>套接字地址结构</h1><p>套接字地址结构定义在头文件&lt;sys/socket.h&gt;中,具体结构定义：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct sockaddr&#123;</span><br><span class="line">	uint8_t sa_len;</span><br><span class="line">	sa_fammily_t sa family;</span><br><span class="line">	char sa_data[14];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h1 id="connect函数用于UDP"><a href="#connect函数用于UDP" class="headerlink" title="connect函数用于UDP"></a>connect函数用于UDP</h1><p>与默认未连接的UDP套接字相比，已连接套接字发生了三个变化：</p>
 <p>1.再也不能给输出操作指定目的IP和端口；</p>
 <p>2.不能使用recvfrom函数接收数据，而应该用recv或read函数；</p>
 <p>3.异步错误由已连接的UDP套接字返回给进程。</p>
-<h1 id="服务器的分类"><a href="#服务器的分类" class="headerlink" title="服务器的分类"></a>服务器的分类</h1><p><img src="/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220411095911541.png" alt="image-20220411095911541"></p>
+<h1 id="服务器的分类"><a href="#服务器的分类" class="headerlink" title="服务器的分类"></a>服务器的分类</h1><p><img src="/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220411095911541.png" alt="image-20220411095911541"></p>
 <p>​                            （TCP重复性服务器）</p>
+<h1 id="TCP套接字编程"><a href="#TCP套接字编程" class="headerlink" title="TCP套接字编程"></a>TCP套接字编程</h1><h2 id="TCP套接字编程中，服务器端实现的步骤"><a href="#TCP套接字编程中，服务器端实现的步骤" class="headerlink" title="TCP套接字编程中，服务器端实现的步骤"></a>TCP套接字编程中，服务器端实现的步骤</h2><p>1.使用socket函数创建套接字</p>
+<p>2.使用bind函数为socket绑定本地地址结构；</p>
+<p>3.使用listen函数设置套接字为监听模式，使得服务器变为被动打开状态；</p>
+<p>4.接收来自客户端的连接请求，建立连接；</p>
+<p>5.接收、应答客户端的数据请求</p>
+<p>6.终止连接。</p>
+<h2 id="TCP套接字编程中，客户端实现的步骤"><a href="#TCP套接字编程中，客户端实现的步骤" class="headerlink" title="TCP套接字编程中，客户端实现的步骤"></a>TCP套接字编程中，客户端实现的步骤</h2><p>1.使用socket函数创建套接字；</p>
+<p>2.调用connet函数创建一个与服务器端的连接；</p>
+<p>3.发送数据请求，接收服务端的应答；</p>
+<p>4.终止连接。</p>
+<h2 id="socker函数"><a href="#socker函数" class="headerlink" title="socker函数"></a>socker函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket(int family,int type,int protocol);</span><br></pre></td></tr></table></figure>
+
+<p>family参数的值通常为：</p>
+<ul>
+<li>AF_INET:IPv4</li>
+<li>AF_INT6:IPv6</li>
+<li>AF_ROUTE:路由接口</li>
+</ul>
+<p>type参数指明产生套接字的类型，它的值包括：</p>
+<ul>
+<li>SOCKET_STREAM：流套接口（TCP）</li>
+<li>SOCKET_DGRAM：数据报套接口（UDP）</li>
+<li>SOCKER_RAW：原始套接口</li>
+</ul>
+<h2 id="connect函数"><a href="#connect函数" class="headerlink" title="connect函数"></a>connect函数</h2><p>TCP客户端使用connet函数来配置套接字，建立一个与TCP服务器的连接。</p>
+<h2 id="bind函数"><a href="#bind函数" class="headerlink" title="bind函数"></a>bind函数</h2><p>为调用socket产生的套接字分配一个本地的协议地址，建立地址与套接字的对应关系。</p>
+<p><img src="/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413204905096.png" alt="image-20220413204905096"></p>
+<p><img src="%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413204905096.png" alt="image-20220413204905096"></p>
+<h2 id="listen函数"><a href="#listen函数" class="headerlink" title="listen函数"></a>listen函数</h2><p>把套接字转化为被动套接字，使它处于监听模式，指示内核接发向该套接字的连接请求。</p>
+<h2 id="accept函数"><a href="#accept函数" class="headerlink" title="accept函数"></a>accept函数</h2><p>使服务器接收客户端的连接请求。</p>
+<h2 id="close函数"><a href="#close函数" class="headerlink" title="close函数"></a>close函数</h2><p>关闭套接字并立即返回进程。</p>
+<h1 id="进程函数"><a href="#进程函数" class="headerlink" title="进程函数"></a>进程函数</h1><p>fork、vfork：创建新进程；</p>
+<p>wait、waitpid：父进程可通过其获得子进程的终止信息；</p>
+<p>waitpid的用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pid_t pid;</span><br><span class="line">int stat;</span><br><span class="line">while((pid=waitpid(-1,&amp;stat,WNOHANG))&gt;0)</span><br><span class="line">printf(&quot;child%d determinated\n&quot;,pid);</span><br></pre></td></tr></table></figure>
+
 <h1 id="线程基础函数"><a href="#线程基础函数" class="headerlink" title="线程基础函数"></a>线程基础函数</h1><p>pthread_creat：创建新线程；</p>
 <p>pthread_join:等待一个线程终止；</p>
+<h1 id="线程安全函数"><a href="#线程安全函数" class="headerlink" title="线程安全函数"></a>线程安全函数</h1><p>在线程特定数据中通常使用四个函数：</p>
+<p>pthread_key_creat:在进程内部分配一个标志TSD的关键字；</p>
+<p>pthead_once:函数调用once参数，保证每个进程只调用一次init函数；</p>
+<p>pthread_setspecific:为TSD关键字绑定一个与本线程相关的值；</p>
+<p>Pthead_getspecific:获取并调用线程相关的TSD关键字所绑定的值。</p>
+<h1 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h1><h2 id="服务器端对客户端发来的字符串进行凯撒K-3加密"><a href="#服务器端对客户端发来的字符串进行凯撒K-3加密" class="headerlink" title="服务器端对客户端发来的字符串进行凯撒K=3加密"></a>服务器端对客户端发来的字符串进行凯撒K=3加密</h2><p><img src="images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413104744060.png" alt="image-20220413104744060"></p>
+<p><img src="%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413104744060.png" alt="image-20220413104744060"></p>
 
       
 
@@ -405,7 +459,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O模型"><span class="toc-number">1.</span> <span class="toc-text">I/O模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O复用"><span class="toc-number">2.</span> <span class="toc-text">I/O复用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#I-O复用概述"><span class="toc-number">2.1.</span> <span class="toc-text">I/O复用概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I-O复用思想"><span class="toc-number">2.2.</span> <span class="toc-text">I/O复用思想</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#select函数"><span class="toc-number">3.</span> <span class="toc-text">select函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OSI模型-TCP-IP模型"><span class="toc-number">4.</span> <span class="toc-text">OSI模型 TCP/IP模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OSI（7个）"><span class="toc-number">4.1.</span> <span class="toc-text">OSI（7个）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP（4个）"><span class="toc-number">4.2.</span> <span class="toc-text">TCP/IP（4个）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#端口号"><span class="toc-number">5.</span> <span class="toc-text">端口号</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数"><span class="toc-number">6.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#细节排序函数："><span class="toc-number">6.1.</span> <span class="toc-text">细节排序函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程创建"><span class="toc-number">6.2.</span> <span class="toc-text">进程创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程终止"><span class="toc-number">6.3.</span> <span class="toc-text">进程终止</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#套接字地址结构"><span class="toc-number">7.</span> <span class="toc-text">套接字地址结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#connect函数用于UDP"><span class="toc-number">8.</span> <span class="toc-text">connect函数用于UDP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#服务器的分类"><span class="toc-number">9.</span> <span class="toc-text">服务器的分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程基础函数"><span class="toc-number">10.</span> <span class="toc-text">线程基础函数</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O模型"><span class="toc-number">1.</span> <span class="toc-text">I/O模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O复用"><span class="toc-number">2.</span> <span class="toc-text">I/O复用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#I-O复用概述"><span class="toc-number">2.1.</span> <span class="toc-text">I/O复用概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I-O复用思想"><span class="toc-number">2.2.</span> <span class="toc-text">I/O复用思想</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#select函数"><span class="toc-number">3.</span> <span class="toc-text">select函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OSI模型-TCP-IP模型"><span class="toc-number">4.</span> <span class="toc-text">OSI模型 TCP/IP模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OSI（7个）"><span class="toc-number">4.1.</span> <span class="toc-text">OSI（7个）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP（4个）"><span class="toc-number">4.2.</span> <span class="toc-text">TCP/IP（4个）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#套接字的类型"><span class="toc-number">5.</span> <span class="toc-text">套接字的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux系统常用协议"><span class="toc-number">5.1.</span> <span class="toc-text">Linux系统常用协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#套接接字类型"><span class="toc-number">5.2.</span> <span class="toc-text">套接接字类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#套接字地址结构"><span class="toc-number">6.</span> <span class="toc-text">套接字地址结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv4套接字地址结构"><span class="toc-number">6.1.</span> <span class="toc-text">IPv4套接字地址结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用套接字地址结构"><span class="toc-number">6.2.</span> <span class="toc-text">通用套接字地址结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#端口号"><span class="toc-number">7.</span> <span class="toc-text">端口号</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字节排序函数："><span class="toc-number">8.</span> <span class="toc-text">字节排序函数：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#connect函数用于UDP"><span class="toc-number">9.</span> <span class="toc-text">connect函数用于UDP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#服务器的分类"><span class="toc-number">10.</span> <span class="toc-text">服务器的分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP套接字编程"><span class="toc-number">11.</span> <span class="toc-text">TCP套接字编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP套接字编程中，服务器端实现的步骤"><span class="toc-number">11.1.</span> <span class="toc-text">TCP套接字编程中，服务器端实现的步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP套接字编程中，客户端实现的步骤"><span class="toc-number">11.2.</span> <span class="toc-text">TCP套接字编程中，客户端实现的步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#socker函数"><span class="toc-number">11.3.</span> <span class="toc-text">socker函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#connect函数"><span class="toc-number">11.4.</span> <span class="toc-text">connect函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bind函数"><span class="toc-number">11.5.</span> <span class="toc-text">bind函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#listen函数"><span class="toc-number">11.6.</span> <span class="toc-text">listen函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#accept函数"><span class="toc-number">11.7.</span> <span class="toc-text">accept函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#close函数"><span class="toc-number">11.8.</span> <span class="toc-text">close函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#进程函数"><span class="toc-number">12.</span> <span class="toc-text">进程函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程基础函数"><span class="toc-number">13.</span> <span class="toc-text">线程基础函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程安全函数"><span class="toc-number">14.</span> <span class="toc-text">线程安全函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码段"><span class="toc-number">15.</span> <span class="toc-text">代码段</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#服务器端对客户端发来的字符串进行凯撒K-3加密"><span class="toc-number">15.1.</span> <span class="toc-text">服务器端对客户端发来的字符串进行凯撒K=3加密</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -561,15 +615,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">VS code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,6 +636,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,6 +663,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -618,10 +676,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">bypass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -645,14 +699,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">复习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kali配置</a>
               </li>
              
@@ -662,6 +708,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">复习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
