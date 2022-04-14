@@ -25,7 +25,9 @@
 <meta property="og:image" content="http://xun9er.pro/2022/04/11/网络编程/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413210737830.png">
 <meta property="og:image" content="http://xun9er.pro/2022/04/11/网络编程/images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413104744060.png">
 <meta property="og:image" content="http://xun9er.pro/2022/04/11/网络编程/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413104744060.png">
-<meta property="og:updated_time" content="2022-04-13T21:40:23.208Z">
+<meta property="og:image" content="http://xun9er.pro/2022/04/11/网络编程/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220414064827276.png">
+<meta property="og:image" content="http://xun9er.pro/2022/04/11/网络编程/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220414064757639.png">
+<meta property="og:updated_time" content="2022-04-14T01:02:33.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络编程">
 <meta name="twitter:description" content="网络编程相关">
@@ -253,7 +255,7 @@
 </blockquote>
 <p>Timeval：可以提供秒数和毫秒数成员。</p>
 <p>select 函数使用描述字集为参数 readset(writeset 或 except)指定多个描述字，描述字集 是一个整数数组，每个数中的每一个对应于一个描述字，例如 32 位整数，则数组的第一个元 素对应于 0<del>31 描述字，第二个元素对应于 32</del>63 描述字等等。下面介绍操作这些描述字的 几个宏:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void FD_ZERO()fd_set * fdset);         /*将所有位设 0*/</span><br><span class="line">void FD_SET(int fd,fd_set*fdset);      /*将 fd 位设 1*/</span><br><span class="line">void FD_CLR(int fd,fd_set * fdset);    /*将 fd 位设为 0*/</span><br><span class="line">int FD_ISSET(int fd,fd_set * fdset):   /*检测 fd 位是否为 1*/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void FD_ZERO(fd_set * fdset);         /*将所有位设 0*/</span><br><span class="line">void FD_SET(int fd,fd_set*fdset);      /*将 fd 位设 1*/</span><br><span class="line">void FD_CLR(int fd,fd_set * fdset);    /*将 fd 位设为 0*/</span><br><span class="line">int FD_ISSET(int fd,fd_set * fdset):   /*检测 fd 位是否为 1*/</span><br></pre></td></tr></table></figure>
 
 <h1 id="OSI模型-TCP-IP模型"><a href="#OSI模型-TCP-IP模型" class="headerlink" title="OSI模型 TCP/IP模型"></a>OSI模型 TCP/IP模型</h1><h2 id="OSI（7个）"><a href="#OSI（7个）" class="headerlink" title="OSI（7个）"></a>OSI（7个）</h2><p>从上到下：应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p>
 <h2 id="TCP-IP（4个）"><a href="#TCP-IP（4个）" class="headerlink" title="TCP/IP（4个）"></a>TCP/IP（4个）</h2><p>从上到下：应用层、传输层 TCP UDP、网际层 IP、网络接口层</p>
@@ -262,9 +264,9 @@
 <li>INET：ip版本4</li>
 <li>INET6:ip版本6</li>
 </ul>
-<h2 id="套接接字类型"><a href="#套接接字类型" class="headerlink" title="套接接字类型"></a>套接接字类型</h2><p><strong>SOCKET_STREAM：流式套接字</strong></p>
-<p><strong>SOCKET_DGRAM：数据报套接字</strong></p>
-<p>SOCKET_RAW：原始套接字</p>
+<h2 id="套接接字类型"><a href="#套接接字类型" class="headerlink" title="套接接字类型"></a>套接接字类型</h2><p><strong>SOCK_STREAM：流式套接字</strong></p>
+<p><strong>SOCK_DGRAM：数据报套接字</strong></p>
+<p>SOCK_RAW：原始套接字</p>
 <h1 id="套接字地址结构"><a href="#套接字地址结构" class="headerlink" title="套接字地址结构"></a>套接字地址结构</h1><h2 id="IPv4套接字地址结构"><a href="#IPv4套接字地址结构" class="headerlink" title="IPv4套接字地址结构"></a>IPv4套接字地址结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct sockaddr_in&#123;</span><br><span class="line">	uint8_t sin_len;             /*长度成员*/</span><br><span class="line">	sa_fammily_t sin_family;     /*internet地址族*/</span><br><span class="line">	in_port_t sin_port;</span><br><span class="line">	struct in_addr.sin_addr;</span><br><span class="line">	char sin_zero[8];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="通用套接字地址结构"><a href="#通用套接字地址结构" class="headerlink" title="通用套接字地址结构"></a>通用套接字地址结构</h2><p>套接字地址结构定义在头文件&lt;sys/socket.h&gt;中,具体结构定义：</p>
@@ -330,6 +332,8 @@
 <p>Pthead_getspecific:获取并调用线程相关的TSD关键字所绑定的值。</p>
 <h1 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h1><h2 id="服务器端对客户端发来的字符串进行凯撒K-3加密"><a href="#服务器端对客户端发来的字符串进行凯撒K-3加密" class="headerlink" title="服务器端对客户端发来的字符串进行凯撒K=3加密"></a>服务器端对客户端发来的字符串进行凯撒K=3加密</h2><p><img src="images/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413104744060.png" alt="image-20220413104744060"></p>
 <p><img src="%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220413104744060.png" alt="image-20220413104744060"></p>
+<p><img src="%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220414064827276.png" alt="image-20220414064827276"></p>
+<p><img src="%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.assets/image-20220414064757639.png" alt="image-20220414064757639"></p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>通信双方进行套接字通信的基本信息（五元组）：</p>
 <p>源IP地址、源端口、目的IP地址、目的端口、传输层协议</p>
 
@@ -581,14 +585,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">刷题笔记</a>
               </li>
              
@@ -598,6 +594,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">php序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,23 +625,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">phar</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,11 +653,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">http走私</a>
+                <a href="javascript:void(0)" class="js-tag color5">phar</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">整理</a>
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,6 +666,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">http走私</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">整理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -697,11 +705,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,7 +737,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
               </li>
             
             <div class="clearfix"></div>
