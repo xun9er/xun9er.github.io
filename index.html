@@ -191,6 +191,286 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linux笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/02/linux笔记/">linux笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/02/linux笔记/" class="archive-article-date">
+  	<time datetime="2023-03-02T01:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-02</time>
+</a>
+    <!--字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.6k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
+          
+	
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+
+<p>linux应掌握：</p>
+<p>基础命令、服务</p>
+<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><p>查看SSH是否安装。</p>
+<p>　　输入命令：rpm -qa | grep ssh</p>
+<p>　　注：若没安装SSH则可输入：yum install openssh-server安装。</p>
+<p>输入命令：systemctl restart sshd 重启SSH服务。</p>
+<p>　　命令：systemctl start sshd 启动服务 | 命令：systemctl stop sshd 停止服务 </p>
+<p>　　重启后可输入：netstat -antp | grep sshd 查看是否启动22端口（可略）。</p>
+<h2 id="安装httpd"><a href="#安装httpd" class="headerlink" title="安装httpd"></a>安装httpd</h2><h3 id="yum安装包不存在"><a href="#yum安装包不存在" class="headerlink" title="yum安装包不存在"></a>yum安装包不存在</h3><p>执行<code>yum install httpd -y</code>报错</p>
+<p>执行<code>yum --disableexcludes=all install -y httpd</code></p>
+<h3 id="启动报错"><a href="#启动报错" class="headerlink" title="启动报错"></a>启动报错</h3><p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png" alt="image-20230302104156381"></p>
+<p>查看80端口是否占用 netstat -antlp | grep 80</p>
+<p>发现是nginx占用了</p>
+<p>关闭nginx </p>
+<p><code>nginx -s stop &gt;&gt;&gt;&gt;快速停止nginx</code></p>
+<p>启动nginx</p>
+<p><code>systemctl start nginx</code></p>
+<h2 id="MySql"><a href="#MySql" class="headerlink" title="MySql"></a>MySql</h2><h3 id="yum列出安装包"><a href="#yum列出安装包" class="headerlink" title="yum列出安装包"></a>yum列出安装包</h3><p><code>yum list mysql-server</code>返回没有安装包的提示</p>
+<p>需要去官网找链接然后用wget下载</p>
+<p>然后rpm安装<code>rpm -ivh mysql-community-release-el7-5.noarch.rpm</code></p>
+<h3 id="打开Mysql要密码"><a href="#打开Mysql要密码" class="headerlink" title="打开Mysql要密码"></a>打开Mysql要密码</h3><p>首先，停止<a href="https://cloud.tencent.com/product/cdb?from=10680" target="_blank" rel="noopener">MySQL</a>服务</p>
+<p>systemctl <code>stop</code> mysqld.service</p>
+<p>既然是密码错误，那么就先跳过密码验证的步骤</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>然后，搜索mysqld，找到[mysqld]（port=3306上面那个）：</p>
+<p>/mysqld(在vim编辑状态下直接输入该命令可搜索文本内容)。</p>
+<p>注：windows下修改的是my.ini。</p>
+<p>在 [mysqld] 底下添加语句：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">skip-grant-tables</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>（注：skip-grant-tables：不启动grant-tables授权表，作为启动参数的作用：MYSQL<a href="https://cloud.tencent.com/product/cvm?from=10680" target="_blank" rel="noopener">服务器</a>不加载权限判断，任何用户都能访问数据库）</p>
+<p>这是用来跳过密码验证的，添加之后保存退出。</p>
+<p>重新启动MySQL服务</p>
+<p>systemctl restart mysqld.service</p>
+<p>进入MySQL</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>出现密码输入时，不用输入直接按回车，就可以不用密码就能登录修改密码</p>
+<p>使用mysql数据库</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">复制代码</span><br><span class="line">mysql&gt; update user <span class="keyword">set</span> password=password("newpassword") where user="root";</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>如果报错：</p>
+<p>ERROR 1054(42S22) Unknown column ‘password’ in ‘field list’</p>
+<p>原因： 5.7版本下的mysql数据库下已经没有password这个字段了，password字段改成了authentication_string</p>
+<ol>
+<li><code>mysql&gt; update user set authentication_string=password(&quot;123456&quot;) where user=&quot;root&quot;;</code> </li>
+<li><code>#刷新MySQL权限相关的表</code> </li>
+<li><code>mysql&gt; flush privileges;</code> </li>
+<li><code>mysql&gt; exit;</code> </li>
+</ol>
+<p>密码修改完毕</p>
+<p>vim /etc/my.cnf</p>
+<p>编辑my.cnf（Windows下my.ini），将上面添加的内容去掉（skip-grant-tables）。</p>
+<p>重启MySQL</p>
+<p>systemctl restart mysqld.service</p>
+<p>使用新密码登录即可</p>
+<p><a href="https://cloud.tencent.com/developer/article/1915330" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1915330</a></p>
+<p>修改密码<code>grant all privileges on *.* to &#39;root&#39;@&#39;%&#39; identified by &#39;123456&#39; with grant option;</code></p>
+<p><strong>新密码是newpassword</strong></p>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>下载安装包（官网找链接）：wget </p>
+<p>解压包：<code>tar -xf nginx-1.20.2.tar.gz</code></p>
+<p>设置安装路径 <code>./configure --prefix=/usr/local/nginx</code></p>
+<p>编译&amp;安装<code>make &amp;&amp; make install</code></p>
+<p>启动nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line">./nginx</span><br><span class="line"></span><br><span class="line">nginx默认80端口和httpd冲突了所以需要关掉httpd </span><br><span class="line">systemctl stop httpd</span><br><span class="line"></span><br><span class="line">./nginx  启动</span><br><span class="line"># ./nginx -s stop  停止（先查出 nginx 进程 id 再使用 kill 命令强制杀掉进程）</span><br><span class="line"># ./nginx -s quit  退出（等待 nginx 进程将任务处理完毕再停止）</span><br><span class="line"># ./nginx -s reload  重新加载，适用于修改了配置文件之后操作</span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx负载均衡"><a href="#nginx负载均衡" class="headerlink" title="nginx负载均衡"></a>nginx负载均衡</h2><p>复制两个tomcat 这里命名为 tomcat8_1 和 tomcat8_2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp tomcat8 tomcat8_1</span><br><span class="line">cp tomcat8 tomcat8_2</span><br></pre></td></tr></table></figure>
+
+<p>修改tomcat8_1和tomcat8_2 的webapp/ROOT里的index.jsp方便辨认</p>
+<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303100906297.png" alt="image-20230303100906297"></p>
+<p>分别修改两个tomcat中的conf/server.xml</p>
+<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303172830968.png" alt="image-20230303172830968"></p>
+<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303172856575.png" alt="image-20230303172856575"></p>
+<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303172916112.png" alt="image-20230303172916112"></p>
+<p>启动两个tomcat</p>
+<p>保证三个服务器能访问</p>
+<ul>
+<li>修改nginx</li>
+</ul>
+<p>/user/local/nginx/conf</p>
+<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303101225383.png" alt="image-20230303101225383"></p>
+<p>由于之前搭建的网站端口号占用了80，修改nginx的端口号为9090</p>
+<p>然后访问9090端口就可以了</p>
+<p><strong>快速启动nginx的两种方法：1.配置环境变量2.写脚本</strong></p>
+<h2 id="nginx-静态访问图片"><a href="#nginx-静态访问图片" class="headerlink" title="nginx 静态访问图片"></a>nginx 静态访问图片</h2><p>建立图片文件夹 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /opt/temp/images</span><br></pre></td></tr></table></figure>
+
+<p>修改nginx配置文件，路径 /usr/local/nginx/conf 下的nginx.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#图片配置</span><br><span class="line">        location /images/ &#123;</span><br><span class="line">            root   /opt/temp/;</span><br><span class="line">            autoindex  on;</span><br><span class="line">        &#125;</span><br><span class="line">#autoindex作用 含义: 自动创建索引 on是打开 off关闭</span><br></pre></td></tr></table></figure>
+
+<p>重启，nginx </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>访问 <code>http://IP/images/1.jpg</code>即可</p>
+<h2 id="nfs-文件共享服务器"><a href="#nfs-文件共享服务器" class="headerlink" title="nfs 文件共享服务器"></a>nfs 文件共享服务器</h2><p>nfs由一台nfs服务器和若干客户机组成</p>
+<p>A：nfs服务器：192.168.51.133</p>
+<p>B：客户机：192.168.51.132</p>
+<h3 id="nfs服务器配置"><a href="#nfs服务器配置" class="headerlink" title="nfs服务器配置"></a>nfs服务器配置</h3><p>安装nfs-util rpcbind包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y nfs-utils rpcbind</span><br></pre></td></tr></table></figure>
+
+<p>启动rpc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start rpcbind</span><br></pre></td></tr></table></figure>
+
+<p>检查是否启动成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">netstat -tunlp | grep 111 </span><br><span class="line"></span><br><span class="line">若没有安装netstat则先安装</span><br><span class="line">yum -y install net-tools</span><br></pre></td></tr></table></figure>
+
+<p>配置nfs服务的配置文件参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi  /etc/exports</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/data/NFSdata</span><br><span class="line">192.168.51.132/24</span><br><span class="line">(rw,sync)</span><br></pre></td></tr></table></figure>
+
+<p><em>rw 读写权限，sync表示数据同步写入到内存硬盘中</em></p>
+<p>创建目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data/NFSdata</span><br></pre></td></tr></table></figure>
+
+<p>启动nfs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nfs</span><br></pre></td></tr></table></figure>
+
+<p>查看服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef |grep nfs</span><br></pre></td></tr></table></figure>
+
+<p>设置开机启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable rpcbind.service</span><br><span class="line">systemctl enable nfs-server.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>同样安装nfs-util 和 rpcbind包</p>
+<p>启动rpc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start rpcbind</span><br></pre></td></tr></table></figure>
+
+<p>创建目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /NFS</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+
+<p>挂载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t nfs 192.168.51.133:/data/NFSdata /NFS/</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端挂载时报错服务端的文件不存在（实际上文件存在）"><a href="#客户端挂载时报错服务端的文件不存在（实际上文件存在）" class="headerlink" title="客户端挂载时报错服务端的文件不存在（实际上文件存在）"></a>客户端挂载时报错服务端的文件不存在（实际上文件存在）</h3><p>查看<code>man exports</code></p>
+<p>需要在 /etc/exports 里添加参数<strong>fsid</strong>,如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/data/NFSdata</span><br><span class="line">192.168.51.132/24</span><br><span class="line">(fsid=0,rw,sync)</span><br></pre></td></tr></table></figure>
+
+<p>针对NFS4，exports需要一个新的参数fsid</p>
+<p>除了添加fsid参数外，挂载的路径也会有变化。<br>google一下就发现：Please do not specify the server path /data for NFSv4. You need to specify only / as fsid is set to 0。就是nfs4不需要指定服务器路径/数据，只需要指定虚拟根目录“/”就可以，因为FSID已经设置为0。<br>使用-mount.nfs4或mount -t nfs4都可以。</p>
+<h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><p>ftp 用户类型：</p>
+<p>匿名用户：不需要用户名密码就可以登录</p>
+<p>本地用户：需要用户名和密码才能登录，而且这个用户名和密码，都是linux系统里面已经有的用户</p>
+<p>虚拟用户：需要用户名和密码才可以登录，但是linux没有的账号</p>
+<h3 id="匿名用户ftp"><a href="#匿名用户ftp" class="headerlink" title="匿名用户ftp"></a>匿名用户ftp</h3><p>安装vsftpd服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure>
+
+<p>查找vsftpd安装目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whereis vsftpd</span><br></pre></td></tr></table></figure>
+
+<p>查看端口号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -tunlp | grep vsftpd</span><br></pre></td></tr></table></figure>
+
+<p>进入 /var/ftp/pub/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd  /var/ftp/pub</span><br></pre></td></tr></table></figure>
+
+<p>开启上传权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
+
+<p>为pub文件夹赋权</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 pub/</span><br></pre></td></tr></table></figure>
+
+<p>重启ftp服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart vsftpd</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
+
+<p>在windous文件管理处输入<code>ftp://ip/pub</code> 就可以拖文件进去了</p>
+<h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>Source 和 bash 的区别</p>
+<h3 id="no-crontab-for-root"><a href="#no-crontab-for-root" class="headerlink" title="no crontab for root"></a>no crontab for root</h3><p> root 用户下输入 crontab -e</p>
+<p>按 Esc 按： wq  回车</p>
+<p>在输入 crontab -l 就没有问题了</p>
+<ul>
+<li>nginx负载均衡</li>
+<li>nfs</li>
+<li>ftp用户登录</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/02/linux笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-yilia左侧动态图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1093,108 +1373,6 @@
 
 
   
-    <article id="post-pat_1013-数素数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/21/pat_1013-数素数/">pat_1013 数素数</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/21/pat_1013-数素数/" class="archive-article-date">
-  	<time datetime="2021-11-21T14:23:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-21</time>
-</a>
-    <!--字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">333字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-          
-	
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1013-数素数"><a href="#1013-数素数" class="headerlink" title="1013 数素数"></a>1013 数素数</h1>
-        
-          <a class="article-more-a" href="/2021/11/21/pat_1013-数素数/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pat</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/21/pat_1013-数素数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1312,15 +1490,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">pat</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1372,6 +1550,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">http走私</a>
               </li>
              
@@ -1380,23 +1566,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">md5</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1405,6 +1579,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">upload-labs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1428,15 +1610,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">复习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
               </li>
              
               <li class="article-tag-list-item">
