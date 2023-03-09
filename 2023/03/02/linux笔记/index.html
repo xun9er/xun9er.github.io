@@ -8,25 +8,28 @@
   <link rel="dns-prefetch" href="http://xun9er.online">
   <title>linux笔记 | Xun9er&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="linux应掌握： 基础命令、服务">
-<meta name="keywords" content="-linux">
+  <meta name="description" content="[toc]">
+<meta name="keywords" content="linux,centos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux笔记">
 <meta property="og:url" content="http://xun9er.online/2023/03/02/linux笔记/index.html">
 <meta property="og:site_name" content="Xun9er&#39;s blog">
-<meta property="og:description" content="linux应掌握： 基础命令、服务">
+<meta property="og:description" content="[toc]">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://xun9er.online/2023/03/02/linux笔记/linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png">
-<meta property="og:image" content="http://xun9er.online/2023/03/02/linux笔记/linux%E7%AC%94%E8%AE%B0.assets/image-20230303100906297.png">
-<meta property="og:image" content="http://xun9er.online/2023/03/02/linux笔记/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172830968.png">
-<meta property="og:image" content="http://xun9er.online/2023/03/02/linux笔记/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172856575.png">
-<meta property="og:image" content="http://xun9er.online/2023/03/02/linux笔记/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172916112.png">
-<meta property="og:image" content="http://xun9er.online/2023/03/02/linux笔记/linux%E7%AC%94%E8%AE%B0.assets/image-20230303101225383.png">
-<meta property="og:updated_time" content="2023-03-05T01:51:14.112Z">
+<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png">
+<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303100906297.png">
+<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172830968.png">
+<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172856575.png">
+<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172916112.png">
+<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303101225383.png">
+<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306155520555.png">
+<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306155622305.png">
+<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306141623147.png">
+<meta property="og:updated_time" content="2023-03-09T07:55:32.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux笔记">
-<meta name="twitter:description" content="linux应掌握： 基础命令、服务">
-<meta name="twitter:image" content="http://xun9er.online/2023/03/02/linux笔记/linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png">
+<meta name="twitter:description" content="[toc]">
+<meta name="twitter:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -223,7 +226,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
+        <span class="post-count">3.7k字</span>
       </span>
     </span>
 
@@ -232,7 +235,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
+        <span class="post-count">17分</span>
       </span>
     </span>
 </div>
@@ -243,9 +246,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>linux应掌握：</p>
-<p>基础命令、服务</p>
+        <p>[toc]</p>
 <a id="more"></a>
+
+<p><em>linux应掌握：</em></p>
+<p><em>基础命令、服务</em></p>
+<h2 id="配置vmware虚拟机centos-ip"><a href="#配置vmware虚拟机centos-ip" class="headerlink" title="配置vmware虚拟机centos ip"></a>配置vmware虚拟机centos ip</h2><p>设置网路连接类型为nat（默认就是）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-ens33</span><br></pre></td></tr></table></figure>
+
+<p>修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens33</span><br><span class="line">UUID=f86456f6-ae1e-40f8-958b-ad50e7c22a7b</span><br><span class="line">DEVICE=ens33</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=192.168.51.133</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">DNS1=8.8.8.8</span><br><span class="line">DNS2=8.8.8.4</span><br><span class="line">ZONE=public</span><br></pre></td></tr></table></figure>
+
+<p>然后重启网络服务即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
 
 <h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><p>查看SSH是否安装。</p>
 <p>　　输入命令：rpm -qa | grep ssh</p>
@@ -255,7 +268,7 @@
 <p>　　重启后可输入：netstat -antp | grep sshd 查看是否启动22端口（可略）。</p>
 <h2 id="安装httpd"><a href="#安装httpd" class="headerlink" title="安装httpd"></a>安装httpd</h2><h3 id="yum安装包不存在"><a href="#yum安装包不存在" class="headerlink" title="yum安装包不存在"></a>yum安装包不存在</h3><p>执行<code>yum install httpd -y</code>报错</p>
 <p>执行<code>yum --disableexcludes=all install -y httpd</code></p>
-<h3 id="启动报错"><a href="#启动报错" class="headerlink" title="启动报错"></a>启动报错</h3><p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png" alt="image-20230302104156381"></p>
+<h3 id="启动报错"><a href="#启动报错" class="headerlink" title="启动报错"></a>启动报错</h3><p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png" alt="image-20230302104156381"></p>
 <p>查看80端口是否占用 netstat -antlp | grep 80</p>
 <p>发现是nginx占用了</p>
 <p>关闭nginx </p>
@@ -265,6 +278,18 @@
 <h2 id="MySql"><a href="#MySql" class="headerlink" title="MySql"></a>MySql</h2><h3 id="yum列出安装包"><a href="#yum列出安装包" class="headerlink" title="yum列出安装包"></a>yum列出安装包</h3><p><code>yum list mysql-server</code>返回没有安装包的提示</p>
 <p>需要去官网找链接然后用wget下载</p>
 <p>然后rpm安装<code>rpm -ivh mysql-community-release-el7-5.noarch.rpm</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mysql-community-server</span><br></pre></td></tr></table></figure>
+
+<p>由于docker占用了3306端口导致mysql无法启动，所以先关闭响应容器</p>
+<p>第一次登录mysql不用密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root</span><br></pre></td></tr></table></figure>
+
+<p>登入后修改密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;123456&apos; with grant option;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p>再次登陆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p123456</span><br></pre></td></tr></table></figure>
+
 <h3 id="打开Mysql要密码"><a href="#打开Mysql要密码" class="headerlink" title="打开Mysql要密码"></a>打开Mysql要密码</h3><p>首先，停止<a href="https://cloud.tencent.com/product/cdb?from=10680" target="_blank" rel="noopener">MySQL</a>服务</p>
 <p>systemctl <code>stop</code> mysqld.service</p>
 <p>既然是密码错误，那么就先跳过密码验证的步骤</p>
@@ -304,34 +329,33 @@
 <p>使用新密码登录即可</p>
 <p><a href="https://cloud.tencent.com/developer/article/1915330" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1915330</a></p>
 <p>修改密码<code>grant all privileges on *.* to &#39;root&#39;@&#39;%&#39; identified by &#39;123456&#39; with grant option;</code></p>
-<p><strong>新密码是newpassword</strong></p>
-<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>下载安装包（官网找链接）：wget </p>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><h3 id="nginx安装"><a href="#nginx安装" class="headerlink" title="nginx安装"></a>nginx安装</h3><p>下载安装包（官网找链接）：wget </p>
 <p>解压包：<code>tar -xf nginx-1.20.2.tar.gz</code></p>
 <p>设置安装路径 <code>./configure --prefix=/usr/local/nginx</code></p>
 <p>编译&amp;安装<code>make &amp;&amp; make install</code></p>
 <p>启动nginx</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line">./nginx</span><br><span class="line"></span><br><span class="line">nginx默认80端口和httpd冲突了所以需要关掉httpd </span><br><span class="line">systemctl stop httpd</span><br><span class="line"></span><br><span class="line">./nginx  启动</span><br><span class="line"># ./nginx -s stop  停止（先查出 nginx 进程 id 再使用 kill 命令强制杀掉进程）</span><br><span class="line"># ./nginx -s quit  退出（等待 nginx 进程将任务处理完毕再停止）</span><br><span class="line"># ./nginx -s reload  重新加载，适用于修改了配置文件之后操作</span><br></pre></td></tr></table></figure>
 
-<h2 id="nginx负载均衡"><a href="#nginx负载均衡" class="headerlink" title="nginx负载均衡"></a>nginx负载均衡</h2><p>复制两个tomcat 这里命名为 tomcat8_1 和 tomcat8_2</p>
+<h3 id="nginx负载均衡"><a href="#nginx负载均衡" class="headerlink" title="nginx负载均衡"></a>nginx负载均衡</h3><p>复制两个tomcat 这里命名为 tomcat8_1 和 tomcat8_2</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp tomcat8 tomcat8_1</span><br><span class="line">cp tomcat8 tomcat8_2</span><br></pre></td></tr></table></figure>
 
 <p>修改tomcat8_1和tomcat8_2 的webapp/ROOT里的index.jsp方便辨认</p>
-<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303100906297.png" alt="image-20230303100906297"></p>
+<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303100906297.png" alt="image-20230303100906297"></p>
 <p>分别修改两个tomcat中的conf/server.xml</p>
-<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303172830968.png" alt="image-20230303172830968"></p>
-<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303172856575.png" alt="image-20230303172856575"></p>
-<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303172916112.png" alt="image-20230303172916112"></p>
+<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172830968.png" alt="image-20230303172830968"></p>
+<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172856575.png" alt="image-20230303172856575"></p>
+<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172916112.png" alt="image-20230303172916112"></p>
 <p>启动两个tomcat</p>
 <p>保证三个服务器能访问</p>
 <ul>
 <li>修改nginx</li>
 </ul>
-<p>/user/local/nginx/conf</p>
-<p><img src="linux%E7%AC%94%E8%AE%B0.assets/image-20230303101225383.png" alt="image-20230303101225383"></p>
+<p>/usr/local/nginx/conf</p>
+<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303101225383.png" alt="image-20230303101225383"></p>
 <p>由于之前搭建的网站端口号占用了80，修改nginx的端口号为9090</p>
 <p>然后访问9090端口就可以了</p>
 <p><strong>快速启动nginx的两种方法：1.配置环境变量2.写脚本</strong></p>
-<h2 id="nginx-静态访问图片"><a href="#nginx-静态访问图片" class="headerlink" title="nginx 静态访问图片"></a>nginx 静态访问图片</h2><p>建立图片文件夹 </p>
+<h3 id="nginx-静态访问图片"><a href="#nginx-静态访问图片" class="headerlink" title="nginx 静态访问图片"></a>nginx 静态访问图片</h3><p>建立图片文件夹 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /opt/temp/images</span><br></pre></td></tr></table></figure>
 
 <p>修改nginx配置文件，路径 /usr/local/nginx/conf 下的nginx.conf</p>
@@ -341,10 +365,121 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
 
 <p>访问 <code>http://IP/images/1.jpg</code>即可</p>
+<h2 id="fastdfs"><a href="#fastdfs" class="headerlink" title="fastdfs"></a>fastdfs</h2><p><a href="https://blog.csdn.net/Geekst/article/details/123487179" target="_blank" rel="noopener">https://blog.csdn.net/Geekst/article/details/123487179</a></p>
+<p> 安装</p>
+<p>功能文件目录：</p>
+<p>opt/fastdfs 数据存储目录<br>usr/local/fdfs 启动文件目录<br>etc/fdfs 配置文件目录<br>usr/bin/fdfs_trackerd 启动配置<br>etc/init.d/fdfs_trackerd 启动服务脚本</p>
+<h3 id="ibfastcommon"><a href="#ibfastcommon" class="headerlink" title="ibfastcommon"></a>ibfastcommon</h3><p>下载地址：<a href="https://github.com/happyfish100/libfastcommon/archive/V1.0.7.tar.gz" target="_blank" rel="noopener">https://github.com/happyfish100/libfastcommon/archive/V1.0.7.tar.gz</a></p>
+<p>或者进入usr/local使用命令：</p>
+<p>wget <a href="https://github.com/happyfish100/libfastcommon/archive/V1.0.7.tar.gz" target="_blank" rel="noopener">https://github.com/happyfish100/libfastcommon/archive/V1.0.7.tar.gz</a></p>
+<p>上传压缩包文件libfastcommonV1.0.7.tar.gz 到 /opt目录下，并解压。</p>
+<p>赋予权限 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 libfastcommonV1.0.7.tar.gz</span><br><span class="line"></span><br><span class="line">tar -zxvf libfastcommonV1.0.7.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>进入到解压后的文件夹中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd libfastcommon-1.0.7/</span><br><span class="line"></span><br><span class="line">./make.sh</span><br></pre></td></tr></table></figure>
+
+<p>如果出现编译perl 不识别 运行下面这段命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install zlib zlib-devel pcre pcre-devel gcc gcc-c++ openssl openssl-devel libevent libevent-devel perl unzip net-tools wget</span><br><span class="line"></span><br><span class="line">./make.sh install</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/lib64/libfastcommon.so /usr/lib/</span><br></pre></td></tr></table></figure>
+
+<p>注意：libfastcommon安装好后会自动将库文件拷贝至/usr/lib64下，由于FastDFS程序引用usr/lib目录所以需要将/usr/lib64下的库文件拷贝至/usr/lib下。</p>
+<h3 id="fastDFS软件——tracker"><a href="#fastDFS软件——tracker" class="headerlink" title="fastDFS软件——tracker"></a>fastDFS软件——tracker</h3><p>下载地址：<a href="https://github.com/happyfish100/fastdfs/archive/V5.05.tar.gz" target="_blank" rel="noopener">https://github.com/happyfish100/fastdfs/archive/V5.05.tar.gz</a></p>
+<p>或者使用命令：</p>
+<p>wget <a href="https://github.com/happyfish100/fastdfs/archive/V5.05.tar.gz" target="_blank" rel="noopener">https://github.com/happyfish100/fastdfs/archive/V5.05.tar.gz</a></p>
+<p>上传FastDFS_v5.05.tar.gz到 /usr/local 目录下</p>
+<p>解压编译安装</p>
+<pre><code>tar -zxvf FastDFS_v5.05.tar.gz
+
+cd FastDFS
+
+./make.sh
+
+./make.sh install</code></pre><p>安装成功之后，将安装目录下的conf下的文件拷贝到/etc/fdfs/下。</p>
+<pre><code>cd conf
+
+cp * /etc/fdfs/</code></pre><p>修改配置文件</p>
+<pre><code>cd /etc/fdfs
+
+vim /etc/fdfs/tracker.conf
+
+/base_path直接寻找修改为：
+base_path=/opt/fastdfs</code></pre><p>保存退出后，创建fastdfs文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/fastdfs</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置storage（不需要安装，因为安装tracker时已经同时安装了）"><a href="#配置storage（不需要安装，因为安装tracker时已经同时安装了）" class="headerlink" title="配置storage（不需要安装，因为安装tracker时已经同时安装了）"></a>配置storage（不需要安装，因为安装tracker时已经同时安装了）</h4><p>创建fdfs_storage文件夹：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/fastdfs/fdfs_storage</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fdfs/storage.conf 【一共要修改如下的三个地方】</span><br></pre></td></tr></table></figure>
+
+<p>1.软件目录： /opt/fastdfs<br>Base_path=/opt/fastdfs<br> 2.Storage存储文件的目录： /opt/fastdfs/fdfs_storage<br>Store_path0=/opt/fastdfs/fdfs_storage<br> 3.Storage的tracker的ip：（端口22122，IP地址写本机，云服务器则写公网IP）<br>Tracker_server=192.168.51.147:22122</p>
+<p>加入启动项中</p>
+<pre><code>cd /etc/init.d
+chkconfig --add fdfs_trackerd
+chkconfig --add fdfs_storaged</code></pre><p>启动测试</p>
+<pre><code>cd /etc/init.d
+service fdfs_trackerd start
+service fdfs_storaged start</code></pre><h4 id="FDFS的Linux的上传测试"><a href="#FDFS的Linux的上传测试" class="headerlink" title="FDFS的Linux的上传测试"></a>FDFS的Linux的上传测试</h4><p>如果是云服务器，一定要放行22122和23000端口。</p>
+<p>修改/etc/fdfs/client.conf</p>
+<p>vi /etc/fdfs/client.conf<br>在这里插入图片描述</p>
+<p>这里准备一张图片：test.jpg，并上传到/root目录下</p>
+<pre><code>cd /root
+
+/usr/bin/fdfs_test /etc/fdfs/client.conf upload /root/test.jpg</code></pre><p>在这里插入图片描述<br>可以看到上传成功，并且打印了日志。</p>
+<p>并且看到最下面返回了一个链接：<a href="http://192.168.51.147:8081/group1/M00/00/00/wKgzk2QEm3WAT7weAD-Qcz487OI877_big.jpg" target="_blank" rel="noopener">http://192.168.51.147:8081/group1/M00/00/00/wKgzk2QEm3WAT7weAD-Qcz487OI877_big.jpg</a></p>
+<p>【但是，是肯定打不开的。因为我们还缺一个nginx】</p>
+<p>进入放文件的data目录：cd /opt/fastdfs/fdfs_storage/data/00/00</p>
+<p>这个就是刚才上传的图片文件。</p>
+<p>FastDFS不是一个web服务器，无法处理这种http协议的web请求。不过接下来有个方法可以帮助我们解决这个问题。</p>
+<h3 id="安装FDFS整合Nginx的插件"><a href="#安装FDFS整合Nginx的插件" class="headerlink" title="安装FDFS整合Nginx的插件"></a>安装FDFS整合Nginx的插件</h3><p>下载地址：<a href="http://jaist.dl.sourceforge.net/project/fastdfs/FastDFS%20Nginx%20Module%20Source%20Code/fastdfs-nginx-module_v1.16.tar.gz" target="_blank" rel="noopener">http://jaist.dl.sourceforge.net/project/fastdfs/FastDFS%20Nginx%20Module%20Source%20Code/fastdfs-nginx-module_v1.16.tar.gz</a></p>
+<p>或者使用命令：</p>
+<p>wget <a href="http://jaist.dl.sourceforge.net/project/fastdfs/FastDFS%20Nginx%20Module%20Source%20Code/fastdfs-nginx-module_v1.16.tar.gz" target="_blank" rel="noopener">http://jaist.dl.sourceforge.net/project/fastdfs/FastDFS%20Nginx%20Module%20Source%20Code/fastdfs-nginx-module_v1.16.tar.gz</a></p>
+<p>上传fastdfs-nginx-module_v1.16.tar.gz到/opt目录下</p>
+<p>解压：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf fastdfs-nginx-module_v1.16.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>修改插件读取fdfs的目录(插件自己的配置文件)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/fastdfs-nginx-module/src</span><br><span class="line"></span><br><span class="line">vi config</span><br></pre></td></tr></table></figure>
+
+<p>CORE_INCS=”$CORE_INSC /usr/include/fastdfs /usr/include/fastcommon/“</p>
+<p>【注意，这里是两个路径！】</p>
+<p>将插件整合FDFS的配置文件拷贝到fdfs的配置目录下(整合fdfs的配置文件)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp mod_fastdfs.conf /etc/fdfs/</span><br><span class="line"></span><br><span class="line">vi /etc/fdfs/mod_fastdfs.conf</span><br></pre></td></tr></table></figure>
+
+<p>base_path=/opt/fastdfs</p>
+<p>tracker_server=192.168.51.147:22122</p>
+<p>url_have_group_name=true</p>
+<p>store_path0 = /home/fastdfs/fdfs_strage</p>
+<p>6 安装配置Nginx</p>
+<p>下载地址：<a href="https://nginx.org/download/nginx-1.12.2.tar.gz" target="_blank" rel="noopener">https://nginx.org/download/nginx-1.12.2.tar.gz</a></p>
+<p>解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf nginx-1.12.2.tar.gz</span><br><span class="line"></span><br><span class="line">cd nginx-1.12.2</span><br></pre></td></tr></table></figure>
+
+<p>在nginx-1.12.2目录下    直接粘贴：【回车】</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">./configure \</span><br><span class="line">--prefix=/usr/local/nginx \</span><br><span class="line">--pid-path=/var/run/nginx/nginx.pid \</span><br><span class="line">--lock-path=/var/lock/nginx.lock \</span><br><span class="line">--error-log-path=/var/log/nginx/error.log \</span><br><span class="line">--http-log-path=/var/log/nginx/access.log \</span><br><span class="line">--with-http_gzip_static_module \</span><br><span class="line">--http-client-body-temp-path=/var/temp/nginx/client \</span><br><span class="line">--http-proxy-temp-path=/var/temp/nginx/proxy \</span><br><span class="line">--http-fastcgi-temp-path=/var/temp/nginx/fastcgi \</span><br><span class="line">--http-uwsgi-temp-path=/var/temp/nginx/uwsgi \</span><br><span class="line">--http-scgi-temp-path=/var/temp/nginx/scgi \</span><br><span class="line">--add-module=/opt/fastdfs-nginx-module/src</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>创建临时的目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/temp/nginx/client</span><br></pre></td></tr></table></figure>
+
+<p>修改nginx的配置文件</p>
+<p>/usr/local/nginx/conf</p>
+<p>vi nginx.conf</p>
+<p>[ngx_fastdfs_module;]</p>
+<p>由于之前搭建了一个nginx负载均衡，所以添加一个server：</p>
+<p> <img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306155520555.png" alt="image-20230306155520555"></p>
+<p>启动nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line"></span><br><span class="line">./nginx</span><br></pre></td></tr></table></figure>
+
+<p>访问：<a href="http://192.168.51.147:8081/group1/M00/00/00/wKgzk2QEm3WAT7weAD-Qcz487OI877_big.jpg" target="_blank" rel="noopener">http://192.168.51.147:8081/group1/M00/00/00/wKgzk2QEm3WAT7weAD-Qcz487OI877_big.jpg</a></p>
+<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306155622305.png" alt="image-20230306155622305"></p>
+<p>原文链接：<a href="https://blog.csdn.net/Geekst/article/details/123487179" target="_blank" rel="noopener">https://blog.csdn.net/Geekst/article/details/123487179</a></p>
 <h2 id="nfs-文件共享服务器"><a href="#nfs-文件共享服务器" class="headerlink" title="nfs 文件共享服务器"></a>nfs 文件共享服务器</h2><p>nfs由一台nfs服务器和若干客户机组成</p>
 <p>A：nfs服务器：192.168.51.133</p>
 <p>B：客户机：192.168.51.132</p>
-<h3 id="nfs服务器配置"><a href="#nfs服务器配置" class="headerlink" title="nfs服务器配置"></a>nfs服务器配置</h3><p>安装nfs-util rpcbind包</p>
+<h3 id="nfs服务器配置"><a href="#nfs服务器配置" class="headerlink" title="nfs服务器配置"></a>nfs服务器配置</h3><p>安装nfs-util 和 rpcbind包</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y nfs-utils rpcbind</span><br></pre></td></tr></table></figure>
 
 <p>启动rpc</p>
@@ -384,7 +519,7 @@
 <p>挂载</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t nfs 192.168.51.133:/data/NFSdata /NFS/</span><br></pre></td></tr></table></figure>
 
-<h3 id="客户端挂载时报错服务端的文件不存在（实际上文件存在）"><a href="#客户端挂载时报错服务端的文件不存在（实际上文件存在）" class="headerlink" title="客户端挂载时报错服务端的文件不存在（实际上文件存在）"></a>客户端挂载时报错服务端的文件不存在（实际上文件存在）</h3><p>查看<code>man exports</code></p>
+<h3 id="问题：客户端挂载时报错服务端的文件不存在（实际上文件存在）"><a href="#问题：客户端挂载时报错服务端的文件不存在（实际上文件存在）" class="headerlink" title="问题：客户端挂载时报错服务端的文件不存在（实际上文件存在）"></a>问题：客户端挂载时报错服务端的文件不存在（实际上文件存在）</h3><p>查看<code>man exports</code></p>
 <p>需要在 /etc/exports 里添加参数<strong>fsid</strong>,如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/data/NFSdata</span><br><span class="line">192.168.51.132/24</span><br><span class="line">(fsid=0,rw,sync)</span><br></pre></td></tr></table></figure>
 
@@ -419,15 +554,61 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
 
 <p>在windous文件管理处输入<code>ftp://ip/pub</code> 就可以拖文件进去了</p>
+<h3 id="本地用户ftp"><a href="#本地用户ftp" class="headerlink" title="本地用户ftp"></a>本地用户ftp</h3><p>修改ftp配置文件vsftpd.conf,先备份</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/vsftpd/</span><br><span class="line">cp vsftpd.conf vsftpd.conf.default</span><br><span class="line"></span><br><span class="line">配置如下</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">anon_upload_enable=YES   //允许匿名用户对服务端进行上传文件，创建目录和写入文件。</span><br><span class="line">anon_mkdir_write_enable=YES</span><br></pre></td></tr></table></figure>
+
+<p>创建用户并设置密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd ftp</span><br><span class="line">passwd ftp</span><br></pre></td></tr></table></figure>
+
+<p>用户授权</p>
+<p>ftp用户的默认主目录是 /var/ftp/pub ，该目录的属主用户是 root ，因此ftp用户没有权限在该目录下进行访问与文件的创建（传输），所以需要授权。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R ftp /var/ftp/pub</span><br></pre></td></tr></table></figure>
+
+<p>启动服务并检查运行状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start vsftpd</span><br><span class="line">systemctl enable vsftpd</span><br><span class="line">systemctl status vsftpd</span><br></pre></td></tr></table></figure>
+
+<p>在windows打开cmd,进入到想要传输文件的文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tcp 192.168.51.133</span><br><span class="line">输入刚才创建的用户名及密码即可建立ftp连接</span><br><span class="line"></span><br><span class="line">向服务器发送文件</span><br><span class="line">put 123.txt</span><br><span class="line"></span><br><span class="line">可在linux的/var/ftp/pub目录下看大123.txt</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a href="https://blog.csdn.net/oldboy1999/article/details/129161597" target="_blank" rel="noopener">https://blog.csdn.net/oldboy1999/article/details/129161597</a></p>
+<h3 id="虚拟用户"><a href="#虚拟用户" class="headerlink" title="虚拟用户"></a>虚拟用户</h3><p><a href="https://help.ubuntu.com/community/vsftpd#Create_The_Virtual_Users_Database" target="_blank" rel="noopener">https://help.ubuntu.com/community/vsftpd#Create_The_Virtual_Users_Database</a></p>
+<h4 id="Configure-VSFTPD-for-virtual-user"><a href="#Configure-VSFTPD-for-virtual-user" class="headerlink" title="Configure VSFTPD for virtual user"></a>Configure VSFTPD for virtual user</h4><p>Edit the vsftpd configuration file (/etc/vsftpd.conf). Add or correct the following configuration options, depending on if they’re already listed somewhere in the file or not (or just add these all to the bottom):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable=NO`</span><br><span class="line">`local_enable=YES`</span><br><span class="line">`# Virtual users will use the same privileges as local users.`</span><br><span class="line">`# It will grant write access to virtual users. Virtual users will use the`</span><br><span class="line">`# same privileges as anonymous users, which tends to be more restrictive`</span><br><span class="line">`# (especially in terms of write access).`</span><br><span class="line">`virtual_use_local_privs=YES`</span><br><span class="line">`write_enable=YES</span><br><span class="line"># Set the name of the PAM service vsftpd will use`</span><br><span class="line">`pam_service_name=vsftpd.virtual</span><br><span class="line"># Activates virtual users`</span><br><span class="line">`guest_enable=YES</span><br><span class="line"># Automatically generate a home directory for each virtual user, based on a template.`</span><br><span class="line">`# For example, if the home directory of the real user specified via guest_username is`</span><br><span class="line">`# /home/virtual/$USER, and user_sub_token is set to $USER, then when virtual user vivek`</span><br><span class="line">`# logs in, he will end up (usually chroot()&apos;ed) in the directory /home/virtual/vivek.`</span><br><span class="line">`# This option also takes affect if local_root contains user_sub_token.`</span><br><span class="line">`user_sub_token=$USER</span><br><span class="line"># Usually this is mapped to Apache virtual hosting docroot, so that`</span><br><span class="line">`# Users can upload files`</span><br><span class="line">`local_root=/home/vftp/$USER</span><br><span class="line"># Chroot user and lock down to their home dirs`</span><br><span class="line">`chroot_local_user=YES</span><br><span class="line"># Hide ids from user`</span><br><span class="line">`hide_ids=YES</span><br></pre></td></tr></table></figure>
+
+<p>Save and close the file.</p>
+<h4 id="Create-a-PAM-File-Which-Uses-Your-New-Database"><a href="#Create-a-PAM-File-Which-Uses-Your-New-Database" class="headerlink" title="Create a PAM File Which Uses Your New Database"></a>Create a PAM File Which Uses Your New Database</h4><p>The following PAM is used to authenticate users using your new database. Create /etc/pam.d/vsftpd.virtual: <code># sudo gedit /etc/pam.d/vsftpd.virtual</code></p>
+<h4 id="Append-or-create-with-the-following"><a href="#Append-or-create-with-the-following" class="headerlink" title="Append (or create with) the following:"></a>Append (or create with) the following:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#%PAM-1.0`</span><br><span class="line">`auth    required   pam_userdb.so db=/etc/vsftpd/vsftpd-virtual-user`</span><br><span class="line">`account  required   pam_userdb.so db=/etc/vsftpd/vsftpd-virtual-user`</span><br><span class="line">`session  required   pam_loginuid.so</span><br></pre></td></tr></table></figure>
+
+<p>Create The Location Of The Files</p>
+<p>You need to set up the location of the files / dirs for the virtual users. Type the following command: <code># mkdir /home/vftp</code><br><code># mkdir -p /home/vftp/{vivek,sayali}</code><br><code># chown -R ftp:ftp /home/vftp</code></p>
+<h4 id="Restart-The-FTP-Server"><a href="#Restart-The-FTP-Server" class="headerlink" title="Restart The FTP Server"></a>Restart The FTP Server</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Type the following command:</span><br><span class="line"># service vsftpd restart</span><br></pre></td></tr></table></figure>
+
+<h4 id="Test-Your-Setup"><a href="#Test-Your-Setup" class="headerlink" title="Test Your Setup"></a>Test Your Setup</h4><p>Open another shell session and type:<br><code>$ ftp localhost</code></p>
 <h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>Source 和 bash 的区别</p>
 <h3 id="no-crontab-for-root"><a href="#no-crontab-for-root" class="headerlink" title="no crontab for root"></a>no crontab for root</h3><p> root 用户下输入 crontab -e</p>
 <p>按 Esc 按： wq  回车</p>
 <p>在输入 crontab -l 就没有问题了</p>
-<ul>
-<li>nginx负载均衡</li>
-<li>nfs</li>
-<li>ftp用户登录</li>
-</ul>
+<h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><h3 id="需要记住的命令"><a href="#需要记住的命令" class="headerlink" title="需要记住的命令"></a>需要记住的命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">--镜像-----------------</span><br><span class="line">docker pull 从服务器拉取镜像</span><br><span class="line">docker push 推送镜像到服务器</span><br><span class="line">docker images 查看镜像</span><br><span class="line">docker rmi 删除镜像</span><br><span class="line">docker build 构建镜像</span><br><span class="line">docker save 保存镜像为一个压缩   //docker </span><br><span class="line">docker load 加载压缩包为镜像</span><br><span class="line"></span><br><span class="line">压缩镜像</span><br><span class="line">docker save -o nginx.tar nginx:latest</span><br><span class="line">解压镜像</span><br><span class="line">docker load -i nginx.tar</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--容器-----------------</span><br><span class="line">docker run</span><br><span class="line">docker pause 暂停</span><br><span class="line">docker unpause</span><br><span class="line">docker stop 停止</span><br><span class="line">docker start</span><br><span class="line">docker exec 进入容器执行命令</span><br><span class="line">docker ps 查看运行容器的状态</span><br><span class="line">docker log运行日志 docker -f logs name</span><br></pre></td></tr></table></figure>
+
+<h3 id="docker安装mysql容器"><a href="#docker安装mysql容器" class="headerlink" title="docker安装mysql容器"></a>docker安装mysql容器</h3><p>参照文档即可：<a href="https://hub.docker.com/_/mysql" target="_blank" rel="noopener">https://hub.docker.com/_/mysql</a></p>
+<p>拉取mysql镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql</span><br></pre></td></tr></table></figure>
+
+<p>启动docker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql -e MYSQL_ROOT_PASSWORD=xxxx -p 3306:3306 -d mysql</span><br></pre></td></tr></table></figure>
+
+<p>navicat连接报错</p>
+<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306141623147.png" alt="image-20230306141623147"></p>
+<p>需要修改mysql密码</p>
+<p>1.查看用户信息</p>
+<p>select host,user,plugin,authentication_string from mysql.user;</p>
+<p> localhost表示本机使用  plugin非mysql_native_password 则需要修改密码</p>
+<p>2.修改用户密码<br>ALTER USER ‘root’@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;</p>
+<p>更新user为root，host为% 的密码为123456</p>
+<p>ALTER USER ‘root’@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘123456’;<br>更新user为root，host为localhost 的密码为123456</p>
+<p>原文链接：<a href="https://blog.csdn.net/u012604745/article/details/80632860" target="_blank" rel="noopener">https://blog.csdn.net/u012604745/article/details/80632860</a></p>
 
       
 
@@ -462,7 +643,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">centos</a>
         		</li>
       		
 		</ul>
@@ -532,6 +717,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2023/03/07/oracle/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          oracle
+        
+      </div>
+    </a>
+  
   
     <a href="/2023/02/16/yilia左侧动态图/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">yilia左侧动态图</div>
@@ -561,7 +755,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh"><span class="toc-number">1.</span> <span class="toc-text">ssh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装httpd"><span class="toc-number">2.</span> <span class="toc-text">安装httpd</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#yum安装包不存在"><span class="toc-number">2.1.</span> <span class="toc-text">yum安装包不存在</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动报错"><span class="toc-number">2.2.</span> <span class="toc-text">启动报错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySql"><span class="toc-number">3.</span> <span class="toc-text">MySql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#yum列出安装包"><span class="toc-number">3.1.</span> <span class="toc-text">yum列出安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打开Mysql要密码"><span class="toc-number">3.2.</span> <span class="toc-text">打开Mysql要密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx"><span class="toc-number">4.</span> <span class="toc-text">nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx负载均衡"><span class="toc-number">5.</span> <span class="toc-text">nginx负载均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx-静态访问图片"><span class="toc-number">6.</span> <span class="toc-text">nginx 静态访问图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nfs-文件共享服务器"><span class="toc-number">7.</span> <span class="toc-text">nfs 文件共享服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nfs服务器配置"><span class="toc-number">7.1.</span> <span class="toc-text">nfs服务器配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端配置"><span class="toc-number">7.2.</span> <span class="toc-text">客户端配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端挂载时报错服务端的文件不存在（实际上文件存在）"><span class="toc-number">7.3.</span> <span class="toc-text">客户端挂载时报错服务端的文件不存在（实际上文件存在）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP"><span class="toc-number">8.</span> <span class="toc-text">FTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名用户ftp"><span class="toc-number">8.1.</span> <span class="toc-text">匿名用户ftp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell"><span class="toc-number">9.</span> <span class="toc-text">shell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#no-crontab-for-root"><span class="toc-number">9.1.</span> <span class="toc-text">no crontab for root</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置vmware虚拟机centos-ip"><span class="toc-number">1.</span> <span class="toc-text">配置vmware虚拟机centos ip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh"><span class="toc-number">2.</span> <span class="toc-text">ssh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装httpd"><span class="toc-number">3.</span> <span class="toc-text">安装httpd</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#yum安装包不存在"><span class="toc-number">3.1.</span> <span class="toc-text">yum安装包不存在</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动报错"><span class="toc-number">3.2.</span> <span class="toc-text">启动报错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySql"><span class="toc-number">4.</span> <span class="toc-text">MySql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#yum列出安装包"><span class="toc-number">4.1.</span> <span class="toc-text">yum列出安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打开Mysql要密码"><span class="toc-number">4.2.</span> <span class="toc-text">打开Mysql要密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx"><span class="toc-number">5.</span> <span class="toc-text">nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx安装"><span class="toc-number">5.1.</span> <span class="toc-text">nginx安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx负载均衡"><span class="toc-number">5.2.</span> <span class="toc-text">nginx负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx-静态访问图片"><span class="toc-number">5.3.</span> <span class="toc-text">nginx 静态访问图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fastdfs"><span class="toc-number">6.</span> <span class="toc-text">fastdfs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ibfastcommon"><span class="toc-number">6.1.</span> <span class="toc-text">ibfastcommon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fastDFS软件——tracker"><span class="toc-number">6.2.</span> <span class="toc-text">fastDFS软件——tracker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置storage（不需要安装，因为安装tracker时已经同时安装了）"><span class="toc-number">6.2.1.</span> <span class="toc-text">配置storage（不需要安装，因为安装tracker时已经同时安装了）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FDFS的Linux的上传测试"><span class="toc-number">6.2.2.</span> <span class="toc-text">FDFS的Linux的上传测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装FDFS整合Nginx的插件"><span class="toc-number">6.3.</span> <span class="toc-text">安装FDFS整合Nginx的插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nfs-文件共享服务器"><span class="toc-number">7.</span> <span class="toc-text">nfs 文件共享服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nfs服务器配置"><span class="toc-number">7.1.</span> <span class="toc-text">nfs服务器配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端配置"><span class="toc-number">7.2.</span> <span class="toc-text">客户端配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题：客户端挂载时报错服务端的文件不存在（实际上文件存在）"><span class="toc-number">7.3.</span> <span class="toc-text">问题：客户端挂载时报错服务端的文件不存在（实际上文件存在）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP"><span class="toc-number">8.</span> <span class="toc-text">FTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名用户ftp"><span class="toc-number">8.1.</span> <span class="toc-text">匿名用户ftp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地用户ftp"><span class="toc-number">8.2.</span> <span class="toc-text">本地用户ftp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟用户"><span class="toc-number">8.3.</span> <span class="toc-text">虚拟用户</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Configure-VSFTPD-for-virtual-user"><span class="toc-number">8.3.1.</span> <span class="toc-text">Configure VSFTPD for virtual user</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Create-a-PAM-File-Which-Uses-Your-New-Database"><span class="toc-number">8.3.2.</span> <span class="toc-text">Create a PAM File Which Uses Your New Database</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Append-or-create-with-the-following"><span class="toc-number">8.3.3.</span> <span class="toc-text">Append (or create with) the following:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Restart-The-FTP-Server"><span class="toc-number">8.3.4.</span> <span class="toc-text">Restart The FTP Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Test-Your-Setup"><span class="toc-number">8.3.5.</span> <span class="toc-text">Test Your Setup</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell"><span class="toc-number">9.</span> <span class="toc-text">shell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#no-crontab-for-root"><span class="toc-number">9.1.</span> <span class="toc-text">no crontab for root</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker"><span class="toc-number">10.</span> <span class="toc-text">docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#需要记住的命令"><span class="toc-number">10.1.</span> <span class="toc-text">需要记住的命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker安装mysql容器"><span class="toc-number">10.2.</span> <span class="toc-text">docker安装mysql容器</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -709,6 +903,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">pat</a>
               </li>
              
@@ -717,11 +915,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,7 +931,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+                <a href="javascript:void(0)" class="js-tag color4">c语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -745,23 +947,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">c语言</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">http走私</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">整理</a>
+                <a href="javascript:void(0)" class="js-tag color2">centos</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -777,6 +967,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
@@ -785,11 +979,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+                <a href="javascript:void(0)" class="js-tag color2">http走私</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
+                <a href="javascript:void(0)" class="js-tag color3">整理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,6 +992,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
              
               <li class="article-tag-list-item">

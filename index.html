@@ -191,6 +191,148 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-oracle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/07/oracle/">oracle</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/07/oracle/" class="archive-article-date">
+  	<time datetime="2023-03-07T12:07:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-07</time>
+</a>
+    <!--字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">386字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+          
+	
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[toc]</p>
+<h2 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h2><p>修改日期格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter session set NLS_DATE_FORMAT=&apos;yyyy-mm-dd&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>取某一个年份：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">to_char(HIRE_DATE,&apos;yyyy&apos;)=&apos;1994&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>某一日期到现在经历多少个月：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">months_between(sysdate,hiredate)</span><br></pre></td></tr></table></figure>
+
+<p>查询某个月最后一天</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select last_day(sysdate) from dual;</span><br></pre></td></tr></table></figure>
+
+<p><img src="oracle.assets/image-20230309152036478.png" alt="image-20230309152036478"></p>
+<p>查询多少年/月前/后的日期</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select add_months(sysdate,-12*10)from dual;</span><br></pre></td></tr></table></figure>
+
+<p><img src="oracle.assets/image-20230309153507364.png" alt="image-20230309153507364"></p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>截取字符串：</p>
+<p>substr(a,b,c)从a中，第b位开始取，取c位</p>
+<p>匹配的话也可以用 like ‘%e%a%’ 这种来匹配</p>
+<h2 id="case-amp-decode"><a href="#case-amp-decode" class="headerlink" title="case &amp; decode"></a>case &amp; decode</h2><h3 id="case-函数："><a href="#case-函数：" class="headerlink" title="case 函数："></a>case 函数：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">case格式：</span><br><span class="line">CASE expr WHEN comparison_expr1 THEN return_expr1</span><br><span class="line">[WHEN comparison_expr2 THEN return_expr2</span><br><span class="line">WHEN comparison_exprn THEN return_exprn</span><br><span class="line">ELSE else_expr]</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+
+<h3 id="Decode-函数-oracle独有的"><a href="#Decode-函数-oracle独有的" class="headerlink" title="Decode 函数(oracle独有的)"></a>Decode 函数(oracle独有的)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">DECODE函数：</span><br><span class="line">DECODE(col|expression,search1,result1</span><br><span class="line">[,search2,result2,...,]</span><br><span class="line">[,default]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">exp：</span><br><span class="line"> select last_name,job_id,decode</span><br><span class="line"> (job_id,</span><br><span class="line"> &apos;AD_PRES&apos;,&apos;A&apos;,</span><br><span class="line"> &apos;AD_PRES&apos;,&apos;B&apos;,</span><br><span class="line"> &apos;IT_PROG&apos;,&apos;C&apos;,</span><br><span class="line"> &apos;SA_REP&apos;,&apos;D&apos;,</span><br><span class="line"> &apos;ST_CLERK&apos;,&apos;E&apos;,</span><br><span class="line"> &apos;F&apos;) </span><br><span class="line"> as &quot;Grade&quot; from employees;</span><br></pre></td></tr></table></figure>
+
+<h2 id="分组函数"><a href="#分组函数" class="headerlink" title="分组函数"></a>分组函数</h2><p>分组函数作用于一组数据，并对一组数据返回一个值.</p>
+<p>也叫：组函数，分组函数，</p>
+<p>组函数会忽略空值：nvl函数使分组函数无法忽略空值。</p>
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*),count(nvl(comm,0))from emp;</span><br></pre></td></tr></table></figure>
+
+<p>常用的多行函数:</p>
+<p>avg</p>
+<p>count</p>
+<p>max</p>
+<p>min</p>
+<p>sum</p>
+<p><strong>where后面不能用分组函数</strong> ，可以在后面加having</p>
+<p>eg：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">错误的：</span><br><span class="line">select manager_id , min(salary) from employees where manager_id IS NOT NULL and min(salary) &gt;= 6000 group by manager_id;</span><br><span class="line">第 1 行出现错误:</span><br><span class="line">ORA-00934: 此处不允许使用分组函数</span><br><span class="line"></span><br><span class="line">改为：</span><br><span class="line">select manager_id , min(salary) from employees where manager_id IS NOT NULL group by manager_id HAVING min(salary) &gt;= 6000;</span><br></pre></td></tr></table></figure>
+
+<h2 id><a href="#" class="headerlink" title></a></h2><p>层次查询</p>
+<p>dselect deptno,job,sum(sal) from  emp group by rollup(deptno,job);</p>
+<p><img src="oracle.assets/image-20230308104844243.png" alt="image-20230308104844243"></p>
+<p><img src="oracle.assets/image-20230309083918794.png" alt="image-20230309083918794"></p>
+<p><img src="oracle.assets/image-20230309083953091.png" alt="image-20230309083953091"></p>
+<p>1.子查询</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/07/oracle/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -213,7 +355,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
+        <span class="post-count">3.7k字</span>
       </span>
     </span>
 
@@ -222,7 +364,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
+        <span class="post-count">17分</span>
       </span>
     </span>
 </div>
@@ -233,8 +375,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>linux应掌握：</p>
-<p>基础命令、服务</p>
+        <p>[toc]</p>
         
           <a class="article-more-a" href="/2023/03/02/linux笔记/#more">more >></a>
         
@@ -250,7 +391,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">centos</a>
         		</li>
       		
 		</ul>
@@ -1094,104 +1239,6 @@
 
 
   
-    <article id="post-pat_1014-福尔摩斯的约会" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/23/pat_1014-福尔摩斯的约会/">pat_1014 福尔摩斯的约会</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/23/pat_1014-福尔摩斯的约会/" class="archive-article-date">
-  	<time datetime="2021-11-23T13:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-23</time>
-</a>
-    <!--字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">634字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-	
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1014 福尔摩斯的约会</p>
-        
-          <a class="article-more-a" href="/2021/11/23/pat_1014-福尔摩斯的约会/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/23/pat_1014-福尔摩斯的约会/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1325,6 +1372,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">pat</a>
               </li>
              
@@ -1333,11 +1384,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1349,7 +1400,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+                <a href="javascript:void(0)" class="js-tag color4">c语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1361,23 +1416,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">c语言</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">http走私</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">整理</a>
+                <a href="javascript:void(0)" class="js-tag color2">centos</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1393,6 +1436,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
@@ -1401,11 +1448,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+                <a href="javascript:void(0)" class="js-tag color2">http走私</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
+                <a href="javascript:void(0)" class="js-tag color3">整理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1414,6 +1461,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
              
               <li class="article-tag-list-item">
