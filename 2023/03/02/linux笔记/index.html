@@ -16,20 +16,20 @@
 <meta property="og:site_name" content="Xun9er&#39;s blog">
 <meta property="og:description" content="[toc]">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png">
-<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303100906297.png">
-<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172830968.png">
-<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172856575.png">
-<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172916112.png">
-<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303101225383.png">
-<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306155520555.png">
-<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306155622305.png">
-<meta property="og:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306141623147.png">
-<meta property="og:updated_time" content="2023-03-09T07:55:32.767Z">
+<meta property="og:image" content="http://xun9er.online/images/linuxnote/image-20230302104156381.png">
+<meta property="og:image" content="http://xun9er.online/images/linuxnote/image-20230303100906297.png">
+<meta property="og:image" content="http://xun9er.online/images/linuxnote/image-20230303172830968.png">
+<meta property="og:image" content="http://xun9er.online/images/linuxnote/image-20230303172856575.png">
+<meta property="og:image" content="http://xun9er.online/images/linuxnote/image-20230303172916112.png">
+<meta property="og:image" content="http://xun9er.online/images/linuxnote/image-20230303101225383.png">
+<meta property="og:image" content="http://xun9er.online/images/linuxnote/image-20230306155520555.png">
+<meta property="og:image" content="http://xun9er.online/images/linuxnote/image-20230306155622305.png">
+<meta property="og:image" content="http://xun9er.online/images/linuxnote/image-20230306141623147.png">
+<meta property="og:updated_time" content="2023-03-09T08:09:06.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux笔记">
 <meta name="twitter:description" content="[toc]">
-<meta name="twitter:image" content="http://xun9er.online/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png">
+<meta name="twitter:image" content="http://xun9er.online/images/linuxnote/image-20230302104156381.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er&#39;s blog" type="application/atom+xml">
   
@@ -268,7 +268,7 @@
 <p>　　重启后可输入：netstat -antp | grep sshd 查看是否启动22端口（可略）。</p>
 <h2 id="安装httpd"><a href="#安装httpd" class="headerlink" title="安装httpd"></a>安装httpd</h2><h3 id="yum安装包不存在"><a href="#yum安装包不存在" class="headerlink" title="yum安装包不存在"></a>yum安装包不存在</h3><p>执行<code>yum install httpd -y</code>报错</p>
 <p>执行<code>yum --disableexcludes=all install -y httpd</code></p>
-<h3 id="启动报错"><a href="#启动报错" class="headerlink" title="启动报错"></a>启动报错</h3><p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230302104156381.png" alt="image-20230302104156381"></p>
+<h3 id="启动报错"><a href="#启动报错" class="headerlink" title="启动报错"></a>启动报错</h3><p><img src="/images/linuxnote/image-20230302104156381.png" alt="image-20230302104156381"></p>
 <p>查看80端口是否占用 netstat -antlp | grep 80</p>
 <p>发现是nginx占用了</p>
 <p>关闭nginx </p>
@@ -340,18 +340,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp tomcat8 tomcat8_1</span><br><span class="line">cp tomcat8 tomcat8_2</span><br></pre></td></tr></table></figure>
 
 <p>修改tomcat8_1和tomcat8_2 的webapp/ROOT里的index.jsp方便辨认</p>
-<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303100906297.png" alt="image-20230303100906297"></p>
+<p><img src="/images/linuxnote/image-20230303100906297.png" alt="image-20230303100906297"></p>
 <p>分别修改两个tomcat中的conf/server.xml</p>
-<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172830968.png" alt="image-20230303172830968"></p>
-<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172856575.png" alt="image-20230303172856575"></p>
-<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303172916112.png" alt="image-20230303172916112"></p>
+<p><img src="/images/linuxnote/image-20230303172830968.png" alt="image-20230303172830968"></p>
+<p><img src="/images/linuxnote/image-20230303172856575.png" alt="image-20230303172856575"></p>
+<p><img src="/images/linuxnote/image-20230303172916112.png" alt="image-20230303172916112"></p>
 <p>启动两个tomcat</p>
 <p>保证三个服务器能访问</p>
 <ul>
 <li>修改nginx</li>
 </ul>
 <p>/usr/local/nginx/conf</p>
-<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230303101225383.png" alt="image-20230303101225383"></p>
+<p><img src="/images/linuxnote/image-20230303101225383.png" alt="image-20230303101225383"></p>
 <p>由于之前搭建的网站端口号占用了80，修改nginx的端口号为9090</p>
 <p>然后访问9090端口就可以了</p>
 <p><strong>快速启动nginx的两种方法：1.配置环境变量2.写脚本</strong></p>
@@ -469,12 +469,12 @@ service fdfs_storaged start</code></pre><h4 id="FDFS的Linux的上传测试"><a 
 <p>vi nginx.conf</p>
 <p>[ngx_fastdfs_module;]</p>
 <p>由于之前搭建了一个nginx负载均衡，所以添加一个server：</p>
-<p> <img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306155520555.png" alt="image-20230306155520555"></p>
+<p> <img src="/images/linuxnote/image-20230306155520555.png" alt="image-20230306155520555"></p>
 <p>启动nginx</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line"></span><br><span class="line">./nginx</span><br></pre></td></tr></table></figure>
 
 <p>访问：<a href="http://192.168.51.147:8081/group1/M00/00/00/wKgzk2QEm3WAT7weAD-Qcz487OI877_big.jpg" target="_blank" rel="noopener">http://192.168.51.147:8081/group1/M00/00/00/wKgzk2QEm3WAT7weAD-Qcz487OI877_big.jpg</a></p>
-<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306155622305.png" alt="image-20230306155622305"></p>
+<p><img src="/images/linuxnote/image-20230306155622305.png" alt="image-20230306155622305"></p>
 <p>原文链接：<a href="https://blog.csdn.net/Geekst/article/details/123487179" target="_blank" rel="noopener">https://blog.csdn.net/Geekst/article/details/123487179</a></p>
 <h2 id="nfs-文件共享服务器"><a href="#nfs-文件共享服务器" class="headerlink" title="nfs 文件共享服务器"></a>nfs 文件共享服务器</h2><p>nfs由一台nfs服务器和若干客户机组成</p>
 <p>A：nfs服务器：192.168.51.133</p>
@@ -600,7 +600,7 @@ service fdfs_storaged start</code></pre><h4 id="FDFS的Linux的上传测试"><a 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql -e MYSQL_ROOT_PASSWORD=xxxx -p 3306:3306 -d mysql</span><br></pre></td></tr></table></figure>
 
 <p>navicat连接报错</p>
-<p><img src="/images/linux%E7%AC%94%E8%AE%B0.assets/image-20230306141623147.png" alt="image-20230306141623147"></p>
+<p><img src="/images/linuxnote/image-20230306141623147.png" alt="image-20230306141623147"></p>
 <p>需要修改mysql密码</p>
 <p>1.查看用户信息</p>
 <p>select host,user,plugin,authentication_string from mysql.user;</p>
@@ -887,10 +887,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
@@ -903,15 +899,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">pat</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -935,15 +931,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">phar</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -963,11 +959,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color2">http走私</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
+                <a href="javascript:void(0)" class="js-tag color3">整理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -979,19 +975,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">http走私</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">整理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">preg_replace</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码执行</a>
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1007,6 +995,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">preg_replace</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kali配置</a>
               </li>
              
@@ -1019,6 +1015,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">windows</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">复习</a>
               </li>
              
@@ -1027,11 +1031,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">windows</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hook</a>
+                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
               </li>
             
             <div class="clearfix"></div>
