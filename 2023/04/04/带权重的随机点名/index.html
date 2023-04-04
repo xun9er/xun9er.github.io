@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://xun9er.online">
-  <title>Archives: 2022/11 | Xun9er</title>
+  <title>带权重的随机点名 | Xun9er</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xun9er">
-<meta property="og:url" content="http://xun9er.online/archives/2022/11/index.html">
+  <meta name="description" content="带权重的随机点名">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="带权重的随机点名">
+<meta property="og:url" content="http://xun9er.online/2023/04/04/带权重的随机点名/index.html">
 <meta property="og:site_name" content="Xun9er">
+<meta property="og:description" content="带权重的随机点名">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2023-04-04T07:55:02.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xun9er">
+<meta name="twitter:title" content="带权重的随机点名">
+<meta name="twitter:description" content="带权重的随机点名">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er" type="application/atom+xml">
   
@@ -189,60 +194,243 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-带权重的随机点名" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/10/c语言数组/" class="archive-article-date">
-  	<time datetime="2022-11-10T05:30:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/10/c语言数组/">c语言知识点</a>
+    <h1 class="article-title" itemprop="name">
+      带权重的随机点名
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2023/04/04/带权重的随机点名/" class="archive-article-date">
+  	<time datetime="2023-04-04T06:31:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-04</time>
+</a>
+    <!--字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">980字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
           
+	
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>带权重的随机点名</p>
+<a id="more"></a>
+
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>已有学生姓名等信息存储在names.txt中，每行存一个学生信息。</p>
+<p>需要在这些学生中随机点名，学生被点到后，在下一次点名时被再次点到的概率降低1/2.</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>在names.txt中为每个学生添加一个初始权重值1</p>
+<p>创建学生类<code>Student</code>，该类包括学生的个人信息以及该学生被点名的权重。</p>
+<p>将name.txt文件中的学生信息创建学生<code>Student</code>对象，并存储在<code>Student</code>集合中</p>
+<p>再计算成每个人的权重比（每个人的权重占比=个人权重/总权重）</p>
+<p>通过权重比创建权重分布的有序数组（从0到1），每个人的权重比为数组中的一段范围。</p>
+<p>随机生活成一个介于0–1之间的数，使用<code>Arrays.binarySearch</code>得到该随机数在权重分布数组里的的插入点，即为该次随机点名点到的学生。</p>
+<p>再将该学生的权重除以2，再重新将<code>Student</code>集合写入names.txt</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="Arrays-binarySearch"><a href="#Arrays-binarySearch" class="headerlink" title="Arrays.binarySearch"></a>Arrays.<em>binarySearch</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static int binarySearch(double[] a, double key) &#123;</span><br><span class="line">        return binarySearch0(a, 0, a.length, key);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先a必须是有序的数组</p>
+<p>其返回值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@return index of the search key, if it is contained in the array;</span><br><span class="line">     *         otherwise, &lt;tt&gt;(-(&lt;i&gt;insertion point&lt;/i&gt;) - 1)&lt;/tt&gt;.  The</span><br><span class="line">     *         &lt;i&gt;insertion point&lt;/i&gt; is defined as the point at which the</span><br><span class="line">     *         key would be inserted into the array: the index of the first</span><br><span class="line">     *         element greater than the key, or &lt;tt&gt;a.length&lt;/tt&gt; if all</span><br><span class="line">     *         elements in the array are less than the specified key.  Note</span><br><span class="line">     *         that this guarantees that the return value will be &amp;gt;= 0 if</span><br><span class="line">     *         and only if the key is found.</span><br></pre></td></tr></table></figure>
+
+<p>如果key在数组中，则返回搜索值的索引；</p>
+<p>否则返回<code>-(插入点-1)</code>。插入点是索引键将 要插入数组的那一点，即第一个大于该键的元素的索引；</p>
+<p>或者返回数组长度。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li><p>之前看到另外一个需求，是要求每次点名男生概率70%，女生概率30%，可以用1代表男生，0代表女生，创建数组arr={1,1,1,1,1,1,1,0,0,0}然后从arr中随机抽取一个元素，再按照结果去男生/女生的数组里随机抽取学生名字。</p>
+</li>
+<li><p>这道题需要重写student类的tostring方法。</p>
+</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>Student.class</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">package test1;</span><br><span class="line"></span><br><span class="line">public class Student &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return name + &quot;-&quot; + sex + &quot;-&quot; + age + &quot;-&quot; + weight;</span><br><span class="line">	&#125;</span><br><span class="line">	private String name;</span><br><span class="line">	private String sex;</span><br><span class="line">	private int age;</span><br><span class="line">	private double weight;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getSex() &#123;</span><br><span class="line">		return sex;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setSex(String sex) &#123;</span><br><span class="line">		this.sex = sex;</span><br><span class="line">	&#125;</span><br><span class="line">	public int getAge() &#123;</span><br><span class="line">		return age;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setAge(int age) &#123;</span><br><span class="line">		this.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	public double getWeight() &#123;</span><br><span class="line">		return weight;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setWeight(double weight) &#123;</span><br><span class="line">		this.weight = weight;</span><br><span class="line">	&#125;</span><br><span class="line">	public Student(String name, String sex, int age, double weight) &#123;</span><br><span class="line">		super();</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.sex = sex;</span><br><span class="line">		this.age = age;</span><br><span class="line">		this.weight = weight;</span><br><span class="line">	&#125;</span><br><span class="line">	public Student() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>QuanZhongRandomName.class</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">package test1;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.BufferedWriter;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileReader;</span><br><span class="line">import java.io.FileWriter;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.Arrays;</span><br><span class="line"></span><br><span class="line">public class QuanZhongRandomName &#123;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		ArrayList&lt;Student&gt; students = new ArrayList&lt;&gt;();</span><br><span class="line">		BufferedReader bf = new BufferedReader(new FileReader(&quot;names.txt&quot;));</span><br><span class="line">		String line;</span><br><span class="line">		while ((line=bf.readLine())!=null) &#123;</span><br><span class="line">			String[] arr = line.split(&quot;-&quot;);</span><br><span class="line">			Student student = new Student(arr[0],arr[1],Integer.parseInt(arr[2]),Double.parseDouble(arr[3]));</span><br><span class="line">			students.add(student);</span><br><span class="line">		&#125;</span><br><span class="line">		bf.close();</span><br><span class="line">		//计算总权重</span><br><span class="line">		double weight=0;</span><br><span class="line">		for (Student student : students) &#123;</span><br><span class="line">			weight += student.getWeight();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//每个人的权重比</span><br><span class="line">		double[] weightArr = new double[students.size()];</span><br><span class="line">		int index=0;</span><br><span class="line">		for (Student student : students) &#123;</span><br><span class="line">			weightArr[index] = student.getWeight()/weight;</span><br><span class="line">			index++;</span><br><span class="line">		&#125;</span><br><span class="line">		//System.out.println(Arrays.toString(weightArr));</span><br><span class="line">		</span><br><span class="line">		//权重比数组</span><br><span class="line">		for (int i = 1; i &lt; weightArr.length; i++) &#123;</span><br><span class="line">			weightArr[i] = weightArr[i]+weightArr[i-1];</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(Arrays.toString(weightArr));</span><br><span class="line">		//随机点名</span><br><span class="line">		double number = Math.random();</span><br><span class="line">		int result = -Arrays.binarySearch(weightArr, number)-1;</span><br><span class="line">		Student luckPerson = students.get(result);</span><br><span class="line">		System.out.println(luckPerson);</span><br><span class="line">		</span><br><span class="line">		//改变该学生权重</span><br><span class="line">		double newWeight = luckPerson.getWeight()/2;</span><br><span class="line">		luckPerson.setWeight(newWeight);</span><br><span class="line">		System.out.println(students);</span><br><span class="line">		</span><br><span class="line">		//新数据写入names.txt</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(&quot;names.txt&quot;));</span><br><span class="line">		for(Student s:students) &#123;</span><br><span class="line">			bw.write(s.toString());</span><br><span class="line">			bw.newLine();</span><br><span class="line">		&#125;</span><br><span class="line">		bw.close();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">c语言</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://xun9er.online/2023/04/04/带权重的随机点名/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2023/04/04/Java-多线程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java-多线程
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2023/04/02/django用户ID自定义主键自增/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">django用户ID自定义主键自增</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#需求"><span class="toc-number">1.</span> <span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">3.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Arrays-binarySearch"><span class="toc-number">3.1.</span> <span class="toc-text">Arrays.binarySearch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">4.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">5.</span> <span class="toc-text">代码</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -265,8 +453,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
