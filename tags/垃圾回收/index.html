@@ -6,33 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://xun9er.online">
-  <title>Xun9er</title>
+  <title>Tag: 垃圾回收 | Xun9er</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java GC">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Xun9er">
-<meta property="og:url" content="http://xun9er.online/2023/04/24/Java-GC/index.html">
+<meta property="og:url" content="http://xun9er.online/tags/垃圾回收/index.html">
 <meta property="og:site_name" content="Xun9er">
-<meta property="og:description" content="java GC">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230424213828318.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425213156073.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425150658726.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425150850618.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425151144790.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425161521946.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425192759090.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425192825984.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425192842559.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425192901115.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425192937459.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425194800342.png">
-<meta property="og:image" content="http://xun9er.online/images/Java-GC.assets/image-20230425203923178.png">
-<meta property="og:updated_time" content="2023-06-14T08:59:18.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xun9er">
-<meta name="twitter:description" content="java GC">
-<meta name="twitter:image" content="http://xun9er.online/images/Java-GC.assets/image-20230424213828318.png">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er" type="application/atom+xml">
   
@@ -207,281 +189,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java-GC" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-    <div class="article-entry" itemprop="articleBody">
+    
       
-        <h1 id="java-GC"><a href="#java-GC" class="headerlink" title="java GC"></a>java GC</h1><a id="more"></a>
-
-<h2 id="1-一些概念"><a href="#1-一些概念" class="headerlink" title="1.一些概念"></a>1.一些概念</h2><h3 id="什么是javaGC？"><a href="#什么是javaGC？" class="headerlink" title="什么是javaGC？"></a>什么是javaGC？</h3><p>GC全称<code>Garbage Collection</code>，即垃圾回收，是一种自动内存管理的机制。</p>
-<p>当程序向操作系统申请的内存不再需要时，垃圾回收主动将其回收并供其他代码进行内存申请时候复用，或者将其归还给操作系统，这种针对内存级别资源的自动回收过程，即为垃圾回收。而负责垃圾回收的程序组件，即为<a href="https://so.csdn.net/so/search?q=垃圾回收器&spm=1001.2101.3001.7020" target="_blank" rel="noopener">垃圾回收器</a>。  </p>
-<h3 id="JavaGC主要作用的内存区域有哪些？"><a href="#JavaGC主要作用的内存区域有哪些？" class="headerlink" title="JavaGC主要作用的内存区域有哪些？"></a>JavaGC主要作用的内存区域有哪些？</h3><p><img src="/images/Java-GC.assets/image-20230424213828318.png" alt="image-20230424213828318"></p>
-<p>jvm 中，程序计数器、虚拟机栈、本地方法栈都是随线程而生随线程而灭，栈帧随着方法的进入和退出做入栈和出栈操作，实现了自动的内存清理，因此，我们的内存垃圾回收主要集中于 <strong>java 堆</strong>和<strong>方法区</strong>中，在程序运行期间，这部分内存的分配和使用都是动态的。</p>
-<p><em>虚拟机栈：是描述 java 方法执行的内存模型，每个方法在执行的同时都会创建一个栈帧(Stack Frame) 用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法从调用直至执行完成 的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程。栈帧是用来存储数据和部分过程结果的数据结构，同时也被用来处理动态链接 、 方法返回值和异常分派。栈帧随着方法调用而创建，随着方法结束而结束。</em></p>
-<h3 id="不进行垃圾回收会怎么样？"><a href="#不进行垃圾回收会怎么样？" class="headerlink" title="不进行垃圾回收会怎么样？"></a>不进行垃圾回收会怎么样？</h3><p>会造成内存泄漏</p>
-<p>内存泄漏是指程序运行时动态分配的内存在程序结束时没有被释放，从而造成该部分内存不可用。程序运行时持续分配内存，如果分配的内存在使用完后没有被释放，系统内存资源将逐渐耗尽，导致系统崩溃。</p>
-<h2 id="2-如何确定是否为需要回收的垃圾（垃圾标记阶段）"><a href="#2-如何确定是否为需要回收的垃圾（垃圾标记阶段）" class="headerlink" title="2.如何确定是否为需要回收的垃圾（垃圾标记阶段）"></a>2.如何确定是否为需要回收的垃圾（垃圾标记阶段）</h2><p>堆里存放着几乎所有的Java对象实例，在GC执行垃圾回收之前，首先需要区分出内存中那些是存活对象，哪些是已经死亡的对象。只有被标记为已经死亡的对象，GC才会在垃圾回收过程时，释放掉其所占用的内存空间，因此我们可以称这个过程为垃圾标记阶段。</p>
-<p>死亡？简单来说，当一个对象已经不再被任何存活的对象引用时，就可以宣判为死亡。</p>
-<p>判断对象是否存活有两种方法：引用计数法、可达性分析</p>
-<h3 id="2-1引用计数法（ReferenceCounting）"><a href="#2-1引用计数法（ReferenceCounting）" class="headerlink" title="2.1引用计数法（ReferenceCounting）"></a>2.1引用计数法（ReferenceCounting）</h3><p>在 Java 中，引用和对象是有关联的。如果要操作对象则必须用引用进行。一个简单的办法是通过引用计数来判断一个对象是否可以回收。每个对象有一个引用计数属性，新增一个引用时计数加1，引用释放时计数减1，计数为0时可以回收。简单说，即一个对象如果没有任何与之关联的引用，即他们的引用计数都不为 0，则说明对象不太可能再被用到，那么这个对象就是可回收对象。</p>
-<h4 id="2-2-1-引用"><a href="#2-2-1-引用" class="headerlink" title="2.2.1 引用"></a>2.2.1 引用</h4><p><img src="/images/Java-GC.assets/image-20230425213156073.png" alt="image-20230425213156073"></p>
-<p><strong>1、强引用</strong></p>
-<p>代码中普遍存在的类似”Object obj = new Object()”这类的引用，只要强引用还存在，垃圾收集器永远不会回收掉被引用的对象。</p>
-<p><strong>2、软引用</strong></p>
-<p>描述有些还有用但并非必需的对象。在系统将要发生内存溢出异常之前，将会把这些对象列进回收范围进行二次回收。如果这次回收还没有足够的内存，才会抛出内存溢出异常。Java中的类SoftReference表示软引用。</p>
-<p><strong>3、弱引用</strong></p>
-<p>描述非必需对象。被弱引用关联的对象只能生存到下一次垃圾回收之前，垃圾收集器工作之后，无论当前内存是否足够，都会回收掉只被弱引用关联的对象。Java中的类WeakReference表示弱引用。</p>
-<p><strong>4、虚引用</strong></p>
-<p>这个引用存在的唯一目的就是在这个对象被收集器回收时收到一个系统通知，被虚引用关联的对象，和其生存时间完全没关系。Java中的类PhantomReference表示虚引用。</p>
-<p>此方法无法解决<strong>对象相互循环引用</strong>的问题。</p>
-<p>需要配置jvm参数：eclipse-&gt;run configurations-&gt;Arguments-&gt;VM arguments加入参数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">打印简单gc信息</span><br><span class="line">-verbose:gc</span><br><span class="line">-XX:+PrintGC</span><br><span class="line"></span><br><span class="line">打印详细GC信息</span><br><span class="line">-XX:+PrintGCDetails</span><br><span class="line">-XX:+PrintGCTimeStamps</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2可达性分析（Reachability-Analysis）"><a href="#2-2可达性分析（Reachability-Analysis）" class="headerlink" title="2.2可达性分析（Reachability Analysis）"></a>2.2可达性分析（Reachability Analysis）</h3><p>从GC Roots开始向下搜索，搜索所走过的路径称为引用链。当一个对象到GC Roots没有任何引用链相连时，则证明此对象是不可用的不可达对象。</p>
-<p>需要注意的是，不可达对象<strong>不等价于</strong>可回收对象，不可达对象变为可回收对象至少要经过两次标记过程。两次标记后仍然是可回收对象，则将面临回收。</p>
-<blockquote>
-<p>在Java语言中，GC Roots包括：</p>
-<p>虚拟机栈中引用的对象。</p>
-<p>方法区中类静态属性实体引用的对象。</p>
-<p>方法区中常量引用的对象。</p>
-<p>本地方法栈中JNI（Java Native Interface，Java本地接口）引用的对象。</p>
-</blockquote>
-<h2 id="3-垃圾收集算法"><a href="#3-垃圾收集算法" class="headerlink" title="3 垃圾收集算法"></a>3 垃圾收集算法</h2><h3 id="3-1标记清除法（Mark-Sweep）"><a href="#3-1标记清除法（Mark-Sweep）" class="headerlink" title="3.1标记清除法（Mark-Sweep）"></a>3.1标记清除法（Mark-Sweep）</h3><p>最基础的垃圾回收算法，分为两个阶段，标注和清除。为每个对象存储一个标记位，记录对象的状态（活着或是死亡）。标记阶段标记出所有需要回收的对象，清除阶段回收被标记的对象所占用的空间。</p>
-<p><img src="/images/Java-GC.assets/image-20230425150658726.png" alt="image-20230425150658726"></p>
-<p><strong>优点</strong><br> 最大的优点是，标记—清除算法中每个活着的对象的引用只需要找到一个即可，找到一个就可以判断它为活的。此外，更重要的是，这个算法并不移动对象的位置。</p>
-<p><strong>缺点</strong></p>
-<p>该算法最大的问题是<strong>内存碎片化严重</strong>，后续可能发生大对象找不到可利用空间的问题。</p>
-<p>此外该算法效率比较低，每个活着的对象都要在标记阶段遍历一遍；所有对象都要在清除阶段扫描一遍，因此算法复杂度较高。</p>
-<h3 id="3-2-复制算法-copying"><a href="#3-2-复制算法-copying" class="headerlink" title="3.2 复制算法(copying)"></a>3.2 复制算法(copying)</h3><p>为了解决标记清除算法内存碎片化的缺陷而被提出的算法。按内存容量将内存划分为等大小的两块。每次只使用其中一块，当这一块内存满后将尚存活的对象复制到另一块上去，再把已使用的内存清掉，如图:</p>
-<p><img src="/images/Java-GC.assets/image-20230425150850618.png" alt="image-20230425150850618"></p>
-<p><strong>优点</strong></p>
-<p>实现简单；不产生内存碎片</p>
-<p><strong>缺点</strong></p>
-<p>可用内存被压缩到了原本的一半。且如果存活对象增多，Copying 算法的效率会大大降低。</p>
-<h3 id="3-3标记整理算法-Mark-Compact"><a href="#3-3标记整理算法-Mark-Compact" class="headerlink" title="3.3标记整理算法(Mark-Compact)"></a>3.3标记整理算法(Mark-Compact)</h3><p>结合了以上两个算法，为了避免缺陷而提出。标记阶段和标记清除法算法相同，标记后不是清理对象，而是将存活对象移向内存的一端。然后清除端边界外的对象。如图:</p>
-<p><img src="/images/Java-GC.assets/image-20230425151144790.png" alt="image-20230425151144790"></p>
-<p><strong>优点</strong><br> 该算法不会像标记-清除算法那样产生大量的碎片空间。<br><strong>缺点</strong><br> 如果存活的对象过多，整理阶段将会执行较多复制操作，导致算法效率降低。这个算法不适合高频率地执行。</p>
-<p>ps：复制算法与标记-整理算法的区别在于，复制算法不是在同一个区域复制，而是将所有存活的对象复制到另一个区域内。</p>
-<h3 id="3-4-分代收集算法"><a href="#3-4-分代收集算法" class="headerlink" title="3.4 分代收集算法"></a>3.4 分代收集算法</h3><p>将内存一分为二</p>
-<p>分代收集法是目前大部分JVM所采用的方法。它根据对象的生存周期，将堆分为<strong>新生代(Young Generation)和老年代(Tenured/Old Generation)</strong>。</p>
-<p>老年代和新生代中的对象的存活规律不同，所以可以根据他们各自的特点来选择不同的算法：</p>
-<p>在新生代中，由于对象生存期短，每次回收都会有大量对象死去，要复制的操作比较少，那么这时就采用复制算法。</p>
-<p>老年代里的对象存活率较高，没有额外的空间进行分配担保，所以可以使用标记-整理或者标记-清除。</p>
-<p><img src="/images/Java-GC.assets/image-20230425161521946.png" alt="image-20230425161521946"></p>
-<p>（从图里可以看到新生代有两块Survivor区，就是为了实现前面说的Copying算法）</p>
-<p>在堆内存中，从垃圾回收的范围上说，一般分为两种：</p>
-<p>针对新生代的垃圾回收动作叫做<strong>minorGC/YoungGC/YGC</strong></p>
-<p>针对老年代的垃圾回收动作叫做<strong>majorGC</strong></p>
-<h4 id="3-4-1-新生代"><a href="#3-4-1-新生代" class="headerlink" title="3.4.1 新生代"></a>3.4.1 新生代</h4><p>是用来存放新生的对象。一般占据堆的 1/3 空间。由于频繁创建对象，所以新生代会频繁触发<br>MinorGC 进行垃圾回收。新生代又分为 Eden 区、ServivorFrom、ServivorTo 三个区。</p>
-<h5 id="年轻代gc的过程："><a href="#年轻代gc的过程：" class="headerlink" title="年轻代gc的过程："></a>年轻代gc的过程：</h5><p>假设整个堆内存大小为20M，其中老年代10M，新生代10M，新生代中Eden区6M，两个Survivor区各2M。大多数情况下，新创建的对象首先都会尝试在Eden区分配（初始年龄为0），随着程序运行，对象不断被创建，Eden区空间快要被占满了。此时，一个新的对象（1M）申请分配内存，Eden区没有足够的空间来给这个对象分配内存，如图所示：</p>
-<p><img src="/images/Java-GC.assets/image-20230425192759090.png" alt="image-20230425192759090"></p>
-<p>这时候会触发一次Minor GC，把Eden区中还存活的对象转移到From区（年龄+1为1），其他对象则视， 为垃圾被清理掉。然后在Eden区中给新创建的那个对象分配空间。</p>
-<p><img src="/images/Java-GC.assets/image-20230425192825984.png" alt="image-20230425192825984"></p>
-<p>程序继续运行，更多的对象不断地创建，很快，Eden区的空间又不足了：</p>
-<p><img src="/images/Java-GC.assets/image-20230425192842559.png" alt="image-20230425192842559"></p>
-<p>这时会再次触发Minor GC，把Eden区和From区中存活的对象转移到To区（年龄+1为2），清理掉剩下的垃圾对象，然后在Eden区给新对象分配内存：</p>
-<p><img src="/images/Java-GC.assets/image-20230425192901115.png" alt="image-20230425192901115"></p>
-<p>From区和To区不是固定不变的，是不断交替的。触发GC时，哪个区中有存活对象，哪个区就是From区，另外一个没有对象的区就是To区。拿上面的例子来说，再进行一次Minor GC，会把存活的对象转移到S1区。转移前，S2是From区，S1是To区。转移后，S1区中有存活对象，变为From区，S2则变为To区。</p>
-<p><img src="/images/Java-GC.assets/image-20230425192937459.png" alt="image-20230425192937459"></p>
-<ul>
-<li><p>默认大小比例survivor：survivor：enden：1:1:8</p>
-<p>人们通过统计学发现ygc的一般能回收掉90%的对象，所以没必要把空间对半分</p>
-</li>
-</ul>
-<h3 id="3-4-2-老年代"><a href="#3-4-2-老年代" class="headerlink" title="3.4.2 老年代"></a>3.4.2 老年代</h3><p><strong>对象进入老年代的4种场景：</strong></p>
-<p><strong>1.长期存活的对象将进入老年代。</strong>对象在年轻代每经历一次Minor GC，而未被回收后，年龄都会+1。当对象的年龄增长到一定程度（-XX:MaxTenuringThreshold默认15岁），下次Minor GC运行时，如果还是没被回收，就会晋升至老年代。</p>
-<p><strong>2</strong>.<strong>进行Minor GC时，Eden区存活下来的对象内存之和大于To区总容量</strong>，即To区存放不下，会将这批对象直接转移至老年代。</p>
-<p><img src="/images/Java-GC.assets/image-20230425194800342.png" alt="image-20230425194800342"></p>
-<p><strong>3.大对象直接进入老年代</strong>。假如新创建的对象很大，超过-XX:PretenureSizeThreshold设定的阈值（默认3M），那么即使Eden区有足够的空间，该对象也会直接在老年代  中分配  内存。</p>
-<p>**       4.动态计算晋升年龄阈值**。在每次. Minor GC之后会重新计算一次晋升至老年代的年龄阈值MaxTenuringThreshold，计算规则是：将From区中的对象按照年龄从小到大的顺序累加，当累加到某个年龄X的时候，若累加值大于等于From空间的-XX:TargetSurvivorRatio%（默认为50%），就将MaxTenuringThreshold设为X。在下一次MinorGC时，年龄大于等于MaxTenuringThreshold的对象就进入老年代。</p>
-<p>** 为什么要设计动态计算晋升年龄阈值机制？**<br> 如果没有这个机制，假设From区中有大量年龄不到15岁的对象，在进行Minor GC时，根据第2条规则，会有很多在Eden区中0岁的对象直接进入老年代。而From区中那些不到15岁的对象，年龄明显比Eden区中的大，反而不会进入老年代，会被复制到To区，直到经历多次Minor GC，年龄达到15岁，才会进入老年代。这样明显不利于对象的回收，容易增加Full GC发生的频率，而且多次在Survivor区内部复制也增加了JVM的开销。</p>
-<h3 id="3-4-3-Full-GC"><a href="#3-4-3-Full-GC" class="headerlink" title="3.4.3 Full GC"></a>3.4.3 Full GC</h3><p>如果某个（些）对象（原来在年轻代中存活的对象或者新创建的对象）需要被移动到老年代中，而老年代中没有足够空间容纳这个（些）对象，那么会触发一次Full GC，Full GC会对整个堆进行清理，如果Full GC后还是无法在老年代中给这个（些）对象分配空间，那么JVM会抛出OutOfMemoryError，即OOM。</p>
-<h2 id="4-垃圾回收器"><a href="#4-垃圾回收器" class="headerlink" title="4 垃圾回收器"></a>4 垃圾回收器</h2><p>jdk1.7 默认垃圾收集器Parallel Scavenge（新生代【标记-复制算法】）+Parallel Old（老年代【标记整理算法】）<br>jdk1.8 默认垃圾收集器Parallel Scavenge（新生代）+Parallel Old（老年代）<br>jdk1.9 默认垃圾收集器G1【从局部(两个Region之间)来看是基于”标记—复制”算法实现，从整体来看是基于”标记-整理”算法实现】</p>
-<p>gc的演化是随着内存大小的不断增长而演进</p>
-<p>几兆–几十兆：Serial单线程垃圾回收</p>
-<p>几十兆–上百兆1g：parallel 并行多线程</p>
-<p>几十G：Concurrent GC</p>
-<p><img src="/images/Java-GC.assets/image-20230425203923178.png" alt="image-20230425203923178"></p>
-<h3 id="4-1Serial"><a href="#4-1Serial" class="headerlink" title="4.1Serial"></a>4.1Serial</h3><p>Serial是最基本垃圾收集器，使用复制算法，曾经是 JDK1.3.1 之前新生代唯一的垃圾收集器。Serial 是一个单线程的收集器，它不但只会使用一个 CPU 或一条线程去完成垃圾收集工 作，并且在进行垃圾收集的同时，必须暂停其他所有的工作线程，直到垃圾收集结束。<br>Serial 垃圾收集器虽然在收集垃圾过程中需要暂停所有其他的工作线程，但是它简单高效，对于限 定单个 CPU 环境来说，没有线程交互的开销，可以获得最高的单线程垃圾收集效率，因此 Serial垃圾收集器依然是 java 虚拟机运行在 Client 模式下默认的新生代垃圾收集器。</p>
-<h3 id="4-2-Serial-Old收集器"><a href="#4-2-Serial-Old收集器" class="headerlink" title="4.2 Serial Old收集器"></a>4.2 Serial Old收集器</h3><p>Serial收集器的老年代版本，同样是一个单线程收集器，使用“标记-整理算法”，这个收集器的主要意义也是在于给Client模式下的虚拟机使用。</p>
-<h3 id="4-3-ParNew垃圾收集器-Serial-多线程"><a href="#4-3-ParNew垃圾收集器-Serial-多线程" class="headerlink" title="4.3  ParNew垃圾收集器(Serial+多线程)"></a>4.3  ParNew垃圾收集器(Serial+多线程)</h3><p>ParNew 垃圾收集器其实是 Serial 收集器的多线程版本，也使用复制算法，除了使用多线程进行垃圾收集之外，其余的行为和 Serial 收集器完全一样，ParNew 垃圾收集器在垃圾收集过程中同样也 要暂停所有其他的工作线程。</p>
-<p>ParNew 收集器默认开启和 CPU 数目相同的线程数，可以通过-XX:ParallelGCThreads 参数来限制垃圾收集器的线程数。<br>ParNew 虽然是除了多线程外和 Serial 收集器几乎完全一样，但是 ParNew 垃圾收集器是很多 java 虚拟机运行在 Server 模式下新生代的默认垃圾收集器。</p>
-<h3 id="4-3-Parallel-Scavenge-收集器-多线程复制算法、高效"><a href="#4-3-Parallel-Scavenge-收集器-多线程复制算法、高效" class="headerlink" title="4.3 Parallel Scavenge 收集器(多线程复制算法、高效)"></a>4.3 Parallel Scavenge 收集器(多线程复制算法、高效)</h3><p>Parallel Scavenge 收集器也是一个新生代垃圾收集器，同样使用复制算法，也是一个多线程的垃圾收集器，<strong>它重点关注的是程序达到一个可控制的吞吐量</strong>(Thoughput，CPU 用于运行用户代码 的时间/CPU 总消耗时间，即吞吐量=运行用户代码时间/(运行用户代码时间+垃圾收集时间))， 高吞吐量可以最高效率地利用 CPU 时间，尽快地完成程序的运算任务，主要适用于在后台运算而不需要太多交互的任务。自适应调节策略也是 ParallelScavenge 收集器与 ParNew 收集器的一个重要区别。</p>
-<p>并不是线程越多效率就越高，因为有一个线程切换过程，也会消耗资源。</p>
-<h3 id="4-5-Parallel-Old收集器"><a href="#4-5-Parallel-Old收集器" class="headerlink" title="4.5 Parallel Old收集器"></a>4.5 Parallel Old收集器</h3><p><strong>Parallel Scavenge收集器的老年代版本，使用多线程和“标记-整理”算法</strong>。这个收集器在JDK 1.6之后的出现，“吞吐量优先收集器”终于有了比较名副其实的应用组合，在注重吞吐量以及CPU资源敏感的场合，都可以优先考虑Parallel Scavenge收集器+Parallel Old收集器的组合。</p>
-<h3 id="4-4-CMS（concurrent-mark-sweep）"><a href="#4-4-CMS（concurrent-mark-sweep）" class="headerlink" title="4.4 CMS（concurrent mark sweep）"></a>4.4 CMS（concurrent mark sweep）</h3><p>并发回收，不会停</p>
-<p>CMS收集器的内存回收和用户线程是一起并发地执行</p>
-<h3 id="4-5-G1"><a href="#4-5-G1" class="headerlink" title="4.5 G1"></a>4.5 G1</h3><p>Garbage first 垃圾收集器是目前垃圾收集器理论发展的最前沿成果，相比与 CMS 收集器，G1 收 集器两个最突出的改进是:</p>
-<ol>
-<li>基于标记-整理算法，不产生内存碎片。</li>
-<li>可以非常精确控制停顿时间，在不牺牲吞吐量前提下，实现低停顿垃圾回收。<br>G1 收集器避免全区域垃圾收集，它把堆内存划分为大小固定的几个独立区域，并且跟踪这些区域 的垃圾收集进度，同时在后台维护一个优先级列表，每次根据所允许的收集时间，优先回收垃圾 最多的区域。区域划分和优先级区域回收机制，确保 G1 收集器可以在有限时间获得最高的垃圾收 集效率。</li>
-</ol>
-<p> <strong>cmd命令行查看Java的GC：</strong>java -XX:+PrintCommandLineFlags -version</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-XX:G1ConcRefinementThreads=8 -XX:GCDrainStackTargetSize=64 -XX:InitialHeapSize=268435456 -XX:MaxHeapSize=4294967296 -XX:+PrintCommandLineFlags -XX:ReservedCodeCacheSize=251658240 -XX:+SegmentedCodeCache -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseG1GC </span><br><span class="line">openjdk version &quot;11.0.18&quot; 2023-01-17 LTS</span><br><span class="line">OpenJDK Runtime Environment Corretto-11.0.18.10.1 (build 11.0.18+10-LTS)</span><br><span class="line">OpenJDK 64-Bit Server VM Corretto-11.0.18.10.1 (build 11.0.18+10-LTS, mixed mode)</span><br></pre></td></tr></table></figure>
-
-<p><strong>cmd命令行查看Java的GC详细情况：</strong>java -XX:+PrintGCDetails -version</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[0.019s][warning][gc] -XX:+PrintGCDetails is deprecated. Will use -Xlog:gc* instead.</span><br><span class="line">[0.033s][info   ][gc,heap] Heap region size: 1M</span><br><span class="line">[0.037s][info   ][gc     ] Using G1</span><br><span class="line">[0.037s][info   ][gc,heap,coops] Heap address: 0x0000000700000000, size: 4096 MB, Compressed Oops mode: Zero based, Oop shift amount: 3</span><br><span class="line">openjdk version &quot;11.0.18&quot; 2023-01-17 LTS</span><br><span class="line">OpenJDK Runtime Environment Corretto-11.0.18.10.1 (build 11.0.18+10-LTS)</span><br><span class="line">OpenJDK 64-Bit Server VM Corretto-11.0.18.10.1 (build 11.0.18+10-LTS, mixed mode)</span><br><span class="line">[0.105s][info   ][gc,heap,exit ] Heap</span><br><span class="line">[0.105s][info   ][gc,heap,exit ]  garbage-first heap   total 262144K, used 1024K [0x0000000700000000, 0x0000000800000000)</span><br><span class="line">[0.105s][info   ][gc,heap,exit ]   region size 1024K, 2 young (2048K), 0 survivors (0K)</span><br><span class="line">[0.105s][info   ][gc,heap,exit ]  Metaspace       used 3133K, capacity 4480K, committed 4480K, reserved 1056768K</span><br><span class="line">[0.105s][info   ][gc,heap,exit ]   class space    used 265K, capacity 384K, committed 384K, reserved 1048576K</span><br></pre></td></tr></table></figure>
-
-<p>参考：</p>
-<p>资料：《java核心知识点整理》</p>
-<p><a href="https://zhuanlan.zhihu.com/p/35315122" target="_blank" rel="noopener">循环引用实验</a></p>
-<p><a href="https://blog.csdn.net/qq_42185762/article/details/115667911" target="_blank" rel="noopener">引用计数法的原理和优缺点</a></p>
-<p><a href="https://www.cnblogs.com/ysocean/p/11109018.html" target="_blank" rel="noopener">jvm参数</a></p>
-<p><a href="https://blog.csdn.net/laomo_bible/article/details/83112622" target="_blank" rel="noopener">https://blog.csdn.net/laomo_bible/article/details/83112622</a></p>
-<p><a href="https://www.jianshu.com/p/5fe2700fc518#:~:text=%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%B9%B4%E8%BD%BB%E4%BB%A3%E6%AF%8F%E7%BB%8F%E5%8E%86%E4%B8%80%E6%AC%A1Minor%20GC%EF%BC%8C%E8%80%8C%E6%9C%AA%E8%A2%AB%E5%9B%9E%E6%94%B6%E5%90%8E%EF%BC%8C%E5%B9%B4%E9%BE%84%E9%83%BD%E4%BC%9A%2B1%E3%80%82,%E5%BD%93%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B9%B4%E9%BE%84%E5%A2%9E%E9%95%BF%E5%88%B0%E4%B8%80%E5%AE%9A%E7%A8%8B%E5%BA%A6%EF%BC%88-XX%3AMaxTenuringThreshold%E9%BB%98%E8%AE%A415%E5%B2%81%EF%BC%89%EF%BC%8C%E4%B8%8B%E6%AC%A1Minor%20GC%E8%BF%90%E8%A1%8C%E6%97%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E8%BF%98%E6%98%AF%E6%B2%A1%E8%A2%AB%E5%9B%9E%E6%94%B6%EF%BC%8C%E5%B0%B1%E4%BC%9A%E6%99%8B%E5%8D%87%E8%87%B3%E8%80%81%E5%B9%B4%E4%BB%A3%E3%80%82" target="_blank" rel="noopener">gc的过程</a></p>
-<p><a href="https://www.bilibili.com/video/BV1Gv411W7Hb/?spm_id_from=333.337.search-card.all.click&vd_source=ebd4aea3f19edb267bcbf23c57d54aab" target="_blank" rel="noopener">java垃圾回收机制</a></p>
-
       
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖~<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2023" class="archive-year">2023</a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2023/05/02/Java-GC/" class="archive-article-date">
+  	<time datetime="2023-05-02T06:35:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-02</time>
+</a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2023/05/02/Java-GC/">java GC</a>
+    </h1>
+  
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://xun9er.online/2023/04/24/Java-GC/" alt="微信分享二维码">
-    </div>
-</div>
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">垃圾回收</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2023/05/26/一些奇怪的问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          一些奇怪的问题
-        
-      </div>
-    </a>
   
   
-    <a href="/2023/04/07/Java-线程安全/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java-线程安全</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java-GC"><span class="toc-number">1.</span> <span class="toc-text">java GC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-一些概念"><span class="toc-number">1.1.</span> <span class="toc-text">1.一些概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是javaGC？"><span class="toc-number">1.1.1.</span> <span class="toc-text">什么是javaGC？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaGC主要作用的内存区域有哪些？"><span class="toc-number">1.1.2.</span> <span class="toc-text">JavaGC主要作用的内存区域有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不进行垃圾回收会怎么样？"><span class="toc-number">1.1.3.</span> <span class="toc-text">不进行垃圾回收会怎么样？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-如何确定是否为需要回收的垃圾（垃圾标记阶段）"><span class="toc-number">1.2.</span> <span class="toc-text">2.如何确定是否为需要回收的垃圾（垃圾标记阶段）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1引用计数法（ReferenceCounting）"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1引用计数法（ReferenceCounting）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-引用"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">2.2.1 引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2可达性分析（Reachability-Analysis）"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2可达性分析（Reachability Analysis）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-垃圾收集算法"><span class="toc-number">1.3.</span> <span class="toc-text">3 垃圾收集算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1标记清除法（Mark-Sweep）"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1标记清除法（Mark-Sweep）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-复制算法-copying"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 复制算法(copying)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3标记整理算法-Mark-Compact"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3标记整理算法(Mark-Compact)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-分代收集算法"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 分代收集算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-新生代"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">3.4.1 新生代</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#年轻代gc的过程："><span class="toc-number">1.3.4.1.1.</span> <span class="toc-text">年轻代gc的过程：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-老年代"><span class="toc-number">1.3.5.</span> <span class="toc-text">3.4.2 老年代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-3-Full-GC"><span class="toc-number">1.3.6.</span> <span class="toc-text">3.4.3 Full GC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-垃圾回收器"><span class="toc-number">1.4.</span> <span class="toc-text">4 垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1Serial"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1Serial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Serial-Old收集器"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 Serial Old收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-ParNew垃圾收集器-Serial-多线程"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3  ParNew垃圾收集器(Serial+多线程)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Parallel-Scavenge-收集器-多线程复制算法、高效"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.3 Parallel Scavenge 收集器(多线程复制算法、高效)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-Parallel-Old收集器"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.5 Parallel Old收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-CMS（concurrent-mark-sweep）"><span class="toc-number">1.4.6.</span> <span class="toc-text">4.4 CMS（concurrent mark sweep）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-G1"><span class="toc-number">1.4.7.</span> <span class="toc-text">4.5 G1</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -504,9 +269,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -594,7 +359,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
+                <a href="javascript:void(0)" class="js-tag color4">pat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,11 +371,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">pat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">c++</a>
+                <a href="javascript:void(0)" class="js-tag color5">sqli</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,6 +387,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">垃圾回收</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">lambda</a>
               </li>
              
@@ -630,23 +399,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">php伪随机数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">seed爆破</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -655,6 +416,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">php伪随机数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">seed爆破</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -694,11 +463,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">centos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -711,22 +496,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">upload-labs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">bypass</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -750,11 +519,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
+                <a href="javascript:void(0)" class="js-tag color4">bug</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">bug</a>
+                <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
               </li>
              
               <li class="article-tag-list-item">
