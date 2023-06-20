@@ -9,13 +9,14 @@
   <title>零散知识 | Xun9er</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="聚集索引和非聚集索引https://blog.csdn.net/weixin_39270240/article/details/108571268 聚集索引：数据行的物理顺序与列值（一般是主键的那一列）的 逻辑顺序相同，一个表中只能拥有一个聚集索引 非聚集索引：该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同，一个表中可以拥有多个非聚集索引。  非聚集索引和聚集索引的区别在于： ​">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="零散知识">
 <meta property="og:url" content="http://xun9er.online/2023/06/15/零散知识/index.html">
 <meta property="og:site_name" content="Xun9er">
 <meta property="og:description" content="聚集索引和非聚集索引https://blog.csdn.net/weixin_39270240/article/details/108571268 聚集索引：数据行的物理顺序与列值（一般是主键的那一列）的 逻辑顺序相同，一个表中只能拥有一个聚集索引 非聚集索引：该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同，一个表中可以拥有多个非聚集索引。  非聚集索引和聚集索引的区别在于： ​">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2023-06-15T07:01:36.536Z">
+<meta property="og:updated_time" content="2023-06-19T09:30:15.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="零散知识">
 <meta name="twitter:description" content="聚集索引和非聚集索引https://blog.csdn.net/weixin_39270240/article/details/108571268 聚集索引：数据行的物理顺序与列值（一般是主键的那一列）的 逻辑顺序相同，一个表中只能拥有一个聚集索引 非聚集索引：该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同，一个表中可以拥有多个非聚集索引。  非聚集索引和聚集索引的区别在于： ​">
@@ -215,7 +216,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">275字</span>
+        <span class="post-count">2.9k字</span>
       </span>
     </span>
 
@@ -224,7 +225,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">10分</span>
       </span>
     </span>
 </div>
@@ -237,13 +238,121 @@
       
         <a id="more"></a>
 
-<h1 id="聚集索引和非聚集索引"><a href="#聚集索引和非聚集索引" class="headerlink" title="聚集索引和非聚集索引"></a>聚集索引和非聚集索引</h1><p><a href="https://blog.csdn.net/weixin_39270240/article/details/108571268" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39270240/article/details/108571268</a></p>
+<h2 id="聚集索引和非聚集索引"><a href="#聚集索引和非聚集索引" class="headerlink" title="聚集索引和非聚集索引"></a>聚集索引和非聚集索引</h2><p><a href="https://blog.csdn.net/weixin_39270240/article/details/108571268" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39270240/article/details/108571268</a></p>
 <p>聚集索引：数据行的<strong>物理顺序</strong>与列值（一般是主键的那一列）的 <strong>逻辑顺序</strong>相同，一个表中只能拥有一个聚集索引</p>
 <p>非聚集索引：该索引中索引的<strong>逻辑顺序与磁盘上行的物理存储顺序不同，一个表中可以拥有多个非聚集索引。</strong> </p>
 <p><strong>非聚集索引和聚集索引的区别在于：</strong></p>
 <p>​     通过聚集索引可以一次查到需要查找的数据， 而通过非聚集索引第一次只能查到记录对应的主键值 ， 再使用主键的值通过聚集索引查找到需要的数据。</p>
 <p>​    聚集索引一张表只能有一个，而非聚集索引一张表可以有多个。</p>
-<p>​    聚集索引的 <strong>叶子节点就是对应的数据节点</strong>，可以直接获取到对应的全部列的数据，而非聚集索引在索引没有覆盖到对应的列的时候需要进行二次查询</p>
+<p>​    聚集索引的 <strong>叶子节点就是对应的数据节点</strong>，可以直接获取到对应的全部列的数据，而非聚集索引在索引没有覆盖到对应的列的时候需要进行二次查询。</p>
+<h2 id="ioc依赖注入有哪些"><a href="#ioc依赖注入有哪些" class="headerlink" title="ioc依赖注入有哪些"></a>ioc依赖注入有哪些</h2><p>依赖注入（Dependency Injection, DI）是一种实现控制反转（Inversion of Control, IOC）的方式之一，其核心思想是将对象的创建和对象之间的依赖关系的建立，由应用程序的代码移到外部容器或配置文件中进行。借助依赖注入，我们可以将系统中各个组件所需的其它组件的创建和管理交由容器完成，并且能够在运行时刻动态地注入依赖，从而实现系统的松耦合。</p>
+<p>在实际应用中，常用的依赖注入方式有以下几种：</p>
+<ol>
+<li>构造函数注入（Constructor Injection）</li>
+</ol>
+<p>构造函数注入是一种通过构造函数传递参数的方式来实现依赖注入的方法。具体来说，就是将需要注入的依赖对象作为构造函数的参数传入，然后在构造函数中将其保存到类的成员变量中。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> CustomerDao customerDao;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomerService</span><span class="params">(CustomerDao customerDao)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.customerDao = customerDao;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，<code>CustomerService</code>类中的<code>customerDao</code>对象通过构造函数注入进来。</p>
+<ol>
+<li>Setter方法注入（Setter Injection）</li>
+</ol>
+<p>Setter方法注入是指通过setter方法设置依赖对象来实现依赖注入。具体来说，就是将需要注入的依赖对象通过setter方法传入，然后在setter方法中将其保存到类的成员变量中。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class CustomerService &#123;</span><br><span class="line">    private CustomerDao customerDao;</span><br><span class="line">    </span><br><span class="line">    public void setCustomerDao(CustomerDao customerDao) &#123;</span><br><span class="line">        this.customerDao = customerDao;</span><br><span class="line">    &#125;</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，<code>CustomerService</code>类中的<code>customerDao</code>对象通过setter方法注入进来。</p>
+<ol start="3">
+<li>接口注入（Interface Injection）</li>
+</ol>
+<p>接口注入是一种基于接口定义的依赖注入方式，它要求被注入类实现特定的接口，该接口中定义了需要注入的依赖对象的setter方法。在使用接口注入时，需要将需要注入的依赖对象作为参数，传入实现该接口的类的方法中。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">javaCopy Codepublic <span class="class"><span class="keyword">interface</span> <span class="title">CustomerDaoAware</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setCustomerDao</span><span class="params">(CustomerDao customerDao)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerService</span> <span class="keyword">implements</span> <span class="title">CustomerDaoAware</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> CustomerDao customerDao;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCustomerDao</span><span class="params">(CustomerDao customerDao)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.customerDao = customerDao;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，<code>CustomerService</code>类实现了<code>CustomerDaoAware</code>接口，并且重写了其中的<code>setCustomerDao()</code>方法，通过该方法实现了依赖注入。</p>
+<h2 id="反射用在什么地方"><a href="#反射用在什么地方" class="headerlink" title="反射用在什么地方"></a>反射用在什么地方</h2><h2 id="范型擦除"><a href="#范型擦除" class="headerlink" title="范型擦除"></a>范型擦除</h2><p>泛型擦除是指在编译期间，将所有泛型信息擦除掉，将泛型类型替换为原始类型。例如，List<string>会被擦除为List，Map&lt;Integer, String&gt;会被擦除为Map。</string></p>
+<p>泛型擦除带来的后果有以下几个：</p>
+<ul>
+<li>对于原始类型和泛型类型，编译时无法区分</li>
+</ul>
+<p>在泛型擦除的过程中，原始类型和泛型类型会被统一为相同的类型。因此，在编译器看来，List和List<string>是同一种类型，只是List<string>进行了类型转换。这就导致编译时无法区分这两种类型，可能会引发类型不匹配的问题。</string></string></p>
+<ul>
+<li>泛型类无法直接使用基本类型</li>
+</ul>
+<p>在Java中，泛型类不能直接使用基本类型作为类型参数，只能使用包装类型。这是因为，在泛型擦除之后，基本类型会被擦除为Object，而Object无法进行自动装箱和拆箱操作。</p>
+<ul>
+<li>无法获取泛型类型信息</li>
+</ul>
+<p>在运行时，由于泛型信息被擦除了，因此无法获取泛型类型的具体信息。这就导致了一些问题，在某些情况下，我们需要在运行时获取泛型类型的信息，比如通过反射机制获取泛型类型的具体参数等。</p>
+<h2 id="component和-bean"><a href="#component和-bean" class="headerlink" title="@component和@bean"></a>@component和@bean</h2><p>在Spring Framework中，Component和Bean都是用于实现依赖注入（DI）和控制反转（IoC）的重要元素。它们在特定的使用场景下有着不同的含义。</p>
+<p>@Component是一个通用的注解，用于标注一个类为组件，表示这个类将被Spring容器管理。它可以作用在任何类上，包括Controller、Service、Dao和普通的Java Bean等。使用@Component注解标注的类会被Spring容器扫描并自动注册为Bean，可以通过@Autowired或@Resource注解进行依赖注入。</p>
+<p>@Bean是另一种用于定义Bean的注解，它通常用于在配置类中声明Bean。使用@Bean注解标注的方法会被Spring容器调用，并返回一个对象，这个对象会被 Spring 容器管理，可以进行依赖注入。使用@Bean注解时也可以设置一些属性，例如指定Bean的名称、作用域等。可以通过@Configuration注解将一个类声明为配置类，然后在配置类中通过@Bean注解声明一些Bean。</p>
+<p>从使用的角度来看，使用@Component注解更加方便，可以直接在类上标注，无需额外的配置。而@Bean注解更加灵活，可以在方法级别上进行配置，在方法内部进行一些逻辑处理，生成Bean对象。</p>
+<h2 id="怎么避免空指针异常"><a href="#怎么避免空指针异常" class="headerlink" title="怎么避免空指针异常"></a>怎么避免空指针异常</h2><p>Java中的空指针问题是开发过程中比较常见的问题之一，如果不加注意可能会导致应用程序崩溃。以下是一些防止Java空指针问题的建议：</p>
+<ol>
+<li>避免使用null</li>
+</ol>
+<p>在Java编程中，应该尽量避免使用null作为变量的默认值，而应该使用默认值或者空对象代替。为空对象，例如空集合、空字符串，可以有效地减少空指针异常的出现。</p>
+<ol>
+<li>检查参数</li>
+</ol>
+<p>在方法中对参数进行检查，确保它们不是null。如果参数为null，可以选择抛出IllegalArgumentException异常或者返回一个默认值。</p>
+<p>1.判断对象是否为null</p>
+<p>在Java中，判断对象是否为null是一个很好的习惯。可以使用if(obj == null)来判断一个对象是否为null，如果是，则可以返回一个默认值或者抛出自定义异常。</p>
+<p>2.改进日志信息</p>
+<p>在代码中加入足够的日志信息可以帮助快速定位空指针异常。建议在发生异常时打印相关的日志信息，例如输出变量的值和调用栈的相关信息等。</p>
+<p>3.使用断言</p>
+<p>使用断言可以在开发过程中及早发现空指针问题。可以使用Java中的assert语句来实现断言，例如assert(obj != null)。</p>
+<p>4.使用包装类可以在一定程度上避免空指针，但并不能完全避免。</p>
+<p>Java中的基本数据类型，如int、double等是不支持为null的，如果我们需要在程序中使用这些类型来表示一个可能为null的值，就需要使用对应的包装类，例如Integer、Double等。由于包装类是对象，因此可以被赋值为null。在使用包装类时，如果没有进行合适的判空操作，也会发生空指针异常。</p>
+<p>使用包装类避免空指针问题的方法：</p>
+<ul>
+<li><p>在声明包装类变量时，进行初始化，例如：<code>Integer i = 0;</code>。</p>
+</li>
+<li><p>使用valueOf()方法创建包装类对象，该方法能够自动处理null值，例如：<code>Integer i = Integer.valueOf(x);</code>。</p>
+</li>
+<li><p>使用自动拆箱和装箱机制，在运算中自动转换基本类型和包装类类型，例如：<code>int i = integerObj;</code>，或者<code>Integer integerObj = intValue;</code>。</p>
+</li>
+<li><p>对包装类进行判空操作，例如：<code>if (integerObj != null) {...}</code>。</p>
+</li>
+</ul>
+<p>总之，在Java编程中，应该尽量避免使用null，加强参数检查，判断对象是否为null，改进日志信息和使用断言等手段可以有效减少空指针异常的出现。</p>
+<h2 id="Java中int转换为字符串方法"><a href="#Java中int转换为字符串方法" class="headerlink" title="Java中int转换为字符串方法"></a>Java中int转换为字符串方法</h2><p>在Java中，将int类型的数据转换为字符串有以下几种方法：</p>
+<ol>
+<li>使用String类的静态方法valueOf()进行转换</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Copy Codeint num = 123;</span><br><span class="line">String str = String.valueOf(num);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>使用Integer类的toString()方法进行转换</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Copy Codeint num = 123;</span><br><span class="line">String str = Integer.toString(num);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>使用字符串拼接操作” + “将int类型数据与空字符串相加</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Copy Codeint num = 123;</span><br><span class="line">String str = num + &quot;&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>这种方法使用较为简单，但是在大量循环中或者需要进行高性能操作时不建议使用。</p>
+<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><p>AOP（Aspect-Oriented Programming）是一种编程范式，是对面向对象编程（OOP）的扩展。AOP主要解决面向对象编程中的横切关注点问题，如日志记录、事务管理等。AOP通过在程序运行期间动态地将代码织入到类的指定位置来实现该功能。</p>
+<p>在AOP中，主要有以下几个重要的概念：</p>
+<ol>
+<li>切面（Aspect）：是横切关注点的抽象描述，它包含了一组通知（Advice）和一个切入点（Pointcut）。</li>
+<li>通知（Advice）：是在程序执行过程中插入到目标方法中的代码，它主要包括以下几种类型：</li>
+</ol>
+<ul>
+<li>前置通知（Before）：在目标方法执行前执行；</li>
+<li>后置通知（After）：在目标方法执行后执行，无论目标方法执行成功或失败都会执行；</li>
+<li>返回通知（AfterReturning）：在目标方法执行并返回结果后执行；</li>
+<li>异常通知（AfterThrowing）：在目标方法抛出异常时执行；</li>
+<li>环绕通知（Around）：在目标方法执行前后都执行，可以控制目标方法的执行。</li>
+</ul>
+<ol>
+<li>切入点（Pointcut）：指定哪些类、接口或方法应该被通知，是一个表达式，由切点（Pointcut）和连接器（Join Point）组成。</li>
+<li>连接点（Join Point）：指应用程序执行过程中能够插入切面的所有点，例如类中的方法调用或对象的创建事件。</li>
+<li>引入（Introduction）：允许在不修改现有类的情况下，向现有类添加新的方法或属性。</li>
+<li>织入（Weaving）：指将切面应用到目标对象并创建新的代理对象的过程，可以在编译期、类加载期、运行期进行。</li>
+</ol>
+<p>AOP主要有两种实现方式：基于动态代理和基于字节码操作。常见的AOP框架包括Spring AOP和AspectJ。其中，Spring AOP基于动态代理实现，使用注解或XML配置方式进行切面定义；而AspectJ支持基于动态代理和基于字节码操作两种实现方式，语法更加灵活，但相对于Spring AOP也更为复杂。</p>
+<p>吃饭2000+房租1000+车费600+水电100+衣服1000 = 捡垃圾</p>
 
       
 
@@ -273,6 +382,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -337,6 +457,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2023/06/19/java动态代理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java动态代理
+        
+      </div>
+    </a>
+  
   
     <a href="/2023/06/14/html中class、style、id的优先级/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">html中class、style、id的优先级</div>
@@ -366,7 +495,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#聚集索引和非聚集索引"><span class="toc-number">1.</span> <span class="toc-text">聚集索引和非聚集索引</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#聚集索引和非聚集索引"><span class="toc-number">1.</span> <span class="toc-text">聚集索引和非聚集索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ioc依赖注入有哪些"><span class="toc-number">2.</span> <span class="toc-text">ioc依赖注入有哪些</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射用在什么地方"><span class="toc-number">3.</span> <span class="toc-text">反射用在什么地方</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范型擦除"><span class="toc-number">4.</span> <span class="toc-text">范型擦除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#component和-bean"><span class="toc-number">5.</span> <span class="toc-text">@component和@bean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么避免空指针异常"><span class="toc-number">6.</span> <span class="toc-text">怎么避免空指针异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java中int转换为字符串方法"><span class="toc-number">7.</span> <span class="toc-text">Java中int转换为字符串方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP"><span class="toc-number">8.</span> <span class="toc-text">AOP</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -478,11 +607,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">pat</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">c++</a>
+                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,15 +627,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">sqli</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,7 +643,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">垃圾回收</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">pat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,11 +659,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">线程安全</a>
+                <a href="javascript:void(0)" class="js-tag color5">垃圾回收</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,7 +671,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VS code</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">线程安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,14 +684,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">seed爆破</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">phar</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,11 +707,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color5">phar</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,11 +723,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centos</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">动态代理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,7 +739,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,6 +751,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">centos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">sql注入</a>
               </li>
              
@@ -630,19 +767,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">preg_replace</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -658,19 +795,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">bug</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码审计</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">复习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color4">bug</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,7 +811,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xun9er日常废话</a>
+                <a href="javascript:void(0)" class="js-tag color3">复习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
             
             <div class="clearfix"></div>
