@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://xun9er.online">
-  <title>django用户ID自定义主键自增 | Xun9er</title>
+  <title>b树和b+树 | Xun9er</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近在做一个在线聊天平台，用户注册账号会生成一个id，这个id最开始是用的python的uid模块生成，但是后来发现这样不便于管理，于是打算改为主键自增。 记录一下遇到的问题。">
-<meta name="keywords" content="mysql,python,Django">
+  <meta name="description" content="mysql中b树和b+树的区别">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="django用户ID自定义主键自增">
-<meta property="og:url" content="http://xun9er.online/2023/04/02/django用户ID自定义主键自增/index.html">
+<meta property="og:title" content="b树和b+树">
+<meta property="og:url" content="http://xun9er.online/2023/06/20/b树和b-树/index.html">
 <meta property="og:site_name" content="Xun9er">
-<meta property="og:description" content="最近在做一个在线聊天平台，用户注册账号会生成一个id，这个id最开始是用的python的uid模块生成，但是后来发现这样不便于管理，于是打算改为主键自增。 记录一下遇到的问题。">
+<meta property="og:description" content="mysql中b树和b+树的区别">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2023-04-03T12:46:35.886Z">
+<meta property="og:updated_time" content="2023-06-20T02:30:50.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="django用户ID自定义主键自增">
-<meta name="twitter:description" content="最近在做一个在线聊天平台，用户注册账号会生成一个id，这个id最开始是用的python的uid模块生成，但是后来发现这样不便于管理，于是打算改为主键自增。 记录一下遇到的问题。">
+<meta name="twitter:title" content="b树和b+树">
+<meta name="twitter:description" content="mysql中b树和b+树的区别">
   
     <link rel="alternative" href="/atom.xml" title="Xun9er" type="application/atom+xml">
   
@@ -194,20 +194,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-django用户ID自定义主键自增" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-b树和b-树" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      django用户ID自定义主键自增
+      b树和b+树
     </h1>
   
 
         
-        <a href="/2023/04/02/django用户ID自定义主键自增/" class="archive-article-date">
-  	<time datetime="2023-04-02T09:28:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-02</time>
+        <a href="/2023/06/20/b树和b-树/" class="archive-article-date">
+  	<time datetime="2023-06-20T02:22:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-20</time>
 </a>
     <!--字数统计-->
         
@@ -216,7 +216,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">343字</span>
+        <span class="post-count">473字</span>
       </span>
     </span>
 
@@ -236,27 +236,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近在做一个在线聊天平台，用户注册账号会生成一个id，这个id最开始是用的python的uid模块生成，但是后来发现这样不便于管理，于是打算改为主键自增。</p>
-<p>记录一下遇到的问题。</p>
-<a id="more"></a>
+        <h2 id="mysql中b树和b-树的区别"><a href="#mysql中b树和b-树的区别" class="headerlink" title="mysql中b树和b+树的区别"></a>mysql中b树和b+树的区别</h2><a id="more"></a>
 
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>mysql+Django1.8+python3.9</p>
-<p>已有用户信息数据表mychat，包含了默认生成的主键id，这里的目标是删除默认自增主键id，添加自定义自增主键uid，使其从10000开始自增。</p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>1.修改model的mychat</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class mychat(models.Model):</span><br><span class="line">    uid = models.AutoField(primary_key=True) # uid为主键</span><br><span class="line">    user = models.CharField(max_length=30) #用户名</span><br><span class="line">    userpw = models.CharField(max_length=30) #用户密码</span><br><span class="line">		...</span><br></pre></td></tr></table></figure>
-
-<p>2.删除mysql中的mychat表</p>
-<p>要删除整个表重新建表，不然会出现主键设置了自增但执行时报错<code>Field &#39;uid&#39; doesn&#39;t have a default value</code>。</p>
-<p>3.注释model中的mychat </p>
-<p>因为如果不注释之后再新建一次，而直接迁移，django迁移数据时不会发现该表已经删除了，就不会进行新建表。</p>
-<p>4.迁移</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate –fake</span><br></pre></td></tr></table></figure>
-
-<p>5.删除mysql中django_migrations数据表里的app字段对应此modle相关的记录</p>
-<p>6.去掉注释重新迁移 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate –fake</span><br></pre></td></tr></table></figure>
-
-<p>7.创建第一个用户，将其的uid设置为10000，之后再次新建用户就会设置uid的值了。</p>
+<p>在 MySQL 数据库中，B树和B+树是常用的两种索引结构，它们虽然基于相同的树形结构，但是在实际应用中有着不同的优缺点和适用场景，具体的区别如下：</p>
+<ol>
+<li>叶子节点的存储方式不同：B树中每个节点都可以存储数据，而B+树中只有叶子节点存储数据，非叶子节点只存储键值信息。因此，B+树的叶子节点形成了一个有序链表，方便范围查询和排序操作。</li>
+<li>叶子节点的指针数不同：B树中每个节点包含指向其它节点的指针，而B+树中只有叶子节点包含指向下一个叶子节点（或上一个）的指针。这也是导致B+树叶子节点之间形成有序链表的原因。</li>
+<li>非叶子节点的关键字数不同：B树中每个节点至少包含 <em>m</em>/2 个关键字，而B+树中每个非叶子节点至少包含 2个关键字。这样B+树的非叶子节点可以存储更多的键值信息，方便范围查询的时候快速定位到存储数据的叶子节点。</li>
+<li>节点高度不同：B树中经过调整可以实现平衡，但是查询效率会受到高度的影响，而B+树通过优化叶子节点的存储方式，使其高度更矮，查询效率更高。</li>
+</ol>
+<p>综上所述，B树和B+树在实际应用中有不同的优势和适用场景。B树适合在内存中查找数据，可以支持随机读写操作，而B+树适合磁盘块中查找数据，可以支持顺序读写操作。当需要进行大数据量范围查询时，B+树的优势更明显。</p>
 
       
 
@@ -292,14 +281,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Django</a>
         		</li>
       		
 		</ul>
@@ -355,7 +336,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://xun9er.online/2023/04/02/django用户ID自定义主键自增/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://xun9er.online/2023/06/20/b树和b-树/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -369,18 +350,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/04/04/带权重的随机点名/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          带权重的随机点名
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/03/30/Java-Stream流/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java-Stream流</div>
+    <a href="/2023/06/19/java动态代理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java动态代理</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -407,7 +379,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql中b树和b-树的区别"><span class="toc-number">1.</span> <span class="toc-text">mysql中b树和b+树的区别</span></a></li></ol>
                     </div>
                 </span>
             </div>
